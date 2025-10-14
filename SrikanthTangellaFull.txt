@@ -1,0 +1,443 @@
+SRIKANTH TANGELLA
+Cell : 281.455.6722     EMail: srikanth.tangella@gmail.com
+Software Developer and Architect
+UI | C#| CLOUD | PYTHON| MACHINE LEARNING| ALGORITHMS| C++
+
+
+Profile:
+
+	10+ years Managing and Leading Teams (AGILE and Waterfall).
+	15 years of experience in Software Development
+	5 years of Research (Image Processing & Algorithm Development) experience.
+	Merit Scholarship recipient and 2nd top ranked candidate (National Ranker) to join Indian Institute of Information Technology Allahabad (India’s second-best Engineering University in IT in 2001).
+
+Technical Expertise in: 
+
+	Full Stack Software Development, C#, C++, Java, Python, VC++, VB
+	Desktop Development - C#/WPF, C++/C, Java, VC++, VB
+	Web Development – ASP .Net, Php, C#/WCF, HTML5/Css3
+	HPC Development – MPI/C++/Fortran, CUDA, Linux, Python
+	Artificial Intelligence and Machine Learning – Python
+	Data Analytics – Tableau, SSRS, Oracle Reporting Services
+
+Focus Areas: 
+
+	Project Planning, Management, Delivery and post-delivery support
+	Software requirement analysis, Software Design & Development
+	Estimation, Scope, Planning and Delivery of Custom Software Products
+	Managing teams across Demography.
+
+TECHNICAL BREIFING
+
+	Worked on full life cycle start up projects including Requirements gathering, Analysis, feasibility, Design, Coding, Alpha Testing, Beta Testing, Shipping/Delivery and support.
+	UI Development in Windows, Linux, MacOS and Console Game platforms
+	Collaborated with Product Managers, Platform Software Architects, and other leaders using wide range of experience, professional concepts and company objectives to design architectures that resolve complex issues in creative and effective ways
+	Converted multiple concepts/ideas to implementation by architecting, designing, building, and implementing the software framework needed for the product/project/application requirement that can be used as the base foundation for lead/senior/junior developers during the initiative
+	Strong Experience in Object Oriented Design and Analysis, Iterative Agile Programming Methodologies, Test-Driven Development and Maintenance
+	Experience in AGILE, SCRUM, CMMI methodologies.
+	Conduct Review of Design Documents and Code Review of peers and subordinates.
+	Highly skilled in designing the applications using UML diagrams like Use case diagrams, Class diagrams, Collaboration diagrams, Structural and Interaction diagrams etc.
+	Solid Game Programming Experience (Game Play and Haptics (sense of touch)/Force feedback)
+	Experience in integrating and programming Haptics for NOVINT’s FALCON into 3D & 2D games
+	Experience in Developing Online 3D Applications for PC.
+	Solid Testing Skills, able to write Automation Test scripts, Unit Tests.
+	Experience in API Testing methodologies.
+
+
+PERSONAL DETAILS
+
+WORK PERMIT/ AUTHORIZATION : Green Card
+
+
+EDUCATIONAL QUALIFICATIONS
+
+	B.Tech (IT), From India’s Then 2nd Best University -  IIITA
+	Exin Agile Scrum Master(https://app.exeed.pro/holder/badge/6994)
+	Post Graduate Program in Artificial Intelligence and Machine Learning (https://eportfolio.greatlearning.in/srikanth-tangella)
+
+AWARDS
+
+Recipient of Merit Based Prathiba Scholar ship award by State Govt.
+2nd Best Rank to join IIIT Allahabad (Scholarship Awarded) (out of 1.5M candidates)
+Best Project Award for 3D Game in 2003 (IIIT Allahabad)
+
+
+POST GRADUATE PROGRAM IN ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING
+TEXAS MCCOMBS, UT AUSTIN (APR 2020 – OCT 2020)
+
+Courses:
+
+	Supervised Learning
+	Ensemble Techniques
+	Feature Selection, Model Selection and Tuning
+	Unsupervised Learning
+	Neural Networks
+	Computer Vision
+	Natural Language Processing
+
+Technology used: Python, Keras, Seaborne, Numpy, Anaconda, Jupiter, AWS, OmniAI.
+
+
+EXPERIENCE DETAILS
+
+Apex Systems/BNY
+Consulting , Houston (Oct 2021 – Dec 2021 & May 2022 - Present )
+Job Responsibilities:
+
+	Wear multiple hats based on the team, project and need
+	as Architect/Solution provider:
+o	Understand the needs and problems at hand, propose solutions, Providing Prototypes, and Making products that are deployed in production environment that solves/alleviates the current problems.
+o	Architect and design .Net Applications (Full Stack)
+o	Work with and as PO to analyze requirements, propose solutions and identify work
+	under Management:
+o	Hiring and onboarding new members to the team
+o	Manage offshore development team
+	as Pioneer: 
+o	Machine Learning (researching new algorithms for website analysis and classification)
+o	Exploring new solutions in new technologies that possibly cater to the current and future needs.
+	as Developer
+o	Develop interactive UI(s) for great User Experience (for Windows in WPF, for MacOS in Swift)
+o	Write code in Test driven design. (Quality first)
+o	Design, develop and maintain code to handle Thousands of records.
+o	Maintain and develop CI/CD pipelines (BNY custom GitLab pipelines).
+o	Work on Cross Platform Applications (Windows, Modern Published Desktops, MacOS, Linux)
+o	Port applications to multiple platforms (Windows to MacOS and Linux)
+
+Languages: C#, C++, Python, Swift, Power Shell, Bash
+Platforms: Windows Native, Windows Modern Published Desktops, MacOS, Linux
+Technology used: Dot Net, Machine Learning, Web Services, Microservices, Messaging, Splunk, WPF, ASP .Net, Python, Managed C++, Docker
+Tools Used: Visual Studio, SQL Developer, Flutter, Postman, IntelliJ, Anaconda Jupyter
+
+JPMC
+Consulting , Houston (May 2021 – Sept 2021)
+Job Responsibilities:
+
+	Architect and design Office Extension Projects
+	Design Develop and Test Applications in .Net Core (Front end, backed and Server)
+	Write code in Test driven design. (Quality first)
+	Work with customers and PO to analyze requirements, propose solutions and identify work
+	Designed custom workflows to dynamically generate emails based on meeting content and to parse replies to add data to a custom database, to be used by other departments
+	Design, develop and maintain code to generate and consume messages from different micro services.
+	Maintain CI/CD pipelines using Jenkins, Jules
+
+Technology used: Dot Net Core, C#, Java, Maven, Oracle, Web API, Kafka, TDD, Asp .Net, REST Api, Machine
+Tools Used: Visual Studio, Sql Developer, Flutter, Postman, IntelliJ
+
+
+Apex Systems
+Consulting (Sept 2017 – Dec 2019 & Jan 2020 – April 2020) 
+Job Profile:
+	Exxon Mobil Application Portfolio (Subject Matter Expert):
+o	Assessment Tracking Database (ATDB) – Creator, Architect and SME (WPF,SqlServer, Web API)
+o	Drill Well Learning System (DWLS) (WPF, Sqlserver, Web API)
+o	Direct Hydrocarbon Indicator (DHI) (WPF, Sqlserver, Web API)
+o	SourceRER(Winforms, ArcGIS)
+o	GeoX Upgrade ( C#, DataDriven Unit Testing, Oracle, GeoX 6.2 & 2018)
+o	PlateLab (C#, Python, Blender)
+o	HPC Systems ( Modules development, C/C++/Fortran, Unix)
+o	Kirchhoff migration( C++/Fortran, Unix)
+o	RTM (C++ / Fortran/ MPI, Unix)
+o	Maintain Execution of HPC Systems – Python
+	Architect, Developer and SME
+o	Architect for WPF/Winforms Applications across business teams
+o	Import data from different database and store a snapshot of the records for tracking purpose and provide change tracking on the archived databases.
+o	Customized search of entities using DDD approach able to provide results across the Graph(ATDB).
+o	Oversee the Architecture of the software development for the whole team.
+	Role
+o	Certified Scrum Master & Technical Software Development Manager
+o	Mentor and Coach the team on Business Knowledge, Technical Skills and Agile concepts.
+o	Design, architect, develop and deploy applications to Geologists to store, view and modify seismic data from another vendor
+o	Talk to stake holders to gather requirements and plan the project cost and submit estimates.
+o	Work with PO and Team to deliver Software
+o	Define and Create PBI and manage external dependencies with other teams
+o	Code Review the entire Team
+	Technology
+o	Windows - WPF, EntityFramework 6.0, SQL ( Sqlserver & Oracle), Unit Testing, Data Driven Unit Testing, Common Table Expressions, Reflection, Advanced Language Features, Web API
+o	Unix - Open MPI, C++, C#, Fortran, C, MPI, 2d and 3D Graphics
+	Tools Used:
+o	Windows - Visual Studio, Resharper, EntityFramework, Git, Sql server, TOAD, Oracle
+o	Unix – QtCreator, Vim, Emacs, Valgrind, DDD, DDT, Awk, Python.
+
+
+
+
+Additional Experiences
+
+
+Schlumberger / SoftHQ
+Lead Software Engineer (August 2016 – Nov 2016) 
+Job Profile:
+	Lead Software Engineer
+o	Create C# WPF application from scratch using Devexpress WPF and MVVM
+o	Redesign Entire suit of WinForms applications using modular framework that can be reused in Windows and tablet and mobile platform.
+o	Architect and Design the entire application suit for the desktop side.
+o	Work closely with Client and UX and BA to get the requirements charted out and provide guidance for the Client and BA to finalize a viable product that is technically deliverable in the provided milestones
+o	Guide team members and provide them inputs for day to day tasks and help the team deliver.
+	Scrum Master
+o	Take charge of daily updates and submit a consolidated report to the end client.
+o	Facilitate the team to deliver the targeted user stories per iteration.
+o	Provide the burn down reports and future prediction of the completion date for the features.
+o	Do Risk analysis and work with the clients on the capability of the team and review the progress made so far and how it will impact the future sprints.
+	Tools Used
+o	Visual Studio 2015, Resharper, Git, DevExpress, Sql Server
+	Laguages Used
+o	C#, WPF, Devexpress
+
+
+
+Genzeon
+Principal Software Engineer (Feb 2016 to August 2016) (Contract)
+Job Profile:
+
+	Principal Software Engineer
+o	Create C# WPF application from scratch using Infragistics WPF and MVVM
+o	Develop and enhance current Allscripts Medical Billing Software 
+o	Profile and improve performance of WPF application, in C# and Sql Server Code
+o	Be active in modifying and changing DB schema.
+o	Write Stored Procedures and Code in PL/Sql.
+o	Work closely with UX and propose and collaborate with new features and UI designs that are better aligned with user’s workflow, easier to use and have most impact.
+o	Write Unit Tests and Functional Tests.
+
+Key Accomplishments:
+•	UI Development in C# WPF using .Net 4.0 and Infragistics using the following but not limited to MVVM, Control Templates, Data Templates, Styles and Resources, Story Board Animations, Notification and Command Structures, Dependency Injection, Inversion of Control, User Controls.
+•	Reworked on couple of workflows and improved the usability and scope of workflows
+•	Simplified few UI screens by splitting the workflows
+
+Tools Used
+•	Visual Studio 2015, TFS, Ants Profiler, Dot Trace Profiler, Sql Server, 
+
+Languages
+•	C# - WPF – Infragistics, SQL
+
+
+
+
+
+
+
+IHS  - Houston
+Senior Software Engineer( R&D Department) (Jan 2014 – Jan 2016)
+Job Profile:
+
+	Senior Software Engineer
+o	Create multiple C# WPF applications from scratch using Telerik, Prism and MVVM
+o	Develop current IHS Kingdom a Seismic and Geological Interpretation Software, 
+o	Profile and improve performance of WPF applications 
+o	Refactoring the code to efficiently use the native vectorization of loops by compiler
+o	Work closely with UX and propose and collaborate with new features and UI designs that are better aligned with users workflow,  easier to use and have most impact.
+o	Be proactive with constantly changing requirements and guide the team to be successful.
+o	Tune the repository access to the database for faster load times and smaller memory foot print.
+o	Migrate & improvise functionality of to be legacy product to next generation application
+o	Write Unit Tests and Functional Tests.
+
+	Research
+o	Migrate and Optimize Legacy algorithms to use CUDA and latest architecture
+o	Profile, analyze and create new routines for applications
+
+
+Key Accomplishments:
+•	Work as a successful scrum master for the team
+•	UI Development in C# WPF using .Net 4.0 and Telerik using the following but not limited to MVVM, Control Templates, Data Templates, Styles and Resources, Story Board Animations, Notification and Command Structures, Dependency Injection, Routed Events, Inversion of Control, Telerik Styles Customization, User Controls.
+•	Heavy customizing of Telerik and WPF elements for meeting tough customizations.  Few Examples are Control Templates for Buttons, RadDropDown Elements, Grids, AutoCompleteBox, TextBlock
+•	Use T4 Text Template to Generate Models, View Models, Custom User Controls, Unit Tests and xaml Documents, where inheritance is not appropriate and we need common architecture of code.
+•	Redesigned majority of the legacy UI along with UX team, with a high user acceptance rate of 87%
+•	Redesigned multiple algorithms to take advantage of current architecture
+•	Instrumental in writing up to 40% of T4 text templates in the project.
+•	Performance tuned three major work flows by analyzing the application to get almost 10 times the earlier load and running speed by optimizing the database access and using Virtualizing Stack Panel the result set which handle more than 5 hundred thousand wells data.
+•	Added Support to read data From Direct Connect and to import and export data into multiple formats
+
+Tools Used
+•	Visual Studio 2013, Visual Studio 2015, TFS, Resharper, Ants Profiler, Dot Trace Profiler.
+
+Languages
+•	C# - WPF – Telerik, C++, CUDA, Open MPI
+
+
+
+
+
+
+
+
+
+
+
+CGG Veritas (Renamed to CGG) - Houston
+Generalist Software Engineer( R&D Department) (Oct 2010 – July 2013)
+Job Profile:
+	Seismic Image Processing Algorithm Research and Development
+o	HPC Algorithm development  for cluster CPUs and GPUs, using MPI
+o	Parallelization of serial algorithms and making use of MPI
+o	Analysis of code for SIMD and MIMD sections for further optimization for GPU or CPU clusters
+o	Refactoring the code to efficiently use the native vectorization of loops by compiler
+	2D and 3D Graphics Development in WPF /Telerik 
+o	Rewrite Veritas Proprietary Software modules into Cgg’s Java Platform
+o	Merge the features into a common platform and language C# WPF, along with improvements.
+o	Redesign core components for better navigational ability and better performance.
+	GUI applications development using C# WPF and QT/C++.
+o	Adding support for multiple GUI features.
+o	Added support for reading/writing new dataformats
+o	Migrated application from C++/QT applications into WPF, to have unified software
+	Development of Image Processing modules ( 2D, 3D and batch MPI) for processing of seismic data
+o	XP programming methodology
+o	Optimization for custom flow of data, for efficient execution of parallel machines.
+	Development and optimization of Highly customized, High performance libraries (in C, C++ and FORTRAN and C#) and applications in C#, FORTRAN, C++/Qt/OpenGL
+o	Create new libraries that are native 64-bit, to replace old libraries
+o	Redesign legacy libraries to have high performance in latest hardware
+o	Maintain and upgrade helper libraries
+o	Develop and maintain multiple shell scripts (BASH, PERL) for automating day to day activities and tasks.
+	VPM software maintainence and upgrades
+o	Written in Visual Basic
+o	Ported the code from VS 6 - VS 2005 – VS 2008 – VS 2010
+	Various Helper Tools:
+o	Job Script Building Tools implemented
+o	Dynamic Webpages Content and Tips Contributing Tools (Apps and Web Pages)
+	Gather requirements, create Design Documents, functional Design Documents and Unit Tests.
+	Review peer written C++/C#/ FORTRAN Code before submission into perforce.
+	Short Cycle Scrum, and TDD and BDD used for certain Development Tasks.
+	Mentor New Hires for the team( Paired Programming for first couple of weeks/months)
+	Write and test using Unit Tests for all the code written outside of SCRUM (Waterfall).
+Key Accomplishments:
+	Development of multiple custom cross platform API’s across various domains.
+	Added support for new data storage formats for efficient extraction of seismic data for a custom project.
+	Push Documentation Standardization throughout the team. Tutored the team on the usage of doxygen and the necessity of proper documentation of any project and convinced the management for the same!
+	Set Coding standards for Houston Center. (Earlier every programmer had his own standards!!!)
+	Push Code Review Process for the company level.
+	Introduced, tutored and helped the interested team members in the usage of Code::Blocks as the IDE for development. Earlier programmers used only emacs and vi as editor before and make files for compiling. Evaluated multiple IDE’s that supported Fortran in Linux.
+	Developed  a Custom Web Pages Resources and Knowledge sharing Tool
+o	Developed in Html5 and php using apache server and oracle server connectivity (Linux)
+o	Uses scripts to fetch user environments, aliases, system settings using shell scripts and stores them in database against the user profile it is fetched from
+o	Allows the user to contribute their “custom commands “ for the team using the tools provided
+o	Connects and gets information from old legacy internal wiki pages in a dynamic pages.
+Tools Used:
+	Perforce, Code::Blocks, Eclipse JDT, Maven, Eclipse CDT, VS (2008, 6.0, 2010, 2012)
+o	Personal License of Visual Assist X ( for C++ ), Resharper (C#)
+Languages:
+	C++, C#,  Fortran, Perl, bash scripting, VB, HTML5, php, JavaScript
+SDK’s used:
+	Carnac, QT, OpenGL, Lam MPI, Open MPI.
+
+Electronic Arts Mobile - Hyderabad
+Software Engineer ( R&D Department) (Oct 2008 – Nov 2009)
+Job Profile: 
+	Team Lead: Manage, Mentor and train, a team of Software Associate Programmers.
+	Proactively manage changes in project scope, identify potential crises, and devise contingency plans.
+	Development of platform independent Technology for PS3 (C++), XBOX 360(C++/C#), Wii(C) and PC(C/C++/C#) platforms to improve game development time and quality(Research 80% Upgrade 20%).
+	Responsible for building and supporting the use of Global Online System (GOS) SDKs and associated server infrastructure for EA Online games.
+	Develop and maintain a 3D game, to test the platform independent SDK’s on PS3, XBOX 360, Wii and PC platforms.
+	Design, Develop and Release Multiple plugins in client(C#, C++/QT)/Server(C#)/console (C++) configuration.
+	Create Unit Tests using NUnit, and test the software written.
+	Review C++/C# Code written by other team members before checking into perforce.
+Key Accomplishments:
+	Development of new Console Modules which improve the performance of the general Console games.
+	Instrumental in taking ownership of multiple components within a month of joining.
+	Analyzing current GOS (Global Online SDK) sdk and developing Test Harness for usability of GOS and further developing the SDK.
+	Design and Development and Deployment of Test harness for testing JUICE, so that testers can easily script test cases.
+	Created a dos scripts for automating the perforce integration, merging, resolution, fetching the code in local machine, building it for all platforms, and launching the binaries in each platform for further testing in consoles and logging all the steps into a centralized DB and mail the concerned parties if any step fails. ( Before this every step was to be done manually, man hours saved per run/per platform/day is 6 hours )
+Tools Used:
+	Perforce, Code Collaborator, Visual Studio ( VC++, C# ), Sql Server
+Languages Used:
+•	C++(EA-Custom STL,LAM MPI), C#(WPF and WCF), C
+
+
+Aurona Technologies Ltd. - Hyderabad
+Game Programmer (Dec 2007 – Oct 2008)
+Job Profile: 
+	3D Game : WWII 76 MM , 2D Game : MasterPieceFishing
+o	Update the games with latest requirements.
+o	Added new game play mechanics
+o	Added a Third dimension of feed back and Input (1 – vision, 2 – sound, 3 - touch based) (3D HAPTIC force Feedback, using proprietary Haptics Device NOVINT FALCON).
+o	Added Save/Load, Quick Save/Quick Load features into the game.
+o	Updated the collision physics engine, so as to get smoother force feedback from HAPTICS device.
+o	Extend GUI with loads of new features, new screen for force feed back devices and save/load features.( TCL/Tk for 3D Game, C/C++ for 2D Game)
+
+	Haptics Effects Provides to 3D  Tank Game:
+o	Acceleration/Deceleration feedback,
+o	Cannon fire, bullet stream fire and grenade launch feedback
+o	Collision forces, torque forces, sliding effects ( combination of rotational and linear forces )
+o	Driving over a rough patch/inclination driving.
+o	Taking fire (directional vector – originating for the source of impact, bullet and explosions)
+o	GUI Navigation using Device
+
+	Haptics Effects provided for 2D Fishing Game
+o	Shoot/retract/idle swing/ bait effects for fishing rod
+o	Pull/ release/tension/swing in water/ fish weight related effects
+o	GUI selection and intuitive navigation using Device
+
+	Develop an online 3D virtual trade show Xpofairs:
+o	3D Application:
+	Developed initially using MFC + irrlicht Game Engine, using ASP web pages
+	Redesigned using Torque Game Engine for protability with PC, MAC systems.
+	Developed custom chat system (server, client and user access control)
+	Added run time upload/download capability of art assets (Levels, models, textures, information texts, other downloadables) and information from a centralized server (Network programming)
+	3D game play programming, 3D model run time rendering, passive Artificial AI for the in game models for interaction with other costumers.
+	All in game scripting is done using TorqueScript (TS).
+o	Database Server (Sql Server):
+	Redesigned the Database from scratch using new and updated requirements. 
+	Used Sql Server.
+	Provided multiple stored procedures, to access/ modify and update the database.
+o	Web Server (.Net C#)
+	Developed a Web Server to provide interface between Database Server and Client Application.
+	SOAP protocol based services provided.
+	Provided access to database using stored procedures.
+	Developed in C# .Net.
+	Migrated limited functionalities from ASP .Net web pages into Web services.
+
+Key Accomplishments:
+	Single handedly fixed, refactored and cleaned the sloppy – broken code provided(50K lines of code in a single file, Zero Documentation, half of the code has German and Russian Names!!!), and finishing the first integration of the Haptics device in less than a month, ensuring the acquisition of the second project from the client by the company.
+	Developed highly reusable API of Haptic effects that can be used by other projects.
+	Development of an UDP chat client/server system using the network capabilities of Torque
+	Designing and implementing a robust Interface for communication from the database server via Dot Net web services to the client application and handling the offline application viewing features.
+	Converted ASP.Net pages to C# web services (No Prior Experience).
+Tools Used:
+	Visual Studio ( VC++, C# ), Sql Server, Code Collaborator
+	Tortoise Svn, Torque Game Engine, Ogre3D, Irrlicht Engine
+
+
+
+
+
+
+
+
+Infosys Technologies Ltd. - Hyderabad
+Software Engineer(Jun 2005 – Dec 2005)/ Software Test Engineer (Jan 2006 – Dec 2006)
+Job Profile: 
+	Leading a team of 4, reporting to the Test Manager / Senior Test Manager, acting as the Point of Contact with the Onsite Coordinator and with the Development Team.
+	Test Plan Preparation & Billing Estimate, Review of the Test cases of Team members before finalization, submitting reports of Daily activities, Bugs Fixing and Test Cases executed.
+	Gather Requirements; create Design Documents and Detailed Design Documents, Test Plans, Test Harness.
+	Mentor new joinees into Company Principles, Applications and Testing methodologies.
+	Review Code written by the freshers and help them grow.
+	Automation testing using WinRunner, Mercury TestDirector. Manual testing for non-automatable and backend testing of Oracle Database and the scripts used for the transactions of the payroll management system.
+	Usage of various design patterns like Singleton, Adapter, Façade, Abstract Factory, Factory Method, Data Access Object etc.
+	Designed UML diagrams such as Class diagrams, Sequence diagrams using Rational Rose Modeler
+
+Key Accomplishments:
+	Made a Team Leader in 12 months of joining the job.
+	Created a custom spreadsheet calculator for calculating the values to be tested on the backend server data. It is highly formulated (with ease of use in mind) so that just copy pasting the columns and entering the data in designated place will do all the calculations required for testing more than 25000 test cases on database validation testing. Estimated time saved for the team 15 mins for each test case, total of about 25000 test cases.
+	Instrumental in finding Critical Business Logic Errors within a week of joining a project, ensuring timely rectification by the Client and implementation by the development team.
+	Recognized for finding most of the Critical Bugs, hard to find, once in a while occurring serious flaws in the Application Design.
+Tools Used:
+	C#, WPF, Oracle 8i, Toad, WinRunner, WebRunner, Mercury Test Director
+	Rational Rose, Crystal Reports, Eclipse
+
+Tutoring - Hyderabad
+C++/Java Trainer (Jun 2005 – Nov 2009)
+Job Profile: 
+	Teaching students (pre-University students) fundamentals of programming and design.
+	Hands on Commercial Software Development Projects handling, for advanced Students.
+	Teaching University students, advanced Programming skills & data structures
+	Languages taught C/C++ and Java, JSP and C#.Net Web Server Programming.
+	Duration taught around 3 years. Daily (Morning : 4:00 AM – 7:30 AM Evening : 7:30 PM – 10:00 PM)
+	Tools used: SqlServer, Oracle, VC++, Nmake, Make, ANT, Eclipse.
+
+
+Indian Institute of Information Technology - Allahabad
+Research/Student  (Jun 2001 – May 2005)
+Key Accomplishments:
+	Merit based Scholarship(s) Holder (Prathibha Scholarship Awarded from State Government and Scholarship from IIIT Allahabad).
+	2nd Top Ranked candidate to join IIIT Allahabad.
+	Best project of the Year for 2003
+Tools Used:
+	Matlab, Visual Studio (VC++, VB, C#), Borland C++, Turbo C.
+	3D Studio Max, Corel Draw, Paint Brush,FMod

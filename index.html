@@ -328,6 +328,74 @@
             line-height: 1.8;
         }
 
+        /* Skill chips */
+        .skill-chips {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .skill-chip {
+            background: white;
+            border: 1px solid #e6eef8;
+            color: #1e293b;
+            padding: 0.4rem 0.75rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 6px rgba(16,24,40,0.04);
+        }
+
+        /* Cards carousel */
+        .cards-section { max-width: 1000px; margin: 2rem auto 0; }
+        .cards-carousel {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 0.75rem;
+        }
+
+        .cards-carousel:focus { outline: 3px solid rgba(14,165,233,0.25); }
+
+        .card-item {
+            flex: 0 0 320px;
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            box-shadow: 0 6px 20px rgba(2,6,23,0.08);
+            scroll-snap-align: start;
+            cursor: grab;
+            user-select: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card-item:active { cursor: grabbing; }
+
+        .card-item:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(2,6,23,0.12); }
+
+        .card-company { font-weight: 800; color: #0f172a; margin-bottom: 0.25rem; }
+        .card-role { font-weight: 700; color: #0ea5e9; margin-bottom: 0.5rem; }
+        .card-summary { color: #475569; font-size: 0.95rem; margin-bottom: 0.75rem; }
+        /* Limit summary lines and add ellipsis */
+        .card-summary {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            line-clamp: 3; /* standard property for compatibility */
+            -webkit-line-clamp: 3; /* show up to 3 lines */
+            overflow: hidden;
+        }
+        .card-tags { display:flex; gap:0.5rem; flex-wrap:wrap; }
+        .card-tag { background:#eef2ff; color:#3730a3; padding:0.25rem 0.5rem; border-radius:999px; font-weight:600; font-size:0.8rem; }
+
+        /* Hide scroll bar while preserving scroll support (thin fallback) */
+        .cards-carousel::-webkit-scrollbar { height: 8px; }
+        .cards-carousel::-webkit-scrollbar-thumb { background: rgba(2,6,23,0.08); border-radius: 999px; }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -424,23 +492,34 @@
         <div class="about-content">
             <p id="about-detailed-bio"></p>
             <p id="about-additional-bio"></p>
+            <div id="about-skill-chips" class="skill-chips" aria-hidden="false"></div>
+
+            <!-- Cards carousel: rendered from PERSONAL_INFO.cards -->
+            <div class="cards-section" style="margin-top:1.5rem;">
+                <h3 class="section-subtitle" style="margin-bottom:0.75rem;">Work & UI Experience</h3>
+                <div id="about-cards-carousel" class="cards-carousel" tabindex="0" role="list" aria-label="Companies and UI experience"></div>
+            </div>
 
             <div class="stats-grid">
                 <div class="stat-card">
                     <div id="stat-experience" class="stat-number"></div>
                     <div class="stat-label">Years Experience</div>
+                    <div class="skill-chips" id="stat-experience-skills"></div>
                 </div>
                 <div class="stat-card">
                     <div id="stat-design-variations" class="stat-number"></div>
                     <div class="stat-label">Design Variations</div>
+                    <div class="skill-chips" id="stat-design-skills"></div>
                 </div>
                 <div class="stat-card">
                     <div id="stat-companies" class="stat-number"></div>
                     <div class="stat-label">Companies</div>
+                    <div class="skill-chips" id="stat-companies-skills"></div>
                 </div>
                 <div class="stat-card">
                     <div id="stat-devices" class="stat-number"></div>
                     <div class="stat-label">Devices Secured</div>
+                    <div class="skill-chips" id="stat-devices-skills"></div>
                 </div>
             </div>
         </div>
@@ -521,8 +600,17 @@
             if (headerDesc) headerDesc.textContent = PERSONAL_INFO.bio.short;
             
             // Update about section detailed and additional bios (prefer IDs)
-            const aboutDetailed = document.getElementById('about-detailed-bio') || document.querySelector('#about .about-content p');
-            if (aboutDetailed) aboutDetailed.textContent = PERSONAL_INFO.bio.detailed;
+            const aboutDetailed = document.getElementById('about-detailed-bio');
+            if (aboutDetailed) {
+                // Clear and render paragraphs for improved readability
+                aboutDetailed.innerHTML = '';
+                const paras = (PERSONAL_INFO.bio && PERSONAL_INFO.bio.paragraphs) || [];
+                paras.forEach(p => {
+                    const el = document.createElement('p');
+                    el.textContent = p;
+                    aboutDetailed.appendChild(el);
+                });
+            }
 
             const aboutAdditional = document.getElementById('about-additional-bio');
             if (aboutAdditional) aboutAdditional.textContent = PERSONAL_INFO.bio.additional;
@@ -571,6 +659,28 @@
             if (statCompanies) statCompanies.textContent = PERSONAL_INFO.stats.companies;
             const statDevices = document.getElementById('stat-devices');
             if (statDevices) statDevices.textContent = PERSONAL_INFO.stats.devicesSecured;
+
+            // Render skill chips under About
+            const aboutChips = document.getElementById('about-skill-chips');
+            if (aboutChips && Array.isArray(PERSONAL_INFO.skills)) {
+                aboutChips.innerHTML = PERSONAL_INFO.skills.map(s => `<span class="skill-chip">${s.name}</span>`).join('');
+            }
+
+            // Render related skills under stat cards if available
+            const related = PERSONAL_INFO.stats && PERSONAL_INFO.stats.related ? PERSONAL_INFO.stats.related : {};
+            const statMap = {
+                experience: 'stat-experience-skills',
+                designVariations: 'stat-design-skills',
+                companies: 'stat-companies-skills',
+                devicesSecured: 'stat-devices-skills'
+            };
+
+            Object.keys(statMap).forEach(key => {
+                const el = document.getElementById(statMap[key]);
+                if (!el) return;
+                const names = related[key] || [];
+                el.innerHTML = names.map(n => `<span class="skill-chip">${n}</span>`).join('');
+            });
         }
 
         // Helper function to create individual portfolio card
@@ -913,6 +1023,137 @@
                     </div>
                 `;
             }
+
+            // Render company cards carousel from PERSONAL_INFO.cards
+            function renderCardsCarousel() {
+                const carousel = document.getElementById('about-cards-carousel');
+                if (!carousel || !Array.isArray(PERSONAL_INFO.cards)) return;
+
+                carousel.innerHTML = PERSONAL_INFO.cards.map(card => `
+                    <article class="card-item" role="listitem" tabindex="0" data-id="${card.id}">
+                        <div class="card-company">${card.company}</div>
+                        <div class="card-role">${card.role}</div>
+                        <div class="card-summary">${card.summary}</div>
+                        <div class="card-tags">
+                            ${card.uiTags.map(t => `<span class="card-tag">${t}</span>`).join('')}
+                        </div>
+                    </article>
+                `).join('');
+
+                // Interaction: drag-to-scroll + pause-on-hover + keyboard support + autoplay
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                let isDragging = false;
+                let startX, scrollLeft;
+                let autoplayTimer = null;
+
+                // Drag handlers
+                carousel.addEventListener('pointerdown', e => {
+                    isDragging = true;
+                    carousel.classList.add('dragging');
+                    startX = e.clientX || e.touches && e.touches[0].clientX;
+                    scrollLeft = carousel.scrollLeft;
+                    carousel.setPointerCapture(e.pointerId);
+                });
+
+                carousel.addEventListener('pointermove', e => {
+                    if (!isDragging) return;
+                    const x = e.clientX || (e.touches && e.touches[0].clientX);
+                    const dx = x - startX;
+                    carousel.scrollLeft = scrollLeft - dx;
+                });
+
+                const stopDragging = e => {
+                    isDragging = false;
+                    try { carousel.releasePointerCapture && carousel.releasePointerCapture(e.pointerId); } catch (err) {}
+                    carousel.classList.remove('dragging');
+                };
+
+                carousel.addEventListener('pointerup', stopDragging);
+                carousel.addEventListener('pointercancel', stopDragging);
+                carousel.addEventListener('pointerleave', stopDragging);
+
+                // Pause autoplay on hover/focus
+                carousel.addEventListener('mouseenter', stopAutoplay);
+                carousel.addEventListener('focusin', stopAutoplay);
+                carousel.addEventListener('mouseleave', startAutoplayIfNeeded);
+                carousel.addEventListener('focusout', startAutoplayIfNeeded);
+
+                // Keyboard navigation: left/right to scroll by card width
+                carousel.addEventListener('keydown', e => {
+                    const key = e.key;
+                    const cardWidth = carousel.querySelector('.card-item')?.offsetWidth || 320;
+                    if (key === 'ArrowRight') {
+                        carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+                        e.preventDefault();
+                    } else if (key === 'ArrowLeft') {
+                        carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+                        e.preventDefault();
+                    }
+                });
+
+                // Smooth back-and-forth autoplay using requestAnimationFrame
+                let rafId = null;
+                let lastTime = null;
+                let direction = 1; // 1 = forward, -1 = backward
+                const speed = 40; // pixels per second
+                let resumeTimer = null;
+
+                function animateFrame(timestamp) {
+                    if (!lastTime) lastTime = timestamp;
+                    const dt = (timestamp - lastTime) / 1000; // seconds
+                    lastTime = timestamp;
+                    if (!isDragging) {
+                        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                        if (maxScroll > 1) {
+                            carousel.scrollLeft += direction * speed * dt;
+                            if (carousel.scrollLeft <= 0) { carousel.scrollLeft = 0; direction = 1; }
+                            else if (carousel.scrollLeft >= maxScroll) { carousel.scrollLeft = maxScroll; direction = -1; }
+                        }
+                    }
+                    rafId = requestAnimationFrame(animateFrame);
+                }
+
+                function startAutoplay() {
+                    if (prefersReducedMotion) return;
+                    stopAutoplay();
+                    lastTime = null;
+                    rafId = requestAnimationFrame(animateFrame);
+                }
+
+                function stopAutoplay() {
+                    if (rafId) { cancelAnimationFrame(rafId); rafId = null; lastTime = null; }
+                }
+
+                function scheduleResume(delay = 1500) {
+                    if (resumeTimer) clearTimeout(resumeTimer);
+                    resumeTimer = setTimeout(() => { startAutoplay(); resumeTimer = null; }, delay);
+                }
+
+                function cancelResume() { if (resumeTimer) { clearTimeout(resumeTimer); resumeTimer = null; } }
+
+                // Pause autoplay immediately on interaction
+                carousel.addEventListener('pointerdown', e => {
+                    stopAutoplay();
+                    cancelResume();
+                });
+
+                carousel.addEventListener('pointerup', e => {
+                    // schedule resume after short idle
+                    scheduleResume(1600);
+                });
+
+                // Also pause on hover/focus and resume after idle
+                carousel.addEventListener('mouseenter', () => { stopAutoplay(); cancelResume(); });
+                carousel.addEventListener('focusin', () => { stopAutoplay(); cancelResume(); });
+                carousel.addEventListener('mouseleave', () => { scheduleResume(1200); });
+                carousel.addEventListener('focusout', () => { scheduleResume(1200); });
+
+                // Start autoplay if allowed and not reduced-motion
+                if (!prefersReducedMotion) startAutoplay();
+            }
+
+            // Render after personal info updated
+            renderCardsCarousel();
         });
     </script>
 </body>
