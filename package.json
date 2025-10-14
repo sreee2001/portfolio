@@ -1,0 +1,25 @@
+{
+  "name": "portfolio-screenshot-generator",
+  "version": "1.0.0",
+  "description": "Screenshot generator for portfolio mock websites",
+  "main": "scripts/generate-screenshots.js",
+  "scripts": {
+    "install-playwright": "npx playwright install chromium",
+    "generate-screenshots": "node scripts/generate-screenshots.js",
+    "generate-personal-screenshots": "node scripts/generate-personal-bio-screenshots.js",
+    "serve": "python -m http.server 8000",
+    "setup": "npm install && npm run install-playwright",
+    "screenshots": "npm run generate-screenshots && npm run generate-personal-screenshots"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "portfolio",
+    "screenshots",
+    "automation"
+  ],
+  "author": "Srikanth Tangella",
+  "license": "MIT"
+}
