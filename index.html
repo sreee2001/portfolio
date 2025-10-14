@@ -758,7 +758,26 @@
                     </div>
                 </div>
             `;
-            
+
+            // Make the entire card clickable (open project URL in a new tab) while preserving
+            // inner link behavior. Do not change visible styling; this adds behavior only.
+            card.tabIndex = 0; // make focusable
+            card.setAttribute('role', 'link');
+            card.addEventListener('click', (e) => {
+                // If the user clicked an actual anchor or interactive element inside, let it handle the event
+                if (e.target.closest('a') || e.target.closest('button')) return;
+                try { window.open(project.url, '_blank'); }
+                catch (err) { window.location.href = project.url; }
+            });
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    // Space/Enter should open the link (mirror click behavior)
+                    e.preventDefault();
+                    try { window.open(project.url, '_blank'); }
+                    catch (err) { window.location.href = project.url; }
+                }
+            });
+
             return card;
         }
 
