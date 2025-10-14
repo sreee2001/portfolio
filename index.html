@@ -385,8 +385,8 @@
         .card-summary {
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            line-clamp: 3; /* standard property for compatibility */
-            -webkit-line-clamp: 3; /* show up to 3 lines */
+            line-clamp: 6; /* allow up to 6 lines */
+            -webkit-line-clamp: 6; /* show up to 6 lines */
             overflow: hidden;
         }
         .card-tags { display:flex; gap:0.5rem; flex-wrap:wrap; }
@@ -402,6 +402,26 @@
             gap: 2rem;
             margin-top: 3rem;
         }
+
+        /* Skills card grid replaces the old stats row */
+        .skills-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category-card {
+            background: white;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 6px 20px rgba(2,6,23,0.06);
+            min-height: 140px;
+        }
+
+        .skill-category-title { font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
+        .skill-category-items { display:flex; gap:0.5rem; flex-wrap:wrap; }
+        .skill-item { background:#f1f5f9; color:#0f172a; padding:0.35rem 0.6rem; border-radius:999px; font-weight:600; font-size:0.82rem; }
 
         .stat-card {
             background: white;
@@ -500,27 +520,8 @@
                 <div id="about-cards-carousel" class="cards-carousel" tabindex="0" role="list" aria-label="Companies and UI experience"></div>
             </div>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div id="stat-experience" class="stat-number"></div>
-                    <div class="stat-label">Years Experience</div>
-                    <div class="skill-chips" id="stat-experience-skills"></div>
-                </div>
-                <div class="stat-card">
-                    <div id="stat-design-variations" class="stat-number"></div>
-                    <div class="stat-label">Design Variations</div>
-                    <div class="skill-chips" id="stat-design-skills"></div>
-                </div>
-                <div class="stat-card">
-                    <div id="stat-companies" class="stat-number"></div>
-                    <div class="stat-label">Companies</div>
-                    <div class="skill-chips" id="stat-companies-skills"></div>
-                </div>
-                <div class="stat-card">
-                    <div id="stat-devices" class="stat-number"></div>
-                    <div class="stat-label">Devices Secured</div>
-                    <div class="skill-chips" id="stat-devices-skills"></div>
-                </div>
+            <div class="skills-card-grid" id="skills-card-grid" aria-label="Skill categories">
+                <!-- Skill category cards will be rendered here from PERSONAL_INFO.skillCategories -->
             </div>
         </div>
     </section>
@@ -1075,8 +1076,8 @@
                 // Pause autoplay on hover/focus
                 carousel.addEventListener('mouseenter', stopAutoplay);
                 carousel.addEventListener('focusin', stopAutoplay);
-                carousel.addEventListener('mouseleave', startAutoplayIfNeeded);
-                carousel.addEventListener('focusout', startAutoplayIfNeeded);
+                carousel.addEventListener('mouseleave', () => scheduleResume(1200));
+                carousel.addEventListener('focusout', () => scheduleResume(1200));
 
                 // Keyboard navigation: left/right to scroll by card width
                 carousel.addEventListener('keydown', e => {
@@ -1154,6 +1155,20 @@
 
             // Render after personal info updated
             renderCardsCarousel();
+            // Render skill category cards (replace old stats)
+            function renderSkillCards() {
+                const grid = document.getElementById('skills-card-grid');
+                if (!grid || !Array.isArray(PERSONAL_INFO.skillCategories)) return;
+                grid.innerHTML = PERSONAL_INFO.skillCategories.map(cat => `
+                    <section class="skill-category-card" aria-labelledby="cat-${cat.id}">
+                        <div id="cat-${cat.id}" class="skill-category-title">${cat.title}</div>
+                        <div class="skill-category-items">
+                            ${cat.items.map(i => `<span class="skill-item">${i}</span>`).join('')}
+                        </div>
+                    </section>
+                `).join('');
+            }
+            renderSkillCards();
         });
     </script>
 </body>

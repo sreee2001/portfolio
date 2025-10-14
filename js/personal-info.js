@@ -129,6 +129,55 @@ var PERSONAL_INFO = {
         }
     ],
 
+    // Skill categories derived from the approved "Revised Skill / Tools list (UI / front-end focused)"
+    skillCategories: [
+        {
+            id: 'desktop-ui',
+            title: 'Desktop UI',
+            items: ['WPF','WinForms','XAML','MVVM','Control Templates','Data Templates','Styles & Resources','User Controls']
+        },
+        {
+            id: 'web-frontend',
+            title: 'Web / Frontend',
+            items: ['React.js','HTML5','CSS3','JavaScript','TypeScript','ASP.NET','ASP.NET Core','Accessibility (ARIA)','Responsive design','Progressive enhancement']
+        },
+        {
+            id: 'cross-platform',
+            title: 'Cross-platform / Native / Game',
+            items: ['MAUI','Swift (macOS)','Qt','OpenGL','Torque','Irrlicht','Electron']
+        },
+        {
+            id: 'specialty-interaction',
+            title: 'Specialty / Interaction',
+            items: ['3D graphics','Image processing (UI-facing)','2D/3D UI using DirectX/C++']
+        },
+        {
+            id: 'patterns-practices',
+            title: 'Patterns / Practices',
+            items: ['DI','IoC','MVVM','Component-driven design','Design systems']
+        },
+        {
+            id: 'ux-product',
+            title: 'UX / Product',
+            items: ['UX collaboration','Usability improvements','Workflow redesign','Prototyping','UI refactor','Interaction design']
+        },
+        {
+            id: 'tools-frameworks',
+            title: 'Tools / Frameworks / Vendors',
+            items: ['Telerik','DevExpress','Infragistics','Node.js','Bootstrap','Tailwind CSS','Storybook','Chrome DevTools','Figma']
+        },
+        {
+            id: 'ml-analytics',
+            title: 'ML / Analytics (UI-adjacent)',
+            items: ['Computer Vision','Data visualization','matplotlib','seaborn']
+        },
+        {
+            id: 'advanced',
+            title: 'Advanced (WPF-specific)',
+            items: ['VirtualizingStackPanel','Storyboard animations']
+        }
+    ],
+
     social: {
         linkedin: 'https://linkedin.com/in/srikanthtangella',
         github: 'https://github.com/sreee2001',
