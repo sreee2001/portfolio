@@ -219,3 +219,34 @@ If you prefer a publish script, you can add a GitHub Action to build and commit 
 ---
 
 Last updated: 2025-10-14
+
+---
+
+## 10) About / Skills Carousel — where to edit data and behavior
+
+If you want to update the cards shown in the About / Skills carousel or tweak the autoplay/drag behavior, here's where to look and what to change:
+
+- Data source: `js/personal-info.js` — edit the `PERSONAL_INFO.cards` array to add/remove company cards. Each card is an object with keys like `id`, `company`, `role`, `summary`, and `uiTags`.
+- Skill categories: `PERSONAL_INFO.skillCategories` contains the list groups rendered into `#skills-cards-carousel`.
+- Rendering code: `index.html` contains `renderCardsCarousel()` and `renderSkillsCarousel()` which generate the card markup from `PERSONAL_INFO` data.
+- Carousel behavior: `applyCarouselBehavior(carousel, options)` inside `index.html` defines drag-to-scroll, keyboard nav, autoplay (requestAnimationFrame), pause/resume and reduced-motion handling. The default autoplay speed is currently set to 18 px/s.
+
+Developer tips:
+
+- To add a new company card, add an object to `PERSONAL_INFO.cards` and refresh the page. Example card shape:
+
+```js
+{
+   id: 'new-co',
+   company: 'New Company',
+   role: 'Consultant',
+   summary: 'Short description',
+   uiTags: ['React','WPF']
+}
+```
+
+- If you want to temporarily enable debugging traces for the carousel logic, consider adding a `?debug=1` query parameter and gating console logging on it. Avoid leaving stdout diagnostic logs in production code.
+
+- For visual verification, run the headless sampling script in `scripts/check-carousel-anim.js` or run a Playwright visible browser to capture motion screenshots/gifs.
+
+---

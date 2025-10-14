@@ -260,3 +260,19 @@ I'll wait for your confirmation before making the first code change.
 ---
 
 Progress note: This file was created to manage the About/Skills UI changes and will be updated as we complete each task.
+
+---
+
+## Status (updated 2025-10-14)
+
+- Tasks completed: 1, 2, 3, 4, 5, 6, 7, 8 (core implementation and verification performed).
+- Tasks partially completed: 10, 11, 12 (tests & visual verification, polish, and documentation remaining in part).
+- Tasks pending or optional: 9 (automated extraction of companies from CV) — manual data was added to `PERSONAL_INFO.cards` already.
+
+### Verification notes
+
+- Autoplay behavior: implemented via requestAnimationFrame using a float accumulator and `scrollTo()` to preserve fractional increments. Headless sampling (`scripts/check-carousel-anim.js`) confirms slow, steady left↔right scroll on both `#about-cards-carousel` and `#skills-cards-carousel`.
+- Drag/touch: pointer handlers implemented; user dragging pauses autoplay and resumes after idle timeout.
+- Accessibility: ArrowLeft/ArrowRight keyboard navigation implemented; carousels are focusable and autoplay respects `prefers-reduced-motion`.
+
+If you want a visual proof artifact (screenshots or GIFs), request a Playwright visible run and I'll capture both carousels in motion.
