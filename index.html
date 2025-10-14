@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Srikanth Tangella - Portfolio</title>
+    <title>Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
     <!-- Portfolio Data (fallback) -->
     <script src="js/portfolio-data.js"></script>
+    <!-- Centralized personal info (single source of truth) -->
+    <script src="js/personal-info.js"></script>
     <style>
         * {
             margin: 0;
@@ -113,6 +115,8 @@
             max-width: 1400px;
             margin: 4rem auto;
             padding: 0 2rem;
+            /* Ensure native scrolling accounts for the sticky nav height */
+            scroll-margin-top: var(--scroll-offset, 96px);
         }
 
         .section-title {
@@ -386,23 +390,20 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <h1>Srikanth Tangella</h1>
-        <p class="subtitle">Full-Stack Developer & UI/UX Designer</p>
-        <p class="description">
-            15+ years crafting enterprise solutions, from cybersecurity platforms 
-            to seismic data processing. Passionate about clean code and beautiful interfaces.
-        </p>
+        <h1 id="personal-name"></h1>
+        <p id="personal-title" class="subtitle"></p>
+        <p id="personal-description" class="description"></p>
         <div class="social-links">
-            <a href="mailto:sreee2001@gmail.com" class="social-btn">
+            <a id="email-link" class="social-btn" role="button">
                 <i class="fas fa-envelope"></i> Email
             </a>
-            <a href="https://linkedin.com/in/srikanthtangella" class="social-btn" target="_blank">
+            <a id="linkedin-link" class="social-btn" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-linkedin"></i> LinkedIn
             </a>
-            <a href="https://github.com/sreee2001" class="social-btn" target="_blank">
+            <a id="github-link" class="social-btn" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-github"></i> GitHub
             </a>
-            <a href="mocks/personal-biography/bio/personal_biography.html" class="social-btn">
+            <a id="bio-page-link" class="social-btn">
                 <i class="fas fa-user"></i> Full Bio
             </a>
         </div>
@@ -421,33 +422,24 @@
     <section id="about" class="section">
         <h2 class="section-title">About Me</h2>
         <div class="about-content">
-            <p>
-                I'm a seasoned software engineer with expertise spanning cybersecurity, 
-                financial services, energy, and healthcare. I've architected security 
-                platforms protecting 100,000+ devices and built high-performance systems 
-                processing terabytes of seismic data.
-            </p>
-            <p>
-                Beyond backend systems, I'm passionate about creating intuitive, beautiful 
-                user interfaces. This portfolio showcases my UI/UX design work—crafting 
-                mock websites and prototypes for various industries and use cases.
-            </p>
+            <p id="about-detailed-bio"></p>
+            <p id="about-additional-bio"></p>
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">15+</div>
+                    <div id="stat-experience" class="stat-number"></div>
                     <div class="stat-label">Years Experience</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">20+</div>
+                    <div id="stat-design-variations" class="stat-number"></div>
                     <div class="stat-label">Design Variations</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">8</div>
+                    <div id="stat-companies" class="stat-number"></div>
                     <div class="stat-label">Companies</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">100K+</div>
+                    <div id="stat-devices" class="stat-number"></div>
                     <div class="stat-label">Devices Secured</div>
                 </div>
             </div>
@@ -496,7 +488,7 @@
                 about technology and design? I'd love to hear from you!
             </p>
             <div style="margin-top: 2rem;">
-                <a href="mailto:sreee2001@gmail.com" class="social-btn" style="background: linear-gradient(135deg, #0ea5e9, #1e40af); border: none;">
+                <a id="contact-email-cta" class="social-btn" style="background: linear-gradient(135deg, #0ea5e9, #1e40af); border: none;">
                     <i class="fas fa-envelope"></i> Email Me
                 </a>
             </div>
@@ -505,89 +497,80 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2025 Srikanth Tangella. All rights reserved.</p>
+        <p id="footer-copyright"></p>
         <p style="margin-top: 0.5rem; font-size: 0.9rem;">
             Built with HTML, CSS, and lots of ☕
         </p>
     </footer>
 
     <script>
-        // Personal Information - Single Source of Truth
-        const PERSONAL_INFO = {
-            name: 'Srikanth Tangella',
-            title: 'Full-Stack Developer & UI/UX Designer',
-            email: 'sreee2001@gmail.com',
-            experience: '15+',
-            bio: {
-                short: '15+ years crafting enterprise solutions, from cybersecurity platforms to seismic data processing. Passionate about clean code and beautiful interfaces.',
-                detailed: "I'm a seasoned software engineer with expertise spanning cybersecurity, financial services, energy, and healthcare. I've architected security platforms protecting 100,000+ devices and built high-performance systems processing terabytes of seismic data."
-            },
-            social: {
-                linkedin: 'https://linkedin.com/in/srikanthtangella',
-                github: 'https://github.com/sreee2001',
-                bioPage: 'mocks/personal-biography/bio/personal_biography.html'
-            },
-            stats: {
-                experience: '15+',
-                designVariations: '20+',
-                companies: '8',
-                devicesSecured: '100K+'
-            }
-        };
-
         // Function to update personal information throughout the page
         function updatePersonalInfo() {
             // Update page title
             document.title = `${PERSONAL_INFO.name} - Portfolio`;
             
-            // Update header name
-            const headerName = document.querySelector('.header h1');
+            // Update header name (prefer explicit ID; fallback to existing selector)
+            const headerName = document.getElementById('personal-name') || document.querySelector('.header h1');
             if (headerName) headerName.textContent = PERSONAL_INFO.name;
             
-            // Update header subtitle
-            const headerSubtitle = document.querySelector('.header .subtitle');
+            // Update header subtitle and description (prefer explicit IDs)
+            const headerSubtitle = document.getElementById('personal-title') || document.querySelector('.header .subtitle');
             if (headerSubtitle) headerSubtitle.textContent = PERSONAL_INFO.title;
-            
-            // Update header description
-            const headerDesc = document.querySelector('.header .description');
+
+            const headerDesc = document.getElementById('personal-description') || document.querySelector('.header .description');
             if (headerDesc) headerDesc.textContent = PERSONAL_INFO.bio.short;
             
-            // Update about section detailed bio
-            const aboutParagraphs = document.querySelectorAll('#about .about-content p');
-            if (aboutParagraphs.length >= 1) {
-                aboutParagraphs[0].textContent = PERSONAL_INFO.bio.detailed;
+            // Update about section detailed and additional bios (prefer IDs)
+            const aboutDetailed = document.getElementById('about-detailed-bio') || document.querySelector('#about .about-content p');
+            if (aboutDetailed) aboutDetailed.textContent = PERSONAL_INFO.bio.detailed;
+
+            const aboutAdditional = document.getElementById('about-additional-bio');
+            if (aboutAdditional) aboutAdditional.textContent = PERSONAL_INFO.bio.additional;
+            
+            // Update email and social links via explicit IDs
+            const emailLink = document.getElementById('email-link');
+            if (emailLink) {
+                emailLink.href = `mailto:${PERSONAL_INFO.email}`;
+                emailLink.setAttribute('aria-label', `Email ${PERSONAL_INFO.name}`);
+            }
+
+            const contactEmailCta = document.getElementById('contact-email-cta');
+            if (contactEmailCta) {
+                contactEmailCta.href = `mailto:${PERSONAL_INFO.email}`;
+                contactEmailCta.setAttribute('aria-label', `Email ${PERSONAL_INFO.name}`);
+            }
+
+            const linkedinLink = document.getElementById('linkedin-link');
+            if (linkedinLink) {
+                linkedinLink.href = PERSONAL_INFO.social.linkedin;
+            }
+
+            const githubLink = document.getElementById('github-link');
+            if (githubLink) {
+                githubLink.href = PERSONAL_INFO.social.github;
+            }
+
+            const bioLink = document.getElementById('bio-page-link');
+            if (bioLink) {
+                bioLink.href = PERSONAL_INFO.social.bioPage;
             }
             
-            // Update email links
-            const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
-            emailLinks.forEach(link => {
-                link.href = `mailto:${PERSONAL_INFO.email}`;
-            });
-            
-            // Update social links
-            const linkedinLink = document.querySelector('a[href*="linkedin"]');
-            if (linkedinLink) linkedinLink.href = PERSONAL_INFO.social.linkedin;
-            
-            const githubLink = document.querySelector('a[href*="github"]');
-            if (githubLink) githubLink.href = PERSONAL_INFO.social.github;
-            
-            const bioLink = document.querySelector('a[href*="personal_biography"]');
-            if (bioLink) bioLink.href = PERSONAL_INFO.social.bioPage;
-            
-            // Update footer copyright
-            const footerCopyright = document.querySelector('.footer p');
+            // Update footer copyright (use current year)
+            const footerCopyright = document.getElementById('footer-copyright') || document.querySelector('.footer p');
             if (footerCopyright) {
-                footerCopyright.textContent = `© 2025 ${PERSONAL_INFO.name}. All rights reserved.`;
+                const year = new Date().getFullYear();
+                footerCopyright.textContent = `© ${year} ${PERSONAL_INFO.name}. All rights reserved.`;
             }
             
-            // Update stats (optional enhancement)
-            const statNumbers = document.querySelectorAll('.stat-number');
-            if (statNumbers.length >= 4) {
-                statNumbers[0].textContent = PERSONAL_INFO.stats.experience;
-                statNumbers[1].textContent = PERSONAL_INFO.stats.designVariations;
-                statNumbers[2].textContent = PERSONAL_INFO.stats.companies;
-                statNumbers[3].textContent = PERSONAL_INFO.stats.devicesSecured;
-            }
+            // Update stats via explicit IDs
+            const statExperience = document.getElementById('stat-experience');
+            if (statExperience) statExperience.textContent = PERSONAL_INFO.stats.experience;
+            const statDesign = document.getElementById('stat-design-variations');
+            if (statDesign) statDesign.textContent = PERSONAL_INFO.stats.designVariations;
+            const statCompanies = document.getElementById('stat-companies');
+            if (statCompanies) statCompanies.textContent = PERSONAL_INFO.stats.companies;
+            const statDevices = document.getElementById('stat-devices');
+            if (statDevices) statDevices.textContent = PERSONAL_INFO.stats.devicesSecured;
         }
 
         // Helper function to create individual portfolio card
@@ -657,7 +640,7 @@
         function setupFilters() {
             const searchInput = document.getElementById('search-input');
             const categoryButtons = document.querySelectorAll('.filter-category');
-            const portfolioCards = document.querySelectorAll('.portfolio-card');
+            // const portfolioCards = document.querySelectorAll('.portfolio-card'); // unused
             
             let activeCategory = 'all';
             
@@ -821,6 +804,8 @@
                 }
             }
 
+            
+
             getProjectsByCategory(category) {
                 if (category === 'all') {
                     return this.projects;
@@ -847,20 +832,7 @@
         // Initialize Portfolio Manager
         const portfolioManager = new PortfolioManager();
 
-        // Smooth scrolling for navigation
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    
-                    // Update active link
-                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                }
-            });
-        });
+        // Navigation behavior and scroll-spy will be set up by setupNavScrollSpy()
 
         // Debug function to test file access
         async function debugFileAccess() {
@@ -888,10 +860,25 @@
             }
         }
 
+        
+
         // Enhanced initialization with loading states
         document.addEventListener('DOMContentLoaded', async () => {
             // Update personal information from single source
             updatePersonalInfo();
+            // Initialize simple navigation click handlers (no scroll-spy)
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Update active link
+                        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
             
             // Run debug check
             await debugFileAccess();
@@ -909,6 +896,7 @@
             try {
                 // Load and generate portfolio cards
                 await generatePortfolioCards();
+                // Layout changed after generating cards — if you add scroll-spy later, recompute offsets here.
                 console.log('Portfolio loaded successfully');
             } catch (error) {
                 console.error('Error loading portfolio:', error);

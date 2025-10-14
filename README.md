@@ -13,6 +13,7 @@ This repository contains:
 - **Main Portfolio** (`index.html`) - Landing page showcasing all projects
 - **Mock Projects** (`mocks/`) - Collection of website mockups organized by product/service
 - **Assets** (`assets/`) - Images and screenshots
+- **Personal Info** (`js/personal-info.js`) - Canonical single source of truth for name, bio, email, and social links used by the site
 
 ## 🎨 Featured Projects
 
