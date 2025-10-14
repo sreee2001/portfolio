@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works - SentinelBridge+</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:#333}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+header{background:linear-gradient(135deg,#1e3c72 0%,#2a5298 100%);color:#fff;padding:1rem 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.5rem;font-weight:bold}
+nav ul{list-style:none;display:flex;gap:2rem}
+nav a{color:#fff;text-decoration:none}
+.page-hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:60px 20px;text-align:center}
+.page-hero h1{font-size:2.5rem;margin-bottom:1rem}
+.page-hero p{font-size:1.2rem}
+.workflow{padding:80px 20px;background:#fff}
+.workflow h2{text-align:center;font-size:2.5rem;margin-bottom:3rem;color:#2a5298}
+.steps{max-width:900px;margin:0 auto}
+.step{display:flex;gap:30px;margin-bottom:50px;align-items:flex-start}
+.step-number{background:linear-gradient(135deg,#1e3c72,#2a5298);color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:bold;flex-shrink:0}
+.step-content h3{font-size:1.8rem;margin-bottom:0.5rem;color:#1e3c72}
+.step-content p{color:#666;font-size:1.1rem;line-height:1.7}
+.tech-section{background:#f8f9fa;padding:80px 20px}
+.tech-section h2{text-align:center;font-size:2.5rem;margin-bottom:3rem;color:#2a5298}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;max-width:1000px;margin:0 auto}
+.tech-card{background:#fff;padding:30px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.08);text-align:center}
+.tech-card h3{color:#1e3c72;margin-bottom:10px;font-size:1.3rem}
+.tech-card p{color:#666;font-size:1rem}
+.cta-section{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:60px 20px;text-align:center}
+.cta-section h2{font-size:2.2rem;margin-bottom:1rem}
+.cta-section p{font-size:1.2rem;margin-bottom:2rem}
+.cta-btn{display:inline-block;background:#fff;color:#667eea;padding:15px 40px;border-radius:50px;text-decoration:none;font-weight:bold;transition:transform 0.2s}
+.cta-btn:hover{transform:translateY(-2px)}
+footer{background:#1e3c72;color:#fff;padding:40px 20px;text-align:center}
+@media(max-width:768px){
+.step{flex-direction:column;text-align:center}
+.page-hero h1{font-size:2rem}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">🛡️ SentinelBridge+</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">How It Works</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>How SentinelBridge+ Works</h1>
+<p>Four simple steps to automate your IT helpdesk triage</p>
+</div>
+</section>
+
+<section class="workflow"><div class="container">
+<h2>The Process</h2>
+<div class="steps">
+<div class="step">
+<div class="step-number">1</div>
+<div class="step-content">
+<h3>Connect Your Support Mailbox</h3>
+<p>Authorize SentinelBridge+ to access your support email inbox (e.g., support@company.com) via secure OAuth 2.0 connection. We support Microsoft 365, Google Workspace, and IMAP. Setup takes less than 5 minutes with our guided wizard.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-number">2</div>
+<div class="step-content">
+<h3>AI-Powered Email Analysis</h3>
+<p>Our fine-tuned LLM analyzes each incoming email to extract key information: issue type (incident/request/question), urgency level, affected service, and suggested assignment group. The model learns from your historical tickets to improve accuracy over time.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-number">3</div>
+<div class="step-content">
+<h3>Automatic Ticket Creation</h3>
+<p>Classified emails are automatically converted into ServiceNow tickets using REST API integration. Our intelligent thread correlation engine detects related emails to prevent duplicate tickets, maintaining clean ticket history and accurate SLA tracking.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-number">4</div>
+<div class="step-content">
+<h3>Team Notifications & Monitoring</h3>
+<p>New tickets trigger real-time notifications in Microsoft Teams channels via adaptive cards. Your team can review, approve, or reassign tickets directly from Teams. The analytics dashboard tracks mean-time-to-acknowledge (MTTA), classification accuracy, and team performance metrics.</p>
+</div>
+</div>
+</div>
+</div></section>
+
+<section class="tech-section"><div class="container">
+<h2>Enterprise-Grade Technology Stack</h2>
+<div class="tech-grid">
+<div class="tech-card">
+<h3>🔐 Microsoft Graph API</h3>
+<p>Secure, OAuth 2.0-based email access with read-only permissions</p>
+</div>
+<div class="tech-card">
+<h3>🤖 Azure OpenAI Service</h3>
+<p>GPT-4 powered classification with 95%+ accuracy</p>
+</div>
+<div class="tech-card">
+<h3>🎫 ServiceNow REST API</h3>
+<p>Automated ticket creation and lifecycle management</p>
+</div>
+<div class="tech-card">
+<h3>📢 Microsoft Teams Integration</h3>
+<p>Real-time adaptive card notifications and workflow actions</p>
+</div>
+<div class="tech-card">
+<h3>🔒 Enterprise Security</h3>
+<p>SSO, RBAC, audit logs, and optional BYOC deployment</p>
+</div>
+<div class="tech-card">
+<h3>📊 Real-Time Analytics</h3>
+<p>Custom dashboards with Power BI integration</p>
+</div>
+</div>
+</div></section>
+
+<section class="cta-section">
+<div class="container">
+<h2>Ready to Transform Your Helpdesk?</h2>
+<p>See SentinelBridge+ in action with a personalized demo</p>
+<a href="contact.html" class="cta-btn">Book a Demo</a>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

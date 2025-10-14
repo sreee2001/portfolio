@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Solutions - Workflow Builder Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #e2e8f0;
+            background: #0f172a;
+            overflow-x: hidden;
+        }
+        
+        /* Header - Consistent with index */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #1e293b;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        nav {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+        .logo .badge {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 45px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            position: relative;
+            letter-spacing: -0.2px;
+        }
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+        .nav-links a.active {
+            color: #3b82f6;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-cta-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .nav-btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s;
+            letter-spacing: 0.3px;
+        }
+        .nav-btn.secondary {
+            color: #cbd5e0;
+            border: 2px solid #334155;
+            background: transparent;
+        }
+        .nav-btn.secondary:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        .nav-btn.primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 100px 60px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+        }
+        .page-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #60a5fa;
+        }
+        .page-hero h1 {
+            font-size: 64px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 25px;
+            letter-spacing: -1.5px;
+        }
+        .page-hero h1 .gradient {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .page-hero p {
+            font-size: 22px;
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+        .hero-cta-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-hero {
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        .btn-hero.primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.35);
+        }
+        .btn-hero.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.45);
+        }
+        .btn-hero.secondary {
+            background: rgba(51, 65, 85, 0.5);
+            color: #e2e8f0;
+            border: 2px solid #334155;
+        }
+        .btn-hero.secondary:hover {
+            border-color: #3b82f6;
+        }
+
+        /* Solutions Navigation Tabs */
+        .solutions-nav {
+            background: rgba(30, 41, 59, 0.5);
+            border-bottom: 1px solid #334155;
+            padding: 30px 60px;
+            position: sticky;
+            top: 72px;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+        .solutions-tabs {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+        .tab-btn {
+            padding: 15px 30px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 2px solid #334155;
+            border-radius: 10px;
+            color: #94a3b8;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .tab-btn:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-color: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        .tab-icon {
+            font-size: 20px;
+        }
+
+        /* Solution Section Template */
+        .solution-section {
+            padding: 100px 60px;
+            display: none;
+        }
+        .solution-section.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .solution-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .solution-intro {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            text-align: center;
+        }
+        .solution-intro h2 {
+            font-size: 48px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        .solution-intro p {
+            font-size: 20px;
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        /* Workflow Cards */
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        .workflow-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
+            border: 2px solid #1e293b;
+            border-radius: 20px;
+            padding: 50px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .workflow-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+        .workflow-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(59, 130, 246, 0.2);
+        }
+        .workflow-card:hover::after {
+            transform: scaleX(1);
+        }
+        .workflow-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        .workflow-title-group {
+            flex: 1;
+        }
+        .workflow-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .workflow-card h3 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #e2e8f0;
+            margin-bottom: 10px;
+        }
+        .workflow-category {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .workflow-complexity {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+        .complexity-label {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .complexity-dots {
+            display: flex;
+            gap: 4px;
+        }
+        .complexity-dot {
+            width: 8px;
+            height: 8px;
+            background: #334155;
+            border-radius: 50%;
+        }
+        .complexity-dot.active {
+            background: #3b82f6;
+        }
+        .workflow-description {
+            font-size: 17px;
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .workflow-features {
+            margin-bottom: 30px;
+        }
+        .workflow-features h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #cbd5e0;
+            margin-bottom: 15px;
+        }
+        .workflow-features ul {
+            list-style: none;
+        }
+        .workflow-features li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #94a3b8;
+            font-size: 15px;
+        }
+        .workflow-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .workflow-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+        }
+        .workflow-metric .value {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+        .workflow-metric .label {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .workflow-integrations {
+            margin-top: 25px;
+        }
+        .workflow-integrations h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #64748b;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .integration-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .integration-tag {
+            background: rgba(51, 65, 85, 0.5);
+            border: 1px solid #334155;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        /* Technical Architecture Section */
+        .architecture-section {
+            background: rgba(30, 41, 59, 0.3);
+            border: 2px solid #1e293b;
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 80px;
+        }
+        .architecture-section h3 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #e2e8f0;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .architecture-diagram {
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px dashed #334155;
+            border-radius: 16px;
+            padding: 80px 40px;
+            text-align: center;
+            color: #64748b;
+            font-size: 16px;
+            font-weight: 600;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .architecture-diagram .placeholder-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .architecture-diagram .placeholder-detail {
+            font-size: 14px;
+            color: #475569;
+        }
+        .architecture-specs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .spec-item {
+            text-align: center;
+        }
+        .spec-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        .spec-item h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #cbd5e0;
+            margin-bottom: 8px;
+        }
+        .spec-item p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Case Study Section */
+        .case-study-section {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
+            border: 2px solid #3b82f6;
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 80px;
+        }
+        .case-study-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+        .case-study-logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+        .case-study-info h3 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+        }
+        .case-study-info .company-details {
+            font-size: 15px;
+            color: #94a3b8;
+        }
+        .case-study-quote {
+            font-size: 20px;
+            color: #cbd5e0;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 30px;
+            padding-left: 30px;
+            border-left: 4px solid #3b82f6;
+        }
+        .case-study-results {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+        }
+        .result-item {
+            text-align: center;
+        }
+        .result-value {
+            font-size: 42px;
+            font-weight: 900;
+            color: #3b82f6;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+        .result-label {
+            font-size: 14px;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .solution-cta {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+        }
+        .solution-cta h3 {
+            font-size: 38px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .solution-cta p {
+            font-size: 19px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 35px;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-btn {
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .cta-btn.primary {
+            background: white;
+            color: #3b82f6;
+        }
+        .cta-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+        .cta-btn.secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .cta-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            border-top: 1px solid #1e293b;
+            color: #94a3b8;
+            padding: 80px 60px 40px;
+        }
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+        .footer-brand {
+            max-width: 350px;
+        }
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .footer-brand p {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        .footer-section h4 {
+            color: #e2e8f0;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        .footer-section a:hover {
+            color: #3b82f6;
+        }
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            padding-top: 35px;
+            text-align: center;
+            max-width: 1600px;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .workflow-grid {
+                grid-template-columns: 1fr;
+            }
+            .architecture-specs,
+            .case-study-results {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .page-hero h1 {
+                font-size: 42px;
+            }
+            .solutions-tabs {
+                gap: 15px;
+            }
+            .workflow-metrics {
+                grid-template-columns: 1fr;
+            }
+            .architecture-specs,
+            .case-study-results {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                Workflow Builder Pro
+                <span class="badge">ENTERPRISE</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Platform</a></li>
+                <li><a href="solutions.html" class="active">Solutions</a></li>
+                <li><a href="security.html">Security</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="resources.html">Resources</a></li>
+            </ul>
+            <div class="nav-cta-group">
+                <a href="contact.html" class="nav-btn secondary">Contact Sales</a>
+                <a href="demo.html" class="nav-btn primary">Request Demo</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <div class="hero-badge">
+                <span>💼</span>
+                <span>Industry-Specific Solutions</span>
+            </div>
+            <h1>
+                Enterprise Solutions for<br>
+                <span class="gradient">Every Department</span>
+            </h1>
+            <p>Pre-built automation workflows designed for IT Operations, HR, Finance, Security, and more. Deployed and running in days, not months.</p>
+            <div class="hero-cta-row">
+                <a href="#it-operations" class="btn-hero primary">Explore Solutions</a>
+                <a href="demo.html" class="btn-hero secondary">Schedule Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <nav class="solutions-nav">
+        <div class="solutions-tabs">
+            <button class="tab-btn active" onclick="showSolution('it-operations')">
+                <span class="tab-icon">💻</span>
+                <span>IT Operations</span>
+            </button>
+            <button class="tab-btn" onclick="showSolution('hr-onboarding')">
+                <span class="tab-icon">👥</span>
+                <span>HR & Onboarding</span>
+            </button>
+            <button class="tab-btn" onclick="showSolution('finance')">
+                <span class="tab-icon">💰</span>
+                <span>Finance & Procurement</span>
+            </button>
+            <button class="tab-btn" onclick="showSolution('security')">
+                <span class="tab-icon">🔐</span>
+                <span>Security & Compliance</span>
+            </button>
+            <button class="tab-btn" onclick="showSolution('sales')">
+                <span class="tab-icon">📈</span>
+                <span>Sales & Revenue Ops</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- IT Operations Section -->
+    <section class="solution-section active" id="it-operations">
+        <div class="solution-container">
+            <div class="solution-intro">
+                <h2>IT Operations & Service Management</h2>
+                <p>Transform Slack into a complete IT service management platform. Automate incident response, ticket routing, asset management, and on-call workflows.</p>
+            </div>
+
+            <div class="workflow-grid">
+                <div class="workflow-card">
+                    <div class="workflow-header">
+                        <div class="workflow-title-group">
+                            <div class="workflow-icon">🎫</div>
+                            <h3>IT Ticket Management</h3>
+                            <span class="workflow-category">Service Desk</span>
+                        </div>
+                        <div class="workflow-complexity">
+                            <span class="complexity-label">Complexity</span>
+                            <div class="complexity-dots">
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-description">
+                        Transform Slack messages into trackable ServiceNow/Jira tickets. Auto-categorize, route to appropriate teams, track SLAs, and close the loop with automated updates.
+                    </div>
+                    <div class="workflow-features">
+                        <h4>Key Capabilities:</h4>
+                        <ul>
+                            <li>Automatic ticket creation from Slack messages</li>
+                            <li>Smart routing based on keywords, department, priority</li>
+                            <li>SLA tracking with escalation workflows</li>
+                            <li>Real-time status updates back to Slack</li>
+                            <li>Self-service knowledge base integration</li>
+                            <li>Satisfaction surveys upon ticket closure</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-integrations">
+                        <h4>Integrations:</h4>
+                        <div class="integration-tags">
+                            <span class="integration-tag">ServiceNow</span>
+                            <span class="integration-tag">Jira Service Desk</span>
+                            <span class="integration-tag">Zendesk</span>
+                            <span class="integration-tag">Salesforce</span>
+                        </div>
+                    </div>
+                    <div class="workflow-metrics">
+                        <div class="workflow-metric">
+                            <div class="value">95%</div>
+                            <div class="label">Capture Rate</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">40%</div>
+                            <div class="label">Faster MTTR</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">5,000+</div>
+                            <div class="label">Tickets/month</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-header">
+                        <div class="workflow-title-group">
+                            <div class="workflow-icon">🚨</div>
+                            <h3>Incident Response Automation</h3>
+                            <span class="workflow-category">Critical Systems</span>
+                        </div>
+                        <div class="workflow-complexity">
+                            <span class="complexity-label">Complexity</span>
+                            <div class="complexity-dots">
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot active"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-description">
+                        Orchestrate incident response from detection to resolution. Auto-create war rooms, page on-call engineers, run diagnostic playbooks, and generate post-mortems.
+                    </div>
+                    <div class="workflow-features">
+                        <h4>Key Capabilities:</h4>
+                        <ul>
+                            <li>Automated incident war room creation</li>
+                            <li>PagerDuty/Opsgenie on-call paging</li>
+                            <li>StatusPage automated updates</li>
+                            <li>Diagnostic runbook execution</li>
+                            <li>Stakeholder notification workflows</li>
+                            <li>Post-mortem template generation</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-integrations">
+                        <h4>Integrations:</h4>
+                        <div class="integration-tags">
+                            <span class="integration-tag">PagerDuty</span>
+                            <span class="integration-tag">Opsgenie</span>
+                            <span class="integration-tag">Datadog</span>
+                            <span class="integration-tag">StatusPage</span>
+                        </div>
+                    </div>
+                    <div class="workflow-metrics">
+                        <div class="workflow-metric">
+                            <div class="value">< 2min</div>
+                            <div class="label">Response Time</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">50%</div>
+                            <div class="label">Reduced MTTR</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">24/7</div>
+                            <div class="label">Coverage</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-header">
+                        <div class="workflow-title-group">
+                            <div class="workflow-icon">🔧</div>
+                            <h3>Change Management Workflow</h3>
+                            <span class="workflow-category">ITIL Process</span>
+                        </div>
+                        <div class="workflow-complexity">
+                            <span class="complexity-label">Complexity</span>
+                            <div class="complexity-dots">
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-description">
+                        ITIL-compliant change request workflow with approval routing, CAB scheduling, risk assessment, and automated rollback procedures.
+                    </div>
+                    <div class="workflow-features">
+                        <h4>Key Capabilities:</h4>
+                        <ul>
+                            <li>Change request submission via Slack</li>
+                            <li>Multi-stage approval workflows</li>
+                            <li>CAB meeting scheduling and agendas</li>
+                            <li>Risk assessment automation</li>
+                            <li>Maintenance window coordination</li>
+                            <li>Rollback playbook execution</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-integrations">
+                        <h4>Integrations:</h4>
+                        <div class="integration-tags">
+                            <span class="integration-tag">ServiceNow</span>
+                            <span class="integration-tag">GitHub</span>
+                            <span class="integration-tag">Jenkins</span>
+                            <span class="integration-tag">Terraform</span>
+                        </div>
+                    </div>
+                    <div class="workflow-metrics">
+                        <div class="workflow-metric">
+                            <div class="value">80%</div>
+                            <div class="label">Compliance</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">3 days</div>
+                            <div class="label">Avg Cycle</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">250+</div>
+                            <div class="label">Changes/month</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-header">
+                        <div class="workflow-title-group">
+                            <div class="workflow-icon">📦</div>
+                            <h3>Asset & Inventory Management</h3>
+                            <span class="workflow-category">IT Asset Management</span>
+                        </div>
+                        <div class="workflow-complexity">
+                            <span class="complexity-label">Complexity</span>
+                            <div class="complexity-dots">
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot"></span>
+                                <span class="complexity-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-description">
+                        Track hardware and software assets through their lifecycle. Automate provisioning, track assignments, manage renewals, and enforce compliance policies.
+                    </div>
+                    <div class="workflow-features">
+                        <h4>Key Capabilities:</h4>
+                        <ul>
+                            <li>Asset request and approval workflows</li>
+                            <li>Automated provisioning to new hires</li>
+                            <li>License tracking and renewal alerts</li>
+                            <li>Return/decommission workflows</li>
+                            <li>Compliance policy enforcement</li>
+                            <li>Cost allocation and chargeback</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-integrations">
+                        <h4>Integrations:</h4>
+                        <div class="integration-tags">
+                            <span class="integration-tag">Okta</span>
+                            <span class="integration-tag">Google Workspace</span>
+                            <span class="integration-tag">Microsoft 365</span>
+                            <span class="integration-tag">Jamf</span>
+                        </div>
+                    </div>
+                    <div class="workflow-metrics">
+                        <div class="workflow-metric">
+                            <div class="value">100%</div>
+                            <div class="label">Visibility</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">$120K</div>
+                            <div class="label">Savings/year</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">2,500+</div>
+                            <div class="label">Assets Tracked</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="architecture-section">
+                <h3>IT Operations Technical Architecture</h3>
+                <div class="architecture-diagram">
+                    <div class="placeholder-text">[System Architecture Diagram]</div>
+                    <div class="placeholder-detail">
+                        Slack → Workflow Engine → ServiceNow/Jira → Monitoring Tools → Database<br>
+                        Bi-directional sync with event-driven triggers and webhook callbacks
+                    </div>
+                </div>
+                <div class="architecture-specs">
+                    <div class="spec-item">
+                        <div class="spec-icon">⚡</div>
+                        <h4>Sub-50ms Latency</h4>
+                        <p>Real-time event processing with global edge deployment</p>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon">🔄</div>
+                        <h4>99.99% Uptime</h4>
+                        <p>Financially-backed SLA with automatic failover</p>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon">📊</div>
+                        <h4>10M+ Daily Events</h4>
+                        <p>Auto-scaling infrastructure handles peak loads</p>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon">🔒</div>
+                        <h4>Enterprise Security</h4>
+                        <p>SOC 2, ISO 27001, end-to-end encryption</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study-section">
+                <div class="case-study-header">
+                    <div class="case-study-logo">🏢</div>
+                    <div class="case-study-info">
+                        <h3>Global Financial Services Firm</h3>
+                        <div class="company-details">15,000 employees | $8B revenue | Regulated Industry</div>
+                    </div>
+                </div>
+                <div class="case-study-quote">
+                    "Workflow Builder Pro transformed our IT service desk. We went from 60% ticket capture to 95% in 30 days, cut MTTR by 40%, and our employee satisfaction scores jumped 35 points. The platform paid for itself in the first quarter."
+                </div>
+                <div class="case-study-results">
+                    <div class="result-item">
+                        <div class="result-value">95%</div>
+                        <div class="result-label">Ticket Capture Rate</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value">40%</div>
+                        <div class="result-label">Reduced MTTR</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value">$480K</div>
+                        <div class="result-label">Annual Savings</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value">35pt</div>
+                        <div class="result-label">CSAT Increase</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="solution-cta">
+                <h3>Ready to Transform IT Operations?</h3>
+                <p>Schedule a personalized demo to see these workflows in action with your team's data.</p>
+                <div class="cta-buttons">
+                    <a href="demo.html" class="cta-btn primary">Schedule Demo</a>
+                    <a href="contact.html" class="cta-btn secondary">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HR & Onboarding Section -->
+    <section class="solution-section" id="hr-onboarding">
+        <div class="solution-container">
+            <div class="solution-intro">
+                <h2>HR & Employee Onboarding</h2>
+                <p>Automate the entire employee lifecycle from hire to retire. Streamline onboarding, manage time off, conduct performance reviews, and handle offboarding—all in Slack.</p>
+            </div>
+
+            <div class="workflow-grid">
+                <div class="workflow-card">
+                    <div class="workflow-header">
+                        <div class="workflow-title-group">
+                            <div class="workflow-icon">🎉</div>
+                            <h3>New Hire Onboarding</h3>
+                            <span class="workflow-category">Employee Experience</span>
+                        </div>
+                        <div class="workflow-complexity">
+                            <span class="complexity-label">Complexity</span>
+                            <div class="complexity-dots">
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot active"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-description">
+                        Orchestrate 30/60/90-day onboarding across departments. Automate account provisioning, equipment requests, training schedules, and manager check-ins at scale.
+                    </div>
+                    <div class="workflow-features">
+                        <h4>Key Capabilities:</h4>
+                        <ul>
+                            <li>Day 1 welcome sequence with company resources</li>
+                            <li>Automated account provisioning (Okta, G Suite, 365)</li>
+                            <li>Equipment and workspace setup requests</li>
+                            <li>Training schedule coordination</li>
+                            <li>1:1 meeting scheduling with team members</li>
+                            <li>30/60/90-day milestone check-ins</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-integrations">
+                        <h4>Integrations:</h4>
+                        <div class="integration-tags">
+                            <span class="integration-tag">Workday</span>
+                            <span class="integration-tag">BambooHR</span>
+                            <span class="integration-tag">Okta</span>
+                            <span class="integration-tag">Google Workspace</span>
+                        </div>
+                    </div>
+                    <div class="workflow-metrics">
+                        <div class="workflow-metric">
+                            <div class="value">60%</div>
+                            <div class="label">Time Saved</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">1,200+</div>
+                            <div class="label">Hires/year</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">95%</div>
+                            <div class="label">Completion Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-header">
+                        <div class="workflow-title-group">
+                            <div class="workflow-icon">🏖️</div>
+                            <h3>PTO & Leave Management</h3>
+                            <span class="workflow-category">Time & Attendance</span>
+                        </div>
+                        <div class="workflow-complexity">
+                            <span class="complexity-label">Complexity</span>
+                            <div class="complexity-dots">
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-description">
+                        Self-service PTO requests with smart approval routing, calendar sync, team coverage checking, and automatic accrual tracking.
+                    </div>
+                    <div class="workflow-features">
+                        <h4>Key Capabilities:</h4>
+                        <ul>
+                            <li>Slack-native PTO request forms</li>
+                            <li>Automatic routing to managers</li>
+                            <li>Team coverage conflict detection</li>
+                            <li>Google/Outlook calendar sync</li>
+                            <li>Balance tracking and notifications</li>
+                            <li>Compliance with local labor laws</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-integrations">
+                        <h4>Integrations:</h4>
+                        <div class="integration-tags">
+                            <span class="integration-tag">Workday</span>
+                            <span class="integration-tag">ADP</span>
+                            <span class="integration-tag">Google Calendar</span>
+                            <span class="integration-tag">Outlook</span>
+                        </div>
+                    </div>
+                    <div class="workflow-metrics">
+                        <div class="workflow-metric">
+                            <div class="value">< 1hr</div>
+                            <div class="label">Avg Approval</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">100%</div>
+                            <div class="label">Policy Compliance</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">3,500+</div>
+                            <div class="label">Requests/year</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-header">
+                        <div class="workflow-title-group">
+                            <div class="workflow-icon">📝</div>
+                            <h3>Performance Review Automation</h3>
+                            <span class="workflow-category">Talent Management</span>
+                        </div>
+                        <div class="workflow-complexity">
+                            <span class="complexity-label">Complexity</span>
+                            <div class="complexity-dots">
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-description">
+                        Orchestrate quarterly/annual review cycles. Automate reminder sequences, collect 360-degree feedback, generate review documents, and track completion.
+                    </div>
+                    <div class="workflow-features">
+                        <h4>Key Capabilities:</h4>
+                        <ul>
+                            <li>Automated review cycle kickoff</li>
+                            <li>Self-assessment form distribution</li>
+                            <li>360-degree feedback collection</li>
+                            <li>Manager review consolidation</li>
+                            <li>Meeting scheduling automation</li>
+                            <li>Completion tracking and escalation</li>
+                        </ul>
+                    </div>
+                    <div class="workflow-integrations">
+                        <h4>Integrations:</h4>
+                        <div class="integration-tags">
+                            <span class="integration-tag">Workday</span>
+                            <span class="integration-tag">15Five</span>
+                            <span class="integration-tag">Lattice</span>
+                            <span class="integration-tag">Google Forms</span>
+                        </div>
+                    </div>
+                    <div class="workflow-metrics">
+                        <div class="workflow-metric">
+                            <div class="value">95%</div>
+                            <div class="label">On-Time Rate</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">40hrs</div>
+                            <div class="label">HR Time Saved</div>
+                        </div>
+                        <div class="workflow-metric">
+                            <div class="value">2K+</div>
+                            <div class="label">Reviews/cycle</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-header">
+                        <div class="workflow-title-group">
+                            <div class="workflow-icon">👋</div>
+                            <h3>Offboarding & Exit Management</h3>
+                            <span class="workflow-category">Employee Lifecycle</span>
+                        </div>
+                        <div class="workflow-complexity">
+                            <span class="complexity-label">Complexity</span>
+                            <div class="complexity-dots">
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot active"></span>
+                                <span class="complexity-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-description">
+                        Secure// filepath: c:\Users\Srikanth\source\repos\business_setup\website\sites\Mocks\01_IT_Operations\07_Slack_Workflow_Builder_Pro\variant_2_enterprise\solutions.html

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incident Commander | Manage IT Incidents in Teams</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,sans-serif;line-height:1.6;color:#333;background:#f9f9f9}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+header{background:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.05);padding:15px 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:700;color:#FF6B35}
+.logo span{color:#004E89}
+nav ul{list-style:none;display:flex;gap:25px}
+nav a{color:#333;text-decoration:none;font-weight:500;transition:color 0.2s}
+nav a:hover{color:#FF6B35}
+.hero{background:linear-gradient(135deg,#004E89 0%,#1A659E 100%);color:#fff;padding:80px 20px;text-align:center}
+.hero h1{font-size:42px;margin-bottom:20px;font-weight:700}
+.hero p{font-size:20px;margin-bottom:30px;opacity:0.95}
+.hero-buttons{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:16px;transition:all 0.3s}
+.btn-primary{background:#FF6B35;color:#fff}
+.btn-primary:hover{background:#e55a2a;transform:translateY(-2px)}
+.btn-secondary{background:#fff;color:#004E89;border:2px solid #fff}
+.btn-secondary:hover{background:transparent;color:#fff}
+.features{padding:70px 20px;background:#fff}
+.features h2{text-align:center;font-size:36px;margin-bottom:50px;color:#004E89}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
+.feature-card{background:#f9f9f9;padding:35px;border-radius:12px;text-align:center;transition:transform 0.3s,box-shadow 0.3s}
+.feature-card:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,0.1)}
+.feature-icon{font-size:50px;margin-bottom:15px}
+.feature-card h3{font-size:22px;margin-bottom:12px;color:#004E89}
+.feature-card p{color:#666;line-height:1.7}
+.how-it-works{padding:70px 20px;background:#f0f4f8}
+.how-it-works h2{text-align:center;font-size:36px;margin-bottom:50px;color:#004E89}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;max-width:1000px;margin:0 auto}
+.step{background:#fff;padding:30px;border-radius:12px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.06)}
+.step-number{background:#FF6B35;color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;margin:0 auto 15px}
+.step h3{font-size:20px;margin-bottom:10px;color:#004E89}
+.step p{color:#666;font-size:15px;line-height:1.6}
+.pricing{padding:70px 20px;background:#fff}
+.pricing h2{text-align:center;font-size:36px;margin-bottom:15px;color:#004E89}
+.pricing-subtitle{text-align:center;font-size:18px;color:#666;margin-bottom:50px}
+.pricing-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;max-width:900px;margin:0 auto}
+.price-card{background:#f9f9f9;padding:40px;border-radius:12px;text-align:center;border:2px solid #e0e0e0;transition:border-color 0.3s}
+.price-card:hover{border-color:#FF6B35}
+.price-card h3{font-size:24px;margin-bottom:15px;color:#004E89}
+.price{font-size:40px;font-weight:700;color:#FF6B35;margin-bottom:20px}
+.price-card ul{list-style:none;margin-bottom:25px;text-align:left}
+.price-card li{padding:10px 0;color:#666;border-bottom:1px solid #e0e0e0}
+.price-card li:last-child{border-bottom:none}
+.cta-section{background:#FF6B35;color:#fff;padding:60px 20px;text-align:center}
+.cta-section h2{font-size:32px;margin-bottom:15px}
+.cta-section p{font-size:18px;margin-bottom:25px;opacity:0.95}
+footer{background:#004E89;color:#fff;padding:40px 20px;text-align:center}
+footer p{opacity:0.9}
+@media(max-width:768px){
+.hero h1{font-size:32px}
+.hero-buttons{flex-direction:column;align-items:center}
+nav ul{gap:15px;font-size:14px}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">🚨 <span>Incident</span>Commander</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">How It Works</a></li>
+<li><a href="contact.html">Get Started</a></li>
+</ul>
+</nav></div></header>
+
+<section class="hero">
+<div class="container">
+<h1>Manage IT Incidents Right in Microsoft Teams</h1>
+<p>No more scattered Slack threads. Coordinate incidents, track status, and notify stakeholders—all without leaving Teams.</p>
+<div class="hero-buttons">
+<a href="contact.html" class="btn btn-primary">Try Free for 14 Days</a>
+<a href="how-it-works.html" class="btn btn-secondary">Watch Demo</a>
+</div>
+</div>
+</section>
+
+<section class="features"><div class="container">
+<h2>Everything You Need to Handle Incidents Faster</h2>
+<div class="feature-grid">
+<div class="feature-card">
+<div class="feature-icon">🎯</div>
+<h3>One-Click Incident Creation</h3>
+<p>Start an incident directly from a Teams message with a simple command or button click.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">👥</div>
+<h3>Assign Roles Instantly</h3>
+<p>Designate incident commander, technical lead, and responders with @mentions.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">📢</div>
+<h3>Auto-Notify Stakeholders</h3>
+<p>Send status updates to leadership channels without copy-pasting.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">📋</div>
+<h3>Built-In Runbooks</h3>
+<p>Pre-loaded checklists for common incidents (outage, security breach, deployment rollback).</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">⏱️</div>
+<h3>Timeline Tracking</h3>
+<p>Automatic log of all actions taken—great for post-incident reviews.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🔗</div>
+<h3>Integrates with Your Tools</h3>
+<p>Connect to PagerDuty, ServiceNow, Jira, Datadog, and more.</p>
+</div>
+</div>
+</div></section>
+
+<section class="how-it-works"><div class="container">
+<h2>How It Works</h2>
+<div class="steps">
+<div class="step">
+<div class="step-number">1</div>
+<h3>Declare Incident</h3>
+<p>Type /incident or click the bot command in any Teams channel to start.</p>
+</div>
+<div class="step">
+<div class="step-number">2</div>
+<h3>Assign & Notify</h3>
+<p>The bot asks for severity, commander, and stakeholders—then creates a war room channel.</p>
+</div>
+<div class="step">
+<div class="step-number">3</div>
+<h3>Coordinate & Update</h3>
+<p>Use quick commands to post updates, mark tasks complete, and escalate if needed.</p>
+</div>
+<div class="step">
+<div class="step-number">4</div>
+<h3>Close & Review</h3>
+<p>Mark incident resolved and export the timeline for your postmortem doc.</p>
+</div>
+</div>
+</div></section>
+
+<section class="pricing"><div class="container">
+<h2>Simple Pricing for Small Teams</h2>
+<p class="pricing-subtitle">No hidden fees. Cancel anytime.</p>
+<div class="pricing-cards">
+<div class="price-card">
+<h3>Starter</h3>
+<div class="price">$49<span style="font-size:18px;font-weight:400">/mo</span></div>
+<ul>
+<li>✓ Up to 10 team members</li>
+<li>✓ Unlimited incidents</li>
+<li>✓ Basic runbooks</li>
+<li>✓ 30-day timeline history</li>
+</ul>
+<a href="contact.html" class="btn btn-primary">Start Free Trial</a>
+</div>
+<div class="price-card">
+<h3>Professional</h3>
+<div class="price">$149<span style="font-size:18px;font-weight:400">/mo</span></div>
+<ul>
+<li>✓ Up to 50 team members</li>
+<li>✓ Custom runbooks</li>
+<li>✓ Integrations (PagerDuty, Jira)</li>
+<li>✓ Unlimited history</li>
+</ul>
+<a href="contact.html" class="btn btn-primary">Start Free Trial</a>
+</div>
+<div class="price-card">
+<h3>Enterprise</h3>
+<div class="price">Custom</div>
+<ul>
+<li>✓ Unlimited users</li>
+<li>✓ SSO & audit logs</li>
+<li>✓ Dedicated support</li>
+<li>✓ SLA guarantee</li>
+</ul>
+<a href="contact.html" class="btn btn-primary">Contact Sales</a>
+</div>
+</div>
+</div></section>
+
+<section class="cta-section">
+<div class="container">
+<h2>Ready to Stop Chaos During Incidents?</h2>
+<p>Start your 14-day free trial—no credit card required.</p>
+<a href="contact.html" class="btn" style="background:#fff;color:#FF6B35">Get Started Now</a>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • Incident Commander for Microsoft Teams</p>
+</div></footer>
+</body>
+</html>

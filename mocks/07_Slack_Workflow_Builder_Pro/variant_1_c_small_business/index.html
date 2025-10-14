@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SlackFlow Pro - No-Code Slack Automation</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;line-height:1.6;color:#1e293b;background:#fff}
+.container{max-width:1200px;margin:0 auto;padding:0 30px}
+header{background:#fff;border-bottom:1px solid #e2e8f0;padding:20px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.05)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:800;color:#6366f1}
+nav ul{list-style:none;display:flex;gap:30px;align-items:center}
+nav a{color:#475569;text-decoration:none;font-weight:600;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#6366f1}
+.cta-btn{background:#6366f1;color:#fff;padding:10px 24px;border-radius:8px;font-weight:700;transition:background 0.3s}
+.cta-btn:hover{background:#4f46e5}
+.hero{background:linear-gradient(135deg,#eef2ff 0%,#fff 100%);padding:100px 30px;text-align:center}
+.hero h1{font-size:52px;font-weight:900;color:#1e293b;margin-bottom:25px;line-height:1.2}
+.hero h1 .highlight{color:#6366f1}
+.hero p{font-size:20px;color:#64748b;max-width:700px;margin:0 auto 40px;line-height:1.7}
+.hero-cta{display:inline-block;background:#6366f1;color:#fff;padding:16px 40px;border-radius:10px;font-size:18px;font-weight:700;text-decoration:none;box-shadow:0 8px 20px rgba(99,102,241,0.3);transition:transform 0.3s}
+.hero-cta:hover{transform:translateY(-3px)}
+.pricing-tag{margin-top:20px;font-size:16px;color:#10b981;font-weight:700}
+.features{padding:80px 30px;background:#fff}
+.features h2{font-size:40px;font-weight:900;text-align:center;margin-bottom:60px;color:#1e293b}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:35px;max-width:1200px;margin:0 auto}
+.feature-card{background:#f8fafc;padding:35px;border-radius:15px;border:2px solid #e2e8f0;transition:transform 0.3s,box-shadow 0.3s}
+.feature-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,0.08)}
+.feature-card .icon{font-size:40px;margin-bottom:15px}
+.feature-card h3{font-size:20px;color:#1e293b;margin-bottom:12px;font-weight:800}
+.feature-card p{font-size:16px;color:#64748b;line-height:1.7}
+.use-cases{padding:80px 30px;background:linear-gradient(180deg,#fff 0%,#f8fafc 100%)}
+.use-cases h2{font-size:40px;font-weight:900;text-align:center;margin-bottom:60px;color:#1e293b}
+.use-case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:35px;max-width:1000px;margin:0 auto}
+.use-case-card{background:#fff;padding:35px;border-radius:15px;border-left:5px solid #6366f1;box-shadow:0 4px 15px rgba(0,0,0,0.05)}
+.use-case-card h3{font-size:22px;color:#6366f1;margin-bottom:12px;font-weight:800}
+.use-case-card p{font-size:17px;color:#475569;line-height:1.8}
+.pricing{padding:80px 30px;background:#fff}
+.pricing h2{font-size:40px;font-weight:900;text-align:center;margin-bottom:60px;color:#1e293b}
+.pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1100px;margin:0 auto}
+.pricing-card{background:#f8fafc;padding:40px;border-radius:15px;border:2px solid #e2e8f0;text-align:center;transition:transform 0.3s}
+.pricing-card:hover{transform:translateY(-5px);border-color:#6366f1}
+.pricing-card h3{font-size:24px;color:#1e293b;margin-bottom:15px;font-weight:800}
+.pricing-card .price{font-size:48px;color:#6366f1;font-weight:900;margin-bottom:10px}
+.pricing-card .price span{font-size:20px;color:#64748b}
+.pricing-card ul{list-style:none;text-align:left;margin-top:25px}
+.pricing-card li{padding:10px 0;color:#475569;font-size:15px;border-bottom:1px solid #e2e8f0}
+.pricing-card li:last-child{border-bottom:none}
+.pricing-card li::before{content:"✓";color:#10b981;font-weight:bold;margin-right:10px}
+.cta-section{padding:80px 30px;background:linear-gradient(135deg,#6366f1,#4f46e5);text-align:center;color:#fff}
+.cta-section h2{font-size:42px;font-weight:900;margin-bottom:20px}
+.cta-section p{font-size:20px;margin-bottom:40px;opacity:0.95}
+.cta-section a{background:#fff;color:#6366f1;padding:18px 45px;border-radius:10px;font-size:18px;font-weight:700;text-decoration:none;display:inline-block;box-shadow:0 8px 20px rgba(0,0,0,0.2);transition:transform 0.3s}
+.cta-section a:hover{transform:translateY(-3px)}
+footer{background:#1e293b;color:#94a3b8;padding:40px 30px;text-align:center;font-size:14px}
+@media(max-width:768px){
+.hero h1{font-size:36px}
+.feature-grid,.use-case-grid,.pricing-cards{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">⚡ SlackFlow Pro</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">How It Works</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="#" class="cta-btn">Start Free Trial</a></li>
+</ul>
+</nav></div></header>
+
+<section class="hero">
+<div class="container">
+<h1>No-Code <span class="highlight">Slack Automation</span> for Teams</h1>
+<p>Build powerful Slack workflows without coding. Automate onboarding, approvals, surveys, and more with drag-and-drop simplicity. No engineers required.</p>
+<a href="contact.html" class="hero-cta">Start 14-Day Free Trial</a>
+<div class="pricing-tag">Starting at $49/month • No credit card required</div>
+</div>
+</section>
+
+<section class="features">
+<div class="container">
+<h2>🚀 Why SlackFlow Pro?</h2>
+<div class="feature-grid">
+<div class="feature-card">
+<div class="icon">🎨</div>
+<h3>Visual Workflow Builder</h3>
+<p>Drag-and-drop interface to create workflows. No coding needed. Connect triggers, actions, and conditions with ease.</p>
+</div>
+<div class="feature-card">
+<div class="icon">⚡</div>
+<h3>50+ Pre-Built Templates</h3>
+<p>Onboarding checklists, approval workflows, surveys, polls, reminders, and more. Deploy in minutes, customize to your needs.</p>
+</div>
+<div class="feature-card">
+<div class="icon">🔗</div>
+<h3>500+ App Integrations</h3>
+<p>Connect Slack to Google Sheets, Airtable, Notion, Jira, GitHub, HubSpot, Salesforce, and 500+ apps via Zapier/Make.</p>
+</div>
+<div class="feature-card">
+<div class="icon">📋</div>
+<h3>Forms & Surveys</h3>
+<p>Create beautiful Slack forms for feedback, requests, approvals. Collect responses in Slack or export to Google Sheets.</p>
+</div>
+<div class="feature-card">
+<div class="icon">🤖</div>
+<h3>Smart Automation</h3>
+<p>Conditional logic, loops, delays, scheduling. Build complex workflows that adapt based on user input.</p>
+</div>
+<div class="feature-card">
+<div class="icon">📊</div>
+<h3>Analytics & Insights</h3>
+<p>Track workflow performance, completion rates, bottlenecks. Optimize processes with data-driven insights.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="use-cases">
+<div class="container">
+<h2>💼 Popular Use Cases</h2>
+<div class="use-case-grid">
+<div class="use-case-card">
+<h3>Employee Onboarding</h3>
+<p>Automate new hire workflows: welcome messages, task assignments, IT setup requests, intro meetings scheduling. Reduce onboarding time by 50%.</p>
+</div>
+<div class="use-case-card">
+<h3>Approval Workflows</h3>
+<p>PTO requests, expense approvals, budget sign-offs. Route to managers, track status, send reminders. No more lost emails.</p>
+</div>
+<div class="use-case-card">
+<h3>Daily Standups</h3>
+<p>Automated standup forms sent at 9am. Collect updates from team, compile in thread, post summary. Replace 15-min meetings.</p>
+</div>
+<div class="use-case-card">
+<h3>IT Help Desk</h3>
+<p>Create support ticket forms in Slack. Auto-route to IT team, track resolution time, send follow-up surveys. Integrate with Jira.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="pricing">
+<div class="container">
+<h2>💳 Simple, Transparent Pricing</h2>
+<div class="pricing-cards">
+<div class="pricing-card">
+<h3>Starter</h3>
+<div class="price">$49<span>/mo</span></div>
+<ul>
+<li>Up to 10 active workflows</li>
+<li>1,000 workflow runs/month</li>
+<li>50+ pre-built templates</li>
+<li>Basic integrations (Zapier, Make)</li>
+<li>Email support (24hr response)</li>
+<li>Analytics dashboard</li>
+</ul>
+</div>
+<div class="pricing-card">
+<h3>Professional</h3>
+<div class="price">$149<span>/mo</span></div>
+<ul>
+<li>Unlimited workflows</li>
+<li>10,000 workflow runs/month</li>
+<li>All templates + custom builder</li>
+<li>Advanced integrations (API access)</li>
+<li>Priority support (4hr response)</li>
+<li>Advanced analytics & reports</li>
+<li>Team collaboration tools</li>
+</ul>
+</div>
+<div class="pricing-card">
+<h3>Enterprise</h3>
+<div class="price">Custom</div>
+<ul>
+<li>Unlimited everything</li>
+<li>Dedicated account manager</li>
+<li>Custom integrations & APIs</li>
+<li>SSO & advanced security</li>
+<li>24/7 phone + Slack support</li>
+<li>White-glove onboarding</li>
+<li>SLA guarantees</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cta-section">
+<div class="container">
+<h2>Start Automating Slack Today</h2>
+<p>14-day free trial. No credit card required. Set up your first workflow in under 5 minutes.</p>
+<a href="contact.html">Start Free Trial</a>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • Slack Automation Platform</p>
+</div></footer>
+</body>
+</html>

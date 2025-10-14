@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works - AI Support Assistant</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;line-height:1.6;color:#1f2937;background:#fff}
+.container{max-width:1200px;margin:0 auto;padding:0 30px}
+header{background:#fff;border-bottom:1px solid #e5e7eb;padding:20px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:800;color:#2563eb}
+.logo span{color:#7c3aed}
+nav ul{list-style:none;display:flex;gap:35px;align-items:center}
+nav a{color:#4b5563;text-decoration:none;font-weight:600;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#2563eb}
+.cta-btn{background:#2563eb;color:#fff;padding:10px 24px;border-radius:8px;font-weight:700;transition:background 0.3s}
+.cta-btn:hover{background:#1d4ed8}
+.page-hero{background:linear-gradient(135deg,#dbeafe 0%,#f3e8ff 100%);padding:80px 30px;text-align:center}
+.page-hero h1{font-size:48px;font-weight:900;color:#1f2937;margin-bottom:20px}
+.page-hero p{font-size:20px;color:#6b7280;max-width:800px;margin:0 auto}
+.setup-flow{padding:90px 30px;background:#fff}
+.setup-flow h2{font-size:40px;font-weight:900;text-align:center;margin-bottom:60px;color:#1f2937}
+.flow-steps{max-width:900px;margin:0 auto}
+.flow-step{display:grid;grid-template-columns:80px 1fr;gap:30px;margin-bottom:50px}
+.flow-step:last-child{margin-bottom:0}
+.step-icon{width:80px;height:80px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;flex-shrink:0}
+.step-content h3{font-size:26px;color:#1f2937;margin-bottom:15px;font-weight:800}
+.step-content p{font-size:17px;color:#6b7280;line-height:1.8;margin-bottom:15px}
+.step-content ul{margin-left:20px;color:#4b5563;font-size:16px;line-height:1.9}
+.integrations{padding:90px 30px;background:#f9fafb}
+.integrations h2{font-size:40px;font-weight:900;text-align:center;margin-bottom:60px;color:#1f2937}
+.integration-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:1200px;margin:0 auto}
+.integration-card{background:#fff;padding:30px;border-radius:12px;border:2px solid #e5e7eb;text-align:center;transition:box-shadow 0.3s}
+.integration-card:hover{box-shadow:0 8px 20px rgba(0,0,0,0.1)}
+.integration-card .logo-placeholder{font-size:48px;margin-bottom:15px}
+.integration-card h3{font-size:18px;color:#1f2937;font-weight:700}
+.demo-video{padding:90px 30px;background:#fff;text-align:center}
+.demo-video h2{font-size:40px;font-weight:900;margin-bottom:40px;color:#1f2937}
+.demo-video .video-placeholder{max-width:900px;height:500px;background:linear-gradient(135deg,#dbeafe,#f3e8ff);border-radius:16px;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:72px;border:3px solid #e5e7eb}
+footer{background:#1f2937;color:#9ca3af;padding:50px 30px;text-align:center;font-size:14px}
+@media(max-width:768px){
+.page-hero h1{font-size:36px}
+.flow-step{grid-template-columns:1fr}
+.integration-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">🤖 KB<span>Reply</span></div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">How It Works</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="contact.html" class="cta-btn">Start Free Trial</a></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>Setup Takes 5 Minutes ⏱️</h1>
+<p>Connect your tools, train the AI, and start auto-replying to tickets today. No technical skills required.</p>
+</div>
+</section>
+
+<section class="setup-flow">
+<div class="container">
+<h2>🔧 Complete Setup Guide</h2>
+<div class="flow-steps">
+<div class="flow-step">
+<div class="step-icon">1</div>
+<div class="step-content">
+<h3>Connect Your Help Desk</h3>
+<p>Link your customer support platform in one click. We support all major help desks:</p>
+<ul>
+<li><strong>Zendesk:</strong> OAuth connection, read/write tickets, manage tags</li>
+<li><strong>Freshdesk:</strong> API key integration, full ticket access</li>
+<li><strong>Intercom:</strong> Secure OAuth, conversation history sync</li>
+<li><strong>Help Scout:</strong> Mailbox integration, thread management</li>
+</ul>
+<p style="margin-top:15px;font-size:15px;color:#9ca3af;">Takes 2 minutes. No coding required.</p>
+</div>
+</div>
+
+<div class="flow-step">
+<div class="step-icon">2</div>
+<div class="step-content">
+<h3>Connect Your Knowledge Base</h3>
+<p>Point us to where your help articles, docs, and FAQs live. We'll read everything and build a smart search index:</p>
+<ul>
+<li><strong>Confluence:</strong> Space-level access, auto-sync on updates</li>
+<li><strong>Notion:</strong> Database and page support, real-time sync</li>
+<li><strong>Google Docs:</strong> Folder permissions, version tracking</li>
+<li><strong>SharePoint:</strong> Site collections, document libraries</li>
+<li><strong>Custom docs:</strong> Upload PDFs, Word docs, or HTML</li>
+</ul>
+<p style="margin-top:15px;font-size:15px;color:#9ca3af;">AI processes your KB in 15–30 minutes depending on size.</p>
+</div>
+</div>
+
+<div class="flow-step">
+<div class="step-icon">3</div>
+<div class="step-content">
+<h3>Configure AI Behavior</h3>
+<p>Tell the AI how you want it to behave. Set confidence thresholds, tone of voice, and escalation rules:</p>
+<ul>
+<li><strong>Auto-send vs. Draft mode:</strong> Choose if AI sends replies automatically or waits for human approval</li>
+<li><strong>Confidence threshold:</strong> Set minimum confidence (e.g., 85%) before AI replies</li>
+<li><strong>Tone customization:</strong> Friendly, professional, or technical writing style</li>
+<li><strong>Escalation rules:</strong> Auto-escalate urgent tickets or specific keywords</li>
+</ul>
+<p style="margin-top:15px;font-size:15px;color:#9ca3af;">Default settings work great, but customize anytime.</p>
+</div>
+</div>
+
+<div class="flow-step">
+<div class="step-icon">4</div>
+<div class="step-content">
+<h3>Test & Go Live</h3>
+<p>Run test tickets through the system. Review AI-generated responses. Adjust settings if needed. Then flip the switch!</p>
+<ul>
+<li><strong>Test mode:</strong> Send sample tickets, see AI responses without sending to customers</li>
+<li><strong>Shadow mode:</strong> AI drafts replies in background while humans handle tickets normally</li>
+<li><strong>Live mode:</strong> AI auto-responds based on your configured rules</li>
+</ul>
+<p style="margin-top:15px;font-size:15px;color:#9ca3af;">Most teams go live within 1 day of setup.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="integrations">
+<div class="container">
+<h2>🔌 Integrations We Support</h2>
+<div class="integration-grid">
+<div class="integration-card">
+<div class="logo-placeholder">📧</div>
+<h3>Zendesk</h3>
+</div>
+<div class="integration-card">
+<div class="logo-placeholder">📩</div>
+<h3>Freshdesk</h3>
+</div>
+<div class="integration-card">
+<div class="logo-placeholder">💬</div>
+<h3>Intercom</h3>
+</div>
+<div class="integration-card">
+<div class="logo-placeholder">🎧</div>
+<h3>Help Scout</h3>
+</div>
+<div class="integration-card">
+<div class="logo-placeholder">📚</div>
+<h3>Confluence</h3>
+</div>
+<div class="integration-card">
+<div class="logo-placeholder">📝</div>
+<h3>Notion</h3>
+</div>
+<div class="integration-card">
+<div class="logo-placeholder">📄</div>
+<h3>Google Docs</h3>
+</div>
+<div class="integration-card">
+<div class="logo-placeholder">🗂️</div>
+<h3>SharePoint</h3>
+</div>
+</div>
+</div>
+</section>
+
+<section class="demo-video">
+<div class="container">
+<h2>📹 Watch It In Action</h2>
+<div class="video-placeholder">▶️</div>
+<p style="margin-top:30px;font-size:17px;color:#6b7280;">3-minute demo showing real ticket auto-replies</p>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • Powered by AI • Built for Support Teams</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Approach | SentinelBridge+</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Georgia',serif;line-height:1.8;color:#1a1a1a;background:#fafafa}
+.container{max-width:1100px;margin:0 auto;padding:0 30px}
+header{background:#fff;border-bottom:1px solid #e0e0e0;padding:20px 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Helvetica Neue',sans-serif;font-size:22px;font-weight:300;color:#2d5016;letter-spacing:1px}
+.logo strong{font-weight:700}
+nav ul{list-style:none;display:flex;gap:40px}
+nav a{color:#1a1a1a;text-decoration:none;font-family:'Helvetica Neue',sans-serif;font-size:15px;font-weight:400;border-bottom:2px solid transparent;padding-bottom:2px;transition:border-color 0.3s}
+nav a:hover{border-bottom-color:#4a7c24}
+.page-hero{padding:80px 30px;background:#fff;border-bottom:3px solid #4a7c24}
+.page-hero .eyebrow{font-family:'Helvetica Neue',sans-serif;text-transform:uppercase;font-size:12px;letter-spacing:2px;color:#4a7c24;margin-bottom:15px;font-weight:600}
+.page-hero h1{font-size:48px;line-height:1.2;color:#1a1a1a;margin-bottom:20px;font-weight:400}
+.page-hero p{font-size:20px;line-height:1.6;color:#555;max-width:700px}
+.approach-content{padding:100px 30px;background:#fff}
+.approach-content h2{font-size:36px;color:#1a1a1a;margin-bottom:25px;font-weight:400}
+.approach-content p{font-size:18px;line-height:1.8;color:#666;margin-bottom:20px;max-width:800px}
+.architecture{background:#f5f7f3;padding:100px 30px}
+.architecture h2{font-size:36px;color:#1a1a1a;margin-bottom:50px;font-weight:400;text-align:center}
+.arch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;max-width:1000px;margin:0 auto}
+.arch-card{background:#fff;padding:35px;border-top:4px solid #4a7c24;border-radius:3px}
+.arch-card h3{font-family:'Helvetica Neue',sans-serif;font-size:18px;color:#1a1a1a;margin-bottom:12px;font-weight:600}
+.arch-card p{font-size:16px;line-height:1.7;color:#666}
+.arch-card .tech-label{display:inline-block;background:#e8f4dd;color:#2d5016;padding:4px 10px;font-family:'Helvetica Neue',sans-serif;font-size:12px;font-weight:600;border-radius:3px;margin-bottom:10px}
+.deep-dive{padding:100px 30px;background:#fff}
+.deep-dive h2{font-size:36px;color:#1a1a1a;margin-bottom:50px;font-weight:400}
+.dive-sections{max-width:850px;margin:0 auto}
+.dive-item{margin-bottom:50px;padding-bottom:50px;border-bottom:1px solid #e0e0e0}
+.dive-item:last-child{border-bottom:none}
+.dive-item h3{font-family:'Helvetica Neue',sans-serif;font-size:24px;color:#1a1a1a;margin-bottom:15px;font-weight:600}
+.dive-item p{font-size:17px;line-height:1.8;color:#666;margin-bottom:15px}
+.dive-item ul{margin-left:25px;margin-top:15px}
+.dive-item li{font-size:16px;line-height:1.7;color:#666;margin-bottom:8px}
+.cta-final{background:#2d5016;color:#fff;padding:80px 30px;text-align:center}
+.cta-final h2{font-size:36px;margin-bottom:20px;font-weight:400}
+.cta-final p{font-size:18px;margin-bottom:35px;opacity:0.9}
+.cta-final .btn-light{background:#fff;color:#2d5016;padding:14px 40px;text-decoration:none;font-family:'Helvetica Neue',sans-serif;font-size:16px;font-weight:600;border-radius:3px;display:inline-block}
+footer{background:#1a1a1a;color:#ccc;padding:50px 30px;text-align:center}
+footer p{font-family:'Helvetica Neue',sans-serif;font-size:14px}
+@media(max-width:768px){
+.page-hero h1{font-size:36px}
+.approach-content h2,.architecture h2,.deep-dive h2{font-size:28px}
+nav ul{gap:20px;font-size:13px}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo"><strong>Sentinel</strong>Bridge+</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">Approach</a></li>
+<li><a href="contact.html">Connect</a></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<div class="eyebrow">Our Approach</div>
+<h1>Intelligent automation that respects your workflow.</h1>
+<p>SentinelBridge+ isn't just another email parser. It's a purpose-built classification engine designed for IT operations teams who demand precision, transparency, and control.</p>
+</div>
+</section>
+
+<section class="approach-content">
+<div class="container">
+<h2>The Problem We Solve</h2>
+<p>Every IT helpdesk receives hundreds (or thousands) of support emails daily. Sorting these emails manually is slow, error-prone, and drains analyst time. Traditional keyword-based rules are brittle and require constant maintenance. Emails get mis-classified, duplicates slip through, and SLA clocks start ticking before anyone even sees the request.</p>
+<p style="margin-top:30px;">SentinelBridge+ eliminates this bottleneck by applying machine learning to classify emails with human-level accuracy, automatically create ServiceNow tickets, and notify the right teams in real time.</p>
+</div>
+</section>
+
+<section class="architecture">
+<div class="container">
+<h2>Architecture & Technology</h2>
+<div class="arch-grid">
+<div class="arch-card">
+<div class="tech-label">Email Integration</div>
+<h3>Microsoft Graph API</h3>
+<p>Secure, OAuth 2.0-based connection to Microsoft 365 mailboxes. Read-only access with delegated permissions. Supports shared mailboxes and distribution lists.</p>
+</div>
+<div class="arch-card">
+<div class="tech-label">Classification Engine</div>
+<h3>Azure OpenAI (GPT-4)</h3>
+<p>Fine-tuned LLM trained on IT support language. Extracts intent, urgency, affected service, and category with 95%+ accuracy. Confidence scores guide auto-creation vs. human review.</p>
+</div>
+<div class="arch-card">
+<div class="tech-label">Deduplication</div>
+<h3>Thread Correlation</h3>
+<p>Similarity algorithms detect related emails using message IDs, subject lines, and semantic content. Prevents duplicate ticket creation and preserves conversation history.</p>
+</div>
+<div class="arch-card">
+<div class="tech-label">ITSM Integration</div>
+<h3>ServiceNow REST API</h3>
+<p>Automated ticket creation with custom field mapping. Supports incidents, service requests, and change requests. Respects assignment rules and approval workflows.</p>
+</div>
+<div class="arch-card">
+<div class="tech-label">Notifications</div>
+<h3>Microsoft Teams Webhooks</h3>
+<p>Real-time adaptive cards in Teams channels. Analysts can approve, reassign, or escalate tickets without leaving Teams. Action history is logged for audit.</p>
+</div>
+<div class="arch-card">
+<div class="tech-label">Security & Compliance</div>
+<h3>Enterprise-Grade Controls</h3>
+<p>SSO via Azure AD, role-based access control, full audit logs, and optional BYOC deployment. SOC 2 Type II compliant infrastructure.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="deep-dive">
+<div class="container">
+<h2>How Classification Works</h2>
+<div class="dive-sections">
+<div class="dive-item">
+<h3>Step 1: Email Ingestion</h3>
+<p>SentinelBridge+ monitors your support mailbox (e.g., support@yourcompany.com) in near real-time via the Microsoft Graph API. When a new email arrives, it's queued for processing. Thread metadata is extracted to enable correlation with existing tickets.</p>
+</div>
+<div class="dive-item">
+<h3>Step 2: AI-Powered Analysis</h3>
+<p>The email body, subject, sender, and any attachments are analyzed by our fine-tuned GPT-4 model. The model outputs:</p>
+<ul>
+<li><strong>Intent:</strong> Incident, Service Request, or Question</li>
+<li><strong>Urgency:</strong> Critical, High, Medium, or Low</li>
+<li><strong>Category:</strong> Hardware, Software, Network, Access, etc.</li>
+<li><strong>Assignment Group:</strong> Based on historical patterns and your org structure</li>
+<li><strong>Confidence Score:</strong> 0–100% indicating model certainty</li>
+</ul>
+</div>
+<div class="dive-item">
+<h3>Step 3: Thread Correlation</h3>
+<p>Before creating a new ticket, SentinelBridge+ checks for related emails using message IDs (In-Reply-To, References headers) and semantic similarity. If a match is found, the email is appended to the existing ticket as a note or comment.</p>
+</div>
+<div class="dive-item">
+<h3>Step 4: Ticket Creation or Review</h3>
+<p>If the confidence score is above your threshold (default: 85%), a ServiceNow ticket is created automatically. For lower-confidence classifications, an adaptive card is sent to Teams for analyst review. Analysts can approve, edit, or reject the suggested classification.</p>
+</div>
+<div class="dive-item">
+<h3>Step 5: Continuous Learning</h3>
+<p>Every time an analyst corrects a classification, that feedback is logged and used to retrain the model. Over time, accuracy improves and adapts to your organization's unique language, acronyms, and ticket patterns.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cta-final">
+<div class="container">
+<h2>See it in action</h2>
+<p>Request a personalized demo using your real support emails.</p>
+<a href="contact.html" class="btn-light">Schedule Demo</a>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • All rights reserved</p>
+</div>
+</footer>
+</body>
+</html>

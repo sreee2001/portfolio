@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Builder Pro Enterprise - Slack Automation at Scale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #e2e8f0;
+            background: #0f172a;
+            overflow-x: hidden;
+        }
+        
+        /* Header - Sticky Enterprise Nav */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #1e293b;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        nav {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+        .logo .badge {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 45px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            position: relative;
+            letter-spacing: -0.2px;
+        }
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-cta-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .nav-btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s;
+            letter-spacing: 0.3px;
+        }
+        .nav-btn.secondary {
+            color: #cbd5e0;
+            border: 2px solid #334155;
+            background: transparent;
+        }
+        .nav-btn.secondary:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        .nav-btn.primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Hero - Enterprise Focus */
+        .hero {
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            padding: 120px 60px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            top: -300px;
+            right: -200px;
+            border-radius: 50%;
+        }
+        .hero-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #60a5fa;
+        }
+        .hero-badge .icon {
+            font-size: 18px;
+        }
+        .hero-text h1 {
+            font-size: 68px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 28px;
+            color: #ffffff;
+            letter-spacing: -1.5px;
+        }
+        .hero-text h1 .gradient {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-text p {
+            font-size: 22px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        .hero-cta-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .btn-hero {
+            padding: 20px 45px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 17px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            letter-spacing: 0.3px;
+        }
+        .btn-hero.primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.35);
+        }
+        .btn-hero.primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.45);
+        }
+        .btn-hero.secondary {
+            background: rgba(51, 65, 85, 0.5);
+            color: #e2e8f0;
+            border: 2px solid #334155;
+            backdrop-filter: blur(10px);
+        }
+        .btn-hero.secondary:hover {
+            background: rgba(51, 65, 85, 0.8);
+            border-color: #3b82f6;
+        }
+        .hero-trust {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .trust-logos {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .trust-logo {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+            padding: 8px 16px;
+            background: rgba(51, 65, 85, 0.3);
+            border-radius: 6px;
+            border: 1px solid #334155;
+        }
+        .hero-visual {
+            position: relative;
+        }
+        .hero-dashboard {
+            background: rgba(30, 41, 59, 0.6);
+            border: 2px solid #334155;
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #334155;
+        }
+        .dashboard-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+        .dashboard-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #10b981;
+            font-weight: 600;
+        }
+        .dashboard-status .dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .dashboard-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .metric-card {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+        }
+        .metric-label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .metric-value {
+            font-size: 32px;
+            font-weight: 900;
+            color: #3b82f6;
+            line-height: 1;
+        }
+        .metric-change {
+            font-size: 13px;
+            color: #10b981;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+        .dashboard-placeholder {
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px dashed #334155;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 600;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .floating-card {
+            position: absolute;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            padding: 20px 25px;
+            border-radius: 12px;
+            border: 1px solid #3b82f6;
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.3);
+            animation: floatCard 4s ease-in-out infinite;
+        }
+        .floating-card.card-1 {
+            top: 50px;
+            right: -30px;
+        }
+        .floating-card.card-2 {
+            bottom: 50px;
+            left: -40px;
+        }
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .floating-card .label {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .floating-card .value {
+            font-size: 24px;
+            font-weight: 800;
+            color: #3b82f6;
+        }
+
+        /* Stats Bar - Enterprise Metrics */
+        .stats-section {
+            background: rgba(30, 41, 59, 0.5);
+            border-top: 1px solid #334155;
+            border-bottom: 1px solid #334155;
+            padding: 60px 60px;
+        }
+        .stats-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 16px;
+            border: 1px solid #1e293b;
+            transition: all 0.3s;
+        }
+        .stat-item:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+        }
+        .stat-number {
+            font-size: 52px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 15px;
+            color: #94a3b8;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .stat-detail {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* Enterprise Features - Technical Grid */
+        .features-section {
+            padding: 120px 60px;
+            background: #0f172a;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .section-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .section-header h2 {
+            font-size: 52px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        .section-header p {
+            font-size: 20px;
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+        .features-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+        .feature-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.8));
+            padding: 45px;
+            border-radius: 20px;
+            border: 1px solid #1e293b;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            top: -50px;
+            right: -50px;
+            border-radius: 50%;
+            transition: all 0.4s;
+        }
+        .feature-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(59, 130, 246, 0.2);
+        }
+        .feature-card:hover::before {
+            width: 250px;
+            height: 250px;
+            opacity: 1.5;
+        }
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            position: relative;
+        }
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 14px;
+        }
+        .feature-card p {
+            font-size: 16px;
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .feature-specs {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .spec-badge {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Use Cases - Enterprise Scenarios */
+        .usecases-section {
+            padding: 120px 60px;
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        }
+        .usecases-grid {
+            max-width: 1600px;
+            margin: 60px auto 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        .usecase-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid #1e293b;
+            border-radius: 20px;
+            padding: 50px;
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .usecase-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+        .usecase-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.2);
+        }
+        .usecase-card:hover::after {
+            transform: scaleX(1);
+        }
+        .usecase-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .usecase-icon {
+            font-size: 48px;
+        }
+        .usecase-title h3 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 5px;
+        }
+        .usecase-category {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .usecase-description {
+            font-size: 17px;
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        .usecase-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding-top: 25px;
+            border-top: 1px solid #334155;
+        }
+        .usecase-metric .value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #3b82f6;
+            margin-bottom: 5px;
+        }
+        .usecase-metric .label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* Security & Compliance */
+        .security-section {
+            padding: 120px 60px;
+            background: #0f172a;
+        }
+        .security-container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .security-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 60px;
+        }
+        .security-feature {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.8));
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #1e293b;
+            transition: all 0.3s;
+        }
+        .security-feature:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.15);
+        }
+        .security-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+        .security-feature h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 15px;
+        }
+        .security-feature p {
+            font-size: 16px;
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .compliance-badges {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .compliance-badge {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* Pricing - Enterprise Tiers */
+        .pricing-section {
+            padding: 120px 60px;
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+        }
+        .pricing-grid {
+            max-width: 1600px;
+            margin: 60px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+        .pricing-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid #1e293b;
+            border-radius: 24px;
+            padding: 50px;
+            transition: all 0.4s;
+            position: relative;
+        }
+        .pricing-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-10px);
+            box-shadow: 0 30px 70px rgba(59, 130, 246, 0.25);
+        }
+        .pricing-card.featured {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1));
+            border-color: #3b82f6;
+            transform: scale(1.05);
+        }
+        .pricing-card.featured:hover {
+            transform: scale(1.08) translateY(-10px);
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .pricing-card h3 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #e2e8f0;
+            margin-bottom: 10px;
+        }
+        .pricing-card .subtitle {
+            font-size: 15px;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+        .pricing-card .price {
+            font-size: 62px;
+            font-weight: 900;
+            color: #3b82f6;
+            margin: 25px 0;
+            line-height: 1;
+        }
+        .pricing-card .price-detail {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 35px;
+        }
+        .pricing-card ul {
+            list-style: none;
+            margin: 35px 0;
+        }
+        .pricing-card li {
+            padding: 14px 0;
+            color: #cbd5e0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+        .pricing-card li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: 900;
+            font-size: 20px;
+        }
+        .pricing-btn {
+            display: block;
+            text-align: center;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            padding: 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        .pricing-btn:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .pricing-card.featured .pricing-btn {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+        }
+
+        /* CTA - Enterprise Contact */
+        .cta-section {
+            padding: 120px 60px;
+            background: #0f172a;
+            text-align: center;
+        }
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .cta-content h2 {
+            font-size: 58px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+        .cta-content p {
+            font-size: 22px;
+            color: #94a3b8;
+            margin-bottom: 50px;
+            line-height: 1.7;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-btn-large {
+            padding: 22px 55px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.4s;
+            letter-spacing: 0.3px;
+        }
+        .cta-btn-large.primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+        .cta-btn-large.primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.5);
+        }
+        .cta-btn-large.secondary {
+            background: rgba(51, 65, 85, 0.5);
+            color: #e2e8f0;
+            border: 2px solid #334155;
+        }
+        .cta-btn-large.secondary:hover {
+            border-color: #3b82f6;
+            background: rgba(51, 65, 85, 0.8);
+        }
+
+        /* Footer - Enterprise */
+        footer {
+            background: #0f172a;
+            border-top: 1px solid #1e293b;
+            color: #94a3b8;
+            padding: 80px 60px 40px;
+        }
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+        .footer-brand {
+            max-width: 350px;
+        }
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .footer-brand p {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        .footer-section h4 {
+            color: #e2e8f0;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 0.3px;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .footer-section a:hover {
+            color: #3b82f6;
+        }
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            padding-top: 35px;
+            text-align: center;
+            max-width: 1600px;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .hero-container,
+            .usecases-grid,
+            .security-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-grid,
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero-text h1 {
+                font-size: 42px;
+            }
+            .features-grid,
+            .pricing-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                Workflow Builder Pro
+                <span class="badge">ENTERPRISE</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Platform</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="security.html">Security</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="resources.html">Resources</a></li>
+            </ul>
+            <div class="nav-cta-group">
+                <a href="contact.html" class="nav-btn secondary">Contact Sales</a>
+                <a href="demo.html" class="nav-btn primary">Request Demo</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="icon">🏢</span>
+                    <span>Trusted by Fortune 500 companies</span>
+                </div>
+                <h1>
+                    Enterprise-Grade<br>
+                    <span class="gradient">Slack Automation</span>
+                </h1>
+                <p>Scale workflow automation across your organization with enterprise security, 99.99% SLA, dedicated support, and advanced governance controls.</p>
+                <div class="hero-cta-row">
+                    <a href="demo.html" class="btn-hero primary">Schedule Enterprise Demo →</a>
+                    <a href="security.html" class="btn-hero secondary">View Security Docs</a>
+                </div>
+                <div class="hero-trust">
+                    <div class="trust-logos">
+                        <div class="trust-logo">SOC 2 Type II</div>
+                        <div class="trust-logo">ISO 27001</div>
+                        <div class="trust-logo">HIPAA</div>
+                        <div class="trust-logo">GDPR</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-dashboard">
+                    <div class="dashboard-header">
+                        <div class="dashboard-title">Workflow Analytics</div>
+                        <div class="dashboard-status">
+                            <span class="dot"></span>
+                            <span>System Operational</span>
+                        </div>
+                    </div>
+                    <div class="dashboard-metrics">
+                        <div class="metric-card">
+                            <div class="metric-label">Active Workflows</div>
+                            <div class="metric-value">1,247</div>
+                            <div class="metric-change">↑ 18% this month</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Uptime SLA</div>
+                            <div class="metric-value">99.99%</div>
+                            <div class="metric-change">✓ Target met</div>
+                        </div>
+                    </div>
+                    <div class="dashboard-placeholder">
+                        [Real-time Workflow Execution Dashboard]
+                    </div>
+                </div>
+                <div class="floating-card card-1">
+                    <div class="label">Executions Today</div>
+                    <div class="value">2.4M</div>
+                </div>
+                <div class="floating-card card-2">
+                    <div class="label">Avg Response</div>
+                    <div class="value">< 50ms</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Enterprise Customers</div>
+                <div class="stat-detail">Fortune 500 & Global 2000</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99.99%</div>
+                <div class="stat-label">Uptime SLA</div>
+                <div class="stat-detail">Financially backed guarantee</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">240+</div>
+                <div class="stat-label">Event Types Supported</div>
+                <div class="stat-detail">Comprehensive Slack coverage</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">< 2hr</div>
+                <div class="stat-label">Support Response</div>
+                <div class="stat-detail">24/7 enterprise support</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="section-header">
+            <div class="section-badge">PLATFORM CAPABILITIES</div>
+            <h2>Built for Enterprise Scale</h2>
+            <p>Advanced automation platform designed for IT leaders who need security, compliance, and performance at scale.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>High-Performance Runtime</h3>
+                <p>Sub-50ms workflow execution with global edge deployment. Auto-scaling infrastructure handles 10M+ workflows per day.</p>
+                <div class="feature-specs">
+                    <span class="spec-badge">< 50ms latency</span>
+                    <span class="spec-badge">10M+ daily</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Enterprise Security</h3>
+                <p>SOC 2 Type II, ISO 27001, HIPAA compliant. End-to-end encryption, role-based access, and complete audit logs.</p>
+                <div class="feature-specs">
+                    <span class="spec-badge">SOC 2</span>
+                    <span class="spec-badge">ISO 27001</span>
+                    <span class="spec-badge">HIPAA</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Advanced Analytics</h3>
+                <p>Real-time dashboards, custom reports, workflow performance metrics, and predictive insights.</p>
+                <div class="feature-specs">
+                    <span class="spec-badge">Real-time</span>
+                    <span class="spec-badge">Custom reports</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>Global Deployment</h3>
+                <p>Multi-region availability with data residency controls. Deploy in US, EU, APAC, or your private cloud.</p>
+                <div class="feature-specs">
+                    <span class="spec-badge">Multi-region</span>
+                    <span class="spec-badge">Data residency</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3>Enterprise Integrations</h3>
+                <p>500+ pre-built connectors plus custom API support. SSO, SCIM provisioning, and Active Directory sync.</p>
+                <div class="feature-specs">
+                    <span class="spec-badge">SSO/SAML</span>
+                    <span class="spec-badge">SCIM</span>
+                    <span class="spec-badge">AD sync</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Dedicated Support</h3>
+                <p>24/7 phone, email, and Slack support. Dedicated Customer Success Manager and Technical Account Manager.</p>
+                <div class="feature-specs">
+                    <span class="spec-badge">24/7 support</span>
+                    <span class="spec-badge">CSM + TAM</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="usecases-section">
+        <div class="section-header">
+            <div class="section-badge">ENTERPRISE USE CASES</div>
+            <h2>Proven at Scale</h2>
+            <p>Real-world automation scenarios deployed by IT teams at Fortune 500 companies.</p>
+        </div>
+        <div class="usecases-grid">
+            <div class="usecase-card">
+                <div class="usecase-header">
+                    <div class="usecase-icon">🏢</div>
+                    <div class="usecase-title">
+                        <h3>Enterprise Onboarding</h3>
+                        <div class="usecase-category">HR & IT Operations</div>
+                    </div>
+                </div>
+                <div class="usecase-description">
+                    Automate employee onboarding across 1,000+ person organizations. Integrate with HRIS, provision accounts, assign equipment, schedule training, and track completion across departments.
+                </div>
+                <div class="usecase-metrics">
+                    <div class="usecase-metric">
+                        <div class="value">60%</div>
+                        <div class="label">Time Saved</div>
+                    </div>
+                    <div class="usecase-metric">
+                        <div class="value">1.2K</div>
+                        <div class="label">Employees/mo</div>
+                    </div>
+                    <div class="usecase-metric">
+                        <div class="value">12</div>
+                        <div class="label">Systems</div>
+                    </div>
+                </div>
+            </div>
+            <div class="usecase-card">
+                <div class="usecase-header">
+                    <div class="usecase-icon">🎫</div>
+                    <div class="usecase-title">
+                        <h3>IT Service Management</h3>
+                        <div class="usecase-category">Support & Incident Response</div>
+                    </div>
+                </div>
+                <div class="usecase-description">
+                    Transform Slack into a complete ITSM platform. Auto-route tickets, track SLAs, escalate incidents, integrate with ServiceNow/Jira, and provide self-service resolution.
+                </div>
+                <div class="usecase-metrics">
+                    <div class="usecase-metric">
+                        <div class="value">40%</div>
+                        <div class="label">Faster MTTR</div>
+                    </div>
+                    <div class="usecase-metric">
+                        <div class="value">95%</div>
+                        <div class="label">Capture Rate</div>
+                    </div>
+                    <div class="usecase-metric">
+                        <div class="value">24/7</div>
+                        <div class="label">Availability</div>
+                    </div>
+                </div>
+            </div>
+            <div class="usecase-card">
+                <div class="usecase-header">
+                    <div class="usecase-icon">✅</div>
+                    <div class="usecase-title">
+                        <h3>Approval Workflows</h3>
+                        <div class="usecase-category">Finance & Procurement</div>
+                    </div>
+                </div>
+                <div class="usecase-description">
+                    Enterprise-grade approval routing for PTO, expenses, contracts, and budget requests. Multi-stage approvals, delegate handling, audit trails, and ERP integration.
+                </div>
+                <div class="usecase-metrics">
+                    <div class="usecase-metric">
+                        <div class="value">3 days</div>
+                        <div class="label">Avg Approval</div>
+                    </div>
+                    <div class="usecase-metric">
+                        <div class="value">100%</div>
+                        <div class="label">Audit Trail</div>
+                    </div>
+                    <div class="usecase-metric">
+                        <div class="value">$2.4M</div>
+                        <div class="label">Processed/mo</div>
+                    </div>
+                </div>
+            </div>
+            <div class="usecase-card">
+                <div class="usecase-header">
+                    <div class="usecase-icon">🔐</div>
+                    <div class="usecase-title">
+                        <h3>Security & Compliance</h3>
+                        <div class="usecase-category">InfoSec & GRC</div>
+                    </div>
+                </div>
+                <div class="usecase-description">
+                    Automate security incident response, access reviews, compliance reporting, and policy enforcement. Real-time alerts, audit logs, and regulatory reporting.
+                </div>
+                <div class="usecase-metrics">
+                    <div class="usecase-metric">
+                        <div class="value">< 5min</div>
+                        <div class="label">Alert Time</div>
+                    </div>
+                    <div class="usecase-metric">
+                        <div class="value">100%</div>
+                        <div class="label">Compliance</div>
+                    </div>
+                    <div class="usecase-metric">
+                        <div class="value">50K+</div>
+                        <div class="label">Events/day</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="security-section">
+        <div class="security-container">
+            <div class="section-header">
+                <div class="section-badge">SECURITY & COMPLIANCE</div>
+                <h2>Enterprise-Grade Security</h2>
+                <p>Built with security-first architecture. Independently audited and certified for the most demanding compliance requirements.</p>
+            </div>
+            <div class="security-grid">
+                <div class="security-feature">
+                    <div class="security-icon">🔒</div>
+                    <h3>Data Encryption</h3>
+                    <p>End-to-end encryption for data in transit (TLS 1.3) and at rest (AES-256). Customer-managed encryption keys (CMEK) available.</p>
+                    <div class="compliance-badges">
+                        <span class="compliance-badge">TLS 1.3</span>
+                        <span class="compliance-badge">AES-256</span>
+                        <span class="compliance-badge">CMEK</span>
+                    </div>
+                </div>
+                <div class="security-feature">
+                    <div class="security-icon">✓</div>
+                    <h3>Compliance Certifications</h3>
+                    <p>Independently audited and certified for global compliance standards. Annual pen tests and continuous monitoring.</p>
+                    <div class="compliance-badges">
+                        <span class="compliance-badge">SOC 2 Type II</span>
+                        <span class="compliance-badge">ISO 27001</span>
+                        <span class="compliance-badge">HIPAA</span>
+                        <span class="compliance-badge">GDPR</span>
+                    </div>
+                </div>
+                <div class="security-feature">
+                    <div class="security-icon">👁️</div>
+                    <h3>Access Controls</h3>
+                    <p>Role-based access control (RBAC), SSO/SAML integration, multi-factor authentication, and IP whitelisting.</p>
+                    <div class="compliance-badges">
+                        <span class="compliance-badge">SSO/SAML</span>
+                        <span class="compliance-badge">MFA</span>
+                        <span class="compliance-badge">RBAC</span>
+                    </div>
+                </div>
+                <div class="security-feature">
+                    <div class="security-icon">📋</div>
+                    <h3>Audit & Logging</h3>
+                    <p>Complete audit trail for all workflow executions, admin actions, and data access. Export logs to your SIEM.</p>
+                    <div class="compliance-badges">
+                        <span class="compliance-badge">Full Audit</span>
+                        <span class="compliance-badge">SIEM Export</span>
+                        <span class="compliance-badge">7-year Retention</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="section-header">
+            <div class="section-badge">ENTERPRISE PRICING</div>
+            <h2>Plans That Scale With You</h2>
+            <p>Transparent pricing for organizations of all sizes. All plans include core platform features.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Professional</h3>
+                <div class="subtitle">For growing teams</div>
+                <div class="price">$499</div>
+                <div class="price-detail">per month, billed annually</div>
+                <ul>
+                    <li>Unlimited workflows</li>
+                    <li>50,000 executions/month</li>
+                    <li>Advanced integrations</li>
+                    <li>Priority support (4hr SLA)</li>
+                    <li>Analytics & reporting</li>
+                    <li>SSO (SAML)</li>
+                    <li>99.9% uptime SLA</li>
+                </ul>
+                <a href="contact.html" class="pricing-btn">Contact Sales</a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-badge">MOST POPULAR</div>
+                <h3>Enterprise</h3>
+                <div class="subtitle">For large organizations</div>
+                <div class="price">Custom</div>
+                <div class="price-detail">Contact sales for pricing</div>
+                <ul>
+                    <li>Everything in Professional</li>
+                    <li>Unlimited executions</li>
+                    <li>Dedicated infrastructure</li>
+                    <li>24/7 phone support</li>
+                    <li>Dedicated CSM + TAM</li>
+                    <li>Custom SLA (99.99%)</li>
+                    <li>Advanced security controls</li>
+                    <li>SCIM provisioning</li>
+                    <li>Audit log export</li>
+                </ul>
+                <a href="demo.html" class="pricing-btn">Schedule Demo</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Private Cloud</h3>
+                <div class="subtitle">For regulated industries</div>
+                <div class="price">Custom</div>
+                <div class="price-detail">Contact sales for pricing</div>
+                <ul>
+                    <li>Everything in Enterprise</li>
+                    <li>Private cloud deployment</li>
+                    <li>Data residency controls</li>
+                    <li>Custom compliance</li>
+                    <li>On-premise option</li>
+                    <li>White-glove onboarding</li>
+                    <li>Custom integrations</li>
+                    <li>SLA up to 99.999%</li>
+                </ul>
+                <a href="contact.html" class="pricing-btn">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready for Enterprise Automation?</h2>
+            <p>Join 500+ enterprise customers who trust Workflow Builder Pro for mission-critical Slack automation. Schedule a personalized demo with our team.</p>
+            <div class="cta-buttons">
+                <a href="demo.html" class="cta-btn-large primary">Schedule Enterprise Demo</a>
+                <a href="security.html" class="cta-btn-large secondary">Review Security Docs</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">Workflow Builder Pro</div>
+                <p>Enterprise-grade Slack automation platform trusted by Fortune 500 companies worldwide.</p>
+                <div class="compliance-badges">
+                    <span class="compliance-badge">SOC 2</span>
+                    <span class="compliance-badge">ISO 27001</span>
+                    <span class="compliance-badge">HIPAA</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Platform</h4>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Integrations</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">API Docs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#">IT Operations</a></li>
+                    <li><a href="#">HR & Onboarding</a></li>
+                    <li><a href="#">Finance & Approvals</a></li>
+                    <li><a href="#">Security & Compliance</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Webinars</a></li>
+                    <li><a href="#">Support Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="contact.html">Contact Sales</a></li>
+                    <li><a href="#">Trust Center</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Workflow Builder Pro Enterprise. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">DPA</a></p>
+        </div>
+    </footer>
+</body>
+</html>

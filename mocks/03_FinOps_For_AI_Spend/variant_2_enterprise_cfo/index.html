@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise AI Cost Optimization | FinOps Platform</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;line-height:1.6;color:#1e293b;background:#0f172a}
+.container{max-width:1400px;margin:0 auto;padding:0 30px}
+header{background:#1e293b;border-bottom:1px solid #334155;padding:20px 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:26px;font-weight:900;color:#fff}
+.logo span{color:#10b981}
+nav ul{list-style:none;display:flex;gap:35px;align-items:center}
+nav a{color:#cbd5e1;text-decoration:none;font-weight:600;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#10b981}
+.cta-btn{background:#10b981;color:#fff;padding:11px 26px;border-radius:8px;font-weight:700;transition:background 0.3s}
+.cta-btn:hover{background:#059669}
+.hero{background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);padding:100px 30px;text-align:center;border-bottom:1px solid #334155}
+.hero h1{font-size:56px;color:#fff;margin-bottom:25px;font-weight:900;line-height:1.2}
+.hero .highlight{color:#10b981}
+.hero p{font-size:22px;color:#94a3b8;max-width:900px;margin:0 auto 35px;line-height:1.7}
+.hero-cta{display:inline-block;background:#10b981;color:#fff;padding:18px 48px;border-radius:10px;font-size:18px;font-weight:700;text-decoration:none;margin-top:15px;transition:transform 0.3s}
+.hero-cta:hover{transform:translateY(-3px)}
+.badge{background:#064e3b;color:#10b981;padding:7px 16px;border-radius:20px;font-size:13px;font-weight:700;display:inline-block;margin-bottom:20px;border:1px solid #10b981}
+.metrics{padding:80px 30px;background:#1e293b}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+.metric-card{background:#0f172a;padding:40px;border-radius:12px;text-align:center;border:1px solid #334155}
+.metric-card h3{font-size:52px;color:#10b981;font-weight:900;margin-bottom:10px}
+.metric-card p{color:#94a3b8;font-size:16px;font-weight:600}
+.platform{padding:100px 30px;background:#0f172a}
+.platform h2{text-align:center;font-size:48px;color:#fff;margin-bottom:60px;font-weight:900}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px}
+.feature-card{background:#1e293b;padding:45px;border-radius:15px;border:1px solid #334155;transition:border-color 0.3s}
+.feature-card:hover{border-color:#10b981}
+.feature-icon{font-size:42px;margin-bottom:18px}
+.feature-card h3{font-size:26px;color:#fff;margin-bottom:15px;font-weight:800}
+.feature-card p{color:#94a3b8;font-size:16px;line-height:1.8;margin-bottom:12px}
+.feature-card ul{margin-left:20px;color:#cbd5e1;font-size:15px;line-height:1.9}
+.roi{padding:100px 30px;background:#1e293b;text-align:center}
+.roi h2{font-size:48px;color:#fff;margin-bottom:30px;font-weight:900}
+.roi p{font-size:20px;color:#94a3b8;margin-bottom:50px;max-width:800px;margin-left:auto;margin-right:auto}
+.roi-card{max-width:700px;margin:0 auto;background:#0f172a;border:2px solid #10b981;border-radius:20px;padding:60px;box-shadow:0 10px 40px rgba(16,185,129,0.2)}
+.roi-card h3{font-size:36px;color:#10b981;margin-bottom:30px;font-weight:900}
+.roi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:25px;text-align:left;margin-top:30px}
+.roi-item{background:#1e293b;padding:25px;border-radius:10px;border:1px solid #334155}
+.roi-item h4{color:#10b981;font-size:18px;margin-bottom:8px;font-weight:700}
+.roi-item p{color:#cbd5e1;font-size:15px}
+footer{background:#0f172a;color:#64748b;padding:50px 30px;text-align:center;font-size:14px;border-top:1px solid #334155}
+@media(max-width:768px){
+.hero h1{font-size:40px}
+.metrics-grid{grid-template-columns:repeat(2,1fr)}
+.feature-grid,.roi-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">FinOps<span>AI</span></div>
+<ul>
+<li><a href="index.html">Platform</a></li>
+<li><a href="how-it-works.html">ROI Calculator</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="#" class="cta-btn">Request Demo</a></li>
+</ul>
+</nav></div></header>
+
+<section class="hero">
+<div class="container">
+<span class="badge">TRUSTED BY F500 AI TEAMS</span>
+<h1>Reduce AI Infrastructure Costs<br>by <span class="highlight">$2.8M Annually</span></h1>
+<p>Enterprise-grade FinOps platform for AI/ML workloads. Gain visibility, enforce governance, and optimize GPU/LLM spend across AWS, GCP, and Azure. Built for CFOs, FinOps Directors, and Engineering VPs.</p>
+<a href="#" class="hero-cta">Schedule CFO Briefing →</a>
+</div>
+</section>
+
+<section class="metrics">
+<div class="container">
+<div class="metrics-grid">
+<div class="metric-card">
+<h3>43%</h3>
+<p>Average Cost Reduction</p>
+</div>
+<div class="metric-card">
+<h3>$87M</h3>
+<p>Total Saved (Customers)</p>
+</div>
+<div class="metric-card">
+<h3>6.2x</h3>
+<p>Median ROI (First Year)</p>
+</div>
+<div class="metric-card">
+<h3>14 days</h3>
+<p>Payback Period</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="platform">
+<div class="container">
+<h2>Enterprise AI Cost Control</h2>
+<div class="feature-grid">
+<div class="feature-card">
+<div class="feature-icon">📊</div>
+<h3>Unified Cost Visibility</h3>
+<p>Consolidate AI spend across multi-cloud environments:</p>
+<ul>
+<li>GPU compute (EC2, GCE, Azure VMs, Lambda Labs)</li>
+<li>Managed ML platforms (SageMaker, Vertex AI, Azure ML)</li>
+<li>LLM API consumption (OpenAI, Anthropic, Cohere)</li>
+<li>Data storage & transfer costs</li>
+</ul>
+<p style="margin-top:15px;color:#10b981;font-weight:700">Real-time dashboards with cost allocation by department, project, and model.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">🎯</div>
+<h3>GPU Optimization Engine</h3>
+<p>AI-powered recommendations for compute efficiency:</p>
+<ul>
+<li>Auto-detect idle instances (save $15K-$80K/month)</li>
+<li>Right-size GPU types (H100 → A100 when appropriate)</li>
+<li>Spot/preemptible instance orchestration (60-80% savings)</li>
+<li>Auto-shutdown policies with override controls</li>
+</ul>
+<p style="margin-top:15px;color:#10b981;font-weight:700">All changes require CFO/VP approval via workflow engine.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">🤖</div>
+<h3>LLM Cost Intelligence</h3>
+<p>Optimize foundation model API spending:</p>
+<ul>
+<li>Smart routing (GPT-4 → GPT-3.5 → Claude when quality permits)</li>
+<li>Prompt caching & deduplication</li>
+<li>Usage quotas by team/project</li>
+<li>Quality-cost tradeoff analysis</li>
+</ul>
+<p style="margin-top:15px;color:#10b981;font-weight:700">Cut LLM costs 45% on average without degrading user experience.</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">🔐</div>
+<h3>Governance & Compliance</h3>
+<p>Enterprise-grade controls for AI spend:</p>
+<ul>
+<li>Budget enforcement with auto-throttling</li>
+<li>Approval workflows for resource provisioning</li>
+<li>Audit logs (SOC 2 Type II compliant)</li>
+<li>Chargeback & showback reporting</li>
+<li>SSO/SAML integration (Okta, Azure AD)</li>
+</ul>
+<p style="margin-top:15px;color:#10b981;font-weight:700">Full audit trail for internal/external compliance requirements.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="roi">
+<div class="container">
+<h2>Enterprise ROI Model</h2>
+<p>Based on median customer profile ($500K/month AI spend, 200-person eng org)</p>
+<div class="roi-card">
+<h3>First-Year Financial Impact</h3>
+<div class="roi-grid">
+<div class="roi-item">
+<h4>Annual Savings</h4>
+<p>$2.6M (43% reduction)</p>
+</div>
+<div class="roi-item">
+<h4>Platform Cost</h4>
+<p>$180K (annual contract)</p>
+</div>
+<div class="roi-item">
+<h4>Net Benefit</h4>
+<p>$2.42M</p>
+</div>
+<div class="roi-item">
+<h4>ROI</h4>
+<p>1,344% (13.4x)</p>
+</div>
+<div class="roi-item">
+<h4>Payback Period</h4>
+<p>14 days</p>
+</div>
+<div class="roi-item">
+<h4>Gross Margin Impact</h4>
+<p>+8.7 percentage points</p>
+</div>
+</div>
+<a href="#" class="hero-cta" style="margin-top:40px;display:inline-block">Download Full ROI Analysis →</a>
+</div>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 FinOps AI Platform by SPEC Global Solutions, Inc.</p>
+<p style="margin-top:10px"><a href="mailto:srikanth.tangella@gmail.com" style="color:#10b981">srikanth.tangella@gmail.com</a> • +1 (281) 455-6722 • SOC 2 Type II Certified</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traction & Metrics | Incident Commander</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',-apple-system,sans-serif;line-height:1.6;color:#1a1a1a;background:#fff}
+.container{max-width:1300px;margin:0 auto;padding:0 30px}
+header{background:#fff;border-bottom:1px solid #e8e8e8;padding:20px 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:26px;font-weight:900;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav ul{list-style:none;display:flex;gap:40px;align-items:center}
+nav a{color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px}
+.badge{background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px;font-weight:700}
+.page-hero{background:linear-gradient(180deg,#faf5ff 0%,#fff 100%);padding:100px 30px;text-align:center}
+.page-hero h1{font-size:56px;margin-bottom:25px;font-weight:900;color:#1a1a1a}
+.page-hero p{font-size:22px;color:#666;max-width:800px;margin:0 auto}
+.metrics{padding:100px 30px;background:#fff}
+.metrics h2{text-align:center;font-size:48px;margin-bottom:80px;font-weight:900}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px}
+.metric-card{background:linear-gradient(135deg,#faf5ff,#fff);padding:45px;border-radius:20px;border:2px solid #e8e8e8;text-align:center}
+.metric-card h3{font-size:52px;font-weight:900;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:15px}
+.metric-card p{font-size:18px;color:#666;font-weight:600}
+.metric-card small{font-size:14px;color:#999;display:block;margin-top:10px}
+.cohort{padding:100px 30px;background:#1a1a1a;color:#fff}
+.cohort h2{text-align:center;font-size:48px;margin-bottom:30px;font-weight:900}
+.cohort-subtitle{text-align:center;font-size:20px;color:#b0b0b0;margin-bottom:80px}
+.cohort-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:35px}
+.cohort-card{background:rgba(255,255,255,0.05);padding:40px;border-radius:20px;border:1px solid rgba(255,255,255,0.1)}
+.cohort-card h3{font-size:24px;color:#a855f7;margin-bottom:20px;font-weight:800}
+.cohort-card ul{list-style:none}
+.cohort-card li{padding:12px 0;color:#b0b0b0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:16px}
+.cohort-card li strong{color:#fff}
+.customers{padding:100px 30px;background:#fff}
+.customers h2{text-align:center;font-size:48px;margin-bottom:30px;font-weight:900}
+.customers-subtitle{text-align:center;font-size:20px;color:#666;margin-bottom:60px}
+.customer-logos{display:flex;justify-content:center;flex-wrap:wrap;gap:50px;margin-bottom:60px}
+.customer-logos div{font-size:20px;color:#999;font-weight:700}
+.testimonial{max-width:900px;margin:0 auto;background:linear-gradient(135deg,#faf5ff,#fff);padding:50px;border-radius:20px;border:2px solid #e8e8e8}
+.testimonial-quote{font-size:26px;line-height:1.6;color:#1a1a1a;margin-bottom:30px;font-style:italic}
+.testimonial-author{font-size:18px;color:#6366f1;font-weight:700}
+.testimonial-title{font-size:16px;color:#999;margin-top:5px}
+.cta{background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;padding:100px 30px;text-align:center}
+.cta h2{font-size:48px;margin-bottom:25px;font-weight:900}
+.cta p{font-size:22px;margin-bottom:40px}
+.btn{display:inline-block;padding:18px 48px;border-radius:12px;text-decoration:none;font-weight:700;background:#fff;color:#6366f1}
+footer{background:#1a1a1a;color:#666;padding:60px 30px;text-align:center;font-size:14px}
+@media(max-width:768px){
+.page-hero h1{font-size:40px}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">⚡ IncidentCommander</div>
+<ul>
+<li><a href="index.html">Product</a></li>
+<li><a href="how-it-works.html">Traction</a></li>
+<li><a href="contact.html">Investors</a></li>
+<li><span class="badge">Raising Series A</span></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>Our Traction Story</h1>
+<p>From 0 to $2.4M ARR in 18 months. Bootstrapped, product-led, and capital-efficient.</p>
+</div>
+</section>
+
+<section class="metrics"><div class="container">
+<h2>Key Performance Metrics</h2>
+<div class="metric-grid">
+<div class="metric-card">
+<h3>$2.4M</h3>
+<p>Annual Recurring Revenue</p>
+<small>3.2x growth YoY</small>
+</div>
+<div class="metric-card">
+<h3>240+</h3>
+<p>Paying Customers</p>
+<small>120 added in last 12 months</small>
+</div>
+<div class="metric-card">
+<h3>130%</h3>
+<p>Net Dollar Retention</p>
+<small>Driven by expansion revenue</small>
+</div>
+<div class="metric-card">
+<h3>28%</h3>
+<p>Free Trial → Paid Conversion</p>
+<small>Best-in-class PLG motion</small>
+</div>
+<div class="metric-card">
+<h3>8 mo</h3>
+<p>Payback Period</p>
+<small>CAC: $9.6K | LTV: $112K</small>
+</div>
+<div class="metric-card">
+<h3>94%</h3>
+<p>Gross Margin</p>
+<small>Multi-tenant SaaS efficiency</small>
+</div>
+<div class="metric-card">
+<h3>NPS 72</h3>
+<p>Customer Satisfaction</p>
+<small>Top quartile for B2B SaaS</small>
+</div>
+<div class="metric-card">
+<h3>67%</h3>
+<p>Avg MTTR Reduction</p>
+<small>Measured across all customers</small>
+</div>
+</div>
+</div></section>
+
+<section class="cohort"><div class="container">
+<h2>Customer Cohort Analysis</h2>
+<p class="cohort-subtitle">Strong retention and predictable expansion across all customer segments</p>
+<div class="cohort-grid">
+<div class="cohort-card">
+<h3>SMB Segment (10–50 engineers)</h3>
+<ul>
+<li><strong>ACV:</strong> $12K</li>
+<li><strong>Sales Cycle:</strong> 32 days</li>
+<li><strong>Retention:</strong> 88% annually</li>
+<li><strong>Expansion:</strong> 15% add seats within 6 months</li>
+</ul>
+</div>
+<div class="cohort-card">
+<h3>Mid-Market (51–500 engineers)</h3>
+<ul>
+<li><strong>ACV:</strong> $48K</li>
+<li><strong>Sales Cycle:</strong> 52 days</li>
+<li><strong>Retention:</strong> 92% annually</li>
+<li><strong>Expansion:</strong> 40% upsell to enterprise tier</li>
+</ul>
+</div>
+<div class="cohort-card">
+<h3>Enterprise (500+ engineers)</h3>
+<ul>
+<li><strong>ACV:</strong> $85K+</li>
+<li><strong>Sales Cycle:</strong> 68 days</li>
+<li><strong>Retention:</strong> 96% annually</li>
+<li><strong>Expansion:</strong> 65% add modules/integrations</li>
+</ul>
+</div>
+</div>
+</div></section>
+
+<section class="customers"><div class="container">
+<h2>Trusted by High-Growth Companies</h2>
+<p class="customers-subtitle">Engineering teams at 240+ companies rely on IncidentCommander daily</p>
+<div class="customer-logos">
+<div>TechCorp</div>
+<div>DataStream</div>
+<div>CloudBase</div>
+<div>SecureOps</div>
+<div>FinServe</div>
+<div>HealthTech</div>
+</div>
+<div class="testimonial">
+<p class="testimonial-quote">"IncidentCommander cut our MTTR from 47 minutes to 16 minutes in the first quarter. It's now mission-critical infrastructure. We'd pay 3x the price."</p>
+<div class="testimonial-author">Sarah Chen</div>
+<div class="testimonial-title">VP of Engineering, DataStream (Series C)</div>
+</div>
+</div></section>
+
+<section class="cta">
+<div class="container">
+<h2>Ready to Learn More?</h2>
+<p>Request our full investor deck with financials, product roadmap, and go-to-market strategy.</p>
+<a href="contact.html" class="btn">Contact Us</a>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc.</p>
+</div></footer>
+</body>
+</html>

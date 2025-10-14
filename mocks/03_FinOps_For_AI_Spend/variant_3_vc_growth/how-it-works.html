@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Economics & ROI - AI FinOps Platform</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Manrope',-apple-system,sans-serif;line-height:1.6;color:#0f172a;background:#fff}
+.container{max-width:1400px;margin:0 auto;padding:0 30px}
+header{background:#fff;border-bottom:2px solid #f1f5f9;padding:22px 0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:28px;font-weight:900;background:linear-gradient(135deg,#f59e0b,#ea580c);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav ul{list-style:none;display:flex;gap:40px;align-items:center}
+nav a{color:#475569;text-decoration:none;font-weight:700;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#ea580c}
+.badge{background:linear-gradient(135deg,#f59e0b,#ea580c);color:#fff;padding:8px 20px;border-radius:25px;font-size:13px;font-weight:800;box-shadow:0 4px 15px rgba(234,88,12,0.3)}
+.page-hero{background:linear-gradient(180deg,#fffbeb 0%,#fff 100%);padding:100px 30px;text-align:center}
+.page-hero h1{font-size:56px;font-weight:900;color:#0f172a;margin-bottom:25px}
+.page-hero p{font-size:22px;color:#64748b;max-width:900px;margin:0 auto}
+.roi-calculator{padding:100px 30px;background:#fff}
+.roi-calculator h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:60px;color:#0f172a}
+.calculator-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:50px;max-width:1200px;margin:0 auto}
+.calculator-card{background:linear-gradient(135deg,#fffbeb,#fff);padding:50px;border-radius:20px;border:2px solid #fef3c7;box-shadow:0 10px 30px rgba(0,0,0,0.05)}
+.calculator-card h3{font-size:28px;color:#ea580c;margin-bottom:30px;font-weight:900}
+.calculator-card p{font-size:18px;color:#475569;line-height:1.8;margin-bottom:20px}
+.calculator-card .big-number{font-size:48px;font-weight:900;color:#ea580c;margin:20px 0}
+.case-studies{padding:100px 30px;background:linear-gradient(180deg,#fff 0%,#fffbeb 100%)}
+.case-studies h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:70px;color:#0f172a}
+.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1400px;margin:0 auto}
+.case-card{background:#fff;padding:45px;border-radius:20px;border:2px solid #fef3c7;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+.case-card h3{font-size:24px;color:#0f172a;margin-bottom:15px;font-weight:900}
+.case-card .industry{font-size:14px;color:#f59e0b;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px}
+.case-card p{font-size:17px;color:#475569;line-height:1.8;margin-bottom:25px}
+.case-card .result{background:#fffbeb;padding:20px;border-radius:12px;border-left:4px solid #ea580c;margin-top:20px}
+.case-card .result strong{color:#ea580c;font-size:20px}
+.cohort-analysis{padding:100px 30px;background:#0f172a;color:#fff}
+.cohort-analysis h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:70px}
+.cohort-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1400px;margin:0 auto}
+.cohort-card{background:#1e293b;padding:40px;border-radius:20px;border:2px solid #334155;text-align:center}
+.cohort-card h3{font-size:18px;color:#f59e0b;margin-bottom:20px;font-weight:800;text-transform:uppercase}
+.cohort-card .metric{font-size:48px;color:#fff;font-weight:900;margin-bottom:12px}
+.cohort-card p{font-size:15px;color:#94a3b8;line-height:1.7}
+footer{background:#0f172a;color:#64748b;padding:50px 30px;text-align:center;font-size:14px;border-top:2px solid #1e293b}
+@media(max-width:768px){
+.calculator-grid,.case-grid,.cohort-grid{grid-template-columns:1fr}
+.page-hero h1{font-size:40px}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">💰 FinOpsAI</div>
+<ul>
+<li><a href="index.html">Growth Story</a></li>
+<li><a href="how-it-works.html">Unit Economics</a></li>
+<li><a href="contact.html">Board Deck</a></li>
+<li><span class="badge">Gross Margin: 87%</span></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>Margin Improvement Calculator</h1>
+<p>See how AI companies use FinOpsAI to reduce COGS by 35–50% and improve gross margins by 15–25 points within 90 days</p>
+</div>
+</section>
+
+<section class="roi-calculator">
+<div class="container">
+<h2>📈 Typical Customer ROI</h2>
+<div class="calculator-grid">
+<div class="calculator-card">
+<h3>Before FinOpsAI</h3>
+<p><strong>Annual AI Spend:</strong> $2.4M</p>
+<p><strong>Gross Margin:</strong> 58%</p>
+<p><strong>AI COGS:</strong> 42% of revenue</p>
+<p><strong>Visibility:</strong> Manual spreadsheets, 2-week lag</p>
+<p><strong>Optimization:</strong> Reactive, ad-hoc cost cutting</p>
+<div class="big-number">😰</div>
+<p style="color:#ef4444;font-weight:700">Board pressure to improve margins before next raise</p>
+</div>
+<div class="calculator-card">
+<h3>After FinOpsAI (90 Days)</h3>
+<p><strong>Annual AI Spend:</strong> $1.5M <span style="color:#10b981;font-weight:700">(↓38%)</span></p>
+<p><strong>Gross Margin:</strong> 76% <span style="color:#10b981;font-weight:700">(↑18pts)</span></p>
+<p><strong>AI COGS:</strong> 24% of revenue</p>
+<p><strong>Visibility:</strong> Real-time dashboards, per-customer profitability</p>
+<p><strong>Optimization:</strong> Automated recommendations, model switching</p>
+<div class="big-number">🚀</div>
+<p style="color:#10b981;font-weight:700"><strong>Saved $900K annually</strong> — platform paid for itself in 2.3 months</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="case-studies">
+<div class="container">
+<h2>📊 Customer Case Studies</h2>
+<div class="case-grid">
+<div class="case-card">
+<div class="industry">AI Chatbot SaaS</div>
+<h3>Legal Tech Startup</h3>
+<p>Series B company with $8M ARR, 120K monthly active users, GPT-4 powered chat interface. Burning $340K/month on OpenAI API costs.</p>
+<div class="result">
+<strong>Result:</strong> Reduced costs by 44% ($180K/month saved) by implementing prompt caching, switching long-tail queries to GPT-3.5, and optimizing embedding storage.
+</div>
+</div>
+<div class="case-card">
+<div class="industry">Computer Vision</div>
+<h3>Manufacturing QA Platform</h3>
+<p>Series A company with $4.2M ARR, 840 enterprise customers. Running 12M image inferences/month on AWS SageMaker with no cost attribution.</p>
+<div class="result">
+<strong>Result:</strong> Cut inference costs by 52% ($94K/month saved) by rightsizing instance types, implementing batch processing, and moving to Spot instances for non-critical workloads.
+</div>
+</div>
+<div class="case-card">
+<div class="industry">LLM Middleware</div>
+<h3>API Gateway for AI</h3>
+<p>Post-Seed company with $1.1M ARR, 2,400 developer customers. Proxy layer for OpenAI/Anthropic with zero margin visibility per customer.</p>
+<div class="result">
+<strong>Result:</strong> Improved gross margin from 38% to 71% (+33pts) by identifying unprofitable customers, implementing tiered pricing, and auto-switching models based on complexity.
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cohort-analysis">
+<div class="container">
+<h2>Customer Cohort Performance</h2>
+<div class="cohort-grid">
+<div class="cohort-card">
+<h3>Avg Savings</h3>
+<div class="metric">41%</div>
+<p>Median cost reduction across all customers within 90 days of onboarding</p>
+</div>
+<div class="cohort-card">
+<h3>Payback Period</h3>
+<div class="metric">2.3mo</div>
+<p>Average time to ROI positive (platform cost recovered through savings)</p>
+</div>
+<div class="cohort-card">
+<h3>Margin Lift</h3>
+<div class="metric">+19pts</div>
+<p>Average gross margin improvement for AI-first companies (from 57% to 76%)</p>
+</div>
+<div class="cohort-card">
+<h3>NPS</h3>
+<div class="metric">82</div>
+<p>CFOs and FinOps teams rate us world-class (top decile for B2B SaaS)</p>
+</div>
+</div>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • Confidential & Proprietary</p>
+</div></footer>
+</body>
+</html>

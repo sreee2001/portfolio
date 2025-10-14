@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Architecture - GenerativeKB Platform</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Roboto',-apple-system,sans-serif;line-height:1.6;color:#e2e8f0;background:#0a0e1a}
+.container{max-width:1400px;margin:0 auto;padding:0 30px}
+header{background:#0f1419;border-bottom:1px solid #1e293b;padding:20px 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:26px;font-weight:900;color:#fff}
+.logo span{color:#06b6d4}
+nav ul{list-style:none;display:flex;gap:35px;align-items:center}
+nav a{color:#94a3b8;text-decoration:none;font-weight:600;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#06b6d4}
+.cta-btn{background:#06b6d4;color:#0a0e1a;padding:11px 26px;border-radius:8px;font-weight:700;transition:background 0.3s}
+.cta-btn:hover{background:#0891b2}
+.page-hero{background:linear-gradient(135deg,#0a0e1a 0%,#1e293b 100%);padding:90px 30px;text-align:center;border-bottom:1px solid #1e293b}
+.page-hero h1{font-size:52px;font-weight:900;color:#fff;margin-bottom:25px}
+.page-hero p{font-size:22px;color:#94a3b8;max-width:900px;margin:0 auto}
+.tech-details{padding:90px 30px;background:#0a0e1a}
+.tech-details h2{font-size:44px;font-weight:900;text-align:center;margin-bottom:60px;color:#fff}
+.tech-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;max-width:1300px;margin:0 auto}
+.tech-card{background:#1e293b;padding:45px;border-radius:16px;border:1px solid #334155}
+.tech-card h3{font-size:26px;color:#06b6d4;margin-bottom:20px;font-weight:800}
+.tech-card p{font-size:17px;color:#cbd5e1;line-height:1.8;margin-bottom:15px}
+.tech-card ul{margin-left:20px;color:#94a3b8;font-size:16px;line-height:1.9}
+.implementation{padding:90px 30px;background:#0f1419}
+.implementation h2{font-size:44px;font-weight:900;text-align:center;margin-bottom:60px;color:#fff}
+.timeline{max-width:1000px;margin:0 auto}
+.timeline-item{display:grid;grid-template-columns:120px 1fr;gap:40px;margin-bottom:50px}
+.timeline-item:last-child{margin-bottom:0}
+.timeline-week{background:#06b6d4;color:#0a0e1a;padding:15px 20px;border-radius:10px;font-size:18px;font-weight:800;text-align:center;height:fit-content}
+.timeline-content{background:#1e293b;padding:35px;border-radius:16px;border:1px solid #334155}
+.timeline-content h3{font-size:24px;color:#fff;margin-bottom:15px;font-weight:800}
+.timeline-content p{font-size:17px;color:#cbd5e1;line-height:1.8}
+.integrations{padding:90px 30px;background:#0a0e1a}
+.integrations h2{font-size:44px;font-weight:900;text-align:center;margin-bottom:60px;color:#fff}
+.integration-list{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.integration-item{background:#1e293b;padding:35px;border-radius:12px;border:1px solid #334155;text-align:center}
+.integration-item h3{font-size:20px;color:#06b6d4;margin-bottom:12px;font-weight:800}
+.integration-item p{font-size:15px;color:#94a3b8}
+footer{background:#0f1419;color:#64748b;padding:50px 30px;text-align:center;font-size:14px;border-top:1px solid #1e293b}
+@media(max-width:768px){
+.page-hero h1{font-size:38px}
+.tech-grid,.integration-list{grid-template-columns:1fr}
+.timeline-item{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">Generative<span>KB</span></div>
+<ul>
+<li><a href="index.html">Platform</a></li>
+<li><a href="how-it-works.html">Architecture</a></li>
+<li><a href="contact.html">Enterprise</a></li>
+<li><a href="contact.html" class="cta-btn">Request Demo</a></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>Technical Architecture 🏗️</h1>
+<p>Deep dive into the platform architecture, deployment models, and integration patterns for enterprise IT environments</p>
+</div>
+</section>
+
+<section class="tech-details">
+<div class="container">
+<h2>🔧 Platform Components</h2>
+<div class="tech-grid">
+<div class="tech-card">
+<h3>Knowledge Ingestion Engine</h3>
+<p>Real-time data pipeline connecting to enterprise knowledge sources:</p>
+<ul>
+<li><strong>Confluence/SharePoint:</strong> REST API polling (5min intervals), webhook listeners for instant updates</li>
+<li><strong>ServiceNow KB:</strong> Table API integration, attachment handling, version tracking</li>
+<li><strong>File Systems:</strong> SFTP/SMB connectors for PDF/Word/Excel/HTML ingestion</li>
+<li><strong>Git Repositories:</strong> GitHub/GitLab webhook integration for wiki/markdown docs</li>
+</ul>
+<p style="margin-top:15px">Supports 50+ file formats with OCR for scanned documents. De-duplication via content hashing.</p>
+</div>
+
+<div class="tech-card">
+<h3>Vector Search & Embeddings</h3>
+<p>Semantic search infrastructure for intelligent answer retrieval:</p>
+<ul>
+<li><strong>Embedding Models:</strong> OpenAI text-embedding-ada-002, sentence-transformers, custom fine-tuned models</li>
+<li><strong>Vector Databases:</strong> Pinecone, Weaviate, Qdrant, or pgvector (Postgres extension)</li>
+<li><strong>Hybrid Search:</strong> Combines semantic similarity with BM25 keyword matching</li>
+<li><strong>Re-ranking:</strong> Cross-encoder models for result refinement</li>
+</ul>
+<p style="margin-top:15px">Sub-second query latency at 10M+ document scale. Auto-scales with Kubernetes HPA.</p>
+</div>
+
+<div class="tech-card">
+<h3>LLM Orchestration Layer</h3>
+<p>Flexible architecture supporting multiple language models:</p>
+<ul>
+<li><strong>Cloud LLMs:</strong> OpenAI GPT-4/GPT-3.5, Anthropic Claude, Google PaLM 2</li>
+<li><strong>Self-Hosted:</strong> LLaMA 2 (7B–70B), Mistral, Falcon, Vicuna on GPU clusters</li>
+<li><strong>Frameworks:</strong> LangChain for orchestration, LlamaIndex for RAG pipelines</li>
+<li><strong>Prompt Management:</strong> Versioned prompt templates, A/B testing, dynamic few-shot examples</li>
+</ul>
+<p style="margin-top:15px">Supports model fallback, load balancing, and cost optimization (route to cheaper models when possible).</p>
+</div>
+
+<div class="tech-card">
+<h3>ITSM Integration Fabric</h3>
+<p>Deep integrations with enterprise service management platforms:</p>
+<ul>
+<li><strong>ServiceNow:</strong> Incident/Request APIs, custom workflows, approval routing</li>
+<li><strong>Jira Service Management:</strong> Issue API, custom fields, SLA tracking</li>
+<li><strong>BMC Remedy:</strong> AR System API, CMDB integration, change management</li>
+<li><strong>Email/Slack/Teams:</strong> Direct channel integrations for communication</li>
+</ul>
+<p style="margin-top:15px">Bi-directional sync, real-time webhooks, custom field mapping via UI.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="implementation">
+<div class="container">
+<h2>📅 Enterprise Implementation Timeline</h2>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-week">Week 1-2</div>
+<div class="timeline-content">
+<h3>Discovery & Integration Setup</h3>
+<p>Kickoff meeting, requirements gathering, access provisioning. Connect to ITSM platform (ServiceNow, Jira) and knowledge repositories (Confluence, SharePoint). Configure SSO, RBAC, and network access (VPN/bastion if needed).</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-week">Week 3-4</div>
+<div class="timeline-content">
+<h3>Knowledge Base Ingestion</h3>
+<p>Full crawl of knowledge repositories (typically 10K–100K documents). Vectorization, semantic indexing, metadata enrichment. Quality assurance checks for completeness and accuracy.</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-week">Week 5-6</div>
+<div class="timeline-content">
+<h3>AI Model Training & Tuning</h3>
+<p>Fine-tune LLM on historical ticket/answer pairs. Configure confidence thresholds, escalation rules, and response templates. Test accuracy with 100-ticket sample set.</p>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-week">Week 7-8</div>
+<div class="timeline-content">
+<h3>Pilot & Go-Live</h3>
+<p>Shadow mode deployment (AI generates responses, agents review but don't send). Collect feedback, adjust thresholds. Full production rollout with 24/7 monitoring.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="integrations">
+<div class="container">
+<h2>🔌 Supported Integrations</h2>
+<div class="integration-list">
+<div class="integration-item">
+<h3>ServiceNow</h3>
+<p>Incident, Request, Problem, Change, CMDB</p>
+</div>
+<div class="integration-item">
+<h3>Jira Service Mgmt</h3>
+<p>Issue API, Custom Fields, Workflows</p>
+</div>
+<div class="integration-item">
+<h3>BMC Remedy</h3>
+<p>AR System, Incident/Change Management</p>
+</div>
+<div class="integration-item">
+<h3>Confluence</h3>
+<p>Space-level sync, page versioning</p>
+</div>
+<div class="integration-item">
+<h3>SharePoint</h3>
+<p>Document libraries, site collections</p>
+</div>
+<div class="integration-item">
+<h3>Slack / Teams</h3>
+<p>Bot commands, channel notifications</p>
+</div>
+<div class="integration-item">
+<h3>GitHub / GitLab</h3>
+<p>Wiki, Markdown docs, issue tracking</p>
+</div>
+<div class="integration-item">
+<h3>Salesforce</h3>
+<p>Cases, Knowledge Articles, CTI</p>
+</div>
+<div class="integration-item">
+<h3>Custom APIs</h3>
+<p>REST/GraphQL webhooks, SFTP/S3</p>
+</div>
+</div>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • Enterprise AI Platform • SOC 2 Type II Certified</p>
+</div></footer>
+</body>
+</html>

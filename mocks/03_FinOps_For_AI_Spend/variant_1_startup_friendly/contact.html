@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - FinOps For AI Spend</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;line-height:1.6;color:#2d3748;background:#fff}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+header{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.05);padding:18px 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:800;color:#2563eb}
+nav ul{list-style:none;display:flex;gap:30px;align-items:center}
+nav a{color:#2d3748;text-decoration:none;font-weight:500;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#2563eb}
+.cta-btn{background:#2563eb;color:#fff;padding:10px 24px;border-radius:8px;font-weight:600;transition:background 0.3s}
+.cta-btn:hover{background:#1d4ed8}
+.page-hero{background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);padding:80px 20px;text-align:center}
+.page-hero h1{font-size:48px;color:#1e293b;margin-bottom:20px;font-weight:900}
+.page-hero p{font-size:20px;color:#64748b;max-width:700px;margin:0 auto}
+.contact-section{padding:80px 20px;background:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:50px}
+.contact-info h2{font-size:36px;color:#1e293b;margin-bottom:20px;font-weight:900}
+.contact-info p{font-size:17px;color:#64748b;margin-bottom:30px;line-height:1.8}
+.contact-methods{margin-top:30px}
+.contact-method{margin-bottom:25px;padding:20px;background:#f8fafc;border-radius:10px}
+.contact-method h3{font-size:18px;color:#2563eb;margin-bottom:8px;font-weight:700}
+.contact-method p{color:#2d3748;font-size:16px}
+.contact-method a{color:#2563eb;text-decoration:none;font-weight:600}
+.form-wrapper{background:#f8fafc;padding:50px;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.06)}
+.form-wrapper h3{font-size:28px;color:#1e293b;margin-bottom:30px;font-weight:800}
+.form-group{margin-bottom:25px}
+.form-group label{display:block;font-size:14px;color:#2d3748;margin-bottom:8px;font-weight:600}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:14px 16px;background:#fff;border:2px solid #e2e8f0;border-radius:8px;font-size:15px;font-family:inherit;transition:border-color 0.3s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:#2563eb}
+.form-group textarea{min-height:120px;resize:vertical}
+.submit-btn{background:#2563eb;color:#fff;padding:14px 40px;border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;width:100%;transition:background 0.3s}
+.submit-btn:hover{background:#1d4ed8}
+footer{background:#1e293b;color:#94a3b8;padding:40px 20px;text-align:center;font-size:14px}
+@media(max-width:768px){
+.page-hero h1{font-size:36px}
+.contact-grid{grid-template-columns:1fr}
+.form-wrapper{padding:35px 25px}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">💰 FinOps AI</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">How It Works</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="#" class="cta-btn">Start Free Trial</a></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>Get Your Free Cost Audit</h1>
+<p>Tell us about your AI workload. We'll show you where you're overspending.</p>
+</div>
+</section>
+
+<section class="contact-section">
+<div class="container">
+<div class="contact-grid">
+<div class="contact-info">
+<h2>Let's Talk Savings</h2>
+<p>Whether you're spending $10K or $500K/month on AI infrastructure, we can help you cut costs by 40% on average—without compromising performance.</p>
+<p>Fill out the form and we'll send you a free cost audit within 24 hours.</p>
+
+<div class="contact-methods">
+<div class="contact-method">
+<h3>📧 Email</h3>
+<p><a href="mailto:srikanth.tangella@gmail.com">srikanth.tangella@gmail.com</a></p>
+</div>
+<div class="contact-method">
+<h3>📞 Phone</h3>
+<p><a href="tel:+12814556722">+1 (281) 455-6722</a></p>
+</div>
+<div class="contact-method">
+<h3>📍 Location</h3>
+<p>Katy, TX (Remote-first team)</p>
+</div>
+<div class="contact-method">
+<h3>⏰ Response Time</h3>
+<p>We reply within 4 business hours</p>
+</div>
+</div>
+</div>
+
+<div class="form-wrapper">
+<h3>Request Free Cost Audit</h3>
+<form>
+<div class="form-group">
+<label for="name">Full Name *</label>
+<input type="text" id="name" name="name" required>
+</div>
+<div class="form-group">
+<label for="email">Work Email *</label>
+<input type="email" id="email" name="email" required>
+</div>
+<div class="form-group">
+<label for="company">Company Name *</label>
+<input type="text" id="company" name="company" required>
+</div>
+<div class="form-group">
+<label for="spend">Monthly AI/ML Spend *</label>
+<select id="spend" name="spend" required>
+<option value="">-- Select Range --</option>
+<option value="<10k">Less than $10K</option>
+<option value="10-50k">$10K - $50K</option>
+<option value="50-100k">$50K - $100K</option>
+<option value="100-500k">$100K - $500K</option>
+<option value="500k+">$500K+</option>
+</select>
+</div>
+<div class="form-group">
+<label for="platform">Primary Cloud Platform *</label>
+<select id="platform" name="platform" required>
+<option value="">-- Select --</option>
+<option value="aws">AWS</option>
+<option value="gcp">Google Cloud</option>
+<option value="azure">Microsoft Azure</option>
+<option value="multi">Multi-cloud</option>
+<option value="other">Other (Lambda, RunPod, etc.)</option>
+</select>
+</div>
+<div class="form-group">
+<label for="message">What AI workloads are you running? (optional)</label>
+<textarea id="message" name="message" placeholder="e.g., Training LLMs, running inference APIs, fine-tuning models..."></textarea>
+</div>
+<button type="submit" class="submit-btn">Get Free Audit</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 FinOps AI by SPEC Global Solutions • <a href="mailto:srikanth.tangella@gmail.com" style="color:#60a5fa">srikanth.tangella@gmail.com</a> • +1 (281) 455-6722</p>
+</div></footer>
+</body>
+</html>

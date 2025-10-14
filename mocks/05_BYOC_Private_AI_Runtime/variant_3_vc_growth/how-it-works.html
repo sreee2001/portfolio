@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Economics & Growth - BYOC AI</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',-apple-system,sans-serif;line-height:1.6;color:#0f172a;background:#fff}
+.container{max-width:1400px;margin:0 auto;padding:0 30px}
+header{background:#fff;border-bottom:2px solid #f1f5f9;padding:22px 0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:28px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav ul{list-style:none;display:flex;gap:40px;align-items:center}
+nav a{color:#475569;text-decoration:none;font-weight:700;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#7c3aed}
+.badge{background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;padding:8px 20px;border-radius:25px;font-size:13px;font-weight:800;box-shadow:0 4px 15px rgba(124,58,237,0.3)}
+.page-hero{background:linear-gradient(180deg,#faf5ff 0%,#fff 100%);padding:100px 30px;text-align:center}
+.page-hero h1{font-size:56px;font-weight:900;color:#0f172a;margin-bottom:25px}
+.page-hero p{font-size:22px;color:#64748b;max-width:900px;margin:0 auto}
+.unit-economics{padding:100px 30px;background:#fff}
+.unit-economics h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:60px;color:#0f172a}
+.economics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:50px;max-width:1300px;margin:0 auto}
+.economics-card{background:linear-gradient(135deg,#faf5ff,#fff);padding:50px;border-radius:20px;border:2px solid #f3e8ff;box-shadow:0 10px 30px rgba(0,0,0,0.05);text-align:center}
+.economics-card h3{font-size:22px;color:#7c3aed;margin-bottom:25px;font-weight:900;text-transform:uppercase;letter-spacing:1px}
+.economics-card .big-number{font-size:52px;font-weight:900;color:#7c3aed;margin-bottom:15px}
+.economics-card p{font-size:17px;color:#475569;line-height:1.8}
+.cohort-analysis{padding:100px 30px;background:linear-gradient(180deg,#fff 0%,#faf5ff 100%)}
+.cohort-analysis h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:70px;color:#0f172a}
+.cohort-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1400px;margin:0 auto}
+.cohort-card{background:#fff;padding:40px;border-radius:20px;text-align:center;border:2px solid #f3e8ff;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+.cohort-card h3{font-size:18px;color:#7c3aed;margin-bottom:20px;font-weight:800;text-transform:uppercase}
+.cohort-card .metric{font-size:48px;color:#0f172a;font-weight:900;margin-bottom:12px}
+.cohort-card p{font-size:15px;color:#64748b;line-height:1.7}
+.growth-story{padding:100px 30px;background:#0f172a;color:#fff}
+.growth-story h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:50px}
+.growth-content{max-width:1100px;margin:0 auto;background:#1e293b;padding:60px;border-radius:20px;border:2px solid #334155}
+.growth-content h3{font-size:28px;color:#7c3aed;margin-bottom:25px;font-weight:900}
+.growth-content p{font-size:18px;color:#cbd5e1;line-height:1.9;margin-bottom:25px}
+.growth-content ul{margin-left:30px;font-size:17px;color:#cbd5e1;line-height:2}
+.growth-content li{margin-bottom:10px}
+.customer-case-studies{padding:100px 30px;background:linear-gradient(180deg,#faf5ff 0%,#fff 100%)}
+.customer-case-studies h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:70px;color:#0f172a}
+.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1400px;margin:0 auto}
+.case-card{background:#fff;padding:40px;border-radius:20px;border:2px solid #f3e8ff;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+.case-card .industry{font-size:14px;color:#7c3aed;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:15px}
+.case-card h3{font-size:22px;color:#0f172a;margin-bottom:15px;font-weight:900}
+.case-card p{font-size:17px;color:#475569;line-height:1.8;margin-bottom:20px}
+.case-card .result{background:#faf5ff;padding:20px;border-radius:12px;border-left:4px solid #7c3aed}
+.case-card .result strong{color:#7c3aed;font-size:18px}
+footer{background:#0f172a;color:#64748b;padding:50px 30px;text-align:center;font-size:14px;border-top:2px solid #1e293b}
+@media(max-width:768px){
+.economics-grid,.cohort-grid,.case-grid{grid-template-columns:1fr}
+.page-hero h1{font-size:40px}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">🔐 BYOC AI</div>
+<ul>
+<li><a href="index.html">Growth Story</a></li>
+<li><a href="how-it-works.html">Unit Economics</a></li>
+<li><a href="contact.html">Investors</a></li>
+<li><span class="badge">$6.2M ARR</span></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>Unit Economics & Growth Metrics</h1>
+<p>Best-in-class SaaS metrics with efficient growth and world-class retention in enterprise infrastructure</p>
+</div>
+</section>
+
+<section class="unit-economics">
+<div class="container">
+<h2>📈 Unit Economics (Q4 2024)</h2>
+<div class="economics-grid">
+<div class="economics-card">
+<h3>CAC</h3>
+<div class="big-number">$9.8K</div>
+<p>Customer acquisition cost trending down from $14.2K in Q1 2024 as we optimize enterprise sales motion and build partner channel</p>
+</div>
+<div class="economics-card">
+<h3>LTV</h3>
+<div class="big-number">$139K</div>
+<p>Lifetime value based on 52-month avg customer lifetime, $32K ACV, 89% gross margin. Driven by expansion (3x growth in year 2).</p>
+</div>
+<div class="economics-card">
+<h3>LTV:CAC</h3>
+<div class="big-number">14.2x</div>
+<p>Best-in-class ratio for infra SaaS (target: >3x). Efficient growth with 5.8-month payback period. Improving as ACVs increase.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cohort-analysis">
+<div class="container">
+<h2>📊 Key Performance Metrics</h2>
+<div class="cohort-grid">
+<div class="cohort-card">
+<h3>ARR</h3>
+<div class="metric">$6.2M</div>
+<p>284% YoY growth (from $2.2M in Q4 2023). Accelerating as enterprise motion scales.</p>
+</div>
+<div class="cohort-card">
+<h3>NDR</h3>
+<div class="metric">158%</div>
+<p>Net dollar retention driven by land-and-expand. Customers 3x spend within 18 months as usage scales.</p>
+</div>
+<div class="cohort-card">
+<h3>Gross Margin</h3>
+<div class="metric">89%</div>
+<p>Best-in-class for infra SaaS. Platform costs: 11% of revenue (mostly R&D, minimal COGS).</p>
+</div>
+<div class="cohort-card">
+<h3>NPS</h3>
+<div class="metric">86</div>
+<p>World-class customer satisfaction. CISOs and CIOs rate us top decile for enterprise infrastructure.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="growth-story">
+<div class="container">
+<h2>The Growth Flywheel</h2>
+<div class="growth-content">
+<h3>How We Got Here</h3>
+<p><strong>2022 (Seed):</strong> Launched with 4 design partners (healthcare, finance). Built core BYOC platform for AWS. $420K ARR, 12-week sales cycles, manual deployments.</p>
+<p><strong>2023:</strong> Scaled to 92 customers, $2.2M ARR (424% growth). Achieved product-market fit in regulated industries. Automated deployment (Terraform), reducing time-to-value from 12 → 6 weeks. Added Azure and GCP support.</p>
+<p><strong>2024 (Current):</strong> Reached 340 customers, $6.2M ARR (282% growth). Expanded to government/defense (FedRAMP in progress). Launched model marketplace (2,400+ models). Achieved 158% NDR and 89% gross margin.</p>
+<h3 style="margin-top:40px">Where We're Going (2025–2027)</h3>
+<ul>
+<li><strong>2025 Target:</strong> $21M ARR, 920 customers, EU expansion (Frankfurt, London data residency)</li>
+<li><strong>2026 Target:</strong> $64M ARR, 2,400 customers, Series B fundraise, APAC expansion</li>
+<li><strong>2027 Target:</strong> $175M ARR, 5,200 customers, path to profitability, potential IPO prep</li>
+</ul>
+<p style="margin-top:30px;font-size:16px;color:#94a3b8;">Series A funds ($15M) will accelerate GTM (6 → 30 AEs), expand compliance certifications (FedRAMP, ISO 27001), and build strategic partnerships with AWS, Azure, GCP (co-sell motions).</p>
+</div>
+</div>
+</section>
+
+<section class="customer-case-studies">
+<div class="container">
+<h2>💬 Customer Success Stories</h2>
+<div class="case-grid">
+<div class="case-card">
+<div class="industry">Healthcare</div>
+<h3>National Hospital Chain</h3>
+<p>12,000-bed hospital system needed HIPAA-compliant AI for clinical documentation. Couldn't use OpenAI due to BAA restrictions and data sovereignty requirements.</p>
+<div class="result">
+<strong>Result:</strong> Deployed BYOC on AWS GovCloud in 8 weeks. Saved $840K/year vs. manual scribing. Achieved HIPAA certification. Now processing 2.4M clinical notes/month.
+</div>
+</div>
+<div class="case-card">
+<div class="industry">Financial Services</div>
+<h3>Asset Management Firm</h3>
+<p>$42B AUM hedge fund needed AI for investment research but couldn't send proprietary data to third-party APIs. Required SOC 2 Type II and data residency in US.</p>
+<div class="result">
+<strong>Result:</strong> Deployed multi-region BYOC (US-East, US-West) with 99.99% SLA. Reduced AI costs by 72% vs. OpenAI. Passed SOC 2 audit with zero findings.
+</div>
+</div>
+<div class="case-card">
+<div class="industry">Government</div>
+<h3>Federal Defense Contractor</h3>
+<p>Defense contractor (Top Secret clearance) needed AI for classified document analysis. Required air-gapped on-premise deployment with FedRAMP Moderate certification.</p>
+<div class="result">
+<strong>Result:</strong> Deployed on-premise BYOC in SCIF facility. Passed FedRAMP audit. Processing 480K classified documents/month. $2.8M annual contract (5-year term).
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • Confidential & Proprietary</p>
+</div></footer>
+</body>
+</html>

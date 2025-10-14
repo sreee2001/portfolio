@@ -1,0 +1,2724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srikanth Tangella - My Journey in Technology</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* Default Theme - Ocean Blue */
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --secondary: #1e40af;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --white: #ffffff;
+            --black: #000000;
+            --gradient-1: linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%);
+            --gradient-2: linear-gradient(135deg, #06b6d4 0%, #0ea5e9 100%);
+            --gradient-3: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
+        /* Forest Green Theme */
+        [data-theme="forest"] {
+            --primary: #059669;
+            --primary-dark: #047857;
+            --secondary: #065f46;
+            --accent: #10b981;
+            --gradient-1: linear-gradient(135deg, #059669 0%, #065f46 100%);
+            --gradient-2: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --gradient-3: linear-gradient(135deg, #065f46 0%, #047857 100%);
+        }
+
+        /* Sunset Orange Theme */
+        [data-theme="sunset"] {
+            --primary: #ea580c;
+            --primary-dark: #c2410c;
+            --secondary: #9a3412;
+            --accent: #f97316;
+            --gradient-1: linear-gradient(135deg, #ea580c 0%, #9a3412 100%);
+            --gradient-2: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            --gradient-3: linear-gradient(135deg, #9a3412 0%, #c2410c 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-700);
+            background: var(--white);
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            background: var(--white);
+            border-radius: 2rem;
+            padding: 0.5rem;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .theme-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-btn.ocean {
+            background: linear-gradient(135deg, #0ea5e9, #1e40af);
+        }
+
+        .theme-btn.forest {
+            background: linear-gradient(135deg, #059669, #065f46);
+        }
+
+        .theme-btn.sunset {
+            background: linear-gradient(135deg, #ea580c, #9a3412);
+        }
+
+        .theme-btn.active {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 3px var(--white), 0 0 0 5px var(--primary);
+        }
+
+        /* Floating Media Buttons */
+        .floating-media {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .media-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .media-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+
+        .media-btn:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+
+        .media-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .media-btn.hire-me {
+            background: var(--gradient-2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--gradient-1);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-text .description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-avatar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        /* Timeline Breadcrumb */
+        .timeline-breadcrumb {
+            position: fixed;
+            top: 80px; /* Below navbar */
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--gray-200);
+            border-radius: 2rem;
+            padding: 0.75rem 1.5rem;
+            box-shadow: var(--shadow-md);
+            z-index: 997;
+            display: none; /* Hidden by default */
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-breadcrumb.visible {
+            display: flex;
+        }
+
+        .timeline-breadcrumb strong {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .timeline-breadcrumb .position {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Page Sections */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Page */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--gray-900);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray-600);
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .journey-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .highlight-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .highlight-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .highlight-description {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .journey-tracker {
+            position: fixed;
+            right: 2rem;
+            bottom: 15rem; /* Above media buttons */
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--gray-200);
+            z-index: 998;
+            min-width: 250px;
+            max-width: 280px;
+            transition: all 0.3s ease;
+            display: none; /* ADD THIS LINE - Hidden by default */
+        }
+
+        .journey-tracker.collapsed {
+            transform: translateX(320px); /* Slide out to the right */
+            opacity: 0;
+        }
+
+        /* Show tracker only when timeline page is active */
+        #timeline.active ~ * .journey-tracker,
+        body:has(#timeline.active) .journey-tracker {
+            display: block;
+        }
+
+        .tracker-toggle {
+            position: absolute;
+            left: -40px; /* Move to left side since tracker is on right */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .tracker-toggle:hover {
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tracker-header {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .tracker-company {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .tracker-title {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .tracker-progress {
+            width: 100%;
+            height: 4px;
+            background: var(--gray-200);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .tracker-progress-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .tracker-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.5rem;
+        }
+
+        .tracker-nav-btn {
+            flex: 1;
+            padding: 0.5rem;
+            background: var(--gray-100);
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        .tracker-nav-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tracker-nav-btn.active {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        /* Timeline Page */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background: var(--gradient-1);
+            transform: translateX(-50%);
+            border-radius: 3px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 2rem;
+            width: 24px;
+            height: 24px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            border: 4px solid var(--white);
+            box-shadow: var(--shadow-lg);
+            z-index: 2;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 2.5rem;
+            width: 14px;
+            height: 14px;
+            background: var(--white);
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+        .timeline-item:nth-child(odd)::before,
+        .timeline-item:nth-child(odd)::after {
+            right: -12px;
+        }
+
+        .timeline-item:nth-child(even)::before,
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+
+        .timeline-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--gray-100);
+        }
+
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .timeline-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .timeline-card:hover::after {
+            opacity: 1;
+            animation: shimmer 1.5s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .company-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .company-logo:hover::before {
+            opacity: 1;
+        }
+
+        .company-image {
+            width: 100%;
+            height: 200px;
+            background: var(--gray-100);
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px dashed var(--gray-300);
+        }
+
+        .company-image::before {
+            content: 'Company Image';
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .work-diagram {
+            width: 100%;
+            height: 150px;
+            background: var(--gray-50);
+            border-radius: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            font-size: 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px dashed var(--gray-300);
+        }
+
+        .work-diagram::before {
+            content: 'Architecture Diagram';
+            position: absolute;
+            bottom: 0.5rem;
+            left: 0.5rem;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+
+        .company-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .company-info .role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-info .location {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .timeline-period {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .timeline-content {
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .accomplishments {
+            margin-bottom: 1.5rem;
+        }
+
+        .accomplishments h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .accomplishments ul {
+            list-style: none;
+        }
+
+        .accomplishments li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            color: var(--gray-600);
+        }
+
+        .accomplishments li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            margin-top: 0.1rem;
+        }
+
+        .learnings {
+            background: var(--gray-50);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .learnings h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .learnings p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .challenges {
+            background: var(--gray-50);
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+
+        .challenges h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .challenges p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Industries Page */
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .industry-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .industry-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .industry-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .industry-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .industry-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .industry-description {
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .industry-experience {
+            background: var(--gray-50);
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+
+        .industry-experience h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .industry-experience p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Future Plans Page */
+        .future-plans {
+            background: var(--gray-50);
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-2);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .plan-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-2);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+
+        .plan-description {
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-timeline {
+            background: var(--gray-50);
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+
+        .plan-timeline h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-timeline p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Contact Page */
+        .contact {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(10px);
+        }
+
+        .contact-method i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--gray-100);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline::before {
+                left: 2rem;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 4rem !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-item::before,
+            .timeline-item::after {
+                left: 1rem !important;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .theme-toggle {
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .floating-media {
+                right: 1rem;
+                bottom: 1rem;
+            }
+
+            .journey-tracker {
+                right: 1rem;
+                bottom: 5rem; /* Just above floating media buttons */
+                left: auto;
+                min-width: 200px;
+                max-width: calc(100% - 2rem);
+            }
+
+            .journey-tracker.collapsed {
+                transform: translateX(250px); /* Slide right on mobile too */
+                opacity: 0;
+            }
+            
+            .tracker-toggle {
+                left: -35px; /* Adjust for smaller screens */
+                width: 35px;
+                height: 35px;
+            }
+
+            .tracker-nav {
+                flex-wrap: wrap;
+                gap: 0.25rem;
+            }
+
+            .tracker-nav-btn {
+                font-size: 0.7rem;
+                padding: 0.25rem 0.5rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gray-200);
+            z-index: 1001;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: var(--gradient-1);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="theme-btn ocean active" data-theme="ocean" title="Ocean Blue Theme"></button>
+        <button class="theme-btn forest" data-theme="forest" title="Forest Green Theme"></button>
+        <button class="theme-btn sunset" data-theme="sunset" title="Sunset Orange Theme"></button>
+    </div>
+
+    <!-- Floating Media Buttons -->
+    <div class="floating-media">
+        <button class="media-btn hire-me" title="Hire Me">
+            <i class="fas fa-briefcase"></i>
+        </button>
+        <button class="media-btn" title="Email Me">
+            <i class="fas fa-envelope"></i>
+        </button>
+        <button class="media-btn" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+        </button>
+        <button class="media-btn" title="GitHub">
+            <i class="fab fa-github"></i>
+        </button>
+    </div>
+
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Journey Tracker -->
+    <div class="journey-tracker" id="journey-tracker">
+        <button class="tracker-toggle" id="tracker-toggle">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="tracker-header">Current Position</div>
+        <div class="tracker-company" id="tracker-company">Bank of New York Mellon</div>
+        <div class="tracker-title" id="tracker-title">VP Cyber Security</div>
+        <div class="tracker-progress">
+            <div class="tracker-progress-fill" id="tracker-progress"></div>
+        </div>
+        <div class="tracker-nav">
+            <button class="tracker-nav-btn" data-company="0">BNY</button>
+            <button class="tracker-nav-btn" data-company="1">JPMC</button>
+            <button class="tracker-nav-btn" data-company="2">Exxon</button>
+            <button class="tracker-nav-btn" data-company="3">Schlumberger</button>
+            <button class="tracker-nav-btn" data-company="4">Genzeon</button>
+            <button class="tracker-nav-btn" data-company="5">IHS</button>
+            <button class="tracker-nav-btn" data-company="6">CGG</button>
+            <button class="tracker-nav-btn" data-company="7">EA</button>
+            <button class="tracker-nav-btn" data-company="8">Aurona</button>
+            <button class="tracker-nav-btn" data-company="9">Infosys</button>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scroll-progress"></div>
+    </div>
+
+    <!-- Timeline Breadcrumb -->
+    <div class="timeline-breadcrumb" id="timeline-breadcrumb">
+        Journey → <strong id="breadcrumb-company">Bank of New York Mellon</strong> → 
+        <span class="position" id="breadcrumb-position">1 of 10</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Srikanth Tangella</a>
+            <ul class="nav-links">
+                <li><a href="#home" data-page="home">Home</a></li>
+                <li><a href="#about" data-page="about">My Story</a></li>
+                <li><a href="#timeline" data-page="timeline">Journey</a></li>
+                <li><a href="#industries" data-page="industries">Industries</a></li>
+                <li><a href="#future" data-page="future">Future</a></li>
+                <li><a href="#contact" data-page="contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>My Journey in Technology</h1>
+                    <p class="subtitle">From Hyderabad to Houston, Building the Future</p>
+                    <p class="description">
+                        A 15+ year journey through cybersecurity, financial services, and energy sectors. 
+                        From developing seismic processing algorithms to architecting enterprise security platforms, 
+                        I've been at the forefront of technological innovation.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">Companies</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Countries</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100K+</div>
+                            <div class="stat-label">Devices Secured</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="profile-card">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Srikanth Tangella</h3>
+                        <p>Software Developer & Architect</p>
+                        <p>Founder, SPEC Global Solutions Inc.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page">
+        <div class="section">
+            <div class="container">
+                <h2 class="section-title">My Story</h2>
+                <p class="section-subtitle">
+                    A journey of continuous learning, innovation, and impact across industries
+                </p>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>The Beginning</h3>
+                        <p>
+                            My journey began in Hyderabad, India, where I earned my Bachelor's in Information Technology 
+                            from the Indian Institute of Information Technology. The vibrant tech culture of Hyderabad 
+                            ignited my passion for software development and set the foundation for my career.
+                        </p>
+                        <p>
+                            After completing my education, I embarked on a journey that would take me across continents 
+                            and industries. From the energy sector in Houston to financial services in Malvern, 
+                            each experience shaped my understanding of how technology can transform businesses.
+                        </p>
+                        <p>
+                            Today, as the founder of SPEC Global Solutions Inc., I continue to push the boundaries 
+                            of what's possible, combining my expertise in full-stack development, machine learning, 
+                            and enterprise architecture to solve complex problems.
+                        </p>
+                    </div>
+                    <div class="about-text">
+                        <h3>My Philosophy</h3>
+                        <p>
+                            I believe in the power of technology to create meaningful impact. Whether it's securing 
+                            100,000+ corporate devices or reducing manual validation time by 95%, every project 
+                            is an opportunity to make a difference.
+                        </p>
+                        <p>
+                            My approach combines technical excellence with business acumen. I don't just write code; 
+                            I architect solutions that scale, secure systems that protect, and build teams that deliver.
+                        </p>
+                        <p>
+                            As a Certified Scrum Master and technical leader, I've learned that the best solutions 
+                            come from understanding both the technology and the people who use it.
+                        </p>
+                    </div>
+                </div>
+                <div class="journey-highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="highlight-title">Cybersecurity Pioneer</h3>
+                        <p class="highlight-description">
+                            Architected commercial security platform securing 100,000+ devices with 97% reduction in unauthorized access
+                        </p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="highlight-title">ML Innovation</h3>
+                        <p class="highlight-description">
+                            Built typosquatting detection system combining algorithmic heuristics with supervised machine learning
+                        </p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="highlight-title">Process Optimization</h3>
+                        <p class="highlight-description">
+                            Invented automated validation tool reducing manual work from 6-9 months to one week (95% cost reduction)
+                        </p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="highlight-title">Team Leadership</h3>
+                        <p class="highlight-description">
+                            Led teams across multiple companies, mentoring developers and delivering complex enterprise solutions
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Page -->
+    <section id="timeline" class="page">
+        <div class="section">
+            <div class="container">
+                <h2 class="section-title">My Professional Journey</h2>
+                <p class="section-subtitle">
+                    A timeline of growth, challenges, and achievements across industries
+                </p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div class="company-info">
+                                    <h3>Bank of New York Mellon</h3>
+                                    <div class="role">Vice President, Cyber Security</div>
+                                    <div class="location">Fulshear, TX (Remote)</div>
+                                </div>
+                                <div class="timeline-period">May 2022 - Present</div>
+                            </div>
+                            <div class="timeline-content">
+                                <p>
+                                    Leading cybersecurity initiatives as a hands-on technical lead, architecting and delivering 
+                                    enterprise-grade security solutions that protect critical financial infrastructure.
+                                </p>
+                            </div>
+                            <div class="accomplishments">
+                                <h4>Key Accomplishments:</h4>
+                                <ul>
+                                    <li>Architected IP-pending commercial security platform securing 100,000+ corporate devices (99% endpoint coverage)</li>
+                                    <li>Reduced unauthorized access by 97% through firewall and port lockdown, MFA/OAuth implementation</li>
+                                    <li>Built typosquatting detection system combining ML algorithms with heuristic features</li>
+                                    <li>Designed real-time event pipeline using Kafka for device telemetry and model events</li>
+                                    <li>Containerized services and ML components with Docker and GitLab CI</li>
+                                    <li>Developed Chrome browser extension for activity monitoring backed by AI models</li>
+                                </ul>
+                            </div>
+                            <div class="learnings">
+                                <h4>Key Learnings:</h4>
+                                <p>
+                                    Mastered the integration of machine learning with enterprise security systems. Learned to balance 
+                                    security requirements with user experience, and how to scale ML models for production environments.
+                                </p>
+                            </div>
+                            <div class="challenges">
+                                <h4>Challenges & Solutions:</h4>
+                                <p>
+                                    <strong>Challenge:</strong> Integrating ML models with real-time security systems.<br>
+                                    <strong>Solution:</strong> Built containerized ML pipeline with Kafka messaging for seamless integration 
+                                    between Python ML models and .NET security platform.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div class="company-info">
+                                    <h3>JP Morgan Chase</h3>
+                                    <div class="role">Consultant, Senior Software Engineer</div>
+                                    <div class="location">Fulshear, TX (Remote)</div>
+                                </div>
+                                <div class="timeline-period">May 2021 - Sept 2021</div>
+                            </div>
+                            <div class="timeline-content">
+                                <p>
+                                    Developed innovative Office Add-in solution for automated ticket creation, significantly 
+                                    improving incident response efficiency in a high-volume financial environment.
+                                </p>
+                            </div>
+                            <div class="accomplishments">
+                                <h4>Key Accomplishments:</h4>
+                                <ul>
+                                    <li>Developed MS Office Add-in and VSTO solution for automated ServiceNow ticket creation</li>
+                                    <li>Parsed incoming/outgoing emails to auto-populate ticket fields</li>
+                                    <li>Integrated Kafka for reliable messaging and Splunk for centralized logging</li>
+                                    <li>Deployed to 15,000 machines (70% coverage) in 4 months</li>
+                                    <li>Substantially reduced manual ticket creation and improved incident routing</li>
+                                </ul>
+                            </div>
+                            <div class="learnings">
+                                <h4>Key Learnings:</h4>
+                                <p>
+                                    Gained deep understanding of financial services workflows and the importance of automation 
+                                    in high-volume environments. Learned to work with enterprise messaging systems and logging infrastructure.
+                                </p>
+                            </div>
+                            <div class="challenges">
+                                <h4>Challenges & Solutions:</h4>
+                                <p>
+                                    <strong>Challenge:</strong> Processing high-volume email data for ticket creation.<br>
+                                    <strong>Solution:</strong> Implemented efficient parsing algorithms with Kafka for reliable 
+                                    message processing and Splunk integration for monitoring and debugging.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div class="company-info">
+                                    <h3>Exxon Mobil (via Apex Systems)</h3>
+                                    <div class="role">Consultant, Senior Software Engineer</div>
+                                    <div class="location">Spring, TX</div>
+                                </div>
+                                <div class="timeline-period">Sept 2017 - Apr 2020</div>
+                            </div>
+                            <div class="timeline-content">
+                                <p>
+                                    Transformed legacy Excel workflows into modern enterprise applications, serving as both 
+                                    technical lead and Certified Scrum Master in the energy sector.
+                                </p>
+                            </div>
+                            <div class="accomplishments">
+                                <h4>Key Accomplishments:</h4>
+                                <ul>
+                                    <li>Replaced legacy Excel workflows with modern enterprise applications</li>
+                                    <li>Invented automated scientific-software version-diff tool reducing validation from 6-9 months to one week</li>
+                                    <li>Achieved 95% cost reduction and 98% time reduction in validation processes</li>
+                                    <li>Developed custom UI controls for displaying large datasets in grids and charts</li>
+                                    <li>Built complex custom search using Entity Framework Expression builder</li>
+                                    <li>Served as Certified Scrum Master and technical lead</li>
+                                </ul>
+                            </div>
+                            <div class="learnings">
+                                <h4>Key Learnings:</h4>
+                                <p>
+                                    Deepened expertise in scientific computing and data visualization. Learned to balance 
+                                    user familiarity (Excel-like interfaces) with modern architecture. Mastered agile methodologies 
+                                    and team leadership in complex technical environments.
+                                </p>
+                            </div>
+                            <div class="challenges">
+                                <h4>Challenges & Solutions:</h4>
+                                <p>
+                                    <strong>Challenge:</strong> Migrating geoscientists from familiar Excel workflows to modern applications.<br>
+                                    <strong>Solution:</strong> Designed applications that maintained Excel-like UI while providing 
+                                    server-backed reliability and modern features, ensuring smooth user adoption.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div class="company-info">
+                                    <h3>Schlumberger (via SoftHQ)</h3>
+                                    <div class="role">Lead Software Engineer</div>
+                                    <div class="location">Houston, TX</div>
+                                </div>
+                                <div class="timeline-period">Aug 2016 - Nov 2016</div>
+                            </div>
+                            <div class="timeline-content">
+                                <p>
+                                    Architected and built desktop applications from ground up, transforming legacy WinForms 
+                                    suite into modern, modular framework supporting multiple platforms.
+                                </p>
+                            </div>
+                            <div class="accomplishments">
+                                <h4>Key Accomplishments:</h4>
+                                <ul>
+                                    <li>Architected desktop applications using C#, WPF with DevExpress and MVVM</li>
+                                    <li>Redesigned entire WinForms suite into modular, reusable framework</li>
+                                    <li>Supported Windows, tablet and mobile targets</li>
+                                    <li>Served as Scrum Master and delivery owner</li>
+                                    <li>Partnered with clients, UX and BA teams for requirement translation</li>
+                                </ul>
+                            </div>
+                            <div class="learnings">
+                                <h4>Key Learnings:</h4>
+                                <p>
+                                    Gained expertise in desktop application architecture and cross-platform development. 
+                                    Learned to balance technical requirements with business needs in energy sector applications.
+                                </p>
+                            </div>
+                            <div class="challenges">
+                                <h4>Challenges & Solutions:</h4>
+                                <p>
+                                    <strong>Challenge:</strong> Modernizing legacy WinForms applications for multiple platforms.<br>
+                                    <strong>Solution:</strong> Designed modular framework with MVVM pattern, enabling code reuse 
+                                    across Windows, tablet, and mobile platforms while maintaining performance.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div class="company-info">
+                                    <h3>Genzeon</h3>
+                                    <div class="role">Principal Software Engineer</div>
+                                    <div class="location">Malvern, PA</div>
+                                </div>
+                                <div class="timeline-period">Feb 2016 - Aug 2016</div>
+                            </div>
+                            <div class="timeline-content">
+                                <p>
+                                    Enhanced Allscripts billing product with polished WPF interfaces and performance optimizations, 
+                                    focusing on user experience and system efficiency.
+                                </p>
+                            </div>
+                            <div class="accomplishments">
+                                <h4>Key Accomplishments:</h4>
+                                <ul>
+                                    <li>Designed C# WPF user interfaces using Infragistics and MVVM</li>
+                                    <li>Implemented control/data templates, styles, animations, DI/IoC</li>
+                                    <li>Profiled and optimized application and database performance</li>
+                                    <li>Refactored workflows and modified schemas for improved throughput</li>
+                                    <li>Enhanced Allscripts billing product with user workflow improvements</li>
+                                </ul>
+                            </div>
+                            <div class="learnings">
+                                <h4>Key Learnings:</h4>
+                                <p>
+                                    Developed expertise in healthcare software and billing systems. Learned the importance 
+                                    of performance optimization in enterprise applications and user-centered design.
+                                </p>
+                            </div>
+                            <div class="challenges">
+                                <h4>Challenges & Solutions:</h4>
+                                <p>
+                                    <strong>Challenge:</strong> Optimizing performance in complex billing workflows.<br>
+                                    <strong>Solution:</strong> Implemented comprehensive profiling, refactored database queries, 
+                                    and optimized UI rendering to achieve significant performance improvements.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div class="company-info">
+                                    <h3>IHS</h3>
+                                    <div class="role">Senior Software Engineer</div>
+                                    <div class="location">Houston, TX</div>
+                                </div>
+                                <div class="timeline-period">Jan 2014 - Jan 2016</div>
+                            </div>
+                            <div class="timeline-content">
+                                <p>
+                                    Developed high-performance WPF applications and conducted R&D on GPU optimization, 
+                                    serving as Scrum Master and technical mentor in the energy sector.
+                                </p>
+                            </div>
+                            <div class="accomplishments">
+                                <h4>Key Accomplishments:</h4>
+                                <ul>
+                                    <li>Developed C# WPF applications using Telerik, Prism and MVVM</li>
+                                    <li>Achieved 10x faster load/run times on workflows processing 100k+ records</li>
+                                    <li>Implemented UI virtualization and performance optimizations</li>
+                                    <li>Introduced T4 code generation for automated scaffolding</li>
+                                    <li>Conducted R&D on GPU optimization (CUDA) and modern architectures</li>
+                                    <li>Served as Scrum Master and senior technical mentor</li>
+                                </ul>
+                            </div>
+                            <div class="learnings">
+                                <h4>Key Learnings:</h4>
+                                <p>
+                                    Mastered high-performance computing and GPU programming. Learned the importance of 
+                                    code generation and automation in large-scale development. Developed expertise in 
+                                    mentoring and team leadership.
+                                </p>
+                            </div>
+                            <div class="challenges">
+                                <h4>Challenges & Solutions:</h4>
+                                <p>
+                                    <strong>Challenge:</strong> Processing large datasets (100k+ records) in real-time.<br>
+                                    <strong>Solution:</strong> Implemented UI virtualization, optimized database queries, 
+                                    and leveraged GPU computing for parallel processing, achieving 10x performance improvement.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div class="company-logo">
+                                    <i class="fas fa-mountain"></i>
+                                </div>
+                                <div class="company-info">
+                                    <h3>CGG Veritas</h3>
+                                    <div class="role">Generalist Software Engineer (R&D)</div>
+                                    <div class="location">Houston, TX</div>
+                                </div>
+                                <div class="timeline-period">Oct 2010 - Jul 2013</div>
+                            </div>
+                            <div class="company-image">
+                                <i class="fas fa-chart-area"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <p>
+                                    Developed high-performance seismic image-processing algorithms and led CUDA migrations 
+                                    for compute-intensive routines in the geoscience industry. Pioneered HPC algorithm development 
+                                    for cluster CPUs and GPUs using MPI.
+                                </p>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">Fortran</span>
+                                <span class="tech-tag">CUDA</span>
+                                <span class="tech-tag">MPI</span>
+                                <span class="tech-tag">WPF</span>
+                                <span class="tech-tag">Qt</span>
+                                <span class="tech-tag">OpenGL</span>
+                            </div>
+                            <div class="work-diagram">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="accomplishments">
+                                <h4>Key Accomplishments:</h4>
+                                <ul>
+                                    <li>Developed and parallelized seismic image-processing algorithms for CPU and GPU clusters</li>
+                                    <li>Led CUDA migrations and kernel optimizations for compute-intensive routines</li>
+                                    <li>Ported legacy modules into unified platform (C# WPF and Qt/C++)</li>
+                                    <li>Built robust data ingestion and format support tooling</li>
+                                    <li>Championed engineering quality with coding standards and documentation</li>
+                                    <li>Introduced unit testing and paired mentoring for new hires</li>
+                                    <li>Set coding standards for Houston Center and pushed code review process company-wide</li>
+                                    <li>Developed custom web pages resources and knowledge sharing tool</li>
+                                </ul>
+                            </div>
+                            <div class="learnings">
+                                <h4>Key Learnings:</h4>
+                                <p>
+                                    Gained deep expertise in high-performance computing, parallel processing, and scientific computing. 
+                                    Learned the importance of code quality and documentation in complex technical domains. 
+                                    Mastered cross-platform development and legacy system modernization.
+                                </p>
+                            </div>
+                            <div class="challenges">
+                                <h4>Challenges & Solutions:</h4>
+                                <p>
+                                    <strong>Challenge:</strong> Processing massive seismic datasets efficiently.<br>
+                                    <strong>Solution:</strong> Implemented parallel processing algorithms using MPI and CUDA, 
+                                    optimizing memory access patterns and data layouts for maximum GPU utilization.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div class="company-logo">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <div class="company-info">
+                                    <h3>Electronic Arts Mobile</h3>
+                                    <div class="role">Software Engineer (R&D)</div>
+                                    <div class="location">Hyderabad, India</div>
+                                </div>
+                                <div class="timeline-period">Oct 2008 - Nov 2009</div>
+                            </div>
+                            <div class="company-image">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <p>
+                                    Led a team of Software Associate Programmers in developing platform-independent technology 
+                                    for PS3, XBOX 360, Wii, and PC platforms. Built Global Online System (GOS) SDKs and 
+                                    associated server infrastructure for EA Online games.
+                                </p>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">WPF</span>
+                                <span class="tech-tag">WCF</span>
+                                <span class="tech-tag">MPI</span>
+                                <span class="tech-tag">SQL Server</span>
+                                <span class="tech-tag">NUnit</span>
+                            </div>
+                            <div class="work-diagram">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="accomplishments">
+                                <h4>Key Accomplishments:</h4>
+                                <ul>
+                                    <li>Developed new Console Modules improving performance of general Console games</li>
+                                    <li>Analyzed GOS SDK and developed Test Harness for usability testing</li>
+                                    <li>Designed and deployed Test harness for testing JUICE with easy test case scripting</li>
+                                    <li>Created automated DOS scripts for perforce integration, building, and testing</li>
+                                    <li>Saved 6 hours per run/per platform/day through automation</li>
+                                    <li>Managed and mentored team of Software Associate Programmers</li>
+                                </ul>
+                            </div>
+                            <div class="learnings">
+                                <h4>Key Learnings:</h4>
+                                <p>
+                                    Gained expertise in game development, cross-platform console programming, and team leadership. 
+                                    Learned the importance of automation in development workflows and the value of comprehensive testing.
+                                </p>
+                            </div>
+                            <div class="challenges">
+                                <h4>Challenges & Solutions:</h4>
+                                <p>
+                                    <strong>Challenge:</strong> Managing complex multi-platform development and testing workflows.<br>
+                                    <strong>Solution:</strong> Created comprehensive automation scripts that handled perforce integration, 
+                                    building, testing, and reporting across all platforms, saving significant manual effort.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div class="company-logo">
+                                    <i class="fas fa-hand-rock"></i>
+                                </div>
+                                <div class="company-info">
+                                    <h3>Aurona Technologies Ltd.</h3>
+                                    <div class="role">Game Programmer</div>
+                                    <div class="location">Hyderabad, India</div>
+                                </div>
+                                <div class="timeline-period">Dec 2007 - Oct 2008</div>
+                            </div>
+                            <div class="company-image">
+                                <i class="fas fa-hand-rock"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <p>
+                                    Developed 3D and 2D games with innovative haptic force feedback integration using NOVINT FALCON device. 
+                                    Created online 3D virtual trade show application with custom chat system and real-time asset management.
+                                </p>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">TCL/Tk</span>
+                                <span class="tech-tag">Torque Engine</span>
+                                <span class="tech-tag">ASP.NET</span>
+                                <span class="tech-tag">SQL Server</span>
+                                <span class="tech-tag">OpenGL</span>
+                            </div>
+                            <div class="work-diagram">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div class="accomplishments">
+                                <h4>Key Accomplishments:</h4>
+                                <ul>
+                                    <li>Single-handedly fixed and refactored 50K lines of broken code in one month</li>
+                                    <li>Developed highly reusable API of Haptic effects for multiple projects</li>
+                                    <li>Created UDP chat client/server system using Torque network capabilities</li>
+                                    <li>Designed robust interface for database server communication via .NET web services</li>
+                                    <li>Converted ASP.NET pages to C# web services with no prior experience</li>
+                                    <li>Added third dimension of feedback (haptic) to 3D tank game and 2D fishing game</li>
+                                    <li>Developed online 3D virtual trade show with real-time asset upload/download</li>
+                                </ul>
+                            </div>
+                            <div class="learnings">
+                                <h4>Key Learnings:</h4>
+                                <p>
+                                    Mastered game development, haptic technology integration, and 3D graphics programming. 
+                                    Learned to work with legacy codebases and rapidly acquire new technical skills. 
+                                    Gained experience in network programming and real-time systems.
+                                </p>
+                            </div>
+                            <div class="challenges">
+                                <h4>Challenges & Solutions:</h4>
+                                <p>
+                                    <strong>Challenge:</strong> Working with 50K lines of undocumented, broken code with German/Russian variable names.<br>
+                                    <strong>Solution:</strong> Systematically refactored and cleaned the codebase, implementing proper documentation 
+                                    and modern coding practices while maintaining functionality.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-header">
+                                <div class="company-logo">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div class="company-info">
+                                    <h3>Infosys Technologies Ltd.</h3>
+                                    <div class="role">Software Engineer / Test Engineer</div>
+                                    <div class="location">Hyderabad, India</div>
+                                </div>
+                                <div class="timeline-period">Jun 2005 - Dec 2006</div>
+                            </div>
+                            <div class="company-image">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <p>
+                                    Led a team of 4 in testing and quality assurance for payroll management systems. 
+                                    Developed custom automation tools and became team leader within 12 months of joining.
+                                </p>
+                            </div>
+                            <div class="tech-stack">
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">WPF</span>
+                                <span class="tech-tag">Oracle</span>
+                                <span class="tech-tag">WinRunner</span>
+                                <span class="tech-tag">TestDirector</span>
+                                <span class="tech-tag">Rational Rose</span>
+                            </div>
+                            <div class="work-diagram">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <div class="accomplishments">
+                                <h4>Key Accomplishments:</h4>
+                                <ul>
+                                    <li>Made Team Leader in 12 months of joining</li>
+                                    <li>Created custom spreadsheet calculator for testing 25,000+ test cases</li>
+                                    <li>Saved 15 minutes per test case, totaling significant time savings</li>
+                                    <li>Found critical business logic errors within a week of joining</li>
+                                    <li>Recognized for finding most critical bugs and hard-to-find flaws</li>
+                                    <li>Mentored new joiners in company principles and testing methodologies</li>
+                                    <li>Designed UML diagrams using Rational Rose Modeler</li>
+                                </ul>
+                            </div>
+                            <div class="learnings">
+                                <h4>Key Learnings:</h4>
+                                <p>
+                                    Developed strong testing and quality assurance skills. Learned the importance of automation 
+                                    in testing workflows and the value of thorough analysis in finding critical bugs. 
+                                    Gained experience in team leadership and mentoring.
+                                </p>
+                            </div>
+                            <div class="challenges">
+                                <h4>Challenges & Solutions:</h4>
+                                <p>
+                                    <strong>Challenge:</strong> Testing 25,000+ test cases manually with complex calculations.<br>
+                                    <strong>Solution:</strong> Created a highly formulated spreadsheet calculator that automated 
+                                    all calculations, saving 15 minutes per test case and ensuring accuracy.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Page -->
+    <section id="industries" class="page">
+        <div class="section">
+            <div class="container">
+                <h2 class="section-title">Industries I've Transformed</h2>
+                <p class="section-subtitle">
+                    From energy exploration to financial security, each industry has shaped my expertise
+                </p>
+                <div class="industries-grid">
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="industry-title">Cybersecurity & Financial Services</h3>
+                        <p class="industry-description">
+                            Protecting critical financial infrastructure through advanced security platforms, 
+                            ML-powered threat detection, and enterprise-grade authentication systems.
+                        </p>
+                        <div class="industry-experience">
+                            <h4>My Impact:</h4>
+                            <p>
+                                Architected security platform securing 100,000+ devices, reduced unauthorized access by 97%, 
+                                and built ML-powered typosquatting detection systems for real-time threat prevention.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i class="fas fa-oil-can"></i>
+                        </div>
+                        <h3 class="industry-title">Energy & Geoscience</h3>
+                        <p class="industry-description">
+                            Revolutionizing seismic data processing, scientific computing, and geoscience workflows 
+                            through high-performance algorithms and modern user interfaces.
+                        </p>
+                        <div class="industry-experience">
+                            <h4>My Impact:</h4>
+                            <p>
+                                Developed seismic image-processing algorithms, led CUDA migrations for GPU optimization, 
+                                and modernized Excel workflows while maintaining user familiarity for geoscientists.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3 class="industry-title">Healthcare Technology</h3>
+                        <p class="industry-description">
+                            Enhancing healthcare billing systems and patient management through optimized user interfaces, 
+                            performance improvements, and workflow automation.
+                        </p>
+                        <div class="industry-experience">
+                            <h4>My Impact:</h4>
+                            <p>
+                                Enhanced Allscripts billing product with polished WPF interfaces, optimized database performance, 
+                                and improved user workflows for healthcare professionals.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="industry-title">Data Analytics & Visualization</h3>
+                        <p class="industry-description">
+                            Transforming data analysis through custom visualization tools, automated reporting systems, 
+                            and high-performance data processing pipelines.
+                        </p>
+                        <div class="industry-experience">
+                            <h4>My Impact:</h4>
+                            <p>
+                                Built custom data grids and charts for large datasets, implemented automated validation tools 
+                                reducing manual work by 95%, and created Tableau visualizations for business intelligence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Plans Page -->
+    <section id="future" class="page">
+        <div class="section future-plans">
+            <div class="container">
+                <h2 class="section-title">Future Tech Horizons</h2>
+                <p class="section-subtitle">
+                    My roadmap for continued growth and innovation in emerging technologies
+                </p>
+                <div class="plans-grid">
+                    <div class="plan-card">
+                        <div class="plan-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="plan-title">Advanced AI & Machine Learning</h3>
+                        <p class="plan-description">
+                            Deepening expertise in large language models, computer vision, and autonomous systems. 
+                            Exploring the intersection of AI and cybersecurity for next-generation threat detection.
+                        </p>
+                        <div class="plan-timeline">
+                            <h4>Timeline:</h4>
+                            <p>
+                                <strong>2024:</strong> Advanced NLP and computer vision projects<br>
+                                <strong>2025:</strong> Autonomous system development<br>
+                                <strong>2026:</strong> AI-powered cybersecurity platforms
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="plan-card">
+                        <div class="plan-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="plan-title">Cloud-Native Architecture</h3>
+                        <p class="plan-description">
+                            Mastering serverless computing, microservices orchestration, and edge computing. 
+                            Building scalable, resilient systems that can handle global scale and real-time processing.
+                        </p>
+                        <div class="plan-timeline">
+                            <h4>Timeline:</h4>
+                            <p>
+                                <strong>2024:</strong> Kubernetes and container orchestration<br>
+                                <strong>2025:</strong> Serverless architecture patterns<br>
+                                <strong>2026:</strong> Edge computing and IoT integration
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="plan-card">
+                        <div class="plan-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 class="plan-title">Quantum-Safe Security</h3>
+                        <p class="plan-description">
+                            Preparing for the quantum computing era by developing post-quantum cryptography solutions 
+                            and quantum-resistant security protocols for enterprise systems.
+                        </p>
+                        <div class="plan-timeline">
+                            <h4>Timeline:</h4>
+                            <p>
+                                <strong>2024:</strong> Quantum computing fundamentals<br>
+                                <strong>2025:</strong> Post-quantum cryptography implementation<br>
+                                <strong>2026:</strong> Quantum-safe security platforms
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="plan-card">
+                        <div class="plan-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="plan-title">Technical Leadership & Mentoring</h3>
+                        <p class="plan-description">
+                            Expanding my role as a technical leader and mentor, building the next generation 
+                            of software engineers and architects through education and hands-on guidance.
+                        </p>
+                        <div class="plan-timeline">
+                            <h4>Timeline:</h4>
+                            <p>
+                                <strong>2024:</strong> Technical speaking and writing<br>
+                                <strong>2025:</strong> Open source contributions<br>
+                                <strong>2026:</strong> Technical advisory roles
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="plan-card">
+                        <div class="plan-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="plan-title">Global Impact & Innovation</h3>
+                        <p class="plan-description">
+                            Leveraging technology to solve global challenges, from climate change to healthcare access. 
+                            Building solutions that create positive impact at scale.
+                        </p>
+                        <div class="plan-timeline">
+                            <h4>Timeline:</h4>
+                            <p>
+                                <strong>2024:</strong> Climate tech initiatives<br>
+                                <strong>2025:</strong> Healthcare accessibility solutions<br>
+                                <strong>2026:</strong> Global impact projects
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="plan-card">
+                        <div class="plan-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="plan-title">Entrepreneurship & Innovation</h3>
+                        <p class="plan-description">
+                            Growing SPEC Global Solutions Inc. into a leading technology company, 
+                            developing innovative products and expanding our impact across industries.
+                        </p>
+                        <div class="plan-timeline">
+                            <h4>Timeline:</h4>
+                            <p>
+                                <strong>2024:</strong> Product development and market expansion<br>
+                                <strong>2025:</strong> Series A funding and team growth<br>
+                                <strong>2026:</strong> International expansion
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page">
+        <div class="section contact">
+            <div class="container">
+                <h2 class="section-title" style="color: white;">Let's Connect</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">
+                    Ready to discuss your next project or explore opportunities?
+                </p>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Get In Touch</h3>
+                        <p>
+                            I'm always interested in new opportunities, challenging projects, and meaningful collaborations. 
+                            Whether you're looking for a technical consultant, a development partner, or just want to 
+                            discuss the latest in technology, I'd love to hear from you.
+                        </p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>Email</strong><br>
+                                    sreee2001@gmail.com
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <strong>Phone</strong><br>
+                                    (281) 455-6722
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fab fa-linkedin"></i>
+                                <div>
+                                    <strong>LinkedIn</strong><br>
+                                    linkedin.com/in/srikanthtangella
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fab fa-github"></i>
+                                <div>
+                                    <strong>GitHub</strong><br>
+                                    github.com/sreee2001
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="Project discussion" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or opportunity..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Theme Toggle Functionality
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const body = document.body;
+
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const theme = button.dataset.theme;
+                
+                // Remove active class from all buttons
+                themeButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Set theme attribute on body
+                body.setAttribute('data-theme', theme);
+                
+                // Store theme preference
+                localStorage.setItem('theme', theme);
+            });
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'ocean';
+        body.setAttribute('data-theme', savedTheme);
+        document.querySelector(`[data-theme="${savedTheme}"]`).classList.add('active');
+
+        // Page Navigation
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const pages = document.querySelectorAll('.page');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetPage = link.dataset.page;
+                
+                // Hide all pages
+                pages.forEach(page => page.classList.remove('active'));
+                
+                // Show target page
+                document.getElementById(targetPage).classList.add('active');
+                
+                // Update active nav link
+                navLinks.forEach(navLink => navLink.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // Floating Media Button Actions
+        const mediaButtons = document.querySelectorAll('.media-btn');
+        
+        mediaButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const icon = button.querySelector('i');
+                
+                if (icon.classList.contains('fa-briefcase')) {
+                    // Hire Me - scroll to contact
+                    document.getElementById('contact').classList.add('active');
+                    pages.forEach(page => page.classList.remove('active'));
+                    window.scrollTo(0, 0);
+                } else if (icon.classList.contains('fa-envelope')) {
+                    // Email
+                    window.location.href = 'mailto:sreee2001@gmail.com';
+                } else if (icon.classList.contains('fa-linkedin')) {
+                    // LinkedIn
+                    window.open('https://linkedin.com/in/srikanthtangella', '_blank');
+                } else if (icon.classList.contains('fa-github')) {
+                    // GitHub
+                    window.open('https://github.com/sreee2001', '_blank');
+                }
+            });
+        });
+
+        // Particle System
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random position
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('scroll-progress').style.width = scrollPercent + '%';
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for fade-in animation
+        document.querySelectorAll('.highlight-card, .timeline-card, .industry-card, .plan-card').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            this.reset();
+        });
+
+        // Journey Tracker Functionality
+        const companies = [
+            { name: 'Bank of New York Mellon', title: 'VP Cyber Security', period: '2022-Present' },
+            { name: 'JP Morgan Chase', title: 'Senior Software Engineer', period: '2021' },
+            { name: 'Exxon Mobil', title: 'Senior Software Engineer', period: '2017-2020' },
+            { name: 'Schlumberger', title: 'Lead Software Engineer', period: '2016' },
+            { name: 'Genzeon', title: 'Principal Software Engineer', period: '2016' },
+            { name: 'IHS', title: 'Senior Software Engineer', period: '2014-2016' },
+            { name: 'CGG Veritas', title: 'Generalist Software Engineer', period: '2010-2013' },
+            { name: 'Electronic Arts', title: 'Software Engineer', period: '2008-2009' },
+            { name: 'Aurona Technologies', title: 'Game Programmer', period: '2007-2008' },
+            { name: 'Infosys', title: 'Software Engineer', period: '2005-2006' }
+        ];
+
+        let currentCompanyIndex = 0;
+
+        function updateJourneyTracker() {
+            const company = companies[currentCompanyIndex];
+            document.getElementById('tracker-company').textContent = company.name;
+            document.getElementById('tracker-title').textContent = company.title;
+    
+            // Fixed: Progress goes from 0% (oldest) to 100% (newest)
+            const progress = (currentCompanyIndex / (companies.length - 1)) * 100;
+            document.getElementById('tracker-progress').style.width = progress + '%';
+            
+            // Update breadcrumb
+            const breadcrumb = document.getElementById('timeline-breadcrumb');
+            const isTimelinePage = document.getElementById('timeline').classList.contains('active');
+            if (breadcrumb) {
+                breadcrumb.classList.toggle('visible', isTimelinePage);
+                document.getElementById('breadcrumb-company').textContent = company.name;
+                document.getElementById('breadcrumb-position').textContent = `${currentCompanyIndex + 1} of ${companies.length}`;
+            }
+
+            // Update active nav button
+            document.querySelectorAll('.tracker-nav-btn').forEach((btn, index) => {
+                btn.classList.toggle('active', index === currentCompanyIndex);
+            });
+        }
+
+        function scrollToCompany(index) {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            if (timelineItems[index]) {
+                const navbarHeight = 80; // Height of fixed navbar
+                const elementPosition = timelineItems[index].getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - 40; // Extra 40px breathing room
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                
+                currentCompanyIndex = index;
+                updateJourneyTracker();
+            }
+        }
+
+        // Journey tracker toggle
+        document.getElementById('tracker-toggle').addEventListener('click', function() {
+            const tracker = document.getElementById('journey-tracker');
+            const icon = this.querySelector('i');
+            
+            tracker.classList.toggle('collapsed');
+            // Since tracker is on right, chevron-right means "hide" (slide right)
+            icon.classList.toggle('fa-chevron-right');
+            icon.classList.toggle('fa-chevron-left');
+        });
+
+        // Journey tracker navigation
+        document.querySelectorAll('.tracker-nav-btn').forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                scrollToCompany(index);
+            });
+        });
+
+        // Intersection Observer for journey tracker
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const timelineItem = entry.target;
+                    const index = Array.from(document.querySelectorAll('.timeline-item')).indexOf(timelineItem);
+                    if (index !== -1) {
+                        currentCompanyIndex = index;
+                        updateJourneyTracker();
+                    }
+                }
+            });
+        }, {
+            threshold: 0.6, // Item must be 60% visible to trigger
+            rootMargin: '-15% 0px -35% 0px' // More aggressive top margin, gentler bottom
+        });
+
+        // Initialize particles when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            updateJourneyTracker();
+            
+            // Observe timeline items for journey tracker
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                timelineObserver.observe(item);
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.timeline-card, .industry-card, .plan-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // Return to home page
+                pages.forEach(page => page.classList.remove('active'));
+                document.getElementById('home').classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        });
+    </script>
+</body>
+</html>

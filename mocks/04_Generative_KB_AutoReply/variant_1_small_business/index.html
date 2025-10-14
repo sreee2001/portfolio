@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Support Assistant - Answer Tickets Instantly</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;line-height:1.6;color:#1f2937;background:#fff}
+.container{max-width:1200px;margin:0 auto;padding:0 30px}
+header{background:#fff;border-bottom:1px solid #e5e7eb;padding:20px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:800;color:#2563eb}
+.logo span{color:#7c3aed}
+nav ul{list-style:none;display:flex;gap:35px;align-items:center}
+nav a{color:#4b5563;text-decoration:none;font-weight:600;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#2563eb}
+.cta-btn{background:#2563eb;color:#fff;padding:10px 24px;border-radius:8px;font-weight:700;transition:background 0.3s}
+.cta-btn:hover{background:#1d4ed8}
+.hero{background:linear-gradient(135deg,#dbeafe 0%,#f3e8ff 100%);padding:100px 30px;text-align:center}
+.hero h1{font-size:52px;font-weight:900;color:#1f2937;margin-bottom:25px;line-height:1.1}
+.hero h1 .highlight{color:#2563eb}
+.hero p{font-size:20px;color:#6b7280;max-width:800px;margin:0 auto 40px;line-height:1.7}
+.hero-cta{display:inline-block;background:#2563eb;color:#fff;padding:18px 45px;border-radius:10px;font-size:18px;font-weight:700;text-decoration:none;box-shadow:0 8px 20px rgba(37,99,235,0.3);transition:transform 0.3s}
+.hero-cta:hover{transform:translateY(-3px)}
+.hero-subtitle{margin-top:20px;font-size:15px;color:#9ca3af}
+.features{padding:90px 30px;background:#fff}
+.features h2{font-size:42px;font-weight:900;text-align:center;margin-bottom:60px;color:#1f2937}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1200px;margin:0 auto}
+.feature-card{background:#f9fafb;padding:40px;border-radius:16px;border:2px solid #e5e7eb;transition:box-shadow 0.3s}
+.feature-card:hover{box-shadow:0 12px 30px rgba(0,0,0,0.1)}
+.feature-card .icon{font-size:48px;margin-bottom:20px}
+.feature-card h3{font-size:22px;color:#1f2937;margin-bottom:15px;font-weight:800}
+.feature-card p{font-size:16px;color:#6b7280;line-height:1.7}
+.how-it-works{padding:90px 30px;background:linear-gradient(180deg,#f9fafb 0%,#fff 100%)}
+.how-it-works h2{font-size:42px;font-weight:900;text-align:center;margin-bottom:60px;color:#1f2937}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1200px;margin:0 auto}
+.step{text-align:center}
+.step .step-number{width:70px;height:70px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;margin:0 auto 25px}
+.step h3{font-size:22px;color:#1f2937;margin-bottom:15px;font-weight:800}
+.step p{font-size:16px;color:#6b7280;line-height:1.7}
+.pricing{padding:90px 30px;background:#fff}
+.pricing h2{font-size:42px;font-weight:900;text-align:center;margin-bottom:60px;color:#1f2937}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:35px;max-width:1200px;margin:0 auto}
+.pricing-card{background:#f9fafb;padding:45px;border-radius:16px;border:2px solid #e5e7eb;text-align:center;transition:transform 0.3s}
+.pricing-card:hover{transform:translateY(-5px);border-color:#2563eb}
+.pricing-card h3{font-size:24px;color:#1f2937;margin-bottom:15px;font-weight:800}
+.pricing-card .price{font-size:48px;color:#2563eb;font-weight:900;margin-bottom:10px}
+.pricing-card .price span{font-size:20px;color:#6b7280}
+.pricing-card ul{list-style:none;margin:30px 0;text-align:left}
+.pricing-card li{padding:12px 0;color:#4b5563;border-bottom:1px solid #e5e7eb;font-size:15px}
+.pricing-card li:last-child{border-bottom:none}
+.pricing-card .btn{display:block;background:#2563eb;color:#fff;padding:14px;border-radius:8px;font-weight:700;text-decoration:none;margin-top:25px;transition:background 0.3s}
+.pricing-card .btn:hover{background:#1d4ed8}
+footer{background:#1f2937;color:#9ca3af;padding:50px 30px;text-align:center;font-size:14px}
+@media(max-width:768px){
+.hero h1{font-size:36px}
+.features-grid,.steps,.pricing-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">🤖 KB<span>Reply</span></div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">How It Works</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="contact.html" class="cta-btn">Start Free Trial</a></li>
+</ul>
+</nav></div></header>
+
+<section class="hero">
+<div class="container">
+<h1>Answer Support Tickets <span class="highlight">Instantly</span></h1>
+<p>AI-powered assistant that auto-replies to customer questions using your existing knowledge base. Cut response time from hours to seconds.</p>
+<a href="contact.html" class="hero-cta">Try Free for 14 Days</a>
+<p class="hero-subtitle">No credit card required • Setup in 5 minutes</p>
+</div>
+</section>
+
+<section class="features">
+<div class="container">
+<h2>✨ What Makes Us Different</h2>
+<div class="features-grid">
+<div class="feature-card">
+<div class="icon">📚</div>
+<h3>Learns Your KB</h3>
+<p>Connects to Zendesk, Confluence, Notion, or any knowledge base. AI reads your docs and generates accurate answers automatically.</p>
+</div>
+<div class="feature-card">
+<div class="icon">⚡</div>
+<h3>Instant Replies</h3>
+<p>Responds to tickets in under 10 seconds. Customers get answers immediately instead of waiting hours for human agents.</p>
+</div>
+<div class="feature-card">
+<div class="icon">🎯</div>
+<h3>95% Accuracy</h3>
+<p>Uses advanced AI (GPT-4) to understand context and generate helpful responses. Human review before sending (optional).</p>
+</div>
+<div class="feature-card">
+<div class="icon">🔄</div>
+<h3>Always Up-to-Date</h3>
+<p>Syncs with your KB every hour. When you update docs, the AI automatically learns the new information.</p>
+</div>
+<div class="feature-card">
+<div class="icon">🛡️</div>
+<h3>Safe & Secure</h3>
+<p>Never invents answers. If the AI isn't confident, it escalates to your human team automatically.</p>
+</div>
+<div class="feature-card">
+<div class="icon">📊</div>
+<h3>Smart Analytics</h3>
+<p>See which questions get auto-answered, which need human help, and identify gaps in your knowledge base.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="how-it-works">
+<div class="container">
+<h2>🚀 How It Works</h2>
+<div class="steps">
+<div class="step">
+<div class="step-number">1</div>
+<h3>Connect Your Tools</h3>
+<p>Link your help desk (Zendesk, Freshdesk, Intercom) and knowledge base (Confluence, Notion, Google Docs). Takes 2 minutes.</p>
+</div>
+<div class="step">
+<div class="step-number">2</div>
+<h3>AI Learns Your Content</h3>
+<p>Our AI reads your entire knowledge base and builds a smart answering engine. Ready in under 30 minutes.</p>
+</div>
+<div class="step">
+<div class="step-number">3</div>
+<h3>Auto-Reply Magic</h3>
+<p>When tickets arrive, AI drafts instant replies. You can review before sending or let it auto-send (your choice!).</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="pricing">
+<div class="container">
+<h2>💰 Simple Pricing</h2>
+<div class="pricing-grid">
+<div class="pricing-card">
+<h3>Starter</h3>
+<div class="price">$99<span>/mo</span></div>
+<ul>
+<li>✓ Up to 500 tickets/month</li>
+<li>✓ 1 knowledge base connection</li>
+<li>✓ 1 help desk integration</li>
+<li>✓ Email support</li>
+<li>✓ Basic analytics</li>
+</ul>
+<a href="contact.html" class="btn">Start Free Trial</a>
+</div>
+<div class="pricing-card">
+<h3>Professional</h3>
+<div class="price">$299<span>/mo</span></div>
+<ul>
+<li>✓ Up to 2,000 tickets/month</li>
+<li>✓ 3 knowledge base connections</li>
+<li>✓ All help desk integrations</li>
+<li>✓ Priority support (4hr response)</li>
+<li>✓ Advanced analytics & reports</li>
+</ul>
+<a href="contact.html" class="btn">Start Free Trial</a>
+</div>
+<div class="pricing-card">
+<h3>Enterprise</h3>
+<div class="price">$799<span>/mo</span></div>
+<ul>
+<li>✓ Unlimited tickets</li>
+<li>✓ Unlimited KB connections</li>
+<li>✓ Custom integrations</li>
+<li>✓ Dedicated support manager</li>
+<li>✓ Custom AI training</li>
+</ul>
+<a href="contact.html" class="btn">Contact Sales</a>
+</div>
+</div>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • Powered by AI • Built for Support Teams</p>
+</div></footer>
+</body>
+</html>

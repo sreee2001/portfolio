@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SentinelBridge+ | Intelligent Email Triage</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Georgia',serif;line-height:1.8;color:#1a1a1a;background:#fafafa}
+.container{max-width:1100px;margin:0 auto;padding:0 30px}
+header{background:#fff;border-bottom:1px solid #e0e0e0;padding:20px 0;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Helvetica Neue',sans-serif;font-size:22px;font-weight:300;color:#2d5016;letter-spacing:1px}
+.logo strong{font-weight:700}
+nav ul{list-style:none;display:flex;gap:40px}
+nav a{color:#1a1a1a;text-decoration:none;font-family:'Helvetica Neue',sans-serif;font-size:15px;font-weight:400;border-bottom:2px solid transparent;padding-bottom:2px;transition:border-color 0.3s}
+nav a:hover{border-bottom-color:#4a7c24}
+.hero-alt{padding:100px 30px;background:#fff;text-align:left;border-bottom:3px solid #4a7c24}
+.hero-alt .eyebrow{font-family:'Helvetica Neue',sans-serif;text-transform:uppercase;font-size:12px;letter-spacing:2px;color:#4a7c24;margin-bottom:20px;font-weight:600}
+.hero-alt h1{font-size:52px;line-height:1.2;color:#1a1a1a;margin-bottom:25px;font-weight:400;max-width:700px}
+.hero-alt .lead{font-size:22px;line-height:1.6;color:#555;max-width:650px;margin-bottom:35px}
+.hero-alt .cta-row{display:flex;gap:20px;align-items:center}
+.btn-primary{display:inline-block;background:#4a7c24;color:#fff;padding:14px 35px;text-decoration:none;font-family:'Helvetica Neue',sans-serif;font-size:16px;font-weight:500;border-radius:3px;transition:background 0.3s}
+.btn-primary:hover{background:#3a6119}
+.btn-secondary{display:inline-block;color:#4a7c24;padding:14px 35px;text-decoration:none;font-family:'Helvetica Neue',sans-serif;font-size:16px;font-weight:500;border:2px solid #4a7c24;border-radius:3px;transition:all 0.3s}
+.btn-secondary:hover{background:#4a7c24;color:#fff}
+.stats-bar{background:#f5f7f3;padding:50px 30px;border-bottom:1px solid #e0e0e0}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;text-align:center}
+.stat-item h3{font-family:'Helvetica Neue',sans-serif;font-size:48px;color:#4a7c24;font-weight:700;margin-bottom:8px}
+.stat-item p{font-family:'Helvetica Neue',sans-serif;font-size:15px;color:#666;text-transform:uppercase;letter-spacing:1px}
+.editorial-section{padding:100px 30px;background:#fff}
+.editorial-section h2{font-size:42px;line-height:1.3;color:#1a1a1a;margin-bottom:30px;font-weight:400;max-width:700px}
+.editorial-section .intro{font-size:20px;line-height:1.7;color:#555;max-width:750px;margin-bottom:60px}
+.features-editorial{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:50px}
+.feature-editorial{border-top:3px solid #4a7c24;padding-top:25px}
+.feature-editorial h3{font-family:'Helvetica Neue',sans-serif;font-size:20px;color:#1a1a1a;margin-bottom:15px;font-weight:600}
+.feature-editorial p{font-size:17px;line-height:1.7;color:#666}
+.how-section{background:#f5f7f3;padding:100px 30px;border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0}
+.how-section h2{font-size:42px;line-height:1.3;color:#1a1a1a;margin-bottom:60px;font-weight:400;text-align:center}
+.process-steps{max-width:850px;margin:0 auto}
+.process-step{display:grid;grid-template-columns:80px 1fr;gap:30px;margin-bottom:50px}
+.step-num{font-family:'Helvetica Neue',sans-serif;font-size:72px;color:#4a7c24;font-weight:300;line-height:1;opacity:0.3}
+.step-text h4{font-family:'Helvetica Neue',sans-serif;font-size:24px;color:#1a1a1a;margin-bottom:12px;font-weight:600}
+.step-text p{font-size:17px;line-height:1.7;color:#666}
+.testimonial-section{background:#fff;padding:100px 30px}
+.testimonial-section h2{font-size:42px;line-height:1.3;color:#1a1a1a;margin-bottom:60px;font-weight:400;text-align:center}
+.testimonial-card{max-width:800px;margin:0 auto;background:#f5f7f3;padding:50px;border-left:5px solid #4a7c24;border-radius:3px}
+.testimonial-card .quote{font-size:24px;line-height:1.6;color:#1a1a1a;margin-bottom:25px;font-style:italic}
+.testimonial-card .author{font-family:'Helvetica Neue',sans-serif;font-size:16px;color:#4a7c24;font-weight:600}
+.testimonial-card .author-title{font-family:'Helvetica Neue',sans-serif;font-size:14px;color:#999;margin-top:5px}
+.cta-final{background:#2d5016;color:#fff;padding:80px 30px;text-align:center}
+.cta-final h2{font-size:38px;margin-bottom:20px;font-weight:400}
+.cta-final p{font-size:18px;margin-bottom:35px;opacity:0.9}
+.cta-final .btn-light{background:#fff;color:#2d5016;padding:14px 40px;text-decoration:none;font-family:'Helvetica Neue',sans-serif;font-size:16px;font-weight:600;border-radius:3px;display:inline-block;transition:transform 0.2s}
+.cta-final .btn-light:hover{transform:translateY(-2px)}
+footer{background:#1a1a1a;color:#ccc;padding:50px 30px;text-align:center}
+footer p{font-family:'Helvetica Neue',sans-serif;font-size:14px}
+@media(max-width:768px){
+.hero-alt h1{font-size:36px}
+.hero-alt .cta-row{flex-direction:column;align-items:flex-start}
+.editorial-section h2,.how-section h2,.testimonial-section h2{font-size:32px}
+.process-step{grid-template-columns:1fr}
+.step-num{font-size:48px}
+nav ul{gap:20px;font-size:13px}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo"><strong>Sentinel</strong>Bridge+</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">Approach</a></li>
+<li><a href="contact.html">Connect</a></li>
+</ul>
+</nav></div></header>
+
+<section class="hero-alt">
+<div class="container">
+<div class="eyebrow">Intelligent Automation</div>
+<h1>Your helpdesk shouldn't feel like a bottleneck.</h1>
+<p class="lead">SentinelBridge+ uses AI to instantly classify and route support emails, eliminating manual triage and reducing response times by up to 70%.</p>
+<div class="cta-row">
+<a href="contact.html" class="btn-primary">Request a Demo</a>
+<a href="how-it-works.html" class="btn-secondary">See How It Works</a>
+</div>
+</div>
+</section>
+
+<section class="stats-bar">
+<div class="container">
+<div class="stats-grid">
+<div class="stat-item">
+<h3>95%</h3>
+<p>Classification Accuracy</p>
+</div>
+<div class="stat-item">
+<h3>70%</h3>
+<p>Faster MTTA</p>
+</div>
+<div class="stat-item">
+<h3>Zero</h3>
+<p>Duplicate Tickets</p>
+</div>
+<div class="stat-item">
+<h3>5 min</h3>
+<p>Setup Time</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="editorial-section">
+<div class="container">
+<h2>Built for modern IT operations teams who demand accuracy and speed.</h2>
+<p class="intro">Traditional email-to-ticket workflows rely on manual sorting, leading to delays, mis-assignments, and duplicate work. SentinelBridge+ bridges the gap between your support inbox and ServiceNow with intelligent automation that learns from your team's patterns.</p>
+<div class="features-editorial">
+<div class="feature-editorial">
+<h3>Instant Classification</h3>
+<p>Our LLM-powered engine reads email intent, extracts metadata, and assigns the correct category, urgency, and assignment group in seconds—eliminating the first touchpoint bottleneck.</p>
+</div>
+<div class="feature-editorial">
+<h3>Thread Intelligence</h3>
+<p>Advanced correlation algorithms detect related emails and prevent duplicate ticket creation, maintaining clean SLA tracking and reducing noise for your analysts.</p>
+</div>
+<div class="feature-editorial">
+<h3>Seamless Integration</h3>
+<p>Connects directly to Microsoft 365, Google Workspace, and ServiceNow via secure OAuth. Teams notifications keep everyone in sync without leaving their workflow.</p>
+</div>
+<div class="feature-editorial">
+<h3>Privacy First</h3>
+<p>Deploy in our cloud or yours (BYOC). Enterprise-grade SSO, RBAC, and audit logs ensure compliance with your security policies.</p>
+</div>
+<div class="feature-editorial">
+<h3>Continuous Learning</h3>
+<p>Classification models improve over time by learning from corrections and feedback, adapting to your organization's unique language and ticket patterns.</p>
+</div>
+<div class="feature-editorial">
+<h3>Actionable Metrics</h3>
+<p>Real-time dashboards track mean-time-to-acknowledge, classification confidence, agent workload, and SLA adherence—giving leadership clear visibility.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="how-section">
+<div class="container">
+<h2>A Better Way to Triage</h2>
+<div class="process-steps">
+<div class="process-step">
+<div class="step-num">1</div>
+<div class="step-text">
+<h4>Connect</h4>
+<p>Authorize read access to your support mailbox via OAuth 2.0. No passwords, no forwarding rules—just secure API integration.</p>
+</div>
+</div>
+<div class="process-step">
+<div class="step-num">2</div>
+<div class="step-text">
+<h4>Classify</h4>
+<p>Incoming emails are analyzed in real time. Our AI extracts intent, urgency, affected service, and suggests the best assignment group.</p>
+</div>
+</div>
+<div class="process-step">
+<div class="step-num">3</div>
+<div class="step-text">
+<h4>Create</h4>
+<p>High-confidence classifications automatically generate ServiceNow tickets. Medium-confidence items are flagged for quick human review.</p>
+</div>
+</div>
+<div class="process-step">
+<div class="step-num">4</div>
+<div class="step-text">
+<h4>Notify</h4>
+<p>Adaptive cards appear in Microsoft Teams channels, allowing analysts to approve, reassign, or escalate without switching tools.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="testimonial-section">
+<div class="container">
+<h2>Trusted by Operations Teams</h2>
+<div class="testimonial-card">
+<p class="quote">"SentinelBridge+ cut our mean-time-to-acknowledge by 65% in the first month. Our analysts spend less time sorting emails and more time solving problems."</p>
+<div class="author">Michael Chen</div>
+<div class="author-title">Director of IT Operations, TechCorp</div>
+</div>
+</div>
+</section>
+
+<section class="cta-final">
+<div class="container">
+<h2>Ready to eliminate manual triage?</h2>
+<p>Book a 20-minute demo and see SentinelBridge+ in action on your real support emails.</p>
+<a href="contact.html" class="btn-light">Schedule Your Demo</a>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • All rights reserved • Built for modern IT teams</p>
+</div>
+</footer>
+</body>
+</html>

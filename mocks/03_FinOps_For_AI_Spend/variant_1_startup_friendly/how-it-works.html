@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works - FinOps For AI Spend</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;line-height:1.6;color:#2d3748;background:#fff}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+header{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.05);padding:18px 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:800;color:#2563eb}
+nav ul{list-style:none;display:flex;gap:30px;align-items:center}
+nav a{color:#2d3748;text-decoration:none;font-weight:500;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#2563eb}
+.cta-btn{background:#2563eb;color:#fff;padding:10px 24px;border-radius:8px;font-weight:600;transition:background 0.3s}
+.cta-btn:hover{background:#1d4ed8}
+.page-hero{background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);padding:80px 20px;text-align:center}
+.page-hero h1{font-size:48px;color:#1e293b;margin-bottom:20px;font-weight:900}
+.page-hero p{font-size:20px;color:#64748b;max-width:700px;margin:0 auto}
+.steps{padding:80px 20px;background:#fff}
+.steps h2{text-align:center;font-size:40px;color:#1e293b;margin-bottom:60px;font-weight:900}
+.step{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin-bottom:80px}
+.step:nth-child(even){direction:rtl}
+.step:nth-child(even) > *{direction:ltr}
+.step-number{font-size:80px;color:#dbeafe;font-weight:900;line-height:1;margin-bottom:10px}
+.step h3{font-size:32px;color:#1e293b;margin-bottom:15px;font-weight:800}
+.step p{color:#64748b;font-size:17px;line-height:1.8;margin-bottom:15px}
+.step ul{margin-left:20px;color:#64748b;font-size:16px;line-height:1.9}
+.step-visual{background:#f8fafc;border-radius:15px;padding:40px;min-height:300px;display:flex;align-items:center;justify-content:center;font-size:80px}
+.integration{padding:80px 20px;background:#f8fafc;text-align:center}
+.integration h2{font-size:40px;color:#1e293b;margin-bottom:30px;font-weight:900}
+.integration p{font-size:18px;color:#64748b;margin-bottom:40px}
+.integration-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:900px;margin:0 auto}
+.integration-card{background:#fff;padding:25px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05);font-size:16px;font-weight:600;color:#2d3748}
+footer{background:#1e293b;color:#94a3b8;padding:40px 20px;text-align:center;font-size:14px}
+@media(max-width:768px){
+.page-hero h1{font-size:36px}
+.step{grid-template-columns:1fr}
+.integration-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">💰 FinOps AI</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">How It Works</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="#" class="cta-btn">Start Free Trial</a></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>Setup in 15 Minutes</h1>
+<p>No code changes. No infrastructure migrations. Just connect your cloud account and start saving.</p>
+</div>
+</section>
+
+<section class="steps">
+<div class="container">
+<h2>How It Works</h2>
+
+<div class="step">
+<div>
+<div class="step-number">01</div>
+<h3>Connect Your Cloud Account</h3>
+<p>Link AWS, GCP, or Azure via read-only API keys. We analyze your AI/ML spend across:</p>
+<ul>
+<li>GPU compute (EC2, GCE, Azure VMs)</li>
+<li>Managed AI services (SageMaker, Vertex AI, Azure ML)</li>
+<li>LLM API usage (OpenAI, Anthropic, Cohere)</li>
+<li>Storage & networking costs</li>
+</ul>
+<p style="margin-top:15px;color:#2563eb;font-weight:600">🔒 Read-only access. We never modify your infrastructure.</p>
+</div>
+<div class="step-visual">☁️</div>
+</div>
+
+<div class="step">
+<div>
+<div class="step-number">02</div>
+<h3>Get Your Cost Audit</h3>
+<p>Within 24 hours, receive a detailed breakdown of waste:</p>
+<ul>
+<li>Idle GPU instances running 24/7</li>
+<li>Over-provisioned instance types</li>
+<li>LLM calls using expensive models unnecessarily</li>
+<li>Missing spot/preemptible instance opportunities</li>
+<li>Unoptimized storage (old datasets, checkpoints)</li>
+</ul>
+<p style="margin-top:15px;font-weight:600;color:#2d3748">Average finding: <span style="color:#2563eb">$12K/month</span> in immediate savings.</p>
+</div>
+<div class="step-visual">📊</div>
+</div>
+
+<div class="step">
+<div>
+<div class="step-number">03</div>
+<h3>Auto-Apply Optimizations</h3>
+<p>We deploy agents that continuously optimize:</p>
+<ul>
+<li><strong>Auto-shutdown:</strong> Kill idle GPUs after 30min</li>
+<li><strong>Right-sizing:</strong> Suggest cheaper instance types weekly</li>
+<li><strong>LLM routing:</strong> Route prompts to cheaper models</li>
+<li><strong>Spot bidding:</strong> Auto-migrate to spot instances</li>
+<li><strong>Budget alerts:</strong> Notify teams via Slack before overspend</li>
+</ul>
+<p style="margin-top:15px;color:#64748b">All optimizations require team approval before execution.</p>
+</div>
+<div class="step-visual">🤖</div>
+</div>
+
+<div class="step">
+<div>
+<div class="step-number">04</div>
+<h3>Track Savings Over Time</h3>
+<p>Real-time dashboards show:</p>
+<ul>
+<li>Monthly savings vs. baseline</li>
+<li>Cost breakdown by team, project, model</li>
+<li>Budget burn rate & runway impact</li>
+<li>Recommendations for further optimization</li>
+</ul>
+<p style="margin-top:15px;font-weight:600;color:#2d3748">Export reports for investors, CFO, or board meetings.</p>
+</div>
+<div class="step-visual">📈</div>
+</div>
+</div>
+</section>
+
+<section class="integration">
+<div class="container">
+<h2>Works With Your Stack</h2>
+<p>Supports 20+ cloud providers, AI platforms, and LLM APIs</p>
+<div class="integration-grid">
+<div class="integration-card">AWS</div>
+<div class="integration-card">Google Cloud</div>
+<div class="integration-card">Azure</div>
+<div class="integration-card">Lambda Labs</div>
+<div class="integration-card">RunPod</div>
+<div class="integration-card">CoreWeave</div>
+<div class="integration-card">OpenAI</div>
+<div class="integration-card">Anthropic</div>
+<div class="integration-card">Cohere</div>
+<div class="integration-card">Replicate</div>
+<div class="integration-card">Hugging Face</div>
+<div class="integration-card">Together AI</div>
+</div>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 FinOps AI by SPEC Global Solutions • <a href="mailto:srikanth.tangella@gmail.com" style="color:#60a5fa">srikanth.tangella@gmail.com</a> • +1 (281) 455-6722</p>
+</div></footer>
+</body>
+</html>

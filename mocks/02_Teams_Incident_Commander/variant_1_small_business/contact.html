@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Started | Incident Commander</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,sans-serif;line-height:1.6;color:#333;background:#f9f9f9}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+header{background:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.05);padding:15px 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:700;color:#FF6B35}
+.logo span{color:#004E89}
+nav ul{list-style:none;display:flex;gap:25px}
+nav a{color:#333;text-decoration:none;font-weight:500}
+.page-hero{background:linear-gradient(135deg,#004E89 0%,#1A659E 100%);color:#fff;padding:60px 20px;text-align:center}
+.page-hero h1{font-size:40px;margin-bottom:15px}
+.page-hero p{font-size:18px}
+.contact-section{padding:70px 20px;background:#fff;max-width:700px;margin:0 auto}
+.contact-section h2{font-size:32px;margin-bottom:30px;color:#004E89;text-align:center}
+.form-group{margin-bottom:25px}
+.form-group label{display:block;font-weight:600;margin-bottom:8px;color:#004E89}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 15px;border:2px solid #ddd;border-radius:8px;font-size:16px;font-family:inherit}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:#FF6B35}
+.form-group textarea{min-height:120px;resize:vertical}
+.submit-btn{background:#FF6B35;color:#fff;padding:14px 32px;border:none;border-radius:8px;font-size:18px;font-weight:600;cursor:pointer;width:100%;transition:background 0.3s}
+.submit-btn:hover{background:#e55a2a}
+.contact-info{margin-top:50px;text-align:center;padding:30px;background:#f0f4f8;border-radius:12px}
+.contact-info h3{font-size:24px;margin-bottom:20px;color:#004E89}
+.contact-info p{font-size:16px;color:#666;margin-bottom:10px}
+footer{background:#004E89;color:#fff;padding:40px 20px;text-align:center}
+@media(max-width:768px){
+.page-hero h1{font-size:32px}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">🚨 <span>Incident</span>Commander</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">How It Works</a></li>
+<li><a href="contact.html">Get Started</a></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>Start Your Free Trial</h1>
+<p>14 days free. No credit card required.</p>
+</div>
+</section>
+
+<section class="contact-section">
+<h2>Sign Up in 2 Minutes</h2>
+<form>
+<div class="form-group">
+<label for="name">Your Name *</label>
+<input type="text" id="name" name="name" required>
+</div>
+<div class="form-group">
+<label for="email">Work Email *</label>
+<input type="email" id="email" name="email" required>
+</div>
+<div class="form-group">
+<label for="company">Company Name *</label>
+<input type="text" id="company" name="company" required>
+</div>
+<div class="form-group">
+<label for="team-size">Team Size *</label>
+<select id="team-size" name="team-size" required>
+<option value="">-- Select --</option>
+<option value="1-10">1–10 people</option>
+<option value="11-50">11–50 people</option>
+<option value="51-200">51–200 people</option>
+<option value="200+">200+ people</option>
+</select>
+</div>
+<div class="form-group">
+<label for="message">How do you currently manage incidents? (optional)</label>
+<textarea id="message" name="message" placeholder="e.g., Scattered Slack threads, email chains, spreadsheets..."></textarea>
+</div>
+<button type="submit" class="submit-btn">Start Free Trial</button>
+</form>
+
+<div class="contact-info">
+<h3>Need Help Getting Started?</h3>
+<p><strong>Email:</strong> srikanth.tangella@gmail.com</p>
+<p><strong>Phone:</strong> +1 (281) 455-6722</p>
+<p>We'll set up your first incident runbook with you!</p>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc.</p>
+</div></footer>
+</body>
+</html>

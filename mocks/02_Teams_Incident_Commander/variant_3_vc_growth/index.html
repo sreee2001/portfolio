@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incident Commander | Series A - Disrupting Incident Response</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6;color:#1a1a1a;background:#fff}
+.container{max-width:1300px;margin:0 auto;padding:0 30px}
+header{background:#fff;border-bottom:1px solid #e8e8e8;padding:20px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.02)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:26px;font-weight:900;background:linear-gradient(135deg,#6366f1 0%,#a855f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px}
+nav ul{list-style:none;display:flex;gap:40px;align-items:center}
+nav a{color:#1a1a1a;text-decoration:none;font-weight:600;font-size:15px;transition:color 0.2s}
+nav a:hover{color:#6366f1}
+.badge{background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+.hero{background:linear-gradient(180deg,#faf5ff 0%,#fff 100%);padding:120px 30px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,0.15) 0%,transparent 70%);top:-200px;right:-200px;border-radius:50%}
+.hero::after{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(168,85,247,0.1) 0%,transparent 70%);bottom:-150px;left:-150px;border-radius:50%}
+.hero-content{position:relative;z-index:1;max-width:900px;margin:0 auto;text-align:center}
+.funding-badge{display:inline-block;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;padding:10px 24px;border-radius:30px;font-size:14px;font-weight:700;margin-bottom:25px;box-shadow:0 8px 20px rgba(99,102,241,0.3)}
+.hero h1{font-size:68px;line-height:1.1;margin-bottom:28px;font-weight:900;color:#1a1a1a;letter-spacing:-2px}
+.hero h1 .gradient{background:linear-gradient(135deg,#6366f1 0%,#a855f7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:24px;margin-bottom:40px;color:#666;line-height:1.5;max-width:750px;margin-left:auto;margin-right:auto}
+.hero-buttons{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+.btn{display:inline-block;padding:18px 48px;border-radius:12px;text-decoration:none;font-weight:700;font-size:17px;transition:all 0.3s}
+.btn-primary{background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;box-shadow:0 10px 30px rgba(99,102,241,0.4)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(99,102,241,0.5)}
+.btn-secondary{border:2px solid #6366f1;color:#6366f1;background:#fff}
+.btn-secondary:hover{background:#f9fafb}
+.traction{background:#fff;padding:80px 30px;border-top:1px solid #e8e8e8;border-bottom:1px solid #e8e8e8}
+.traction h3{text-align:center;font-size:18px;color:#999;margin-bottom:50px;text-transform:uppercase;letter-spacing:2px;font-weight:600}
+.traction-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:50px;max-width:1100px;margin:0 auto}
+.traction-stat{text-align:center}
+.traction-number{font-size:56px;font-weight:900;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:10px}
+.traction-label{font-size:16px;color:#666;font-weight:600}
+.problem{padding:120px 30px;background:#faf5ff}
+.problem h2{text-align:center;font-size:52px;margin-bottom:30px;font-weight:900;color:#1a1a1a}
+.problem-subtitle{text-align:center;font-size:22px;color:#666;margin-bottom:80px;max-width:800px;margin-left:auto;margin-right:auto}
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:40px}
+.problem-card{background:#fff;padding:45px;border-radius:20px;box-shadow:0 8px 30px rgba(0,0,0,0.06);transition:transform 0.3s}
+.problem-card:hover{transform:translateY(-8px)}
+.problem-icon{font-size:52px;margin-bottom:20px;display:block}
+.problem-card h3{font-size:26px;margin-bottom:15px;color:#1a1a1a;font-weight:800}
+.problem-card p{color:#666;font-size:17px;line-height:1.8}
+.solution{padding:120px 30px;background:#fff}
+.solution h2{text-align:center;font-size:52px;margin-bottom:30px;font-weight:900;color:#1a1a1a}
+.solution-subtitle{text-align:center;font-size:22px;color:#666;margin-bottom:80px;max-width:800px;margin-left:auto;margin-right:auto}
+.solution-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:35px}
+.solution-card{background:linear-gradient(135deg,#faf5ff 0%,#fff 100%);padding:40px;border-radius:20px;border:2px solid #e8e8e8;transition:all 0.3s}
+.solution-card:hover{border-color:#a855f7;box-shadow:0 12px 40px rgba(168,85,247,0.2)}
+.solution-icon{font-size:48px;margin-bottom:18px;display:block}
+.solution-card h3{font-size:22px;margin-bottom:12px;color:#1a1a1a;font-weight:800}
+.solution-card p{color:#666;font-size:16px;line-height:1.7}
+.market{padding:120px 30px;background:#1a1a1a;color:#fff}
+.market h2{text-align:center;font-size:52px;margin-bottom:30px;font-weight:900}
+.market h2 .highlight{background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.market-subtitle{text-align:center;font-size:22px;color:#b0b0b0;margin-bottom:80px;max-width:900px;margin-left:auto;margin-right:auto}
+.market-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;max-width:1100px;margin:0 auto}
+.market-card{background:rgba(255,255,255,0.05);padding:45px;border-radius:20px;border:1px solid rgba(255,255,255,0.1);text-align:center}
+.market-card h3{font-size:48px;font-weight:900;color:#a855f7;margin-bottom:15px}
+.market-card p{font-size:18px;color:#b0b0b0;line-height:1.6}
+.market-card small{font-size:14px;color:#666;display:block;margin-top:10px}
+.investors{padding:120px 30px;background:#fff}
+.investors h2{text-align:center;font-size:52px;margin-bottom:30px;font-weight:900;color:#1a1a1a}
+.investors-subtitle{text-align:center;font-size:22px;color:#666;margin-bottom:80px;max-width:800px;margin-left:auto;margin-right:auto}
+.investor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px}
+.investor-card{background:linear-gradient(135deg,#faf5ff,#fff);padding:45px;border-radius:20px;border:2px solid #e8e8e8}
+.investor-card h3{font-size:24px;margin-bottom:15px;color:#1a1a1a;font-weight:800}
+.investor-card ul{list-style:none;margin-top:20px}
+.investor-card li{padding:12px 0;color:#666;border-bottom:1px solid #e8e8e8;font-size:16px}
+.investor-card li:last-child{border-bottom:none}
+.investor-card li strong{color:#6366f1;font-weight:700}
+.cta-investor{background:linear-gradient(135deg,#6366f1 0%,#a855f7 100%);color:#fff;padding:100px 30px;text-align:center}
+.cta-investor h2{font-size:56px;margin-bottom:25px;font-weight:900}
+.cta-investor p{font-size:24px;margin-bottom:40px;opacity:0.95;max-width:800px;margin-left:auto;margin-right:auto}
+.cta-investor .btn{background:#fff;color:#6366f1;border:none;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+.cta-investor .btn:hover{transform:translateY(-3px)}
+footer{background:#1a1a1a;color:#666;padding:60px 30px;text-align:center}
+footer p{font-size:14px}
+@media(max-width:768px){
+.hero h1{font-size:42px}
+.hero p{font-size:18px}
+nav ul{gap:20px}
+.hero-buttons{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">⚡ IncidentCommander</div>
+<ul>
+<li><a href="index.html">Product</a></li>
+<li><a href="how-it-works.html">Traction</a></li>
+<li><a href="contact.html">Investors</a></li>
+<li><span class="badge">Raising Series A</span></li>
+</ul>
+</nav></div></header>
+
+<section class="hero">
+<div class="container">
+<div class="hero-content">
+<div class="funding-badge">🚀 Raising $8M Series A · $42M Post-Money</div>
+<h1>The <span class="gradient">Incident OS</span> for Modern Engineering Teams</h1>
+<p>We're building the command center for DevOps incidents. Teams-native, AI-powered, and trusted by 240+ high-growth companies to reduce MTTR by 67%.</p>
+<div class="hero-buttons">
+<a href="contact.html" class="btn btn-primary">Request Investor Deck</a>
+<a href="how-it-works.html" class="btn btn-secondary">See Product Demo</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="traction">
+<div class="container">
+<h3>Traction & Growth</h3>
+<div class="traction-grid">
+<div class="traction-stat">
+<span class="traction-number">240+</span>
+<span class="traction-label">Paying Customers</span>
+</div>
+<div class="traction-stat">
+<span class="traction-number">$2.4M</span>
+<span class="traction-label">ARR (3x YoY)</span>
+</div>
+<div class="traction-stat">
+<span class="traction-number">130%</span>
+<span class="traction-label">Net Dollar Retention</span>
+</div>
+<div class="traction-stat">
+<span class="traction-number">8 mo</span>
+<span class="traction-label">Payback Period</span>
+</div>
+<div class="traction-stat">
+<span class="traction-number">94%</span>
+<span class="traction-label">Gross Margin</span>
+</div>
+</div>
+</div>
+</section>
+
+<section class="problem"><div class="container">
+<h2>The $18B Incident Management Problem</h2>
+<p class="problem-subtitle">Engineering teams lose $300K–$2M annually to slow, chaotic incident response. Traditional tools weren't built for the cloud-native era.</p>
+<div class="problem-grid">
+<div class="problem-card">
+<span class="problem-icon">💸</span>
+<h3>High Cost of Downtime</h3>
+<p>Every minute of downtime costs enterprises $5,600 on average. Slow MTTR compounds losses and damages customer trust.</p>
+</div>
+<div class="problem-card">
+<span class="problem-icon">🔀</span>
+<h3>Tool Sprawl Chaos</h3>
+<p>Teams juggle 6–12 tools during incidents: Slack, PagerDuty, Jira, Zoom, Statuspage. Context switching slows resolution by 40%.</p>
+</div>
+<div class="problem-card">
+<span class="problem-icon">📊</span>
+<h3>No Visibility for Leadership</h3>
+<p>VPs and CIOs lack real-time dashboards. Board-level reporting requires manual spreadsheets compiled days after incidents.</p>
+</div>
+</div>
+</div></section>
+
+<section class="solution"><div class="container">
+<h2>Our Solution: The Incident OS</h2>
+<p class="solution-subtitle">A single platform embedded in Microsoft Teams that orchestrates the entire incident lifecycle—from detection to postmortem.</p>
+<div class="solution-grid">
+<div class="solution-card">
+<span class="solution-icon">🤖</span>
+<h3>AI-Powered Triage</h3>
+<p>GPT-4 analyzes alerts, auto-assigns incident commanders, and suggests runbooks in <3 seconds.</p>
+</div>
+<div class="solution-card">
+<span class="solution-icon">⚡</span>
+<h3>Teams-Native UX</h3>
+<p>No app switching. Declare, coordinate, update, and resolve incidents entirely within Teams.</p>
+</div>
+<div class="solution-card">
+<span class="solution-icon">📈</span>
+<h3>Real-Time Dashboards</h3>
+<p>Executive visibility into active incidents, MTTR trends, SLA compliance, and team workload.</p>
+</div>
+<div class="solution-card">
+<span class="solution-icon">🔗</span>
+<h3>Deep Integrations</h3>
+<p>Bidirectional sync with PagerDuty, ServiceNow, Datadog, Splunk—50+ connectors out-of-the-box.</p>
+</div>
+<div class="solution-card">
+<span class="solution-icon">🔒</span>
+<h3>Enterprise Security</h3>
+<p>SOC 2 Type II, ISO 27001, GDPR. Deployed in regulated industries: fintech, healthcare, gov contractors.</p>
+</div>
+<div class="solution-card">
+<span class="solution-icon">💡</span>
+<h3>Blameless Postmortems</h3>
+<p>Auto-generated timelines, root cause analysis, and action items. Integrates with Confluence/Notion.</p>
+</div>
+</div>
+</div></section>
+
+<section class="market"><div class="container">
+<h2>Massive <span class="highlight">TAM</span> in Critical Infrastructure</h2>
+<p class="market-subtitle">Incident management is a wedge into the $50B+ DevOps and observability market. We're capturing high-intent buyers with urgent pain.</p>
+<div class="market-stats">
+<div class="market-card">
+<h3>$18B</h3>
+<p>Global incident management market (2025)</p>
+<small>Growing 22% CAGR through 2030</small>
+</div>
+<div class="market-card">
+<h3>580K+</h3>
+<p>Engineering teams using Microsoft Teams daily</p>
+<small>Our primary distribution channel</small>
+</div>
+<div class="market-card">
+<h3>$300K+</h3>
+<p>Avg annual cost of downtime per mid-market company</p>
+<small>Our ROI pitch: save $200K/yr</small>
+</div>
+</div>
+</div></section>
+
+<section class="investors"><div class="container">
+<h2>Why Now? Why Us?</h2>
+<p class="investors-subtitle">The convergence of AI, Teams adoption, and DevOps maturity creates a unique window to disrupt legacy players.</p>
+<div class="investor-grid">
+<div class="investor-card">
+<h3>🚀 Product-Market Fit</h3>
+<ul>
+<li><strong>67% MTTR reduction</strong> on average (measured across 240 customers)</li>
+<li><strong>NPS 72</strong> (top quartile for B2B SaaS)</li>
+<li><strong>130% NDR</strong> driven by land-and-expand motion</li>
+<li><strong>8-month payback</strong> with 94% gross margin</li>
+</ul>
+</div>
+<div class="investor-card">
+<h3>💼 Go-to-Market Velocity</h3>
+<ul>
+<li><strong>3x ARR growth</strong> YoY (bootstrapped to $2.4M ARR)</li>
+<li><strong>$12K ACV</strong> for SMB; $85K ACV for enterprise</li>
+<li><strong>PLG motion:</strong> 14-day free trial → 28% conversion</li>
+<li><strong>Sales cycle:</strong> 32 days (SMB), 68 days (enterprise)</li>
+</ul>
+</div>
+<div class="investor-card">
+<h3>🏆 Competitive Moats</h3>
+<ul>
+<li><strong>Teams-first:</strong> Only native incident bot for Teams (Slack competitors lag)</li>
+<li><strong>AI differentiation:</strong> Proprietary runbook recommendation engine</li>
+<li><strong>Network effects:</strong> Integrations = switching cost</li>
+<li><strong>Team pedigree:</strong> Ex-PagerDuty, Microsoft, Datadog</li>
+</ul>
+</div>
+</div>
+</div></section>
+
+<section class="cta-investor">
+<div class="container">
+<h2>Join Our Series A Round</h2>
+<p>We're raising $8M to accelerate enterprise sales, expand our AI capabilities, and capture market share from legacy vendors. Interested investors: request our deck.</p>
+<a href="contact.html" class="btn">Request Investor Materials</a>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • Confidential & Proprietary</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growth Metrics & Unit Economics - GenerativeKB</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Space Grotesk',-apple-system,sans-serif;line-height:1.6;color:#0f172a;background:#fff}
+.container{max-width:1400px;margin:0 auto;padding:0 30px}
+header{background:#fff;border-bottom:2px solid #f1f5f9;padding:22px 0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:28px;font-weight:900;background:linear-gradient(135deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav ul{list-style:none;display:flex;gap:40px;align-items:center}
+nav a{color:#475569;text-decoration:none;font-weight:700;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#8b5cf6}
+.badge{background:linear-gradient(135deg,#8b5cf6,#ec4899);color:#fff;padding:8px 20px;border-radius:25px;font-size:13px;font-weight:800;box-shadow:0 4px 15px rgba(139,92,246,0.3)}
+.page-hero{background:linear-gradient(180deg,#faf5ff 0%,#fff 100%);padding:100px 30px;text-align:center}
+.page-hero h1{font-size:56px;font-weight:900;color:#0f172a;margin-bottom:25px}
+.page-hero p{font-size:22px;color:#64748b;max-width:900px;margin:0 auto}
+.unit-economics{padding:100px 30px;background:#fff}
+.unit-economics h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:60px;color:#0f172a}
+.economics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:50px;max-width:1300px;margin:0 auto}
+.economics-card{background:linear-gradient(135deg,#faf5ff,#fff);padding:50px;border-radius:20px;border:2px solid #f3e8ff;box-shadow:0 10px 30px rgba(0,0,0,0.05);text-align:center}
+.economics-card h3{font-size:22px;color:#8b5cf6;margin-bottom:25px;font-weight:900;text-transform:uppercase;letter-spacing:1px}
+.economics-card .big-number{font-size:52px;font-weight:900;color:#8b5cf6;margin-bottom:15px}
+.economics-card p{font-size:17px;color:#475569;line-height:1.8}
+.cohort-analysis{padding:100px 30px;background:linear-gradient(180deg,#fff 0%,#faf5ff 100%)}
+.cohort-analysis h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:70px;color:#0f172a}
+.cohort-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1400px;margin:0 auto}
+.cohort-card{background:#fff;padding:40px;border-radius:20px;text-align:center;border:2px solid #f3e8ff;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+.cohort-card h3{font-size:18px;color:#8b5cf6;margin-bottom:20px;font-weight:800;text-transform:uppercase}
+.cohort-card .metric{font-size:48px;color:#0f172a;font-weight:900;margin-bottom:12px}
+.cohort-card p{font-size:15px;color:#64748b;line-height:1.7}
+.growth-story{padding:100px 30px;background:#0f172a;color:#fff}
+.growth-story h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:50px}
+.growth-content{max-width:1100px;margin:0 auto;background:#1e293b;padding:60px;border-radius:20px;border:2px solid #334155}
+.growth-content h3{font-size:28px;color:#8b5cf6;margin-bottom:25px;font-weight:900}
+.growth-content p{font-size:18px;color:#cbd5e1;line-height:1.9;margin-bottom:25px}
+.growth-content ul{margin-left:30px;font-size:17px;color:#cbd5e1;line-height:2}
+.growth-content li{margin-bottom:10px}
+.testimonial-section{padding:100px 30px;background:linear-gradient(180deg,#faf5ff 0%,#fff 100%)}
+.testimonial-section h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:70px;color:#0f172a}
+.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1400px;margin:0 auto}
+.testimonial-card{background:#fff;padding:40px;border-radius:20px;border:2px solid #f3e8ff;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+.testimonial-card .quote{font-size:18px;color:#475569;line-height:1.8;margin-bottom:25px;font-style:italic}
+.testimonial-card .author{font-size:16px;color:#8b5cf6;font-weight:800}
+.testimonial-card .company{font-size:14px;color:#64748b;margin-top:5px}
+footer{background:#0f172a;color:#64748b;padding:50px 30px;text-align:center;font-size:14px;border-top:2px solid #1e293b}
+@media(max-width:768px){
+.economics-grid,.cohort-grid,.testimonial-grid{grid-template-columns:1fr}
+.page-hero h1{font-size:40px}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">🤖 GenerativeKB</div>
+<ul>
+<li><a href="index.html">Product</a></li>
+<li><a href="how-it-works.html">Metrics</a></li>
+<li><a href="contact.html">Investors</a></li>
+<li><span class="badge">$4.8M ARR</span></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>Unit Economics & Growth Story</h1>
+<p>Best-in-class SaaS metrics with efficient growth and world-class retention</p>
+</div>
+</section>
+
+<section class="unit-economics">
+<div class="container">
+<h2>📈 Unit Economics (Q4 2024)</h2>
+<div class="economics-grid">
+<div class="economics-card">
+<h3>CAC</h3>
+<div class="big-number">$6.4K</div>
+<p>Customer acquisition cost trending down from $9.2K in Q1 2024 as we scale PLG motion and optimize paid channels</p>
+</div>
+<div class="economics-card">
+<h3>LTV</h3>
+<div class="big-number">$82K</div>
+<p>Lifetime value based on 48-month avg customer lifetime, $17K ACV, 92% gross margin</p>
+</div>
+<div class="economics-card">
+<h3>LTV:CAC</h3>
+<div class="big-number">12.8x</div>
+<p>Best-in-class ratio (target: >3x). Efficient growth with 5.2-month payback period</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cohort-analysis">
+<div class="container">
+<h2>📊 Key Performance Metrics</h2>
+<div class="cohort-grid">
+<div class="cohort-card">
+<h3>ARR</h3>
+<div class="metric">$4.8M</div>
+<p>212% YoY growth (from $2.3M in Q4 2023)</p>
+</div>
+<div class="cohort-card">
+<h3>NDR</h3>
+<div class="metric">142%</div>
+<p>Net dollar retention driven by expansion (avg customer grows 3.2x in year 2)</p>
+</div>
+<div class="cohort-card">
+<h3>Gross Margin</h3>
+<div class="metric">92%</div>
+<p>Best-in-class for AI SaaS (infrastructure costs: 8% of revenue)</p>
+</div>
+<div class="cohort-card">
+<h3>NPS</h3>
+<div class="metric">84</div>
+<p>World-class customer satisfaction (top decile for B2B SaaS)</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="growth-story">
+<div class="container">
+<h2>The Growth Flywheel</h2>
+<div class="growth-content">
+<h3>How We Got Here</h3>
+<p><strong>2022 (Seed):</strong> Launched with 6 design partners, $240K ARR, manual implementation process. Built core AI answering engine and ServiceNow integration.</p>
+<p><strong>2023:</strong> Scaled to 85 customers, $2.3M ARR (858% growth). Achieved product-market fit in mid-market (500–5K employees). Built self-service onboarding, reducing sales cycle from 90 → 32 days.</p>
+<p><strong>2024 (Current):</strong> Reached 280 customers, $4.8M ARR (212% growth). Expanded upmarket into enterprise (5K+ employees), launched Slack + Teams integrations, achieved 142% NDR.</p>
+<h3 style="margin-top:40px">Where We're Going (2025–2027)</h3>
+<ul>
+<li><strong>2025 Target:</strong> $14M ARR, 720 customers, international expansion (UK, Germany)</li>
+<li><strong>2026 Target:</strong> $38M ARR, 1,800 customers, Series B fundraise</li>
+<li><strong>2027 Target:</strong> $95M ARR, 3,200 customers, path to profitability</li>
+</ul>
+<p style="margin-top:30px;font-size:16px;color:#94a3b8;">Series A funds will accelerate GTM (4 → 24 AEs), expand AI capabilities (multi-language, voice), and build strategic partnerships with ServiceNow, Microsoft, and Salesforce.</p>
+</div>
+</div>
+</section>
+
+<section class="testimonial-section">
+<div class="container">
+<h2>💬 Customer Testimonials</h2>
+<div class="testimonial-grid">
+<div class="testimonial-card">
+<div class="quote">"GenerativeKB reduced our support ticket volume by 68% in the first 90 days. Our agents can now focus on complex issues instead of answering the same password reset questions 500 times a day."</div>
+<div class="author">Sarah Chen</div>
+<div class="company">VP IT Operations, 8,000-employee SaaS company</div>
+</div>
+<div class="testimonial-card">
+<div class="quote">"We saved $1.2M annually by avoiding 12 support agent hires. The ROI was positive within 3 months. Best SaaS purchase decision we've made in 5 years."</div>
+<div class="author">Michael Torres</div>
+<div class="company">CFO, 4,200-employee fintech</div>
+</div>
+<div class="testimonial-card">
+<div class="quote">"CSAT scores improved from 72 to 94 after deploying GenerativeKB. Employees get instant answers instead of waiting 6 hours for a human response. Game-changing."</div>
+<div class="author">Jessica Park</div>
+<div class="company">Head of Employee Experience, 12K-employee healthcare company</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • Confidential & Proprietary</p>
+</div></footer>
+</body>
+</html>

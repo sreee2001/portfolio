@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srikanth Tangella - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .header .description {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            opacity: 0.85;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Navigation */
+        .nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #0ea5e9;
+        }
+
+        /* Section */
+        .section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-thumbnail {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #0ea5e9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.75rem;
+        }
+
+        .portfolio-description {
+            color: #64748b;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0ea5e9;
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s;
+        }
+
+        .portfolio-link:hover {
+            gap: 1rem;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #0ea5e9;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 6rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>Srikanth Tangella</h1>
+        <p class="subtitle">Full-Stack Developer & UI/UX Designer</p>
+        <p class="description">
+            15+ years crafting enterprise solutions, from cybersecurity platforms 
+            to seismic data processing. Passionate about clean code and beautiful interfaces.
+        </p>
+        <div class="social-links">
+            <a href="mailto:sreee2001@gmail.com" class="social-btn">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+            <a href="https://linkedin.com/in/srikanthtangella" class="social-btn" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/sreee2001" class="social-btn" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="mocks/personal-biography/index.html" class="social-btn">
+                <i class="fas fa-user"></i> Full Bio
+            </a>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#portfolio" class="nav-link active">Portfolio</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <p>
+                I'm a seasoned software engineer with expertise spanning cybersecurity, 
+                financial services, energy, and healthcare. I've architected security 
+                platforms protecting 100,000+ devices and built high-performance systems 
+                processing terabytes of seismic data.
+            </p>
+            <p>
+                Beyond backend systems, I'm passionate about creating intuitive, beautiful 
+                user interfaces. This portfolio showcases my UI/UX design work—crafting 
+                mock websites and prototypes for various industries and use cases.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Mock Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Companies</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100K+</div>
+                    <div class="stat-label">Devices Secured</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section">
+        <h2 class="section-title">UI/UX Portfolio</h2>
+        <p class="section-subtitle">
+            A collection of website mockups and prototypes showcasing different 
+            design approaches, color schemes, and user experiences.
+        </p>
+
+        <div class="portfolio-grid">
+            <!-- Personal Biography -->
+            <div class="portfolio-card" onclick="window.open('mocks/personal-biography/index.html', '_blank')">
+                <div class="portfolio-thumbnail">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Personal Biography</h3>
+                    <p class="portfolio-description">
+                        Interactive timeline-based portfolio with theme switcher, 
+                        journey tracker, and responsive design. Features 10 companies 
+                        across 15+ years with detailed accomplishments.
+                    </p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Interactive</span>
+                        <span class="tag">Timeline</span>
+                        <span class="tag">Responsive</span>
+                        <span class="tag">Theme Switcher</span>
+                    </div>
+                    <a href="mocks/personal-biography/index.html" class="portfolio-link" target="_blank">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Slack Workflow Builder - Small Business -->
+            <div class="portfolio-card" onclick="window.open('mocks/slack-workflow-pro/variant-1-small-business/index.html', '_blank')">
+                <div class="portfolio-thumbnail">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Slack Workflow Pro - Small Business</h3>
+                    <p class="portfolio-description">
+                        Friendly, approachable design for small businesses. Purple gradient 
+                        theme with clear value propositions and simplified navigation.
+                    </p>
+                    <div class="portfolio-tags">
+                        <span class="tag">SaaS</span>
+                        <span class="tag">SMB</span>
+                        <span class="tag">Purple Theme</span>
+                    </div>
+                    <a href="mocks/slack-workflow-pro/variant-1-small-business/index.html" class="portfolio-link" target="_blank">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Slack Workflow Builder - Enterprise -->
+            <div class="portfolio-card" onclick="window.open('mocks/slack-workflow-pro/variant-2-enterprise/index.html', '_blank')">
+                <div class="portfolio-thumbnail">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Slack Workflow Pro - Enterprise</h3>
+                    <p class="portfolio-description">
+                        Professional dark theme targeting IT leadership. Features 
+                        comprehensive solutions page with 20+ workflow cards across 
+                        5 departments (IT, HR, Finance, Security, Sales).
+                    </p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Enterprise</span>
+                        <span class="tag">Dark Theme</span>
+                        <span class="tag">B2B</span>
+                    </div>
+                    <a href="mocks/slack-workflow-pro/variant-2-enterprise/index.html" class="portfolio-link" target="_blank">
+                        View Project <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Add more portfolio cards here -->
+            
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="about-content">
+            <p>
+                Interested in collaboration, have a project in mind, or just want to chat 
+                about technology and design? I'd love to hear from you!
+            </p>
+            <div style="margin-top: 2rem;">
+                <a href="mailto:sreee2001@gmail.com" class="social-btn" style="background: linear-gradient(135deg, #0ea5e9, #1e40af); border: none;">
+                    <i class="fas fa-envelope"></i> Email Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Srikanth Tangella. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            Built with HTML, CSS, and lots of ☕
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Update active link
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

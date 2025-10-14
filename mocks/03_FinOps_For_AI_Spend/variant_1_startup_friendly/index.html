@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinOps For AI Spend - Save 40% on GPU & LLM Costs</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;line-height:1.6;color:#2d3748;background:#fff}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+header{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.05);padding:18px 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:800;color:#2563eb}
+nav ul{list-style:none;display:flex;gap:30px;align-items:center}
+nav a{color:#2d3748;text-decoration:none;font-weight:500;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#2563eb}
+.cta-btn{background:#2563eb;color:#fff;padding:10px 24px;border-radius:8px;font-weight:600;transition:background 0.3s}
+.cta-btn:hover{background:#1d4ed8}
+.hero{background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);padding:80px 20px;text-align:center}
+.hero h1{font-size:48px;color:#1e293b;margin-bottom:20px;font-weight:900}
+.hero .highlight{color:#2563eb}
+.hero p{font-size:20px;color:#64748b;max-width:700px;margin:0 auto 30px}
+.hero-cta{display:inline-block;background:#2563eb;color:#fff;padding:16px 40px;border-radius:10px;font-size:18px;font-weight:700;text-decoration:none;margin-top:10px;transition:transform 0.3s}
+.hero-cta:hover{transform:translateY(-3px)}
+.badge{background:#dcfce7;color:#166534;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600;display:inline-block;margin-bottom:15px}
+.stats{padding:60px 20px;background:#fff}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;text-align:center}
+.stat-card h3{font-size:44px;color:#2563eb;font-weight:900;margin-bottom:8px}
+.stat-card p{color:#64748b;font-size:16px}
+.features{padding:80px 20px;background:#f8fafc}
+.features h2{text-align:center;font-size:40px;color:#1e293b;margin-bottom:50px;font-weight:900}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.feature-card{background:#fff;padding:35px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.06);transition:transform 0.3s}
+.feature-card:hover{transform:translateY(-5px)}
+.feature-icon{font-size:40px;margin-bottom:15px}
+.feature-card h3{font-size:22px;color:#1e293b;margin-bottom:12px;font-weight:700}
+.feature-card p{color:#64748b;font-size:15px;line-height:1.7}
+.pricing{padding:80px 20px;background:#fff;text-align:center}
+.pricing h2{font-size:40px;color:#1e293b;margin-bottom:20px;font-weight:900}
+.pricing p{color:#64748b;font-size:18px;margin-bottom:40px}
+.pricing-card{max-width:400px;margin:0 auto;background:#fff;border:2px solid #e2e8f0;border-radius:15px;padding:40px;box-shadow:0 8px 20px rgba(0,0,0,0.08)}
+.pricing-card .price{font-size:52px;color:#2563eb;font-weight:900;margin:20px 0}
+.pricing-card .price span{font-size:22px;color:#64748b;font-weight:500}
+.pricing-card ul{list-style:none;text-align:left;margin:25px 0}
+.pricing-card li{padding:12px 0;color:#2d3748;border-bottom:1px solid #f1f5f9;font-size:16px}
+.pricing-card li:last-child{border-bottom:none}
+.pricing-card li::before{content:"✓";color:#2563eb;font-weight:bold;margin-right:10px}
+footer{background:#1e293b;color:#94a3b8;padding:40px 20px;text-align:center;font-size:14px}
+@media(max-width:768px){
+.hero h1{font-size:36px}
+.stats-grid,.feature-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">💰 FinOps AI</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">How It Works</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="#" class="cta-btn">Start Free Trial</a></li>
+</ul>
+</nav></div></header>
+
+<section class="hero">
+<div class="container">
+<span class="badge">🚀 Used by 200+ AI teams</span>
+<h1>Save <span class="highlight">40% on AI Costs</span><br>Without Changing Your Code</h1>
+<p>Automatically optimize GPU utilization, LLM API spending, and cloud costs. Built for startups running AI/ML workloads on tight budgets.</p>
+<a href="#" class="hero-cta">Get Your Free Cost Report →</a>
+</div>
+</section>
+
+<section class="stats">
+<div class="container">
+<div class="stats-grid">
+<div class="stat-card">
+<h3>$2.4M</h3>
+<p>Total Saved (Customers)</p>
+</div>
+<div class="stat-card">
+<h3>41%</h3>
+<p>Average Cost Reduction</p>
+</div>
+<div class="stat-card">
+<h3>15 min</h3>
+<p>Setup Time</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="features">
+<div class="container">
+<h2>How We Cut Your AI Bill</h2>
+<div class="feature-grid">
+<div class="feature-card">
+<div class="feature-icon">🎯</div>
+<h3>GPU Right-Sizing</h3>
+<p>Auto-detect over-provisioned GPU instances. Switch H100s to A100s when workload doesn't need it. Save $5-15K/month instantly.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🤖</div>
+<h3>LLM Router</h3>
+<p>Route prompts to cheapest model that meets quality bar. GPT-4 → GPT-3.5 → Claude Haiku automatically. Cut API costs 50%.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">📊</div>
+<h3>Cost Dashboards</h3>
+<p>Real-time visibility into spend by team, model, and project. Export reports for investors & board meetings.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">⏰</div>
+<h3>Auto-Shutdown</h3>
+<p>Kill idle GPU instances after 30 minutes. No more $8/hour A100s running overnight because someone forgot.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">💡</div>
+<h3>Spot Instance Mgmt</h3>
+<p>Auto-bid on spot/preemptible GPUs. Fall back to on-demand only when needed. Save 60-80% on training jobs.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🔔</div>
+<h3>Budget Alerts</h3>
+<p>Slack notifications when teams hit 80% of monthly budget. Prevent surprise $50K bills at month-end.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="pricing">
+<div class="container">
+<h2>Simple, Transparent Pricing</h2>
+<p>Pay only for what you save. No upfront costs.</p>
+<div class="pricing-card">
+<h3>Startup Plan</h3>
+<div class="price">15<span>% of savings</span></div>
+<ul>
+<li>Up to $100K/month AI spend</li>
+<li>All optimization features</li>
+<li>Slack & email alerts</li>
+<li>Weekly cost reports</li>
+<li>Email support (24hr SLA)</li>
+<li>Cancel anytime</li>
+</ul>
+<a href="#" class="hero-cta" style="display:block;margin-top:20px">Start Free Trial</a>
+</div>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 FinOps AI by SPEC Global Solutions • <a href="mailto:srikanth.tangella@gmail.com" style="color:#60a5fa">srikanth.tangella@gmail.com</a> • +1 (281) 455-6722</p>
+</div></footer>
+</body>
+</html>

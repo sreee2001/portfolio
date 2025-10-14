@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - Workflow Builder Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-cta {
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+        }
+        .nav-cta::after {
+            display: none;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #f97316, #fb923c, #fdba74);
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '⚙️';
+            position: absolute;
+            font-size: 400px;
+            opacity: 0.08;
+            top: -100px;
+            right: -50px;
+            transform: rotate(15deg);
+        }
+        .page-header h1 {
+            font-size: 64px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .page-header p {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 120px 40px;
+            background: white;
+        }
+        .section-intro {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .section-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #fff5f0, #fed7aa);
+            color: #f97316;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        .section-intro h2 {
+            font-size: 52px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+        .section-intro p {
+            font-size: 20px;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #f97316, #fb923c);
+            border-radius: 10px;
+        }
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 80px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: center;
+        }
+        .timeline-item:nth-child(even) .timeline-content {
+            order: 3;
+        }
+        .timeline-item:nth-child(even) .timeline-visual {
+            order: 1;
+        }
+        .timeline-item:nth-child(even) .timeline-number {
+            order: 2;
+        }
+        .timeline-content {
+            background: linear-gradient(135deg, #fff5f0, white);
+            padding: 50px;
+            border-radius: 30px;
+            border: 3px solid #fed7aa;
+            transition: all 0.4s;
+            position: relative;
+        }
+        .timeline-content:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(249, 115, 22, 0.2);
+            border-color: #f97316;
+        }
+        .timeline-content h3 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+        .timeline-content p {
+            font-size: 18px;
+            color: #64748b;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .timeline-content ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+        .timeline-content ul li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #475569;
+            font-size: 16px;
+        }
+        .timeline-content ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #f97316;
+            font-weight: 800;
+            font-size: 20px;
+        }
+        .timeline-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);
+            position: relative;
+            z-index: 2;
+            border: 5px solid white;
+        }
+        .timeline-visual {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.1);
+            border: 3px solid #fed7aa;
+        }
+        .visual-box {
+            background: linear-gradient(135deg, #ffedd5, #fed7aa);
+            height: 250px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #f97316;
+            font-weight: 700;
+            text-align: center;
+            padding: 20px;
+            border: 3px dashed #fb923c;
+        }
+
+        /* Interactive Demo Section */
+        .demo-section {
+            padding: 120px 40px;
+            background: linear-gradient(180deg, #fff5f0, white);
+        }
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .demo-card {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            border: 3px solid #fed7aa;
+            cursor: pointer;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .demo-card::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.08), transparent);
+            top: -50px;
+            right: -50px;
+            border-radius: 50%;
+            transition: all 0.4s;
+        }
+        .demo-card:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        .demo-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 25px 60px rgba(249, 115, 22, 0.2);
+            border-color: #f97316;
+        }
+        .demo-icon {
+            font-size: 56px;
+            margin-bottom: 25px;
+            display: block;
+        }
+        .demo-card h3 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .demo-card p {
+            font-size: 17px;
+            color: #64748b;
+            line-height: 1.8;
+            position: relative;
+        }
+        .demo-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        /* Features Comparison */
+        .comparison-section {
+            padding: 120px 40px;
+            background: #0f172a;
+        }
+        .comparison-section .section-intro h2,
+        .comparison-section .section-intro p {
+            color: white;
+        }
+        .comparison-section .section-tag {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(251, 146, 60, 0.2));
+            color: #fb923c;
+        }
+        .comparison-table {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(249, 115, 22, 0.3);
+        }
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 30px;
+            padding: 30px 50px;
+            border-bottom: 2px solid #f1f5f9;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        .comparison-row:hover {
+            background: #fff5f0;
+        }
+        .comparison-row.header {
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            color: white;
+            font-weight: 800;
+            font-size: 18px;
+        }
+        .comparison-row.header:hover {
+            background: linear-gradient(135deg, #f97316, #fb923c);
+        }
+        .comparison-row .feature {
+            font-weight: 600;
+            font-size: 17px;
+            color: #1e293b;
+        }
+        .comparison-row.header .feature {
+            color: white;
+        }
+        .comparison-row .check {
+            color: #10b981;
+            font-size: 28px;
+            font-weight: 800;
+            text-align: center;
+        }
+        .comparison-row .cross {
+            color: #ef4444;
+            font-size: 28px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 120px 40px;
+            background: linear-gradient(135deg, #fff5f0, white);
+            text-align: center;
+        }
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .cta-content h2 {
+            font-size: 58px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+        .cta-content p {
+            font-size: 22px;
+            color: #64748b;
+            margin-bottom: 45px;
+            line-height: 1.7;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-btn {
+            padding: 22px 50px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 19px;
+            text-decoration: none;
+            transition: all 0.4s;
+        }
+        .cta-btn.primary {
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            color: white;
+            box-shadow: 0 15px 40px rgba(249, 115, 22, 0.4);
+        }
+        .cta-btn.primary:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(249, 115, 22, 0.5);
+        }
+        .cta-btn.secondary {
+            background: white;
+            color: #f97316;
+            border: 3px solid #fed7aa;
+        }
+        .cta-btn.secondary:hover {
+            background: #fff5f0;
+            border-color: #f97316;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 80px 40px 40px;
+        }
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+        .footer-section h4 {
+            color: white;
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 14px;
+        }
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 15px;
+        }
+        .footer-section a:hover {
+            color: #f97316;
+        }
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 35px;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .timeline::before {
+                left: 40px;
+            }
+            .timeline-item {
+                grid-template-columns: 80px 1fr;
+            }
+            .timeline-item:nth-child(even) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-visual {
+                order: 2;
+            }
+            .timeline-item:nth-child(even) .timeline-number {
+                order: 1;
+            }
+            .timeline-visual {
+                display: none;
+            }
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+            .comparison-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 25px;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .page-header h1 {
+                font-size: 42px;
+            }
+            .section-intro h2 {
+                font-size: 38px;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">⚡ Workflow Builder Pro</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="nav-cta">Start Free →</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>How It Works</h1>
+        <p>From zero to automated in 4 simple steps. No coding required.</p>
+    </section>
+
+    <section class="timeline-section">
+        <div class="section-intro">
+            <div class="section-tag">🚀 GETTING STARTED</div>
+            <h2>Build Your First Workflow</h2>
+            <p>Follow our proven 4-step process to automate any Slack workflow in minutes</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Choose Your Trigger</h3>
+                    <p>Start by selecting what kicks off your workflow. Pick from dozens of Slack events or external app triggers.</p>
+                    <ul>
+                        <li>Slack message, emoji reaction, channel join</li>
+                        <li>Time-based triggers (daily, weekly, custom schedule)</li>
+                        <li>Webhook triggers from external systems</li>
+                        <li>Form submissions and button clicks</li>
+                    </ul>
+                </div>
+                <div class="timeline-number">1</div>
+                <div class="timeline-visual">
+                    <div class="visual-box">
+                        [Trigger Selection Interface]<br>
+                        Dropdown menu showing trigger options
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Design Your Workflow</h3>
+                    <p>Use our drag-and-drop builder to connect actions, add conditions, and create branching logic visually.</p>
+                    <ul>
+                        <li>Drag-and-drop action blocks (send message, update database)</li>
+                        <li>Conditional logic with if/then/else branches</li>
+                        <li>Variable mapping and data transformation</li>
+                        <li>Real-time workflow preview as you build</li>
+                    </ul>
+                </div>
+                <div class="timeline-number">2</div>
+                <div class="timeline-visual">
+                    <div class="visual-box">
+                        [Workflow Canvas]<br>
+                        Connected blocks with arrows
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Connect Your Apps</h3>
+                    <p>Integrate with 500+ apps and services. Authenticate once, then pass data seamlessly between systems.</p>
+                    <ul>
+                        <li>Pre-built connectors for Google, Microsoft, Salesforce</li>
+                        <li>Custom API integrations with OAuth support</li>
+                        <li>Database connections (PostgreSQL, MySQL, MongoDB)</li>
+                        <li>Secure credential storage and management</li>
+                    </ul>
+                </div>
+                <div class="timeline-number">3</div>
+                <div class="timeline-visual">
+                    <div class="visual-box">
+                        [Integration Panel]<br>
+                        App logos with "Connected" badges
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Test & Deploy</h3>
+                    <p>Run test executions, review detailed logs, then deploy to your team with confidence.</p>
+                    <ul>
+                        <li>One-click test runs with sample data</li>
+                        <li>Detailed execution logs and error handling</li>
+                        <li>Version control and rollback capabilities</li>
+                        <li>Performance analytics and usage metrics</li>
+                    </ul>
+                </div>
+                <div class="timeline-number">4</div>
+                <div class="timeline-visual">
+                    <div class="visual-box">
+                        [Deploy Dashboard]<br>
+                        Test results and deploy button
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section">
+        <div class="demo-container">
+            <div class="section-intro">
+                <div class="section-tag">⚙️ POWERFUL FEATURES</div>
+                <h2>Built for Non-Technical Teams</h2>
+                <p>Everything you need to automate complex workflows without writing code</p>
+            </div>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <span class="demo-icon">🎨</span>
+                    <h3>Visual Workflow Builder</h3>
+                    <p>Intuitive drag-and-drop interface that feels like drawing a flowchart. Connect triggers, actions, and logic blocks in seconds. No technical skills required.</p>
+                    <span class="demo-badge">Most Popular</span>
+                </div>
+                <div class="demo-card">
+                    <span class="demo-icon">🔗</span>
+                    <h3>500+ Pre-Built Integrations</h3>
+                    <p>Connect to Google Workspace, Microsoft 365, Salesforce, Jira, GitHub, and 490+ more apps. One-click authentication, zero setup hassle.</p>
+                    <span class="demo-badge">Enterprise Ready</span>
+                </div>
+                <div class="demo-card">
+                    <span class="demo-icon">🧠</span>
+                    <h3>Smart Conditional Logic</h3>
+                    <p>Add if/then branches, loops, delays, and filters. Create intelligent workflows that adapt based on data, user input, or external conditions.</p>
+                    <span class="demo-badge">Advanced</span>
+                </div>
+                <div class="demo-card">
+                    <span class="demo-icon">📊</span>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Track workflow performance with detailed dashboards. Monitor completion rates, execution times, error rates, and identify bottlenecks instantly.</p>
+                    <span class="demo-badge">Pro Feature</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <div class="section-intro">
+            <div class="section-tag">⚖️ COMPARISON</div>
+            <h2>Why Choose Workflow Builder Pro?</h2>
+            <p>See how we compare to building workflows manually or using Slack's native tools</p>
+        </div>
+        <div class="comparison-table">
+            <div class="comparison-row header">
+                <div class="feature">Feature</div>
+                <div>Manual Process</div>
+                <div>Workflow Builder Pro</div>
+            </div>
+            <div class="comparison-row">
+                <div class="feature">Visual workflow builder</div>
+                <div class="cross">✗</div>
+                <div class="check">✓</div>
+            </div>
+            <div class="comparison-row">
+                <div class="feature">500+ app integrations</div>
+                <div class="cross">✗</div>
+                <div class="check">✓</div>
+            </div>
+            <div class="comparison-row">
+                <div class="feature">Conditional logic & branches</div>
+                <div class="cross">✗</div>
+                <div class="check">✓</div>
+            </div>
+            <div class="comparison-row">
+                <div class="feature">Pre-built templates</div>
+                <div class="cross">✗</div>
+                <div class="check">✓</div>
+            </div>
+            <div class="comparison-row">
+                <div class="feature">Real-time analytics</div>
+                <div class="cross">✗</div>
+                <div class="check">✓</div>
+            </div>
+            <div class="comparison-row">
+                <div class="feature">No coding required</div>
+                <div class="cross">✗</div>
+                <div class="check">✓</div>
+            </div>
+            <div class="comparison-row">
+                <div class="feature">Setup time</div>
+                <div>Days/Weeks</div>
+                <div>Minutes</div>
+            </div>
+            <div class="comparison-row">
+                <div class="feature">Cost to maintain</div>
+                <div>High</div>
+                <div>Low</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Build Your First Workflow?</h2>
+            <p>Join 2,400+ teams automating Slack with drag-and-drop simplicity. Start your free 14-day trial today.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-btn primary">Start Free Trial →</a>
+                <a href="contact.html" class="cta-btn secondary">Schedule a Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Templates</a></li>
+                    <li><a href="#">Integrations</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Video Tutorials</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Compliance</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Workflow Builder Pro. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

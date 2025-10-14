@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works - SentinelBridge+</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;line-height:1.6;color:#2d3748;background:#fff}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+header{background:linear-gradient(90deg,#6b46c1 0%,#9f7aea 100%);padding:16px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:28px;font-weight:800;color:#fff}
+nav ul{list-style:none;display:flex;gap:32px}
+nav a{color:#fff;text-decoration:none;font-weight:500}
+.page-header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:80px 24px;text-align:center}
+.page-header h1{font-size:48px;margin-bottom:16px;font-weight:900}
+.page-header p{font-size:20px;opacity:0.95}
+.content{padding:96px 24px}
+.step-grid{display:grid;gap:48px;max-width:900px;margin:0 auto}
+.step{display:flex;gap:32px;align-items:flex-start}
+.step-number{background:linear-gradient(135deg,#6b46c1,#9f7aea);color:#fff;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;flex-shrink:0}
+.step-content h3{font-size:28px;margin-bottom:12px;color:#2d3748;font-weight:700}
+.step-content p{color:#718096;font-size:18px;line-height:1.7}
+.tech-stack{background:#f7fafc;padding:64px 24px;margin-top:64px}
+.tech-stack h2{text-align:center;font-size:36px;margin-bottom:48px;color:#2d3748;font-weight:800}
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;max-width:800px;margin:0 auto}
+.tech-item{background:#fff;padding:24px;border-radius:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.tech-item h4{color:#6b46c1;font-weight:600;margin-bottom:8px}
+.tech-item p{color:#718096;font-size:14px}
+footer{background:linear-gradient(90deg,#2d3748 0%,#4a5568 100%);color:#fff;padding:48px 24px;text-align:center}
+@media(max-width:768px){
+.step{flex-direction:column}
+.page-header h1{font-size:36px}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">🛡️ SentinelBridge+</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">How It Works</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav></div></header>
+
+<section class="page-header">
+<div class="container">
+<h1>How SentinelBridge+ Works</h1>
+<p>Four simple steps to transform your helpdesk operations</p>
+</div>
+</section>
+
+<section class="content"><div class="container">
+<div class="step-grid">
+<div class="step">
+<div class="step-number">1</div>
+<div class="step-content">
+<h3>Connect Your Mailbox</h3>
+<p>Authorize SentinelBridge+ to monitor your support mailbox (e.g., support@yourcompany.com) via Microsoft Graph API or IMAP. OAuth 2.0 ensures secure, read-only access. Setup takes under 5 minutes.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-number">2</div>
+<div class="step-content">
+<h3>AI Classification Engine</h3>
+<p>Each incoming email is analyzed by our fine-tuned LLM classifier. It extracts intent, urgency, category (incident/request/question), and suggests assignment groups based on historical patterns and your custom rules.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-number">3</div>
+<div class="step-content">
+<h3>ServiceNow Integration</h3>
+<p>Classified emails are automatically converted to ServiceNow tickets via REST API. Thread correlation prevents duplicates, and confidence scores let you set thresholds for auto-creation vs. human review.</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-number">4</div>
+<div class="step-content">
+<h3>Real-Time Notifications</h3>
+<p>New tickets trigger adaptive cards in Microsoft Teams channels. Analysts can approve, reassign, or escalate directly from Teams. Metrics dashboard tracks MTTA reduction and classification accuracy.</p>
+</div>
+</div>
+</div>
+
+<div class="tech-stack">
+<h2>Built on Enterprise-Grade Tech</h2>
+<div class="tech-grid">
+<div class="tech-item">
+<h4>Microsoft Graph</h4>
+<p>Secure email access</p>
+</div>
+<div class="tech-item">
+<h4>Azure OpenAI</h4>
+<p>GPT-4 classification</p>
+</div>
+<div class="tech-item">
+<h4>ServiceNow REST</h4>
+<p>Ticket automation</p>
+</div>
+<div class="tech-item">
+<h4>Teams Webhooks</h4>
+<p>Adaptive cards</p>
+</div>
+</div>
+</div>
+</div></section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

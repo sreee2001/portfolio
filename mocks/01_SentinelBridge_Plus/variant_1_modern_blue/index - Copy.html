@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentinelBridge+ | Intelligent IT Helpdesk Automation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        nav ul { list-style: none; display: flex; gap: 2rem; }
+        nav a { color: white; text-decoration: none; transition: opacity 0.3s; }
+        nav a:hover { opacity: 0.8; }
+        
+        /* Hero */
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 20px; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.95; }
+        .cta-button { display: inline-block; background: white; color: #667eea; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: transform 0.3s, box-shadow 0.3s; }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        
+        /* Features */
+        .features { padding: 80px 20px; background: #f8f9fa; }
+        .features h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #2a5298; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .feature-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s; }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .feature-card h3 { color: #1e3c72; margin-bottom: 1rem; }
+        
+        /* Pricing */
+        .pricing { padding: 80px 20px; }
+        .pricing h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #2a5298; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+        .pricing-card { background: white; padding: 40px 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; border: 2px solid #e0e0e0; transition: border-color 0.3s; }
+        .pricing-card:hover { border-color: #667eea; }
+        .pricing-card.featured { border-color: #667eea; transform: scale(1.05); }
+        .price { font-size: 3rem; color: #667eea; font-weight: bold; margin: 20px 0; }
+        .price span { font-size: 1.2rem; }
+        .pricing-features { list-style: none; margin: 20px 0; text-align: left; }
+        .pricing-features li { padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+        .pricing-features li:before { content: '✓ '; color: #667eea; font-weight: bold; }
+        
+        /* Footer */
+        footer { background: #1e3c72; color: white; padding: 40px 20px; text-align: center; }
+        footer a { color: white; text-decoration: none; }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1.1rem; }
+            nav ul { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #1e3c72; padding: 20px; }
+            nav ul.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .feature-grid, .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">🛡️ SentinelBridge+</div>
+                <button class="mobile-menu-btn" onclick="document.querySelector('nav ul').classList.toggle('active')">☰</button>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Automate Your IT Helpdesk Triage</h1>
+            <p>Transform emails into ServiceNow tickets instantly with AI-powered classification and Teams notifications</p>
+            <a href="contact.html" class="cta-button">Request Demo</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Why Teams Choose SentinelBridge+</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Triage</h3>
+                    <p>Automatically classify and route incoming support emails to the right teams with 95%+ accuracy using smart rules and AI.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Zero Duplicates</h3>
+                    <p>Thread correlation ensures follow-ups update existing tickets instead of creating duplicates. Save hours of manual merging.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📢</div>
+                    <h3>Teams Integration</h3>
+                    <p>Real-time notifications in Microsoft Teams keep your support team informed and responsive without switching tools.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Clear Metrics</h3>
+                    <p>Track MTTA reduction, ticket volume, classification accuracy, and team performance with built-in dashboards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Enterprise Security</h3>
+                    <p>SSO, audit logs, data residency options, and BYOC deployment available. Meets enterprise compliance standards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Easy Setup</h3>
+                    <p>Connect your mailbox and ServiceNow instance in minutes. No complex configuration or coding required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2>Simple, Transparent Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">$300<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>1 shared mailbox</li>
+                        <li>Up to 500 emails/month</li>
+                        <li>5 ticket categories</li>
+                        <li>Teams notifications</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="contact.html" class="cta-button">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">$800<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>3 shared mailboxes</li>
+                        <li>Up to 2,000 emails/month</li>
+                        <li>Unlimited categories</li>
+                        <li>Advanced AI classification</li>
+                        <li>Custom rules engine</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="contact.html" class="cta-button">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$1,500<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li>Unlimited mailboxes</li>
+                        <li>Unlimited emails</li>
+                        <li>BYOC deployment option</li>
+                        <li>SSO & advanced security</li>
+                        <li>Custom integrations</li>
+                        <li>24/7 support & SLA</li>
+                    </ul>
+                    <a href="contact.html" class="cta-button">Contact Sales</a>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: #666;">Setup fees: $1,000-$5,000 depending on complexity. All plans include 30-day free trial.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SPEC Global Solutions. All rights reserved.</p>
+            <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Economics & Growth - GraphAudit</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',-apple-system,sans-serif;line-height:1.6;color:#0f172a;background:#fff}
+.container{max-width:1400px;margin:0 auto;padding:0 30px}
+header{background:#fff;border-bottom:2px solid #f1f5f9;padding:22px 0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:28px;font-weight:900;background:linear-gradient(135deg,#06b6d4,#0284c7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav ul{list-style:none;display:flex;gap:40px;align-items:center}
+nav a{color:#475569;text-decoration:none;font-weight:700;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#06b6d4}
+.badge{background:linear-gradient(135deg,#06b6d4,#0284c7);color:#fff;padding:8px 20px;border-radius:25px;font-size:13px;font-weight:800;box-shadow:0 4px 15px rgba(6,182,212,0.3)}
+.page-hero{background:linear-gradient(180deg,#ecfeff 0%,#fff 100%);padding:100px 30px;text-align:center}
+.page-hero h1{font-size:56px;font-weight:900;color:#0f172a;margin-bottom:25px}
+.page-hero p{font-size:22px;color:#64748b;max-width:900px;margin:0 auto}
+.unit-economics{padding:100px 30px;background:#fff}
+.unit-economics h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:60px;color:#0f172a}
+.economics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:50px;max-width:1300px;margin:0 auto}
+.economics-card{background:linear-gradient(135deg,#ecfeff,#fff);padding:50px;border-radius:20px;border:2px solid #cffafe;box-shadow:0 10px 30px rgba(0,0,0,0.05);text-align:center}
+.economics-card h3{font-size:22px;color:#06b6d4;margin-bottom:25px;font-weight:900;text-transform:uppercase;letter-spacing:1px}
+.economics-card .big-number{font-size:52px;font-weight:900;color:#06b6d4;margin-bottom:15px}
+.economics-card p{font-size:17px;color:#475569;line-height:1.8}
+.cohort-analysis{padding:100px 30px;background:linear-gradient(180deg,#fff 0%,#ecfeff 100%)}
+.cohort-analysis h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:70px;color:#0f172a}
+.cohort-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1400px;margin:0 auto}
+.cohort-card{background:#fff;padding:40px;border-radius:20px;text-align:center;border:2px solid #cffafe;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+.cohort-card h3{font-size:18px;color:#06b6d4;margin-bottom:20px;font-weight:800;text-transform:uppercase}
+.cohort-card .metric{font-size:48px;color:#0f172a;font-weight:900;margin-bottom:12px}
+.cohort-card p{font-size:15px;color:#64748b;line-height:1.7}
+.growth-story{padding:100px 30px;background:#0f172a;color:#fff}
+.growth-story h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:50px}
+.growth-content{max-width:1100px;margin:0 auto;background:#1e293b;padding:60px;border-radius:20px;border:2px solid #334155}
+.growth-content h3{font-size:28px;color:#06b6d4;margin-bottom:25px;font-weight:900}
+.growth-content p{font-size:18px;color:#cbd5e1;line-height:1.9;margin-bottom:25px}
+.growth-content ul{margin-left:30px;font-size:17px;color:#cbd5e1;line-height:2}
+.growth-content li{margin-bottom:10px}
+.customer-case-studies{padding:100px 30px;background:linear-gradient(180deg,#ecfeff 0%,#fff 100%)}
+.customer-case-studies h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:70px;color:#0f172a}
+.case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1400px;margin:0 auto}
+.case-card{background:#fff;padding:40px;border-radius:20px;border:2px solid #cffafe;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+.case-card .industry{font-size:14px;color:#06b6d4;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:15px}
+.case-card h3{font-size:22px;color:#0f172a;margin-bottom:15px;font-weight:900}
+.case-card p{font-size:17px;color:#475569;line-height:1.8;margin-bottom:20px}
+.case-card .result{background:#ecfeff;padding:20px;border-radius:12px;border-left:4px solid #06b6d4}
+.case-card .result strong{color:#06b6d4;font-size:18px}
+footer{background:#0f172a;color:#64748b;padding:50px 30px;text-align:center;font-size:14px;border-top:2px solid #1e293b}
+@media(max-width:768px){
+.economics-grid,.cohort-grid,.case-grid{grid-template-columns:1fr}
+.page-hero h1{font-size:40px}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">📊 GraphAudit</div>
+<ul>
+<li><a href="index.html">Growth Story</a></li>
+<li><a href="how-it-works.html">Unit Economics</a></li>
+<li><a href="contact.html">Investors</a></li>
+<li><span class="badge">$3.8M ARR</span></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>Unit Economics & Growth Metrics</h1>
+<p>Best-in-class SaaS metrics with efficient growth and world-class retention in compliance infrastructure</p>
+</div>
+</section>
+
+<section class="unit-economics">
+<div class="container">
+<h2>📈 Unit Economics (Q4 2024)</h2>
+<div class="economics-grid">
+<div class="economics-card">
+<h3>CAC</h3>
+<div class="big-number">$7.2K</div>
+<p>Customer acquisition cost trending down from $11.8K in Q1 2024 as we optimize compliance-first sales motion and build partner channel</p>
+</div>
+<div class="economics-card">
+<h3>LTV</h3>
+<div class="big-number">$121K</div>
+<p>Lifetime value based on 56-month avg customer lifetime, $26K ACV, 91% gross margin. Driven by seat expansion (3.2x growth in year 2).</p>
+</div>
+<div class="economics-card">
+<h3>LTV:CAC</h3>
+<div class="big-number">16.8x</div>
+<p>Best-in-class ratio for infra SaaS (target: >3x). Efficient growth with 4.2-month payback period. Improving as ACVs increase.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cohort-analysis">
+<div class="container">
+<h2>📊 Key Performance Metrics</h2>
+<div class="cohort-grid">
+<div class="cohort-card">
+<h3>ARR</h3>
+<div class="metric">$3.8M</div>
+<p>312% YoY growth (from $1.2M in Q4 2023). Accelerating as enterprise motion scales.</p>
+</div>
+<div class="cohort-card">
+<h3>NDR</h3>
+<div class="metric">168%</div>
+<p>Net dollar retention driven by land-and-expand. Customers 3.2x spend within 24 months as M365 usage grows.</p>
+</div>
+<div class="cohort-card">
+<h3>Gross Margin</h3>
+<div class="metric">91%</div>
+<p>Best-in-class for infra SaaS. Platform costs: 9% of revenue (mostly R&D, minimal COGS).</p>
+</div>
+<div class="cohort-card">
+<h3>NPS</h3>
+<div class="metric">88</div>
+<p>World-class customer satisfaction. Compliance officers and CISOs rate us top decile for compliance tools.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="growth-story">
+<div class="container">
+<h2>The Growth Flywheel</h2>
+<div class="growth-content">
+<h3>How We Got Here</h3>
+<p><strong>2022 (Seed):</strong> Launched with 8 design partners (healthcare, finance). Built core M365 logging platform. $380K ARR, manual onboarding, 12-week sales cycles.</p>
+<p><strong>2023:</strong> Scaled to 124 customers, $1.2M ARR (216% growth). Achieved product-market fit in compliance-heavy industries. Automated onboarding (12 weeks → 1 week), built SIEM integrations (Splunk, QRadar).</p>
+<p><strong>2024 (Current):</strong> Reached 520 customers, $3.8M ARR (317% growth). Expanded to FedRAMP customers (government, defense). Launched AI threat detection. Achieved 168% NDR and 91% gross margin. Microsoft co-sell partnership secured.</p>
+<h3 style="margin-top:40px">Where We're Going (2025–2027)</h3>
+<ul>
+<li><strong>2025 Target:</strong> $13M ARR, 1,400 customers, EU expansion (GDPR data residency in Frankfurt, Dublin)</li>
+<li><strong>2026 Target:</strong> $42M ARR, 3,800 customers, Series B fundraise, APAC expansion</li>
+<li><strong>2027 Target:</strong> $118M ARR, 8,200 customers, path to profitability, potential IPO prep</li>
+</ul>
+<p style="margin-top:30px;font-size:16px;color:#94a3b8;">Series A funds ($8M) will accelerate GTM (4 → 20 AEs), expand compliance certifications (FedRAMP High, ISO 27001), and build strategic partnerships with Microsoft, Vanta, Drata (compliance tool integrations).</p>
+</div>
+</div>
+</section>
+
+<section class="customer-case-studies">
+<div class="container">
+<h2>💬 Customer Success Stories</h2>
+<div class="case-grid">
+<div class="case-card">
+<div class="industry">Healthcare</div>
+<h3>Multi-State Hospital Network</h3>
+<p>48-hospital system needed HIPAA audit logs for M365 (6,200 users). Microsoft's 90-day retention insufficient for BAA requirements. Upgrading to E5: $297K/year cost increase.</p>
+<div class="result">
+<strong>Result:</strong> Deployed GraphAudit for $28K/year. Passed HIPAA audit with zero findings. Saved $269K annually vs. E5. Now has 3-year audit trail for investigations.
+</div>
+</div>
+<div class="case-card">
+<div class="industry">Financial Services</div>
+<h3>Regional Investment Bank</h3>
+<p>$18B AUM investment bank needed SOC 2 Type II compliance. Auditor required 2-year M365 log retention. Native logs only covered 90 days, creating audit gap.</p>
+<div class="result">
+<strong>Result:</strong> Implemented GraphAudit in 1 week. Passed SOC 2 audit with zero findings. Expanded from 420 → 1,200 users within 18 months. ACV: $31K → $94K (3x expansion).
+</div>
+</div>
+<div class="case-card">
+<div class="industry">SaaS Company</div>
+<h3>HR Tech Unicorn</h3>
+<p>Fast-growing SaaS company (840 employees) needed audit logs for customer security questionnaires. 70% of enterprise deals required proof of M365 activity logging.</p>
+<div class="result">
+<strong>Result:</strong> Deployed GraphAudit, unblocked $4.2M in pipeline. Sales team now provides audit reports in RFPs. Win rate improved from 34% → 58% for enterprise deals.
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • Confidential & Proprietary</p>
+</div></footer>
+</body>
+</html>

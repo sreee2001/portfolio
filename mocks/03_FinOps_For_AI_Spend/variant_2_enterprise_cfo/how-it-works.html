@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROI Calculator - Enterprise AI FinOps</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;line-height:1.6;color:#1e293b;background:#0f172a}
+.container{max-width:1400px;margin:0 auto;padding:0 30px}
+header{background:#1e293b;border-bottom:1px solid #334155;padding:20px 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:26px;font-weight:900;color:#fff}
+.logo span{color:#10b981}
+nav ul{list-style:none;display:flex;gap:35px;align-items:center}
+nav a{color:#cbd5e1;text-decoration:none;font-weight:600;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#10b981}
+.cta-btn{background:#10b981;color:#fff;padding:11px 26px;border-radius:8px;font-weight:700;transition:background 0.3s}
+.cta-btn:hover{background:#059669}
+.page-hero{background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);padding:90px 30px;text-align:center;border-bottom:1px solid #334155}
+.page-hero h1{font-size:52px;color:#fff;margin-bottom:22px;font-weight:900}
+.page-hero p{font-size:20px;color:#94a3b8;max-width:800px;margin:0 auto}
+.calculator{padding:100px 30px;background:#0f172a}
+.calculator h2{text-align:center;font-size:46px;color:#fff;margin-bottom:50px;font-weight:900}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;max-width:1300px;margin:0 auto}
+.calc-inputs{background:#1e293b;padding:50px;border-radius:20px;border:1px solid #334155}
+.calc-inputs h3{font-size:30px;color:#fff;margin-bottom:30px;font-weight:800}
+.input-group{margin-bottom:28px}
+.input-group label{display:block;font-size:15px;color:#cbd5e1;margin-bottom:10px;font-weight:600}
+.input-group input,.input-group select{width:100%;padding:16px;background:#0f172a;border:2px solid #334155;border-radius:10px;font-size:16px;color:#fff;font-family:inherit}
+.input-group input:focus,.input-group select:focus{outline:none;border-color:#10b981}
+.calc-results{background:#1e293b;padding:50px;border-radius:20px;border:2px solid #10b981;box-shadow:0 10px 40px rgba(16,185,129,0.2)}
+.calc-results h3{font-size:30px;color:#10b981;margin-bottom:35px;font-weight:900;text-align:center}
+.result-item{background:#0f172a;padding:30px;border-radius:12px;margin-bottom:20px;border:1px solid #334155}
+.result-item h4{color:#cbd5e1;font-size:16px;margin-bottom:10px;font-weight:600}
+.result-item p{font-size:38px;color:#10b981;font-weight:900}
+.result-item span{font-size:16px;color:#94a3b8;font-weight:500}
+.methodology{padding:100px 30px;background:#1e293b}
+.methodology h2{text-align:center;font-size:46px;color:#fff;margin-bottom:60px;font-weight:900}
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.method-card{background:#0f172a;padding:40px;border-radius:15px;border:1px solid #334155}
+.method-card h3{font-size:24px;color:#10b981;margin-bottom:15px;font-weight:800}
+.method-card p{color:#94a3b8;font-size:15px;line-height:1.8;margin-bottom:12px}
+.method-card ul{margin-left:20px;color:#cbd5e1;font-size:14px;line-height:1.9}
+footer{background:#0f172a;color:#64748b;padding:50px 30px;text-align:center;font-size:14px;border-top:1px solid #334155}
+@media(max-width:768px){
+.page-hero h1{font-size:38px}
+.calc-grid,.method-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">FinOps<span>AI</span></div>
+<ul>
+<li><a href="index.html">Platform</a></li>
+<li><a href="how-it-works.html">ROI Calculator</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="#" class="cta-btn">Request Demo</a></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>Calculate Your AI Cost Savings</h1>
+<p>Enterprise ROI model based on 150+ customer deployments. Enter your current spend to see projected savings.</p>
+</div>
+</section>
+
+<section class="calculator">
+<div class="container">
+<h2>ROI Calculator</h2>
+<div class="calc-grid">
+<div class="calc-inputs">
+<h3>Your Current AI Spend</h3>
+<div class="input-group">
+<label for="monthly-spend">Monthly AI/ML Spend ($)</label>
+<input type="number" id="monthly-spend" name="monthly-spend" value="500000" min="10000" step="10000">
+</div>
+<div class="input-group">
+<label for="gpu-pct">% Spent on GPU Compute</label>
+<input type="number" id="gpu-pct" name="gpu-pct" value="60" min="0" max="100">
+</div>
+<div class="input-group">
+<label for="llm-pct">% Spent on LLM APIs</label>
+<input type="number" id="llm-pct" name="llm-pct" value="25" min="0" max="100">
+</div>
+<div class="input-group">
+<label for="cloud">Primary Cloud Provider</label>
+<select id="cloud" name="cloud">
+<option value="aws">AWS</option>
+<option value="gcp">Google Cloud</option>
+<option value="azure">Microsoft Azure</option>
+<option value="multi">Multi-cloud</option>
+</select>
+</div>
+<div class="input-group">
+<label for="utilization">Current GPU Utilization Rate</label>
+<select id="utilization" name="utilization">
+<option value="low">Low (< 40%)</option>
+<option value="medium" selected>Medium (40-70%)</option>
+<option value="high">High (> 70%)</option>
+</select>
+</div>
+<p style="margin-top:25px;font-size:14px;color:#94a3b8;line-height:1.7">* Results based on median customer outcomes. Actual savings may vary. Conservative estimates used (43% reduction vs. 47% observed).</p>
+</div>
+
+<div class="calc-results">
+<h3>Projected First-Year Impact</h3>
+<div class="result-item">
+<h4>Annual Savings</h4>
+<p>$2.58M <span>/ year</span></p>
+</div>
+<div class="result-item">
+<h4>Monthly Savings</h4>
+<p>$215K <span>/ month</span></p>
+</div>
+<div class="result-item">
+<h4>Platform Investment</h4>
+<p>$180K <span>/ year</span></p>
+</div>
+<div class="result-item">
+<h4>Net Benefit (Year 1)</h4>
+<p>$2.40M</p>
+</div>
+<div class="result-item">
+<h4>ROI</h4>
+<p>1,333%</p>
+</div>
+<div class="result-item">
+<h4>Payback Period</h4>
+<p>14 days</p>
+</div>
+<a href="#" class="cta-btn" style="display:block;text-align:center;margin-top:30px;padding:16px;font-size:17px">Schedule CFO Briefing →</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="methodology">
+<div class="container">
+<h2>How We Calculate Savings</h2>
+<div class="method-grid">
+<div class="method-card">
+<h3>GPU Optimization</h3>
+<p>Average 38% reduction in compute costs through:</p>
+<ul>
+<li>Idle instance elimination (20% savings)</li>
+<li>Right-sizing recommendations (12% savings)</li>
+<li>Spot instance adoption (6% savings)</li>
+</ul>
+<p style="margin-top:15px;font-weight:600;color:#10b981">Conservative estimate: Applied to 80% of GPU spend</p>
+</div>
+
+<div class="method-card">
+<h3>LLM API Reduction</h3>
+<p>Average 52% reduction in API costs through:</p>
+<ul>
+<li>Smart model routing (35% savings)</li>
+<li>Prompt caching (12% savings)</li>
+<li>Usage optimization (5% savings)</li>
+</ul>
+<p style="margin-top:15px;font-weight:600;color:#10b981">Conservative estimate: Applied to 70% of LLM spend</p>
+</div>
+
+<div class="method-card">
+<h3>Avoided Overspend</h3>
+<p>Budget enforcement prevents 15-20% annual overspend:</p>
+<ul>
+<li>Auto-shutdown forgotten instances</li>
+<li>Quota enforcement by team</li>
+<li>Real-time alerting on anomalies</li>
+</ul>
+<p style="margin-top:15px;font-weight:600;color:#10b981">Not included in base ROI (additional upside)</p>
+</div>
+</div>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 FinOps AI Platform by SPEC Global Solutions, Inc.</p>
+<p style="margin-top:10px"><a href="mailto:srikanth.tangella@gmail.com" style="color:#10b981">srikanth.tangella@gmail.com</a> • +1 (281) 455-6722 • SOC 2 Type II Certified</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentinelBridge+ - Investment Opportunity | AI-Powered IT Automation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #64748b;
+            --accent: #0ea5e9;
+            --success: #059669;
+            --warning: #d97706;
+            --error: #dc2626;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-700);
+            background: var(--white);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '🚀';
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 600;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        /* Investment Highlights */
+        .investment-highlights {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .highlight-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        .highlight-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .highlight-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .highlight-description {
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-metric {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-metric-label {
+            color: var(--gray-500);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Market Opportunity */
+        .market-opportunity {
+            padding: 6rem 0;
+            background: var(--gray-50);
+        }
+
+        .market-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .market-visual {
+            position: relative;
+        }
+
+        .market-chart {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .chart-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .chart-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .bar-label {
+            width: 120px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .bar-container {
+            flex: 1;
+            height: 20px;
+            background: var(--gray-200);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 10px;
+            transition: width 2s ease;
+        }
+
+        .bar-value {
+            width: 60px;
+            text-align: right;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Financial Projections */
+        .financial-projections {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .projections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .projection-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .projection-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .projection-year {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .projection-metric {
+            margin-bottom: 1rem;
+        }
+
+        .projection-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .projection-label {
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 6rem 0;
+            background: var(--gray-50);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+
+        .member-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-title {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            color: var(--gray-600);
+            line-height: 1.6;
+            font-size: 0.875rem;
+        }
+
+        /* Competitive Analysis */
+        .competitive-analysis {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .competitive-table {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .table-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .table-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .table-content {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        th {
+            background: var(--gray-50);
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .feature-check {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .feature-partial {
+            color: var(--warning);
+            font-weight: bold;
+        }
+
+        .feature-none {
+            color: var(--error);
+            font-weight: bold;
+        }
+
+        /* Investment Terms */
+        .investment-terms {
+            padding: 6rem 0;
+            background: var(--gray-50);
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .term-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .term-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+        }
+
+        .term-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .term-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .term-description {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: var(--primary);
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .contact-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+        }
+
+        .contact-label {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: var(--gray-400);
+            margin-bottom: 2rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--gray-800);
+            padding-top: 2rem;
+            color: var(--gray-400);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .market-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Interactive elements */
+        .interactive-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Progress bars animation */
+        .bar-fill {
+            width: 0;
+        }
+
+        .bar-fill.animate {
+            width: var(--target-width);
+        }
+
+        /* Investment badge */
+        .investment-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Market size indicators */
+        .market-size {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .market-growth {
+            color: var(--success);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">SentinelBridge+</a>
+            <ul class="nav-links">
+                <li><a href="#opportunity">Opportunity</a></li>
+                <li><a href="#market">Market</a></li>
+                <li><a href="#financials">Financials</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#competitive">Competition</a></li>
+                <li><a href="#terms">Investment</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">
+                <i class="fas fa-handshake"></i>
+                Schedule Meeting
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-rocket"></i>
+                Series A Investment Opportunity
+            </div>
+            <h1 class="hero-title">The Future of IT Operations is AI-Powered</h1>
+            <p class="hero-subtitle">SentinelBridge+ is transforming enterprise IT operations with intelligent automation, targeting a $47B market with 25% annual growth</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-value">$47B</div>
+                    <div class="stat-label">Total Addressable Market</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">25%</div>
+                    <div class="stat-label">Annual Market Growth</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">$2.3M</div>
+                    <div class="stat-label">Average Customer Value</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">75%</div>
+                    <div class="stat-label">Gross Margins</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Highlights -->
+    <section id="opportunity" class="investment-highlights">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Investment Highlights</h2>
+                <p class="section-subtitle">Why SentinelBridge+ represents a compelling investment opportunity in the rapidly growing AI automation market</p>
+            </div>
+            <div class="highlights-grid">
+                <div class="highlight-card scroll-reveal">
+                    <div class="highlight-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="highlight-title">Massive Market Opportunity</h3>
+                    <p class="highlight-description">The global IT automation market is valued at $47B and growing at 25% annually, driven by digital transformation and AI adoption.</p>
+                    <div class="highlight-metric">$47B</div>
+                    <div class="highlight-metric-label">Total Addressable Market</div>
+                </div>
+                <div class="highlight-card scroll-reveal">
+                    <div class="highlight-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="highlight-title">Proven AI Technology</h3>
+                    <p class="highlight-description">Advanced AI models with 99.2% accuracy in email classification, reducing manual IT work by 90% and response times by 75%.</p>
+                    <div class="highlight-metric">99.2%</div>
+                    <div class="highlight-metric-label">AI Classification Accuracy</div>
+                </div>
+                <div class="highlight-card scroll-reveal">
+                    <div class="highlight-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3 class="highlight-title">Strong Unit Economics</h3>
+                    <p class="highlight-description">High-margin SaaS model with 75% gross margins, $2.3M average customer value, and 95% annual retention rates.</p>
+                    <div class="highlight-metric">75%</div>
+                    <div class="highlight-metric-label">Gross Margins</div>
+                </div>
+                <div class="highlight-card scroll-reveal">
+                    <div class="highlight-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="highlight-title">Enterprise Traction</h3>
+                    <p class="highlight-description">Already serving Fortune 500 companies with $2.3M ARR, 95% customer satisfaction, and expanding to new verticals.</p>
+                    <div class="highlight-metric">$2.3M</div>
+                    <div class="highlight-metric-label">Annual Recurring Revenue</div>
+                </div>
+                <div class="highlight-card scroll-reveal">
+                    <div class="highlight-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="highlight-title">Competitive Moat</h3>
+                    <p class="highlight-description">Proprietary AI models, enterprise-grade security, and deep Microsoft 365 integration create significant barriers to entry.</p>
+                    <div class="highlight-metric">200+</div>
+                    <div class="highlight-metric-label">Enterprise Integrations</div>
+                </div>
+                <div class="highlight-card scroll-reveal">
+                    <div class="highlight-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="highlight-title">Scalable Platform</h3>
+                    <p class="highlight-description">Cloud-native architecture supporting millions of requests daily with sub-second response times and 99.9% uptime SLA.</p>
+                    <div class="highlight-metric">99.9%</div>
+                    <div class="highlight-metric-label">Uptime SLA</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Opportunity -->
+    <section id="market" class="market-opportunity">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Market Opportunity</h2>
+                <p class="section-subtitle">The IT automation market is experiencing explosive growth driven by digital transformation and AI adoption</p>
+            </div>
+            <div class="market-grid">
+                <div class="market-visual">
+                    <div class="market-chart">
+                        <h3 class="chart-title">Market Size by Segment (2024)</h3>
+                        <div class="chart-bar">
+                            <div class="bar-label">IT Service Management</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" data-width="85"></div>
+                            </div>
+                            <div class="bar-value">$18.2B</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar-label">AI Automation Tools</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" data-width="70"></div>
+                            </div>
+                            <div class="bar-value">$15.1B</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar-label">Enterprise Integration</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" data-width="60"></div>
+                            </div>
+                            <div class="bar-value">$8.7B</div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar-label">Cloud Management</div>
+                            <div class="bar-container">
+                                <div class="bar-fill" data-width="45"></div>
+                            </div>
+                            <div class="bar-value">$5.0B</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 2.5rem; font-weight: 900; color: var(--gray-900); margin-bottom: 1.5rem;">Market Drivers</h3>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <h3 class="highlight-title">Digital Transformation</h3>
+                        <p class="highlight-description">85% of enterprises are accelerating digital transformation, creating massive demand for IT automation solutions.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="highlight-title">AI Adoption</h3>
+                        <p class="highlight-description">AI adoption in enterprise IT is growing 40% annually, with automation being the top use case.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3 class="highlight-title">Cost Pressure</h3>
+                        <p class="highlight-description">IT budgets are under pressure, driving demand for solutions that reduce operational costs by 30-50%.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Projections -->
+    <section id="financials" class="financial-projections">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Financial Projections</h2>
+                <p class="section-subtitle">Conservative projections based on current traction and market opportunity</p>
+            </div>
+            <div class="projections-grid">
+                <div class="projection-card scroll-reveal">
+                    <div class="projection-year">2024</div>
+                    <div class="projection-metric">
+                        <div class="projection-value">$2.3M</div>
+                        <div class="projection-label">ARR</div>
+                    </div>
+                    <div class="projection-metric">
+                        <div class="projection-value">15</div>
+                        <div class="projection-label">Enterprise Customers</div>
+                    </div>
+                    <div class="projection-metric">
+                        <div class="projection-value">75%</div>
+                        <div class="projection-label">Gross Margins</div>
+                    </div>
+                </div>
+                <div class="projection-card scroll-reveal">
+                    <div class="projection-year">2025</div>
+                    <div class="projection-metric">
+                        <div class="projection-value">$8.5M</div>
+                        <div class="projection-label">ARR</div>
+                    </div>
+                    <div class="projection-metric">
+                        <div class="projection-value">45</div>
+                        <div class="projection-label">Enterprise Customers</div>
+                    </div>
+                    <div class="projection-metric">
+                        <div class="projection-value">78%</div>
+                        <div class="projection-label">Gross Margins</div>
+                    </div>
+                </div>
+                <div class="projection-card scroll-reveal">
+                    <div class="projection-year">2026</div>
+                    <div class="projection-metric">
+                        <div class="projection-value">$25M</div>
+                        <div class="projection-label">ARR</div>
+                    </div>
+                    <div class="projection-metric">
+                        <div class="projection-value">120</div>
+                        <div class="projection-label">Enterprise Customers</div>
+                    </div>
+                    <div class="projection-metric">
+                        <div class="projection-value">80%</div>
+                        <div class="projection-label">Gross Margins</div>
+                    </div>
+                </div>
+                <div class="projection-card scroll-reveal">
+                    <div class="projection-year">2027</div>
+                    <div class="projection-metric">
+                        <div class="projection-value">$65M</div>
+                        <div class="projection-label">ARR</div>
+                    </div>
+                    <div class="projection-metric">
+                        <div class="projection-value">280</div>
+                        <div class="projection-label">Enterprise Customers</div>
+                    </div>
+                    <div class="projection-metric">
+                        <div class="projection-value">82%</div>
+                        <div class="projection-label">Gross Margins</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experienced Leadership Team</h2>
+                <p class="section-subtitle">Proven track record in enterprise software, AI, and scaling high-growth companies</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member scroll-reveal">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="member-name">Srikanth Tangella</h3>
+                    <div class="member-title">Founder & CEO</div>
+                    <p class="member-bio">15+ years in enterprise software development. Former senior engineer at Microsoft, expert in AI/ML, .NET, and cloud architecture. Led teams building mission-critical systems for Fortune 500 companies.</p>
+                </div>
+                <div class="team-member scroll-reveal">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="member-name">Dr. Sarah Chen</h3>
+                    <div class="member-title">CTO & Co-Founder</div>
+                    <p class="member-bio">PhD in Computer Science from Stanford. Former AI researcher at Google DeepMind. Expert in natural language processing and machine learning. Published 20+ papers in top-tier conferences.</p>
+                </div>
+                <div class="team-member scroll-reveal">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="member-name">Michael Rodriguez</h3>
+                    <div class="member-title">VP of Sales</div>
+                    <p class="member-bio">Former VP of Sales at ServiceNow. 12+ years in enterprise software sales. Led teams that generated $100M+ in ARR. Expert in complex enterprise sales cycles and customer success.</p>
+                </div>
+                <div class="team-member scroll-reveal">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="member-name">Jennifer Kim</h3>
+                    <div class="member-title">VP of Engineering</div>
+                    <p class="member-bio">Former engineering director at Salesforce. 10+ years building scalable cloud platforms. Expert in microservices architecture, DevOps, and enterprise security. Led teams of 50+ engineers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitive Analysis -->
+    <section id="competitive" class="competitive-analysis">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Competitive Advantage</h2>
+                <p class="section-subtitle">How SentinelBridge+ compares to existing solutions in the market</p>
+            </div>
+            <div class="competitive-table">
+                <div class="table-header">
+                    <h3 class="table-title">Feature Comparison Matrix</h3>
+                </div>
+                <div class="table-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>SentinelBridge+</th>
+                                <th>ServiceNow</th>
+                                <th>Microsoft Power Automate</th>
+                                <th>Zendesk</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AI Email Classification</td>
+                                <td><span class="feature-check">✓</span></td>
+                                <td><span class="feature-partial">~</span></td>
+                                <td><span class="feature-none">✗</span></td>
+                                <td><span class="feature-partial">~</span></td>
+                            </tr>
+                            <tr>
+                                <td>Microsoft 365 Integration</td>
+                                <td><span class="feature-check">✓</span></td>
+                                <td><span class="feature-partial">~</span></td>
+                                <td><span class="feature-check">✓</span></td>
+                                <td><span class="feature-none">✗</span></td>
+                            </tr>
+                            <tr>
+                                <td>Advanced AI Models</td>
+                                <td><span class="feature-check">✓</span></td>
+                                <td><span class="feature-partial">~</span></td>
+                                <td><span class="feature-none">✗</span></td>
+                                <td><span class="feature-none">✗</span></td>
+                            </tr>
+                            <tr>
+                                <td>Enterprise Security</td>
+                                <td><span class="feature-check">✓</span></td>
+                                <td><span class="feature-check">✓</span></td>
+                                <td><span class="feature-partial">~</span></td>
+                                <td><span class="feature-partial">~</span></td>
+                            </tr>
+                            <tr>
+                                <td>Custom Workflows</td>
+                                <td><span class="feature-check">✓</span></td>
+                                <td><span class="feature-check">✓</span></td>
+                                <td><span class="feature-check">✓</span></td>
+                                <td><span class="feature-partial">~</span></td>
+                            </tr>
+                            <tr>
+                                <td>Real-time Analytics</td>
+                                <td><span class="feature-check">✓</span></td>
+                                <td><span class="feature-partial">~</span></td>
+                                <td><span class="feature-partial">~</span></td>
+                                <td><span class="feature-partial">~</span></td>
+                            </tr>
+                            <tr>
+                                <td>BYOC Deployment</td>
+                                <td><span class="feature-check">✓</span></td>
+                                <td><span class="feature-none">✗</span></td>
+                                <td><span class="feature-none">✗</span></td>
+                                <td><span class="feature-none">✗</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Terms -->
+    <section id="terms" class="investment-terms">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Investment Opportunity</h2>
+                <p class="section-subtitle">Series A funding round to accelerate growth and market expansion</p>
+            </div>
+            <div class="terms-grid">
+                <div class="term-card scroll-reveal">
+                    <div class="term-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3 class="term-title">Funding Amount</h3>
+                    <div class="term-value">$15M</div>
+                    <div class="term-description">Series A round to accelerate product development, sales expansion, and market penetration</div>
+                </div>
+                <div class="term-card scroll-reveal">
+                    <div class="term-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="term-title">Valuation</h3>
+                    <div class="term-value">$60M</div>
+                    <div class="term-description">Pre-money valuation based on current traction, market opportunity, and growth potential</div>
+                </div>
+                <div class="term-card scroll-reveal">
+                    <div class="term-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <h3 class="term-title">Timeline</h3>
+                    <div class="term-value">Q2 2024</div>
+                    <div class="term-description">Target closing date with lead investor already committed to 40% of the round</div>
+                </div>
+                <div class="term-card scroll-reveal">
+                    <div class="term-icon">
+                        <i class="fas fa-target"></i>
+                    </div>
+                    <h3 class="term-title">Use of Funds</h3>
+                    <div class="term-value">60%</div>
+                    <div class="term-description">Sales & Marketing (60%), Product Development (25%), Operations (15%)</div>
+                </div>
+                <div class="term-card scroll-reveal">
+                    <div class="term-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="term-title">Growth Target</h3>
+                    <div class="term-value">10x</div>
+                    <div class="term-description">Target 10x ARR growth over 18 months with path to $25M ARR by 2026</div>
+                </div>
+                <div class="term-card scroll-reveal">
+                    <div class="term-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="term-title">Investor Benefits</h3>
+                    <div class="term-value">25%</div>
+                    <div class="term-description">25% equity stake with board seat and pro-rata rights for future rounds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="contact-title">Ready to Invest in the Future of IT?</h2>
+                <p class="contact-subtitle">Join us in transforming enterprise IT operations with AI-powered automation</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-label">Investment Inquiries</div>
+                        <div class="contact-value">investors@sentinelbridge.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-label">Direct Line</div>
+                        <div class="contact-value">(281) 455-6722</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="contact-label">Schedule Meeting</div>
+                        <div class="contact-value">calendly.com/sentinelbridge</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">SentinelBridge+</div>
+                <p class="footer-text">Transforming enterprise IT operations with AI-powered automation</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SPEC Global Solutions Inc. All rights reserved. | Confidential Investment Information</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate progress bars when they come into view
+        const barObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bars = entry.target.querySelectorAll('.bar-fill');
+                    bars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        bar.style.setProperty('--target-width', width + '%');
+                        bar.classList.add('animate');
+                    });
+                    barObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.market-chart').forEach(chart => {
+            barObserver.observe(chart);
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.highlight-card, .projection-card, .team-member, .term-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start).toLocaleString();
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target.toLocaleString();
+                }
+            }
+            
+            updateCounter();
+        }
+
+        // Animate counters when they come into view
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const valueElement = entry.target.querySelector('.stat-value');
+                    const text = valueElement.textContent;
+                    
+                    // Extract number from text (handles formats like $2.3M, 25%, etc.)
+                    const number = parseFloat(text.replace(/[^\d.]/g, ''));
+                    const suffix = text.replace(/[\d.]/g, '');
+                    
+                    if (number && !isNaN(number)) {
+                        valueElement.textContent = '0' + suffix;
+                        animateCounter(valueElement, number, 2000);
+                    }
+                    
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.stat-item').forEach(stat => {
+            counterObserver.observe(stat);
+        });
+
+        // Add click tracking for investment interest
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Track investment interest
+                console.log('Investment interest tracked:', this.textContent);
+            });
+        });
+
+        // Simulate real-time updates for demo purposes
+        setInterval(() => {
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                if (stat.textContent.includes('$2.3M')) {
+                    // Simulate ARR growth
+                    const currentValue = parseFloat(stat.textContent.replace(/[^\d.]/g, ''));
+                    const newValue = currentValue + (Math.random() * 0.1);
+                    stat.textContent = '$' + newValue.toFixed(1) + 'M';
+                }
+            });
+        }, 10000);
+    </script>
+</body>
+</html>

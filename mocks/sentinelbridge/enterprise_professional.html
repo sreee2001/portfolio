@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentinelBridge+ Enterprise - AI-Powered IT Operations Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #64748b;
+            --accent: #0ea5e9;
+            --success: #059669;
+            --warning: #d97706;
+            --error: #dc2626;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-700);
+            background: var(--white);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '🛡️';
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-200);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e2e8f0" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        /* Enterprise Features */
+        .enterprise-features {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            background: var(--gray-100);
+            border-radius: 1rem;
+            padding: 0.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-button.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .feature-description {
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .feature-benefits {
+            list-style: none;
+        }
+
+        .feature-benefits li {
+            padding: 0.25rem 0;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+
+        .feature-benefits li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Architecture Section */
+        .architecture {
+            padding: 6rem 0;
+            background: var(--gray-50);
+        }
+
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .architecture-visual {
+            position: relative;
+        }
+
+        .architecture-diagram {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .diagram-layer {
+            background: var(--gray-100);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--gray-200);
+        }
+
+        .diagram-layer:last-child {
+            margin-bottom: 0;
+        }
+
+        .layer-title {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .layer-components {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .component {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Security & Compliance */
+        .security {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .security-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .security-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+        }
+
+        .security-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .security-description {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* ROI Calculator */
+        .roi-calculator {
+            padding: 6rem 0;
+            background: var(--gray-50);
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 1rem;
+            padding: 3rem;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--gray-200);
+        }
+
+        .calculator-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .calculator-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-label {
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .input-field {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgb(30 64 175 / 0.1);
+        }
+
+        .calculator-results {
+            background: var(--primary);
+            color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .roi-value {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .roi-label {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 1px solid var(--gray-200);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-xl);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .pricing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .pricing-description {
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: var(--gray-600);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 0.75rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: var(--gray-50);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 0.5rem;
+            border: 1px solid var(--gray-200);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 1rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--gray-200);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgb(30 64 175 / 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            color: var(--gray-400);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .architecture-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .calculator-inputs {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Interactive elements */
+        .interactive-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Status indicators */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background: rgb(5 150 105 / 0.1);
+            color: var(--success);
+        }
+
+        .status-warning {
+            background: rgb(217 119 6 / 0.1);
+            color: var(--warning);
+        }
+
+        .status-info {
+            background: rgb(14 165 233 / 0.1);
+            color: var(--accent);
+        }
+
+        /* Enterprise badges */
+        .enterprise-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Data visualization */
+        .chart-container {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            margin: 2rem 0;
+        }
+
+        .chart-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .chart-placeholder {
+            height: 200px;
+            background: var(--gray-100);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">SentinelBridge+</a>
+            <ul class="nav-links">
+                <li><a href="#home">Platform</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-primary">
+                <i class="fas fa-calendar-alt"></i>
+                Schedule Demo
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-header">
+                <div class="hero-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    Enterprise-Grade AI Platform
+                </div>
+                <h1 class="hero-title">Transform IT Operations with Intelligent Automation</h1>
+                <p class="hero-subtitle">SentinelBridge+ is the enterprise AI platform that automates IT helpdesk operations, reduces response times by 75%, and provides comprehensive analytics for data-driven decision making.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-play"></i>
+                        Watch Demo
+                    </a>
+                    <a href="#roi" class="btn btn-outline">
+                        <i class="fas fa-calculator"></i>
+                        Calculate ROI
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Download Whitepaper
+                    </a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-value">75%</div>
+                    <div class="stat-label">Faster Response Time</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">90%</div>
+                    <div class="stat-label">Reduction in Manual Work</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-item">
+                        <div class="stat-value">$2.3M</div>
+                        <div class="stat-label">Average Annual Savings</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">99.9%</div>
+                    <div class="stat-label">Uptime SLA</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Features -->
+    <section id="features" class="enterprise-features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Enterprise-Grade AI Automation Platform</h2>
+                <p class="section-subtitle">Comprehensive solution for large-scale IT operations with advanced AI, security, and compliance features</p>
+            </div>
+            
+            <div class="features-tabs">
+                <button class="tab-button active" data-tab="automation">AI Automation</button>
+                <button class="tab-button" data-tab="analytics">Analytics & Insights</button>
+                <button class="tab-button" data-tab="integration">Enterprise Integration</button>
+            </div>
+
+            <div id="automation" class="tab-content active">
+                <div class="features-grid">
+                    <div class="feature-card scroll-reveal">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3 class="feature-title">Advanced AI Classification</h3>
+                        </div>
+                        <p class="feature-description">Multi-model AI system with 99.2% accuracy in email classification, supporting 50+ languages and custom training for domain-specific terminology.</p>
+                        <ul class="feature-benefits">
+                            <li>Natural Language Processing with BERT and GPT-4</li>
+                            <li>Custom model training for industry-specific terms</li>
+                            <li>Real-time learning from user feedback</li>
+                            <li>Multi-language support with auto-detection</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card scroll-reveal">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3 class="feature-title">Intelligent Workflow Automation</h3>
+                        </div>
+                        <p class="feature-description">Orchestrate complex IT workflows with conditional logic, approval gates, and integration with 200+ enterprise systems.</p>
+                        <ul class="feature-benefits">
+                            <li>Visual workflow designer with drag-and-drop</li>
+                            <li>Conditional branching and approval workflows</li>
+                            <li>Integration with ServiceNow, Jira, and custom APIs</li>
+                            <li>Real-time workflow monitoring and optimization</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card scroll-reveal">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="feature-title">Security & Compliance</h3>
+                        </div>
+                        <p class="feature-description">Enterprise-grade security with SOC2 Type II, ISO 27001, and GDPR compliance, plus advanced threat detection and data protection.</p>
+                        <ul class="feature-benefits">
+                            <li>SOC2 Type II and ISO 27001 certified</li>
+                            <li>End-to-end encryption and data residency controls</li>
+                            <li>Advanced threat detection and anomaly monitoring</li>
+                            <li>Comprehensive audit trails and compliance reporting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="analytics" class="tab-content">
+                <div class="features-grid">
+                    <div class="feature-card scroll-reveal">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="feature-title">Advanced Analytics Dashboard</h3>
+                        </div>
+                        <p class="feature-description">Comprehensive analytics platform with real-time dashboards, predictive insights, and custom reporting for IT operations.</p>
+                        <ul class="feature-benefits">
+                            <li>Real-time performance metrics and KPIs</li>
+                            <li>Predictive analytics for capacity planning</li>
+                            <li>Custom dashboards and automated reports</li>
+                            <li>Integration with Power BI and Tableau</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card scroll-reveal">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3 class="feature-title">Intelligent Search & Discovery</h3>
+                        </div>
+                        <p class="feature-description">AI-powered search across all IT systems with semantic understanding and context-aware results.</p>
+                        <ul class="feature-benefits">
+                            <li>Semantic search across tickets, emails, and documents</li>
+                            <li>Context-aware recommendations and suggestions</li>
+                            <li>Knowledge graph for relationship mapping</li>
+                            <li>Natural language query interface</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card scroll-reveal">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3 class="feature-title">Predictive Insights</h3>
+                        </div>
+                        <p class="feature-description">Machine learning models that predict IT issues, resource needs, and optimization opportunities before they impact operations.</p>
+                        <ul class="feature-benefits">
+                            <li>Predictive maintenance and issue prevention</li>
+                            <li>Resource utilization forecasting</li>
+                            <li>Cost optimization recommendations</li>
+                            <li>Performance trend analysis and alerts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="integration" class="tab-content">
+                <div class="features-grid">
+                    <div class="feature-card scroll-reveal">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                            <h3 class="feature-title">Enterprise System Integration</h3>
+                        </div>
+                        <p class="feature-description">Seamless integration with 200+ enterprise systems including ITSM, CRM, ERP, and custom applications.</p>
+                        <ul class="feature-benefits">
+                            <li>Pre-built connectors for major enterprise systems</li>
+                            <li>RESTful APIs and webhook support</li>
+                            <li>Custom integration development services</li>
+                            <li>Real-time data synchronization and validation</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card scroll-reveal">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3 class="feature-title">Multi-Cloud & Hybrid Deployment</h3>
+                        </div>
+                        <p class="feature-description">Deploy on-premises, in the cloud, or in hybrid environments with consistent functionality and security.</p>
+                        <ul class="feature-benefits">
+                            <li>Support for AWS, Azure, and Google Cloud</li>
+                            <li>On-premises deployment with air-gapped options</li>
+                            <li>Hybrid cloud with data sovereignty controls</li>
+                            <li>Containerized deployment with Kubernetes</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card scroll-reveal">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-users-cog"></i>
+                            </div>
+                            <h3 class="feature-title">Enterprise Identity & Access</h3>
+                        </div>
+                        <p class="feature-description">Comprehensive identity management with SSO, RBAC, and integration with enterprise directory services.</p>
+                        <ul class="feature-benefits">
+                            <li>SAML 2.0 and OAuth 2.0 support</li>
+                            <li>Integration with Active Directory and LDAP</li>
+                            <li>Role-based access control with fine-grained permissions</li>
+                            <li>Multi-factor authentication and session management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Scalable Enterprise Architecture</h2>
+                <p class="section-subtitle">Built for scale, security, and performance with microservices architecture and cloud-native design</p>
+            </div>
+            <div class="architecture-grid">
+                <div class="architecture-visual">
+                    <div class="architecture-diagram">
+                        <div class="diagram-layer">
+                            <div class="layer-title">Presentation Layer</div>
+                            <div class="layer-components">
+                                <span class="component">Web UI</span>
+                                <span class="component">Mobile App</span>
+                                <span class="component">API Gateway</span>
+                            </div>
+                        </div>
+                        <div class="diagram-layer">
+                            <div class="layer-title">Application Layer</div>
+                            <div class="layer-components">
+                                <span class="component">AI Engine</span>
+                                <span class="component">Workflow Engine</span>
+                                <span class="component">Analytics Engine</span>
+                                <span class="component">Integration Hub</span>
+                            </div>
+                        </div>
+                        <div class="diagram-layer">
+                            <div class="layer-title">Data Layer</div>
+                            <div class="layer-components">
+                                <span class="component">Vector DB</span>
+                                <span class="component">Time Series DB</span>
+                                <span class="component">Document Store</span>
+                                <span class="component">Cache Layer</span>
+                            </div>
+                        </div>
+                        <div class="diagram-layer">
+                            <div class="layer-title">Infrastructure Layer</div>
+                            <div class="layer-components">
+                                <span class="component">Kubernetes</span>
+                                <span class="component">Service Mesh</span>
+                                <span class="component">Monitoring</span>
+                                <span class="component">Security</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: 2rem; font-weight: 700; color: var(--gray-900); margin-bottom: 1.5rem;">Built for Enterprise Scale</h3>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                            </div>
+                            <h3 class="feature-title">Horizontal Scalability</h3>
+                        </div>
+                        <p class="feature-description">Auto-scaling microservices architecture that handles millions of requests per day with sub-second response times.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="feature-title">Security by Design</h3>
+                        </div>
+                        <p class="feature-description">Zero-trust architecture with end-to-end encryption, network segmentation, and comprehensive audit logging.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <div class="feature-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h3 class="feature-title">High Availability</h3>
+                        </div>
+                        <p class="feature-description">99.9% uptime SLA with multi-region deployment, automatic failover, and disaster recovery capabilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security & Compliance -->
+    <section id="security" class="security">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Enterprise Security & Compliance</h2>
+                <p class="section-subtitle">Bank-grade security with comprehensive compliance certifications and advanced threat protection</p>
+            </div>
+            <div class="security-grid">
+                <div class="security-card scroll-reveal">
+                    <div class="security-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="security-title">Compliance Certifications</h3>
+                    <p class="security-description">SOC2 Type II, ISO 27001, GDPR, HIPAA, and FedRAMP compliance with regular third-party audits and assessments.</p>
+                </div>
+                <div class="security-card scroll-reveal">
+                    <div class="security-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="security-title">Data Protection</h3>
+                    <p class="security-description">End-to-end encryption, data residency controls, and advanced data loss prevention with real-time monitoring.</p>
+                </div>
+                <div class="security-card scroll-reveal">
+                    <div class="security-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3 class="security-title">Identity & Access</h3>
+                    <p class="security-description">Multi-factor authentication, role-based access control, and integration with enterprise identity providers.</p>
+                </div>
+                <div class="security-card scroll-reveal">
+                    <div class="security-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="security-title">Audit & Monitoring</h3>
+                    <p class="security-description">Comprehensive audit trails, real-time security monitoring, and automated threat detection with SIEM integration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section id="roi" class="roi-calculator">
+        <div class="container">
+            <div class="calculator-container">
+                <h2 class="calculator-title">Calculate Your ROI</h2>
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label class="input-label">Number of IT Staff</label>
+                        <input type="number" class="input-field" id="staff-count" value="10" min="1">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Average Salary ($)</label>
+                        <input type="number" class="input-field" id="avg-salary" value="75000" min="1000">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Daily Email Volume</label>
+                        <input type="number" class="input-field" id="email-volume" value="200" min="1">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Time per Email (minutes)</label>
+                        <input type="number" class="input-field" id="time-per-email" value="5" min="1">
+                    </div>
+                </div>
+                <div class="calculator-results">
+                    <div class="roi-value" id="roi-value">$2,340,000</div>
+                    <div class="roi-label">Annual Savings with SentinelBridge+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Enterprise Pricing</h2>
+                <p class="section-subtitle">Flexible pricing models designed for enterprise scale and requirements</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Professional</h3>
+                    <p class="pricing-description">For mid-size organizations with standard IT operations</p>
+                    <div class="pricing-price">$2,999</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>Up to 1,000 emails per day</li>
+                        <li>Advanced AI classification</li>
+                        <li>Standard integrations</li>
+                        <li>Basic analytics dashboard</li>
+                        <li>Email support</li>
+                        <li>SOC2 compliance</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" style="width: 100%;">Contact Sales</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3 class="pricing-title">Enterprise</h3>
+                    <p class="pricing-description">For large organizations with complex IT operations</p>
+                    <div class="pricing-price">$7,999</div>
+                    <div class="pricing-period">per month</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited emails</li>
+                        <li>Custom AI model training</li>
+                        <li>Advanced workflow automation</li>
+                        <li>Comprehensive analytics</li>
+                        <li>24/7 phone support</li>
+                        <li>Custom integrations</li>
+                        <li>Dedicated success manager</li>
+                        <li>99.9% SLA guarantee</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Contact Sales</a>
+                </div>
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Enterprise Plus</h3>
+                    <p class="pricing-description">For global enterprises with mission-critical operations</p>
+                    <div class="pricing-price">Custom</div>
+                    <div class="pricing-period">contact us</div>
+                    <ul class="pricing-features">
+                        <li>Multi-region deployment</li>
+                        <li>Custom AI development</li>
+                        <li>On-premises deployment</li>
+                        <li>White-label options</li>
+                        <li>Dedicated infrastructure</li>
+                        <li>Custom SLA terms</li>
+                        <li>Professional services</li>
+                        <li>Training and certification</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" style="width: 100%;">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Ready to Transform Your IT Operations?</h2>
+                <p class="section-subtitle">Schedule a personalized demo with our enterprise solutions team</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Enterprise Sales Team</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <strong>Enterprise Sales</strong><br>
+                            enterprise@sentinelbridge.com
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <strong>Direct Line</strong><br>
+                            (281) 455-6722
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <strong>Headquarters</strong><br>
+                            Katy, TX (Virtual Office)
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <strong>Business Hours</strong><br>
+                            Monday - Friday, 8 AM - 6 PM CST
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Business Email</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company" class="form-label">Company Name</label>
+                        <input type="text" id="company" name="company" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="form-label">Job Title</label>
+                        <input type="text" id="title" name="title" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="employees" class="form-label">Company Size</label>
+                        <select id="employees" name="employees" class="form-input">
+                            <option value="">Select company size</option>
+                            <option value="100-500">100-500 employees</option>
+                            <option value="500-1000">500-1,000 employees</option>
+                            <option value="1000-5000">1,000-5,000 employees</option>
+                            <option value="5000+">5,000+ employees</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Tell us about your IT operations challenges</label>
+                        <textarea id="message" name="message" class="form-input form-textarea" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-calendar-alt"></i>
+                        Schedule Enterprise Demo
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SentinelBridge+</h4>
+                    <p>Enterprise-grade AI platform for IT operations automation, trusted by Fortune 500 companies worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#architecture">Architecture</a></li>
+                        <li><a href="#security">Security</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">White Papers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Enterprise Support</a></li>
+                        <li><a href="#">Training</a></li>
+                        <li><a href="#">Professional Services</a></li>
+                        <li><a href="#">Status Page</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SPEC Global Solutions Inc. All rights reserved. | SOC2 Type II Certified | ISO 27001 Compliant</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Tab functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and content
+                document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ROI Calculator
+        function calculateROI() {
+            const staffCount = parseInt(document.getElementById('staff-count').value) || 0;
+            const avgSalary = parseInt(document.getElementById('avg-salary').value) || 0;
+            const emailVolume = parseInt(document.getElementById('email-volume').value) || 0;
+            const timePerEmail = parseInt(document.getElementById('time-per-email').value) || 0;
+            
+            // Calculate annual cost of manual processing
+            const annualEmails = emailVolume * 250; // 250 working days
+            const totalMinutes = annualEmails * timePerEmail;
+            const totalHours = totalMinutes / 60;
+            const hourlyRate = avgSalary / 2080; // 2080 working hours per year
+            const annualCost = totalHours * hourlyRate;
+            
+            // Calculate savings (75% reduction in manual work)
+            const savings = annualCost * 0.75;
+            
+            document.getElementById('roi-value').textContent = '$' + Math.round(savings).toLocaleString();
+        }
+
+        // Add event listeners to ROI calculator inputs
+        document.querySelectorAll('#staff-count, #avg-salary, #email-volume, #time-per-email').forEach(input => {
+            input.addEventListener('input', calculateROI);
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! Our enterprise sales team will contact you within 2 hours to schedule your personalized demo.');
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Initialize ROI calculation
+        calculateROI();
+    </script>
+</body>
+</html>

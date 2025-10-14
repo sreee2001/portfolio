@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works | Incident Commander</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,sans-serif;line-height:1.6;color:#333;background:#f9f9f9}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+header{background:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.05);padding:15px 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:700;color:#FF6B35}
+.logo span{color:#004E89}
+nav ul{list-style:none;display:flex;gap:25px}
+nav a{color:#333;text-decoration:none;font-weight:500}
+.page-hero{background:linear-gradient(135deg,#004E89 0%,#1A659E 100%);color:#fff;padding:60px 20px;text-align:center}
+.page-hero h1{font-size:40px;margin-bottom:15px}
+.page-hero p{font-size:18px;opacity:0.95}
+.workflow{padding:70px 20px;background:#fff}
+.workflow h2{text-align:center;font-size:34px;margin-bottom:50px;color:#004E89}
+.workflow-steps{max-width:900px;margin:0 auto}
+.workflow-step{display:flex;gap:30px;margin-bottom:50px;align-items:flex-start}
+.workflow-step:nth-child(even){flex-direction:row-reverse}
+.step-visual{background:#f0f4f8;width:200px;height:200px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:80px;flex-shrink:0}
+.step-content h3{font-size:26px;margin-bottom:12px;color:#004E89}
+.step-content p{font-size:17px;color:#666;line-height:1.7;margin-bottom:15px}
+.step-content ul{margin-left:20px;color:#666}
+.step-content li{margin-bottom:8px}
+.commands{padding:70px 20px;background:#f0f4f8}
+.commands h2{text-align:center;font-size:34px;margin-bottom:50px;color:#004E89}
+.command-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;max-width:1000px;margin:0 auto}
+.command-card{background:#fff;padding:30px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.06)}
+.command-card code{background:#004E89;color:#fff;padding:6px 12px;border-radius:5px;font-size:16px;font-weight:600}
+.command-card h4{margin:15px 0 10px;color:#004E89;font-size:20px}
+.command-card p{color:#666;font-size:15px;line-height:1.6}
+.cta-section{background:#FF6B35;color:#fff;padding:60px 20px;text-align:center}
+.cta-section h2{font-size:32px;margin-bottom:15px}
+.cta-section p{font-size:18px;margin-bottom:25px}
+.btn{display:inline-block;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;background:#fff;color:#FF6B35;transition:transform 0.2s}
+.btn:hover{transform:translateY(-2px)}
+footer{background:#004E89;color:#fff;padding:40px 20px;text-align:center}
+@media(max-width:768px){
+.workflow-step{flex-direction:column!important;text-align:center}
+.step-visual{margin:0 auto}
+.page-hero h1{font-size:32px}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">🚨 <span>Incident</span>Commander</div>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="how-it-works.html">How It Works</a></li>
+<li><a href="contact.html">Get Started</a></li>
+</ul>
+</nav></div></header>
+
+<section class="page-hero">
+<div class="container">
+<h1>Simple Incident Management in Teams</h1>
+<p>No training required. Just type a command and go.</p>
+</div>
+</section>
+
+<section class="workflow"><div class="container">
+<h2>The Incident Lifecycle</h2>
+<div class="workflow-steps">
+<div class="workflow-step">
+<div class="step-visual">🚨</div>
+<div class="step-content">
+<h3>Step 1: Declare the Incident</h3>
+<p>When something breaks, type <code>/incident</code> in any Teams channel or click the Incident Commander bot message extension. The bot prompts you for:</p>
+<ul>
+<li>Severity (P0 = critical outage, P1 = major, P2 = minor)</li>
+<li>Short description</li>
+<li>Affected service or system</li>
+</ul>
+</div>
+</div>
+
+<div class="workflow-step">
+<div class="step-visual">👥</div>
+<div class="step-content">
+<h3>Step 2: Auto-Create War Room</h3>
+<p>The bot instantly creates a dedicated Teams channel named "INC-1234" and @mentions the incident commander, technical lead, and responders you specify. Stakeholders receive an automatic notification in your leadership channel.</p>
+</div>
+</div>
+
+<div class="workflow-step">
+<div class="step-visual">📋</div>
+<div class="step-content">
+<h3>Step 3: Follow the Runbook</h3>
+<p>Pre-loaded checklists appear as adaptive cards in the war room. For example, a "Database Outage" runbook includes:</p>
+<ul>
+<li>Check DB cluster health</li>
+<li>Review recent deployments</li>
+<li>Fail over to backup instance</li>
+<li>Notify customers via status page</li>
+</ul>
+<p>Team members check off tasks as they complete them.</p>
+</div>
+</div>
+
+<div class="workflow-step">
+<div class="step-visual">📢</div>
+<div class="step-content">
+<h3>Step 4: Post Updates</h3>
+<p>Use <code>/update</code> to broadcast status to stakeholders without leaving the war room. The bot cross-posts to your leadership channel and optionally updates your status page or ServiceNow ticket.</p>
+</div>
+</div>
+
+<div class="workflow-step">
+<div class="step-visual">✅</div>
+<div class="step-content">
+<h3>Step 5: Resolve & Export</h3>
+<p>When the incident is resolved, type <code>/resolve</code>. The bot archives the war room, exports a full timeline (who did what, when), and prompts you to schedule a postmortem meeting.</p>
+</div>
+</div>
+</div>
+</div></section>
+
+<section class="commands"><div class="container">
+<h2>Quick Command Reference</h2>
+<div class="command-grid">
+<div class="command-card">
+<code>/incident</code>
+<h4>Start a New Incident</h4>
+<p>Opens a dialog to declare an incident and create a war room channel.</p>
+</div>
+<div class="command-card">
+<code>/update [message]</code>
+<h4>Post Status Update</h4>
+<p>Broadcasts an update to stakeholders and logs it in the timeline.</p>
+</div>
+<div class="command-card">
+<code>/escalate</code>
+<h4>Escalate Severity</h4>
+<p>Bumps the incident up a severity level and notifies additional stakeholders.</p>
+</div>
+<div class="command-card">
+<code>/assign @user [role]</code>
+<h4>Assign Role</h4>
+<p>Designates someone as incident commander, tech lead, or communications lead.</p>
+</div>
+<div class="command-card">
+<code>/resolve</code>
+<h4>Mark Resolved</h4>
+<p>Closes the incident, archives the war room, and exports the timeline.</p>
+</div>
+<div class="command-card">
+<code>/runbook [name]</code>
+<h4>Load Runbook</h4>
+<p>Displays a checklist for a specific incident type (e.g., "database-outage").</p>
+</div>
+</div>
+</div></section>
+
+<section class="cta-section">
+<div class="container">
+<h2>See It in Action</h2>
+<p>Watch a 5-minute demo or start your free trial today.</p>
+<a href="contact.html" class="btn">Get Started Free</a>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc.</p>
+</div></footer>
+</body>
+</html>

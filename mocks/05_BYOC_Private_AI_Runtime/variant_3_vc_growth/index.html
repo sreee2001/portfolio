@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BYOC AI - Private AI Infrastructure Platform</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',-apple-system,sans-serif;line-height:1.6;color:#0f172a;background:#fff}
+.container{max-width:1400px;margin:0 auto;padding:0 30px}
+header{background:#fff;border-bottom:2px solid #f1f5f9;padding:22px 0;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.04)}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:28px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav ul{list-style:none;display:flex;gap:40px;align-items:center}
+nav a{color:#475569;text-decoration:none;font-weight:700;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#7c3aed}
+.badge{background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;padding:8px 20px;border-radius:25px;font-size:13px;font-weight:800;box-shadow:0 4px 15px rgba(124,58,237,0.3)}
+.hero{background:linear-gradient(180deg,#faf5ff 0%,#fff 100%);padding:120px 30px;text-align:center;border-bottom:2px solid #f3e8ff}
+.hero h1{font-size:64px;font-weight:900;color:#0f172a;margin-bottom:30px;line-height:1.1}
+.hero h1 .highlight{background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:24px;color:#64748b;max-width:900px;margin:0 auto 50px;line-height:1.6}
+.hero-cta{display:inline-block;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;padding:20px 50px;border-radius:12px;font-size:20px;font-weight:800;text-decoration:none;box-shadow:0 10px 30px rgba(124,58,237,0.3);transition:transform 0.3s}
+.hero-cta:hover{transform:translateY(-4px)}
+.traction-grid{padding:100px 30px;background:#fff}
+.traction-grid h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:70px;color:#0f172a}
+.traction-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1400px;margin:0 auto}
+.traction-card{background:linear-gradient(135deg,#faf5ff,#fff);padding:40px;border-radius:20px;text-align:center;border:2px solid #f3e8ff;box-shadow:0 10px 30px rgba(0,0,0,0.05)}
+.traction-card .number{font-size:56px;font-weight:900;color:#7c3aed;margin-bottom:12px}
+.traction-card .label{font-size:16px;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.market-opportunity{padding:100px 30px;background:linear-gradient(180deg,#fff 0%,#faf5ff 100%)}
+.market-opportunity h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:50px;color:#0f172a}
+.market-content{max-width:1100px;margin:0 auto;background:#fff;padding:60px;border-radius:20px;border:2px solid #f3e8ff;box-shadow:0 10px 40px rgba(0,0,0,0.08)}
+.market-content h3{font-size:32px;color:#7c3aed;margin-bottom:25px;font-weight:900}
+.market-content p{font-size:19px;color:#475569;line-height:1.9;margin-bottom:25px}
+.market-content ul{margin-left:30px;font-size:18px;color:#475569;line-height:2}
+.market-content li{margin-bottom:10px}
+.tam-section{padding:100px 30px;background:#0f172a;color:#fff}
+.tam-section h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:70px}
+.tam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1300px;margin:0 auto}
+.tam-card{background:#1e293b;padding:45px;border-radius:20px;border:2px solid#334155;text-align:center}
+.tam-card h3{font-size:20px;color:#7c3aed;margin-bottom:20px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.tam-card .metric{font-size:48px;color:#fff;font-weight:900;margin-bottom:15px}
+.tam-card p{font-size:16px;color:#94a3b8;line-height:1.7}
+.competitive-advantage{padding:100px 30px;background:linear-gradient(180deg,#fff 0%,#faf5ff 100%)}
+.competitive-advantage h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:70px;color:#0f172a}
+.advantage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1400px;margin:0 auto}
+.advantage-card{background:#fff;padding:40px;border-radius:20px;border:2px solid #f3e8ff;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+.advantage-card h3{font-size:22px;color:#7c3aed;margin-bottom:15px;font-weight:900}
+.advantage-card p{font-size:17px;color:#475569;line-height:1.8}
+.cta-section{padding:120px 30px;background:linear-gradient(135deg,#7c3aed,#db2777);text-align:center;color:#fff}
+.cta-section h2{font-size:52px;font-weight:900;margin-bottom:30px}
+.cta-section p{font-size:22px;margin-bottom:50px;max-width:800px;margin-left:auto;margin-right:auto;opacity:0.95}
+.cta-section a{background:#fff;color:#7c3aed;padding:22px 55px;border-radius:12px;font-size:20px;font-weight:800;text-decoration:none;display:inline-block;box-shadow:0 10px 30px rgba(0,0,0,0.2);transition:transform 0.3s}
+.cta-section a:hover{transform:translateY(-4px)}
+footer{background:#0f172a;color:#64748b;padding:50px 30px;text-align:center;font-size:14px;border-top:2px solid #1e293b}
+@media(max-width:768px){
+.hero h1{font-size:42px}
+.traction-stats,.tam-grid,.advantage-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">🔐 BYOC AI</div>
+<ul>
+<li><a href="index.html">Growth Story</a></li>
+<li><a href="how-it-works.html">Unit Economics</a></li>
+<li><a href="contact.html">Investors</a></li>
+<li><span class="badge">$6.2M ARR</span></li>
+</ul>
+</nav></div></header>
+
+<section class="hero">
+<div class="container">
+<h1>The <span class="highlight">Private AI</span> Infrastructure Layer</h1>
+<p>Enterprise-grade AI runtime deployed on customer infrastructure. Solving the $32B AI compliance and sovereignty crisis. Trusted by 340+ enterprises managing $240M in AI spend.</p>
+<a href="contact.html" class="hero-cta">Request Investor Deck</a>
+</div>
+</section>
+
+<section class="traction-grid">
+<div class="container">
+<h2>📊 Growth Metrics (Q4 2024)</h2>
+<div class="traction-stats">
+<div class="traction-card">
+<div class="number">$6.2M</div>
+<div class="label">ARR (284% YoY)</div>
+</div>
+<div class="traction-card">
+<div class="number">340+</div>
+<div class="label">Enterprise Customers</div>
+</div>
+<div class="traction-card">
+<div class="number">158%</div>
+<div class="label">Net Dollar Retention</div>
+</div>
+<div class="traction-card">
+<div class="number">$240M</div>
+<div class="label">AI Spend Under Mgmt</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="market-opportunity">
+<div class="container">
+<h2>The AI Sovereignty Crisis</h2>
+<div class="market-content">
+<h3>Every Enterprise Faces This Problem</h3>
+<p>Companies are spending $200B+ annually on AI (OpenAI, Anthropic, Google), but <strong>sending sensitive data to third-party APIs creates catastrophic compliance and IP risks.</strong> Healthcare, financial services, government, and defense contractors cannot use public AI APIs due to HIPAA, SOC 2, FedRAMP, and data residency requirements.</p>
+<p><strong>The result?</strong> Enterprises either avoid AI entirely (losing competitive advantage) or violate compliance policies by shadow IT usage of ChatGPT/Claude.</p>
+<h3 style="margin-top:40px">Our Solution: Bring Your Own Cloud (BYOC)</h3>
+<p>BYOC AI deploys private AI infrastructure directly into customer cloud accounts (AWS, Azure, GCP, on-premise). Companies get:</p>
+<ul>
+<li><strong>Full data sovereignty:</strong> Prompts, responses, models never leave customer VPC</li>
+<li><strong>Compliance out-of-the-box:</strong> SOC 2, HIPAA, GDPR, FedRAMP-ready deployments</li>
+<li><strong>60% cost savings:</strong> vs. OpenAI/Anthropic APIs by eliminating per-token markup</li>
+<li><strong>Zero vendor lock-in:</strong> Customers own infrastructure, can self-manage if they cancel</li>
+</ul>
+<p style="margin-top:30px;font-size:17px;color:#64748b;">Customers deploy production AI in 6–10 weeks with 99.99% uptime SLA. Average customer saves $720K annually on AI costs while achieving compliance certification.</p>
+</div>
+</div>
+</section>
+
+<section class="tam-section">
+<div class="container">
+<h2>Market Opportunity</h2>
+<div class="tam-grid">
+<div class="tam-card">
+<h3>TAM</h3>
+<div class="metric">$32B</div>
+<p>Enterprise AI infrastructure + compliance software (growing 48% CAGR as AI adoption accelerates)</p>
+</div>
+<div class="tam-card">
+<h3>SAM</h3>
+<div class="metric">$11B</div>
+<p>Private AI infrastructure for regulated industries (healthcare, finance, government, defense)</p>
+</div>
+<div class="tam-card">
+<h3>SOM (3yr)</h3>
+<div class="metric">$680M</div>
+<p>Realistic addressable market based on current GTM motion, win rates, and enterprise sales cycles</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="competitive-advantage">
+<div class="container">
+<h2>🚀 Why We're Winning</h2>
+<div class="advantage-grid">
+<div class="advantage-card">
+<h3>Unfair Advantage: Compliance Velocity</h3>
+<p>SOC 2, HIPAA, GDPR deployments in 6-10 weeks vs. 6-12 months for competitors. Pre-built compliance automation gives us 5x faster time-to-value.</p>
+</div>
+<div class="advantage-card">
+<h3>Network Effects: Model Marketplace</h3>
+<p>340+ customers contribute fine-tuned models to shared marketplace (with privacy controls). Creates moat as model library grows to 2,400+ specialized models.</p>
+</div>
+<div class="advantage-card">
+<h3>Switching Costs: Deep Integration</h3>
+<p>Average customer has 18+ applications integrated with BYOC. Rip-and-replace cost estimated at $2-4M, creating 90%+ retention after year 2.</p>
+</div>
+<div class="advantage-card">
+<h3>Data Moat: Usage Intelligence</h3>
+<p>Processing 12B tokens/month gives us unique dataset on enterprise AI usage patterns. Powers predictive cost optimization (patent pending).</p>
+</div>
+<div class="advantage-card">
+<h3>Go-To-Market: Compliance-First Sales</h3>
+<p>Win deals by leading with compliance/security review (not product demo). CISOs become champions, shortening sales cycle from 9 → 4.2 months.</p>
+</div>
+<div class="advantage-card">
+<h3>Unit Economics: Efficient Growth</h3>
+<p>LTV:CAC of 14.2x (best-in-class for infra SaaS). 5.8-month payback period. 158% NDR driven by expansion (customers 3x spend in year 2).</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cta-section">
+<div class="container">
+<h2>Raising $15M Series A</h2>
+<p>We're raising $15M Series A to scale enterprise sales (6 → 30 AEs), expand to EU/APAC markets, and build strategic partnerships with AWS, Azure, and GCP. Currently in discussions with tier-1 VCs.</p>
+<a href="contact.html">Download Pitch Deck</a>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • Confidential & Proprietary</p>
+</div></footer>
+</body>
+</html>

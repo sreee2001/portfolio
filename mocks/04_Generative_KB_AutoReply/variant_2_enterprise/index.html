@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise Knowledge Automation Platform</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Roboto',-apple-system,sans-serif;line-height:1.6;color:#e2e8f0;background:#0a0e1a}
+.container{max-width:1400px;margin:0 auto;padding:0 30px}
+header{background:#0f1419;border-bottom:1px solid #1e293b;padding:20px 0;position:sticky;top:0;z-index:100}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:26px;font-weight:900;color:#fff}
+.logo span{color:#06b6d4}
+nav ul{list-style:none;display:flex;gap:35px;align-items:center}
+nav a{color:#94a3b8;text-decoration:none;font-weight:600;font-size:15px;transition:color 0.3s}
+nav a:hover{color:#06b6d4}
+.cta-btn{background:#06b6d4;color:#0a0e1a;padding:11px 26px;border-radius:8px;font-weight:700;transition:background 0.3s}
+.cta-btn:hover{background:#0891b2}
+.hero{background:linear-gradient(135deg,#0a0e1a 0%,#1e293b 100%);padding:110px 30px;text-align:center;border-bottom:1px solid #1e293b}
+.hero h1{font-size:58px;font-weight:900;color:#fff;margin-bottom:30px;line-height:1.1}
+.hero h1 .highlight{color:#06b6d4}
+.hero p{font-size:22px;color:#94a3b8;max-width:900px;margin:0 auto 45px;line-height:1.7}
+.hero-cta{display:inline-block;background:#06b6d4;color:#0a0e1a;padding:20px 50px;border-radius:10px;font-size:19px;font-weight:800;text-decoration:none;box-shadow:0 10px 30px rgba(6,182,212,0.3);transition:transform 0.3s}
+.hero-cta:hover{transform:translateY(-4px)}
+.stats{padding:90px 30px;background:#0f1419}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1400px;margin:0 auto}
+.stat-card{background:#1e293b;padding:40px;border-radius:16px;text-align:center;border:1px solid #334155}
+.stat-card .number{font-size:52px;font-weight:900;color:#06b6d4;margin-bottom:12px}
+.stat-card .label{font-size:16px;color:#94a3b8;text-transform:uppercase;letter-spacing:1px;font-weight:700}
+.features{padding:90px 30px;background:#0a0e1a}
+.features h2{font-size:46px;font-weight:900;text-align:center;margin-bottom:60px;color:#fff}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1400px;margin:0 auto}
+.feature-card{background:#1e293b;padding:45px;border-radius:16px;border:1px solid #334155;transition:border-color 0.3s}
+.feature-card:hover{border-color:#06b6d4}
+.feature-card h3{font-size:24px;color:#06b6d4;margin-bottom:18px;font-weight:800}
+.feature-card p{font-size:17px;color:#cbd5e1;line-height:1.8}
+.architecture{padding:90px 30px;background:#0f1419}
+.architecture h2{font-size:46px;font-weight:900;text-align:center;margin-bottom:60px;color:#fff}
+.architecture-diagram{max-width:1100px;margin:0 auto;background:#1e293b;padding:60px;border-radius:20px;border:1px solid #334155;text-align:center}
+.architecture-diagram p{font-size:18px;color:#94a3b8;line-height:1.9}
+.cta-section{padding:100px 30px;background:linear-gradient(135deg,#0a0e1a,#1e293b);text-align:center}
+.cta-section h2{font-size:48px;font-weight:900;color:#fff;margin-bottom:30px}
+.cta-section p{font-size:22px;color:#94a3b8;max-width:800px;margin:0 auto 45px}
+.cta-section a{background:#06b6d4;color:#0a0e1a;padding:20px 50px;border-radius:10px;font-size:19px;font-weight:800;text-decoration:none;display:inline-block;box-shadow:0 10px 30px rgba(6,182,212,0.3);transition:transform 0.3s}
+.cta-section a:hover{transform:translateY(-4px)}
+footer{background:#0f1419;color:#64748b;padding:50px 30px;text-align:center;font-size:14px;border-top:1px solid #1e293b}
+@media(max-width:768px){
+.hero h1{font-size:40px}
+.stats-grid,.features-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header><div class="container"><nav>
+<div class="logo">Generative<span>KB</span></div>
+<ul>
+<li><a href="index.html">Platform</a></li>
+<li><a href="how-it-works.html">Architecture</a></li>
+<li><a href="contact.html">Enterprise</a></li>
+<li><a href="contact.html" class="cta-btn">Request Demo</a></li>
+</ul>
+</nav></div></header>
+
+<section class="hero">
+<div class="container">
+<h1>Enterprise <span class="highlight">Knowledge Automation</span></h1>
+<p>AI-powered response generation platform for IT Service Management. Reduce L1/L2 ticket volume by 60% with automated, context-aware replies from your enterprise knowledge repositories.</p>
+<a href="contact.html" class="hero-cta">Schedule Enterprise Demo</a>
+</div>
+</section>
+
+<section class="stats">
+<div class="container">
+<div class="stats-grid">
+<div class="stat-card">
+<div class="number">72%</div>
+<div class="label">Ticket Deflection Rate</div>
+</div>
+<div class="stat-card">
+<div class="number">8.4s</div>
+<div class="label">Avg Response Time</div>
+</div>
+<div class="stat-card">
+<div class="number">94%</div>
+<div class="label">Answer Accuracy</div>
+</div>
+<div class="stat-card">
+<div class="number">24/7</div>
+<div class="label">Autonomous Operation</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="features">
+<div class="container">
+<h2>🔧 Enterprise-Grade Capabilities</h2>
+<div class="features-grid">
+<div class="feature-card">
+<h3>Multi-Source Knowledge Ingestion</h3>
+<p>Connects to Confluence, SharePoint, ServiceNow KB, Jira, GitLab wikis, and internal document repositories. Unified semantic search across all sources with automatic deduplication.</p>
+</div>
+<div class="feature-card">
+<h3>LLM-Powered Response Generation</h3>
+<p>Uses GPT-4, Claude, or self-hosted LLMs (LLaMA, Mistral) to generate contextually accurate responses. Supports RAG (Retrieval-Augmented Generation) with vector embeddings.</p>
+</div>
+<div class="feature-card">
+<h3>ITSM Integration Layer</h3>
+<p>Native integrations with ServiceNow, BMC Remedy, Jira Service Management, and Cherwell. Bi-directional sync, custom field mapping, and workflow automation.</p>
+</div>
+<div class="feature-card">
+<h3>Confidence-Based Escalation</h3>
+<p>Configurable confidence thresholds (0–100%) determine auto-response vs. escalation. Machine learning improves accuracy over time based on agent feedback.</p>
+</div>
+<div class="feature-card">
+<h3>Role-Based Access Control</h3>
+<p>Enterprise SSO (SAML, OAuth, LDAP), granular permissions, audit logging, and compliance reporting (SOC 2, ISO 27001, GDPR-ready).</p>
+</div>
+<div class="feature-card">
+<h3>Analytics & Observability</h3>
+<p>Real-time dashboards showing deflection rates, response accuracy, knowledge gaps, and cost savings. Integrates with Datadog, Splunk, and ELK stack.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="architecture">
+<div class="container">
+<h2>🏗️ System Architecture</h2>
+<div class="architecture-diagram">
+<p><strong>Layered Microservices Architecture:</strong></p>
+<p style="margin-top:25px;text-align:left;max-width:900px;margin-left:auto;margin-right:auto">
+<strong>1. Ingestion Layer:</strong> Real-time connectors to knowledge sources (REST APIs, webhooks, SFTP). Document parsing, OCR, metadata extraction.<br><br>
+<strong>2. Processing Layer:</strong> Chunking, vectorization (OpenAI embeddings, sentence-transformers), semantic indexing (Pinecone, Weaviate, Qdrant).<br><br>
+<strong>3. Generation Layer:</strong> LLM orchestration (LangChain, LlamaIndex), prompt engineering, response synthesis with citations.<br><br>
+<strong>4. Delivery Layer:</strong> ITSM webhook handlers, email SMTP, Slack/Teams bots, REST API for custom integrations.<br><br>
+<strong>5. Feedback Loop:</strong> Agent thumbs-up/down, A/B testing, reinforcement learning from human feedback (RLHF).
+</p>
+<p style="margin-top:30px;font-size:16px;color:#64748b;">Deployed on Kubernetes (AWS EKS, Azure AKS, GCP GKE) or on-prem air-gapped environments.</p>
+</div>
+</div>
+</section>
+
+<section class="cta-section">
+<div class="container">
+<h2>Ready to Automate Your IT Service Desk?</h2>
+<p>Join Fortune 500 companies using GenerativeKB to reduce ticket volume, improve MTTR, and scale support operations without hiring.</p>
+<a href="contact.html">Book Enterprise Demo</a>
+</div>
+</section>
+
+<footer><div class="container">
+<p>&copy; 2025 SPEC Global Solutions, Inc. • Enterprise AI Platform • SOC 2 Type II Certified</p>
+</div></footer>
+</body>
+</html>

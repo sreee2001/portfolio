@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works | Slack Workflow Builder Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: #1e293b;
+            background: #ffffff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        .cta-button {
+            background: white;
+            color: #6366f1;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            color: white;
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -100px;
+        }
+        .page-header h1 {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .page-header p {
+            font-size: 22px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Process Steps */
+        .process-section {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+        .section-intro {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .section-intro h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1e293b;
+        }
+        .section-intro p {
+            font-size: 19px;
+            color: #64748b;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .process-steps {
+            display: grid;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        .step-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            background: white;
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.08);
+            transition: all 0.4s;
+        }
+        .step-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+        }
+        .step-item:nth-child(even) .step-content {
+            order: 2;
+        }
+        .step-item:nth-child(even) .step-visual {
+            order: 1;
+        }
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border-radius: 50%;
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+        }
+        .step-content h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1e293b;
+        }
+        .step-content p {
+            font-size: 17px;
+            color: #64748b;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .step-features {
+            list-style: none;
+            margin-top: 24px;
+        }
+        .step-features li {
+            padding: 10px 0;
+            padding-left: 32px;
+            position: relative;
+            color: #475569;
+            font-size: 16px;
+        }
+        .step-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        .step-visual {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-radius: 16px;
+            padding: 40px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #64748b;
+            text-align: center;
+            font-style: italic;
+            border: 2px dashed #cbd5e1;
+        }
+
+        /* Features Grid */
+        .features-section {
+            padding: 100px 0;
+            background: white;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+        .feature-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            border-color: #6366f1;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+        }
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .feature-card h4 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1e293b;
+        }
+        .feature-card p {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* Integration Section */
+        .integration-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            text-align: center;
+        }
+        .integration-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .integration-section p {
+            font-size: 19px;
+            opacity: 0.9;
+            max-width: 650px;
+            margin: 0 auto 50px;
+        }
+        .integration-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .integration-logo {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 50px;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+        .integration-logo:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before,
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .cta-section::before {
+            top: -300px;
+            left: -200px;
+        }
+        .cta-section::after {
+            bottom: -300px;
+            right: -200px;
+        }
+        .cta-content {
+            position: relative;
+        }
+        .cta-section h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .cta-section p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: white;
+            color: #6366f1;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.4);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-section h4 {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover {
+            color: #6366f1;
+        }
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            padding-top: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .page-header h1 {
+                font-size: 36px;
+            }
+            .page-header p {
+                font-size: 18px;
+            }
+            .step-item {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 30px;
+            }
+            .step-item:nth-child(even) .step-content,
+            .step-item:nth-child(even) .step-visual {
+                order: initial;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            .cta-section h2 {
+                font-size: 32px;
+            }
+            .section-intro h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">🔄 Workflow Builder Pro</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="cta-button">Start Free Trial</a>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Build Workflows in Minutes, Not Hours</h1>
+            <p>From simple automation to complex business logic—no coding required</p>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Simple 4-Step Process</h2>
+                <p>Create powerful Slack workflows with our visual builder. Connect apps, automate tasks, and boost team productivity.</p>
+            </div>
+
+            <div class="process-steps">
+                <div class="step-item">
+                    <div class="step-content">
+                        <div class="step-number">1</div>
+                        <h3>Choose Your Trigger</h3>
+                        <p>Start by selecting what kicks off your workflow. Pick from dozens of Slack events or external app triggers.</p>
+                        <ul class="step-features">
+                            <li>Slack message, emoji reaction, or channel join</li>
+                            <li>Scheduled time-based triggers (daily, weekly, custom)</li>
+                            <li>Webhook triggers from external systems</li>
+                            <li>Form submissions and button clicks</li>
+                        </ul>
+                    </div>
+                    <div class="step-visual">
+                        [Trigger Selection Interface Screenshot]<br>
+                        Visual showing dropdown menu with trigger options: "New Message", "Emoji Reaction", "Scheduled Time", "Webhook", etc.
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-content">
+                        <div class="step-number">2</div>
+                        <h3>Design Your Workflow</h3>
+                        <p>Use our drag-and-drop builder to connect actions, add conditions, and create branching logic—all visually.</p>
+                        <ul class="step-features">
+                            <li>Drag-and-drop action blocks (send message, update database)</li>
+                            <li>Conditional logic (if/then/else branches)</li>
+                            <li>Variable mapping and data transformation</li>
+                            <li>Real-time workflow preview</li>
+                        </ul>
+                    </div>
+                    <div class="step-visual">
+                        [Workflow Canvas Screenshot]<br>
+                        Diagram showing connected blocks: "Trigger" → "Condition" → "Send Message" → "Update Sheet"
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-content">
+                        <div class="step-number">3</div>
+                        <h3>Connect Your Apps</h3>
+                        <p>Integrate with 500+ apps and services. Authenticate once, then seamlessly pass data between systems.</p>
+                        <ul class="step-features">
+                            <li>Pre-built connectors for Google, Microsoft, Salesforce</li>
+                            <li>Custom API integrations with OAuth support</li>
+                            <li>Database connections (PostgreSQL, MySQL, MongoDB)</li>
+                            <li>Secure credential storage and management</li>
+                        </ul>
+                    </div>
+                    <div class="step-visual">
+                        [Integration Panel Screenshot]<br>
+                        Grid showing app logos: Google Sheets, Jira, Salesforce, GitHub, HubSpot, with "Connected" badges
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-content">
+                        <div class="step-number">4</div>
+                        <h3>Test & Deploy</h3>
+                        <p>Run test executions, review logs, then deploy to your team with confidence. Monitor performance in real-time.</p>
+                        <ul class="step-features">
+                            <li>One-click test runs with sample data</li>
+                            <li>Detailed execution logs and error handling</li>
+                            <li>Version control and rollback capabilities</li>
+                            <li>Performance analytics and usage metrics</li>
+                        </ul>
+                    </div>
+                    <div class="step-visual">
+                        [Test & Deploy Dashboard Screenshot]<br>
+                        Interface showing "Run Test" button, execution log, and "Deploy to Production" action
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Powerful Features Built In</h2>
+                <p>Everything you need to build professional-grade automations</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Visual Builder</h4>
+                    <p>Intuitive drag-and-drop interface makes building workflows feel like drawing a flowchart.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h4>500+ Integrations</h4>
+                    <p>Connect Slack to your entire tech stack with pre-built connectors and custom APIs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h4>Real-Time Execution</h4>
+                    <p>Workflows trigger instantly, with sub-second response times for time-sensitive automations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h4>Enterprise Security</h4>
+                    <p>SOC 2 compliant with encrypted credentials, audit logs, and role-based access controls.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h4>Analytics Dashboard</h4>
+                    <p>Track workflow performance, execution history, and error rates in real-time dashboards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h4>Team Collaboration</h4>
+                    <p>Share workflows across teams, manage permissions, and collaborate on complex automations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="integration-section">
+        <div class="container">
+            <h2>Integrates With Your Favorite Tools</h2>
+            <p>Pre-built connectors for the apps your team already uses—no custom code required</p>
+            <div class="integration-logos">
+                <div class="integration-logo">Google Workspace</div>
+                <div class="integration-logo">Microsoft 365</div>
+                <div class="integration-logo">Salesforce</div>
+                <div class="integration-logo">Jira</div>
+                <div class="integration-logo">GitHub</div>
+                <div class="integration-logo">HubSpot</div>
+                <div class="integration-logo">Zoom</div>
+                <div class="integration-logo">Zendesk</div>
+                <div class="integration-logo">Asana</div>
+                <div class="integration-logo">Trello</div>
+                <div class="integration-logo">Monday.com</div>
+                <div class="integration-logo">+ 490 More</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Automate Your Workflows?</h2>
+                <p>Join 2,400+ teams building better workflows with Workflow Builder Pro</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn-primary">Start Free 14-Day Trial</a>
+                    <a href="contact.html" class="btn-secondary">Schedule a Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Templates</a></li>
+                        <li><a href="#">Integrations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Video Tutorials</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Workflow Builder Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
