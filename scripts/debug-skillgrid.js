@@ -9,8 +9,8 @@ const { chromium } = require('playwright');
     await page.goto('http://localhost:8000', { waitUntil: 'networkidle' });
     // give scripts a moment
     await page.waitForTimeout(500);
-    const exists = await page.$('#skills-card-grid');
-    const content = exists ? await page.$eval('#skills-card-grid', el => el.innerHTML) : null;
+  const exists = await page.$('#skills-cards-carousel');
+  const content = exists ? await page.$eval('#skills-cards-carousel', el => el.innerHTML) : null;
     console.log('SKILLGRID_HTML_START');
     console.log(content);
     console.log('SKILLGRID_HTML_END');

@@ -420,8 +420,36 @@
         }
 
         .skill-category-title { font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
-        .skill-category-items { display:flex; gap:0.5rem; flex-wrap:wrap; }
-        .skill-item { background:#f1f5f9; color:#0f172a; padding:0.35rem 0.6rem; border-radius:999px; font-weight:600; font-size:0.82rem; }
+        /* Skill list: vertical stacked pills with left dot markers to match design */
+        .skill-items {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            align-items: center;
+            width: 86%; /* small inset from card edges */
+        }
+
+        .skill-item {
+            background: #eef6fb; /* pale blue-ish background */
+            color: #0f172a;
+            padding: 0.6rem 1.25rem;
+            border-radius: 28px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+        }
+
+        /* small dot marker on left edge of the list area (outside pills) */
+        /* dot marker removed by request */
+
+        /* make sure the container cards position relative so the ::before can position correctly */
+        .skill-category-card { position: relative; }
 
         .stat-card {
             background: white;
@@ -507,6 +535,8 @@
     </nav>
 
     <!-- About Section -->
+            <!-- (skills carousel removed from this top location; it will appear below Work & UI Experience) -->
+
     <section id="about" class="section">
         <h2 class="section-title">About Me</h2>
         <div class="about-content">
@@ -520,8 +550,9 @@
                 <div id="about-cards-carousel" class="cards-carousel" tabindex="0" role="list" aria-label="Companies and UI experience"></div>
             </div>
 
-            <div class="skills-card-grid" id="skills-card-grid" aria-label="Skill categories">
-                <!-- Skill category cards will be rendered here from PERSONAL_INFO.skillCategories -->
+            <div class="cards-section" style="margin-top:1.25rem;">
+                <h3 class="section-subtitle" style="margin-bottom:0.75rem;">Skill Categories</h3>
+                <div id="skills-cards-carousel" class="cards-carousel" tabindex="0" role="list" aria-label="Skill categories carousel"></div>
             </div>
         </div>
     </section>
@@ -613,6 +644,7 @@
                 });
             }
 
+            
             const aboutAdditional = document.getElementById('about-additional-bio');
             if (aboutAdditional) aboutAdditional.textContent = PERSONAL_INFO.bio.additional;
             
@@ -728,6 +760,168 @@
             `;
             
             return card;
+        }
+
+        // Reusable carousel behavior: drag-to-scroll, keyboard navigation, autoplay with pause/resume
+        function applyCarouselBehavior(carousel, options = {}) {
+            if (!carousel) return;
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let isDragging = false;
+            let startX = 0, scrollLeft = 0;
+            let rafId = null, lastTime = null, direction = 1;
+            const speed = options.speed || 18; // pixels per second (slower)
+            let resumeTimer = null;
+            // float accumulator to avoid losing fractional increments
+            let floatScroll = null;
+
+            function onPointerDown(e) {
+                isDragging = true;
+                carousel.classList.add('dragging');
+                startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+                scrollLeft = carousel.scrollLeft;
+                floatScroll = carousel.scrollLeft;
+                try { carousel.setPointerCapture && carousel.setPointerCapture(e.pointerId); } catch (err) {}
+                stopAutoplay();
+                cancelResume();
+            }
+
+            function onPointerMove(e) {
+                if (!isDragging) return;
+                const x = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+                const dx = x - startX;
+                carousel.scrollLeft = scrollLeft - dx;
+            }
+
+            function stopDragging(e) {
+                isDragging = false;
+                try { carousel.releasePointerCapture && carousel.releasePointerCapture(e.pointerId); } catch (err) {}
+                carousel.classList.remove('dragging');
+                scheduleResume(1400);
+                // sync accumulator after user interaction
+                floatScroll = carousel.scrollLeft;
+            }
+
+            function onKeyDown(e) {
+                const key = e.key;
+                const cardWidth = carousel.querySelector('.card-item')?.offsetWidth || 320;
+                if (key === 'ArrowRight') {
+                    carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+                    e.preventDefault();
+                } else if (key === 'ArrowLeft') {
+                    carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+                    e.preventDefault();
+                }
+            }
+
+            let _lastLog = 0;
+            function animateFrame(timestamp) {
+                if (!lastTime) lastTime = timestamp;
+                const dt = (timestamp - lastTime) / 1000;
+                lastTime = timestamp;
+                if (!isDragging) {
+                    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                    if (maxScroll > 1) {
+                        if (floatScroll === null) floatScroll = carousel.scrollLeft;
+                        const change = direction * speed * dt;
+                        floatScroll += change;
+                        // clamp
+                        if (floatScroll <= 0) { floatScroll = 0; direction = 1; }
+                        else if (floatScroll >= maxScroll) { floatScroll = maxScroll; direction = -1; }
+                        // assign using scrollTo to ensure rendering
+                        try { carousel.scrollTo({ left: floatScroll, behavior: 'auto' }); } catch (e) { carousel.scrollLeft = floatScroll; }
+                    }
+                }
+                // no diagnostic logging here in production
+                rafId = requestAnimationFrame(animateFrame);
+            }
+
+            const _originalSnap = (carousel.style && carousel.style.scrollSnapType) || window.getComputedStyle(carousel).getPropertyValue('scroll-snap-type') || '';
+            function startAutoplay() {
+                if (prefersReducedMotion) return;
+                stopAutoplay();
+                // temporarily disable snap to allow smooth RAF-driven scrolling
+                try { carousel.style.scrollSnapType = 'none'; } catch (e) {}
+                lastTime = null;
+                rafId = requestAnimationFrame(animateFrame);
+            }
+
+            function stopAutoplay() {
+                if (rafId) { cancelAnimationFrame(rafId); rafId = null; lastTime = null; }
+                // restore original snap behavior
+                try { carousel.style.scrollSnapType = _originalSnap || ''; } catch (e) {}
+            }
+
+            function scheduleResume(delay = 1500) {
+                if (resumeTimer) clearTimeout(resumeTimer);
+                resumeTimer = setTimeout(() => { startAutoplay(); resumeTimer = null; }, delay);
+            }
+
+            function cancelResume() { if (resumeTimer) { clearTimeout(resumeTimer); resumeTimer = null; } }
+
+            // Pointer events
+            carousel.addEventListener('pointerdown', onPointerDown);
+            carousel.addEventListener('pointermove', onPointerMove);
+            carousel.addEventListener('pointerup', stopDragging);
+            carousel.addEventListener('pointercancel', stopDragging);
+            carousel.addEventListener('pointerleave', stopDragging);
+
+            // Pause on hover/focus and resume after idle
+            carousel.addEventListener('mouseenter', () => { stopAutoplay(); cancelResume(); });
+            carousel.addEventListener('focusin', () => { stopAutoplay(); cancelResume(); });
+            carousel.addEventListener('mouseleave', () => { scheduleResume(1200); });
+            carousel.addEventListener('focusout', () => { scheduleResume(1200); });
+
+            // Keyboard
+            carousel.addEventListener('keydown', onKeyDown);
+
+            // Start autoplay
+            if (!prefersReducedMotion) startAutoplay();
+
+            return {
+                start: startAutoplay,
+                stop: stopAutoplay
+            };
+        }
+
+        // Render skill categories into the skills carousel and apply carousel behavior
+        function renderSkillsCarousel(categories) {
+            const container = document.getElementById('skills-cards-carousel');
+            if (!container) return;
+            // Use the container itself if it already is the carousel element
+            let carousel = container.classList.contains('cards-carousel') ? container : container.querySelector('.cards-carousel');
+            if (!carousel) {
+                carousel = document.createElement('div');
+                carousel.className = 'cards-carousel';
+                carousel.tabIndex = 0;
+                carousel.setAttribute('role', 'list');
+                container.appendChild(carousel);
+            }
+            carousel.innerHTML = '';
+
+            categories.forEach(cat => {
+                const item = document.createElement('article');
+                item.className = 'card-item skill-category-card';
+                item.setAttribute('role', 'listitem');
+
+                const title = document.createElement('h3');
+                title.className = 'skill-category-title';
+                title.textContent = cat.title;
+
+                const ul = document.createElement('ul');
+                ul.className = 'skill-items';
+                (cat.items || []).forEach(s => {
+                    const li = document.createElement('li');
+                    li.className = 'skill-item';
+                    li.textContent = s;
+                    ul.appendChild(li);
+                });
+
+                item.appendChild(title);
+                item.appendChild(ul);
+                carousel.appendChild(item);
+            });
+
+            applyCarouselBehavior(carousel, { speed: 18 });
         }
 
         // Enhanced portfolio card generation with screenshot support
@@ -945,31 +1139,7 @@
 
         // Navigation behavior and scroll-spy will be set up by setupNavScrollSpy()
 
-        // Debug function to test file access
-        async function debugFileAccess() {
-            console.log('=== Portfolio Debug Info ===');
-            console.log('Current URL:', window.location.href);
-            console.log('Base URL:', window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1));
-            
-            const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-            const registryUrl = baseUrl + 'js/portfolio-registry.json';
-            console.log('Trying to access:', registryUrl);
-            
-            try {
-                const response = await fetch(registryUrl);
-                console.log('Registry response status:', response.status);
-                console.log('Registry response headers:', response.headers);
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('Registry data loaded successfully:', data);
-                } else {
-                    console.log('Registry response not ok:', await response.text());
-                }
-            } catch (error) {
-                console.error('Registry fetch error:', error);
-            }
-        }
+        // (debugFileAccess removed - diagnostics cleaned for production)
 
         
 
@@ -991,8 +1161,7 @@
                 });
             });
             
-            // Run debug check
-            await debugFileAccess();
+            // debug checks removed in production build
             
             // Show loading state
             const grid = document.getElementById('portfolio-grid');
@@ -1041,134 +1210,16 @@
                     </article>
                 `).join('');
 
-                // Interaction: drag-to-scroll + pause-on-hover + keyboard support + autoplay
-                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                let isDragging = false;
-                let startX, scrollLeft;
-                let autoplayTimer = null;
-
-                // Drag handlers
-                carousel.addEventListener('pointerdown', e => {
-                    isDragging = true;
-                    carousel.classList.add('dragging');
-                    startX = e.clientX || e.touches && e.touches[0].clientX;
-                    scrollLeft = carousel.scrollLeft;
-                    carousel.setPointerCapture(e.pointerId);
-                });
-
-                carousel.addEventListener('pointermove', e => {
-                    if (!isDragging) return;
-                    const x = e.clientX || (e.touches && e.touches[0].clientX);
-                    const dx = x - startX;
-                    carousel.scrollLeft = scrollLeft - dx;
-                });
-
-                const stopDragging = e => {
-                    isDragging = false;
-                    try { carousel.releasePointerCapture && carousel.releasePointerCapture(e.pointerId); } catch (err) {}
-                    carousel.classList.remove('dragging');
-                };
-
-                carousel.addEventListener('pointerup', stopDragging);
-                carousel.addEventListener('pointercancel', stopDragging);
-                carousel.addEventListener('pointerleave', stopDragging);
-
-                // Pause autoplay on hover/focus
-                carousel.addEventListener('mouseenter', stopAutoplay);
-                carousel.addEventListener('focusin', stopAutoplay);
-                carousel.addEventListener('mouseleave', () => scheduleResume(1200));
-                carousel.addEventListener('focusout', () => scheduleResume(1200));
-
-                // Keyboard navigation: left/right to scroll by card width
-                carousel.addEventListener('keydown', e => {
-                    const key = e.key;
-                    const cardWidth = carousel.querySelector('.card-item')?.offsetWidth || 320;
-                    if (key === 'ArrowRight') {
-                        carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
-                        e.preventDefault();
-                    } else if (key === 'ArrowLeft') {
-                        carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-                        e.preventDefault();
-                    }
-                });
-
-                // Smooth back-and-forth autoplay using requestAnimationFrame
-                let rafId = null;
-                let lastTime = null;
-                let direction = 1; // 1 = forward, -1 = backward
-                const speed = 40; // pixels per second
-                let resumeTimer = null;
-
-                function animateFrame(timestamp) {
-                    if (!lastTime) lastTime = timestamp;
-                    const dt = (timestamp - lastTime) / 1000; // seconds
-                    lastTime = timestamp;
-                    if (!isDragging) {
-                        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-                        if (maxScroll > 1) {
-                            carousel.scrollLeft += direction * speed * dt;
-                            if (carousel.scrollLeft <= 0) { carousel.scrollLeft = 0; direction = 1; }
-                            else if (carousel.scrollLeft >= maxScroll) { carousel.scrollLeft = maxScroll; direction = -1; }
-                        }
-                    }
-                    rafId = requestAnimationFrame(animateFrame);
-                }
-
-                function startAutoplay() {
-                    if (prefersReducedMotion) return;
-                    stopAutoplay();
-                    lastTime = null;
-                    rafId = requestAnimationFrame(animateFrame);
-                }
-
-                function stopAutoplay() {
-                    if (rafId) { cancelAnimationFrame(rafId); rafId = null; lastTime = null; }
-                }
-
-                function scheduleResume(delay = 1500) {
-                    if (resumeTimer) clearTimeout(resumeTimer);
-                    resumeTimer = setTimeout(() => { startAutoplay(); resumeTimer = null; }, delay);
-                }
-
-                function cancelResume() { if (resumeTimer) { clearTimeout(resumeTimer); resumeTimer = null; } }
-
-                // Pause autoplay immediately on interaction
-                carousel.addEventListener('pointerdown', e => {
-                    stopAutoplay();
-                    cancelResume();
-                });
-
-                carousel.addEventListener('pointerup', e => {
-                    // schedule resume after short idle
-                    scheduleResume(1600);
-                });
-
-                // Also pause on hover/focus and resume after idle
-                carousel.addEventListener('mouseenter', () => { stopAutoplay(); cancelResume(); });
-                carousel.addEventListener('focusin', () => { stopAutoplay(); cancelResume(); });
-                carousel.addEventListener('mouseleave', () => { scheduleResume(1200); });
-                carousel.addEventListener('focusout', () => { scheduleResume(1200); });
-
-                // Start autoplay if allowed and not reduced-motion
-                if (!prefersReducedMotion) startAutoplay();
+                // Apply generic carousel behavior (drag, keyboard, autoplay, pause/resume)
+                applyCarouselBehavior(carousel);
             }
 
             // Render after personal info updated
             renderCardsCarousel();
-            // Render skill category cards (replace old stats)
-            function renderSkillCards() {
-                const grid = document.getElementById('skills-card-grid');
-                if (!grid || !Array.isArray(PERSONAL_INFO.skillCategories)) return;
-                grid.innerHTML = PERSONAL_INFO.skillCategories.map(cat => `
-                    <section class="skill-category-card" aria-labelledby="cat-${cat.id}">
-                        <div id="cat-${cat.id}" class="skill-category-title">${cat.title}</div>
-                        <div class="skill-category-items">
-                            ${cat.items.map(i => `<span class="skill-item">${i}</span>`).join('')}
-                        </div>
-                    </section>
-                `).join('');
+            // Populate the skills carousel (below the company carousel)
+            if (Array.isArray(PERSONAL_INFO.skillCategories)) {
+                renderSkillsCarousel(PERSONAL_INFO.skillCategories);
             }
-            renderSkillCards();
         });
     </script>
 </body>
