@@ -1,0 +1,36 @@
+name: Generate Portfolio Screenshots
+
+on:
+  push:
+    branches: [main]
+    paths: ["mocks/**"]
+  workflow_dispatch:
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install Playwright
+        run: |
+          npm install playwright
+          npx playwright install chromium
+
+      - name: Generate Screenshots
+        run: |
+          node scripts/generate-screenshots.js
+
+      - name: Commit Screenshots
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add assets/screenshots/
+          git diff --staged --quiet || git commit -m "Auto-generate portfolio screenshots"
+          git push

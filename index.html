@@ -6,6 +6,9 @@
     <title>Srikanth Tangella - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Portfolio Data (fallback) -->
+    <script src="js/portfolio-data.js"></script>
     <style>
         * {
             margin: 0;
@@ -130,6 +133,45 @@
             margin-right: auto;
         }
 
+        /* Filter Controls */
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .filter-search {
+            flex: 1;
+            max-width: 400px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .filter-category {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .filter-category.active {
+            background: #0ea5e9;
+            color: white;
+            border-color: #0ea5e9;
+        }
+
+        .filter-category:hover {
+            border-color: #0ea5e9;
+        }
+
         /* Portfolio Grid */
         .portfolio-grid {
             display: grid;
@@ -145,6 +187,13 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             transition: all 0.3s;
             cursor: pointer;
+            opacity: 1;
+        }
+
+        .portfolio-card.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
         }
 
         .portfolio-card:hover {
@@ -202,6 +251,49 @@
             border-radius: 1rem;
             font-size: 0.85rem;
             font-weight: 600;
+        }
+
+        /* Design Badges */
+        .design-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .design-badge {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+        }
+
+        .design-badge.audience {
+            background: #fef3c7;
+            color: #92400e;
+            border-color: #fcd34d;
+        }
+
+        .design-badge.style {
+            background: #ede9fe;
+            color: #7c3aed;
+            border-color: #c4b5fd;
+        }
+
+        .design-badge.color {
+            background: #dcfce7;
+            color: #166534;
+            border-color: #86efac;
+        }
+
+        .portfolio-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
         }
 
         .portfolio-link {
@@ -284,6 +376,10 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .filter-controls {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -306,7 +402,7 @@
             <a href="https://github.com/sreee2001" class="social-btn" target="_blank">
                 <i class="fab fa-github"></i> GitHub
             </a>
-            <a href="mocks/personal-biography/index.html" class="social-btn">
+            <a href="mocks/personal-biography/bio/personal_biography.html" class="social-btn">
                 <i class="fas fa-user"></i> Full Bio
             </a>
         </div>
@@ -343,8 +439,8 @@
                     <div class="stat-label">Years Experience</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Mock Projects</div>
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Design Variations</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">8</div>
@@ -363,81 +459,31 @@
         <h2 class="section-title">UI/UX Portfolio</h2>
         <p class="section-subtitle">
             A collection of website mockups and prototypes showcasing different 
-            design approaches, color schemes, and user experiences.
+            design approaches, color schemes, and user experiences across industries.
         </p>
 
-        <div class="portfolio-grid">
-            <!-- Personal Biography -->
-            <div class="portfolio-card" onclick="window.open('mocks/personal-biography/index.html', '_blank')">
-                <div class="portfolio-thumbnail">
-                    <i class="fas fa-user-circle"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3 class="portfolio-title">Personal Biography</h3>
-                    <p class="portfolio-description">
-                        Interactive timeline-based portfolio with theme switcher, 
-                        journey tracker, and responsive design. Features 10 companies 
-                        across 15+ years with detailed accomplishments.
-                    </p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Interactive</span>
-                        <span class="tag">Timeline</span>
-                        <span class="tag">Responsive</span>
-                        <span class="tag">Theme Switcher</span>
-                    </div>
-                    <a href="mocks/personal-biography/index.html" class="portfolio-link" target="_blank">
-                        View Project <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
+        <!-- Filter Controls -->
+        <div class="filter-controls">
+            <input type="text" id="search-input" class="filter-search" placeholder="Search by name, audience, style, or color..." />
+            <div class="filter-category active" data-category="all">All Projects</div>
+            <div class="filter-category" data-category="small-business">Small Business</div>
+            <div class="filter-category" data-category="enterprise">Enterprise</div>
+            <div class="filter-category" data-category="vc-growth">VC/Investment</div>
+            <div class="filter-category" data-category="personal">Personal Branding</div>
+            <div class="filter-category" data-category="cybersecurity">Cybersecurity</div>
+            <div class="filter-category" data-category="ai-tools">AI/ML Tools</div>
+            <div class="filter-category" data-category="fintech">FinTech</div>
+            <div class="filter-category" data-category="friendly-design">Friendly Design</div>
+            <div class="filter-category" data-category="professional-design">Professional</div>
+            <div class="filter-category" data-category="creative-design">Creative</div>
+            <div class="filter-category" data-category="angel-investors">Angel Investors</div>
+            <div class="filter-category" data-category="pitch-deck">Pitch Decks</div>
+            <div class="filter-category" data-category="vibrant-design">Vibrant Design</div>
+            <div class="filter-category" data-category="minimal-design">Minimal Design</div>
+        </div>
 
-            <!-- Slack Workflow Builder - Small Business -->
-            <div class="portfolio-card" onclick="window.open('mocks/slack-workflow-pro/variant-1-small-business/index.html', '_blank')">
-                <div class="portfolio-thumbnail">
-                    <i class="fas fa-store"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3 class="portfolio-title">Slack Workflow Pro - Small Business</h3>
-                    <p class="portfolio-description">
-                        Friendly, approachable design for small businesses. Purple gradient 
-                        theme with clear value propositions and simplified navigation.
-                    </p>
-                    <div class="portfolio-tags">
-                        <span class="tag">SaaS</span>
-                        <span class="tag">SMB</span>
-                        <span class="tag">Purple Theme</span>
-                    </div>
-                    <a href="mocks/slack-workflow-pro/variant-1-small-business/index.html" class="portfolio-link" target="_blank">
-                        View Project <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Slack Workflow Builder - Enterprise -->
-            <div class="portfolio-card" onclick="window.open('mocks/slack-workflow-pro/variant-2-enterprise/index.html', '_blank')">
-                <div class="portfolio-thumbnail">
-                    <i class="fas fa-building"></i>
-                </div>
-                <div class="portfolio-content">
-                    <h3 class="portfolio-title">Slack Workflow Pro - Enterprise</h3>
-                    <p class="portfolio-description">
-                        Professional dark theme targeting IT leadership. Features 
-                        comprehensive solutions page with 20+ workflow cards across 
-                        5 departments (IT, HR, Finance, Security, Sales).
-                    </p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Enterprise</span>
-                        <span class="tag">Dark Theme</span>
-                        <span class="tag">B2B</span>
-                    </div>
-                    <a href="mocks/slack-workflow-pro/variant-2-enterprise/index.html" class="portfolio-link" target="_blank">
-                        View Project <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Add more portfolio cards here -->
-            
+        <div class="portfolio-grid" id="portfolio-grid">
+            <!-- Portfolio items will be loaded dynamically -->
         </div>
     </section>
 
@@ -466,6 +512,341 @@
     </footer>
 
     <script>
+        // Personal Information - Single Source of Truth
+        const PERSONAL_INFO = {
+            name: 'Srikanth Tangella',
+            title: 'Full-Stack Developer & UI/UX Designer',
+            email: 'sreee2001@gmail.com',
+            experience: '15+',
+            bio: {
+                short: '15+ years crafting enterprise solutions, from cybersecurity platforms to seismic data processing. Passionate about clean code and beautiful interfaces.',
+                detailed: "I'm a seasoned software engineer with expertise spanning cybersecurity, financial services, energy, and healthcare. I've architected security platforms protecting 100,000+ devices and built high-performance systems processing terabytes of seismic data."
+            },
+            social: {
+                linkedin: 'https://linkedin.com/in/srikanthtangella',
+                github: 'https://github.com/sreee2001',
+                bioPage: 'mocks/personal-biography/bio/personal_biography.html'
+            },
+            stats: {
+                experience: '15+',
+                designVariations: '20+',
+                companies: '8',
+                devicesSecured: '100K+'
+            }
+        };
+
+        // Function to update personal information throughout the page
+        function updatePersonalInfo() {
+            // Update page title
+            document.title = `${PERSONAL_INFO.name} - Portfolio`;
+            
+            // Update header name
+            const headerName = document.querySelector('.header h1');
+            if (headerName) headerName.textContent = PERSONAL_INFO.name;
+            
+            // Update header subtitle
+            const headerSubtitle = document.querySelector('.header .subtitle');
+            if (headerSubtitle) headerSubtitle.textContent = PERSONAL_INFO.title;
+            
+            // Update header description
+            const headerDesc = document.querySelector('.header .description');
+            if (headerDesc) headerDesc.textContent = PERSONAL_INFO.bio.short;
+            
+            // Update about section detailed bio
+            const aboutParagraphs = document.querySelectorAll('#about .about-content p');
+            if (aboutParagraphs.length >= 1) {
+                aboutParagraphs[0].textContent = PERSONAL_INFO.bio.detailed;
+            }
+            
+            // Update email links
+            const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+            emailLinks.forEach(link => {
+                link.href = `mailto:${PERSONAL_INFO.email}`;
+            });
+            
+            // Update social links
+            const linkedinLink = document.querySelector('a[href*="linkedin"]');
+            if (linkedinLink) linkedinLink.href = PERSONAL_INFO.social.linkedin;
+            
+            const githubLink = document.querySelector('a[href*="github"]');
+            if (githubLink) githubLink.href = PERSONAL_INFO.social.github;
+            
+            const bioLink = document.querySelector('a[href*="personal_biography"]');
+            if (bioLink) bioLink.href = PERSONAL_INFO.social.bioPage;
+            
+            // Update footer copyright
+            const footerCopyright = document.querySelector('.footer p');
+            if (footerCopyright) {
+                footerCopyright.textContent = `© 2025 ${PERSONAL_INFO.name}. All rights reserved.`;
+            }
+            
+            // Update stats (optional enhancement)
+            const statNumbers = document.querySelectorAll('.stat-number');
+            if (statNumbers.length >= 4) {
+                statNumbers[0].textContent = PERSONAL_INFO.stats.experience;
+                statNumbers[1].textContent = PERSONAL_INFO.stats.designVariations;
+                statNumbers[2].textContent = PERSONAL_INFO.stats.companies;
+                statNumbers[3].textContent = PERSONAL_INFO.stats.devicesSecured;
+            }
+        }
+
+        // Helper function to create individual portfolio card
+        function createPortfolioCard(project) {
+            const card = document.createElement('div');
+            card.className = 'portfolio-card';
+            card.setAttribute('data-categories', project.category.join(' '));
+            card.setAttribute('data-tags', project.tags.join(' ').toLowerCase());
+            card.setAttribute('data-title', project.title.toLowerCase());
+            
+            const linkHTML = `<a href="${project.url}" class="portfolio-link" target="_blank">
+                View Design <i class="fas fa-arrow-right"></i>
+            </a>`;
+            
+            const tagsHTML = project.tags.map(tag => 
+                `<span class="tag">${tag}</span>`
+            ).join('');
+            
+            const thumbnailContent = project.screenshot ? 
+                `<img src="${project.screenshot}" alt="${project.title} Screenshot" 
+                      onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\\"${project.icon}\\"></i>';">` :
+                `<i class="${project.icon}"></i>`;
+            
+            const designBadges = [];
+            if (project.targetAudience) designBadges.push(`<span class="design-badge audience">👥 ${project.targetAudience}</span>`);
+            if (project.designStyle) designBadges.push(`<span class="design-badge style">🎨 ${project.designStyle}</span>`);
+            if (project.colorScheme) designBadges.push(`<span class="design-badge color">🎨 ${project.colorScheme}</span>`);
+            
+            card.innerHTML = `
+                <div class="portfolio-thumbnail">
+                    ${thumbnailContent}
+                </div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">${project.title}</h3>
+                    <p class="portfolio-description">${project.description}</p>
+                    ${designBadges.length > 0 ? `<div class="design-badges">${designBadges.join('')}</div>` : ''}
+                    <div class="portfolio-tags">
+                        ${tagsHTML}
+                    </div>
+                    <div class="portfolio-links">
+                        ${linkHTML}
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Enhanced portfolio card generation with screenshot support
+        async function generatePortfolioCards() {
+            const grid = document.getElementById('portfolio-grid');
+            grid.innerHTML = ''; // Clear existing cards
+            
+            // Load projects from Portfolio Manager
+            const projects = await portfolioManager.loadProjects();
+            
+            projects.forEach(project => {
+                const card = createPortfolioCard(project);
+                grid.appendChild(card);
+            });
+            
+            // Reinitialize filters after cards are generated
+            setupFilters();
+        }
+
+        // Filter functionality
+        function setupFilters() {
+            const searchInput = document.getElementById('search-input');
+            const categoryButtons = document.querySelectorAll('.filter-category');
+            const portfolioCards = document.querySelectorAll('.portfolio-card');
+            
+            let activeCategory = 'all';
+            
+            // Category filter
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    activeCategory = button.getAttribute('data-category');
+                    filterProjects();
+                });
+            });
+            
+            // Search filter
+            searchInput.addEventListener('input', filterProjects);
+            
+            function filterProjects() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const grid = document.getElementById('portfolio-grid');
+                
+                // Get all projects data
+                const allProjects = portfolioManager.projects || [];
+                
+                // Filter projects that match criteria
+                const matchingProjects = allProjects.filter(project => {
+                    const matchesCategory = activeCategory === 'all' || 
+                        (project.category && project.category.includes(activeCategory));
+                    const matchesSearch = !searchTerm || 
+                        project.title.toLowerCase().includes(searchTerm) ||
+                        project.description.toLowerCase().includes(searchTerm) ||
+                        project.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+                    
+                    return matchesCategory && matchesSearch;
+                });
+                
+                // Clear grid and regenerate with filtered projects only
+                grid.innerHTML = '';
+                
+                matchingProjects.forEach(project => {
+                    const card = createPortfolioCard(project);
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        // Store reference to portfolioManager in setupFilters
+        // setupFilters.portfolioManager = portfolioManager;
+
+        // Enhanced Automatic Portfolio Detection System
+        class PortfolioManager {
+            constructor() {
+                this.projects = [];
+                this.categories = [];
+                this.initialized = false;
+            }
+
+            async autoDetectProjects() {
+                try {
+                    // Try to load from registry first (auto-generated)
+                    console.log('Loading portfolio from registry...');
+                    const response = await fetch('js/portfolio-registry.json');
+                    if (response.ok) {
+                        const registry = await response.json();
+                        console.log('Registry loaded successfully:', registry.projects.length, 'projects');
+                        return registry.projects;
+                    } else {
+                        console.log('Registry fetch failed with status:', response.status);
+                    }
+                } catch (error) {
+                    console.log('Registry fetch error:', error.message);
+                }
+
+                try {
+                    // Fallback to static portfolio data
+                    console.log('Trying portfolio-data.js fallback...');
+                    const dataResponse = await fetch('js/portfolio-data.js');
+                    if (dataResponse.ok) {
+                        console.log('portfolio-data.js loaded, checking for portfolioData...');
+                        // Try to access portfolioData from the loaded script
+                        if (typeof portfolioData !== 'undefined' && portfolioData.projects) {
+                            console.log('Using portfolioData.projects:', portfolioData.projects.length, 'projects');
+                            return portfolioData.projects;
+                        } else {
+                            console.log('portfolioData not found in global scope');
+                        }
+                    } else {
+                        console.log('portfolio-data.js fetch failed with status:', dataResponse.status);
+                    }
+                } catch (error) {
+                    console.log('Portfolio data fetch error:', error.message);
+                }
+
+                // Check if the registry file exists by trying a different approach
+                console.log('Trying direct registry check...');
+                try {
+                    const registryCheck = await fetch('./js/portfolio-registry.json');
+                    if (registryCheck.ok) {
+                        const registryData = await registryCheck.json();
+                        console.log('Direct registry check successful:', registryData.projects.length, 'projects');
+                        return registryData.projects;
+                    }
+                } catch (error) {
+                    console.log('Direct registry check failed:', error.message);
+                }
+
+                // Final fallback with helpful diagnostic message
+                console.log('All loading methods failed, using error fallback');
+                return [
+                    {
+                        id: 'loading-failed',
+                        title: 'Portfolio Loading Failed',
+                        description: 'Unable to load portfolio data. Please check browser console for details and ensure js/portfolio-registry.json exists and is accessible.',
+                        icon: 'fas fa-exclamation-triangle',
+                        tags: ['Error', 'Loading Failed'],
+                        category: ['system'],
+                        url: '#',
+                        targetAudience: 'Debug Info',
+                        designStyle: 'Error State',
+                        colorScheme: 'Error Red'
+                    },
+                    {
+                        id: 'check-files',
+                        title: 'Check Configuration Files',
+                        description: 'Ensure these files exist: 1) js/portfolio-registry.json with project data, 2) js/portfolio-data.js as fallback. Check browser Network tab for 404 errors.',
+                        icon: 'fas fa-tools',
+                        tags: ['Configuration', 'Debug', 'Setup'],
+                        category: ['system'],
+                        url: '#',
+                        targetAudience: 'Developer',
+                        designStyle: 'Debug Helper',
+                        colorScheme: 'Warning Orange'
+                    }
+                ];
+            }
+
+            async loadProjects() {
+                if (this.initialized) {
+                    return this.projects;
+                }
+
+                this.projects = await this.autoDetectProjects();
+                this.initialized = true;
+                
+                console.log(`Portfolio Manager: Loaded ${this.projects.length} projects`);
+                
+                // Update stats
+                this.updateStats();
+                
+                return this.projects;
+            }
+
+            updateStats() {
+                const statElement = document.querySelector('.stat-card .stat-number');
+                if (statElement && statElement.textContent.includes('+')) {
+                    // Update the project count in the stats
+                    const projectCount = this.projects.length;
+                    const statsCards = document.querySelectorAll('.stat-number');
+                    if (statsCards.length >= 2) {
+                        statsCards[1].textContent = `${projectCount}+`;
+                    }
+                }
+            }
+
+            getProjectsByCategory(category) {
+                if (category === 'all') {
+                    return this.projects;
+                }
+                return this.projects.filter(project => 
+                    project.category && project.category.includes(category)
+                );
+            }
+
+            searchProjects(searchTerm) {
+                if (!searchTerm) {
+                    return this.projects;
+                }
+                
+                const term = searchTerm.toLowerCase();
+                return this.projects.filter(project => 
+                    project.title.toLowerCase().includes(term) ||
+                    project.description.toLowerCase().includes(term) ||
+                    project.tags.some(tag => tag.toLowerCase().includes(term))
+                );
+            }
+        }
+
+        // Initialize Portfolio Manager
+        const portfolioManager = new PortfolioManager();
+
         // Smooth scrolling for navigation
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -479,6 +860,71 @@
                     this.classList.add('active');
                 }
             });
+        });
+
+        // Debug function to test file access
+        async function debugFileAccess() {
+            console.log('=== Portfolio Debug Info ===');
+            console.log('Current URL:', window.location.href);
+            console.log('Base URL:', window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1));
+            
+            const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+            const registryUrl = baseUrl + 'js/portfolio-registry.json';
+            console.log('Trying to access:', registryUrl);
+            
+            try {
+                const response = await fetch(registryUrl);
+                console.log('Registry response status:', response.status);
+                console.log('Registry response headers:', response.headers);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Registry data loaded successfully:', data);
+                } else {
+                    console.log('Registry response not ok:', await response.text());
+                }
+            } catch (error) {
+                console.error('Registry fetch error:', error);
+            }
+        }
+
+        // Enhanced initialization with loading states
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Update personal information from single source
+            updatePersonalInfo();
+            
+            // Run debug check
+            await debugFileAccess();
+            
+            // Show loading state
+            const grid = document.getElementById('portfolio-grid');
+            grid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 4rem;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #0ea5e9; margin-bottom: 1rem;"></i>
+                    <p style="color: #64748b; font-size: 1.1rem;">Loading portfolio projects...</p>
+                    <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 1rem;">Check browser console for loading details</p>
+                </div>
+            `;
+            
+            try {
+                // Load and generate portfolio cards
+                await generatePortfolioCards();
+                console.log('Portfolio loaded successfully');
+            } catch (error) {
+                console.error('Error loading portfolio:', error);
+                
+                // Show detailed error state
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 4rem;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #ef4444; margin-bottom: 1rem;"></i>
+                        <p style="color: #64748b; font-size: 1.1rem;">Error loading portfolio</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 1rem;">Check browser console for details. Error: ${error.message}</p>
+                        <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #0ea5e9; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">
+                            Retry Loading
+                        </button>
+                    </div>
+                `;
+            }
         });
     </script>
 </body>
