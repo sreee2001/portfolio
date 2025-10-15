@@ -111,6 +111,13 @@ async function generateScreenshots() {
                         indexPath = path.join(mockPath, `${variant}.html`);
                         htmlFileName = `${variant}.html`;
                     }
+                    
+                    // For dashboards (08, 09, 10), check for variant-named HTML files
+                    const variantHtmlPath = path.join(mockPath, variant, `${variant}.html`);
+                    if (fs.existsSync(variantHtmlPath)) {
+                        indexPath = variantHtmlPath;
+                        htmlFileName = `${variant}.html`;
+                    }
                 }
                 
                 if (fs.existsSync(indexPath)) {

@@ -683,6 +683,235 @@
       "targetAudience": "Workflow VCs",
       "colorScheme": "Success Green",
       "url": "mocks/07_Slack_Workflow_Builder_Pro/variant_3_vc_growth/index.html"
+    },
+    {
+      "id": "project-management-startup-bright",
+      "title": "Project Management Dashboard (Startup Bright)",
+      "description": "Energetic project management dashboard designed for fast-moving startups. Bright colors, intuitive task management, and real-time collaboration features. Optimized for agile teams and rapid iteration cycles.",
+      "icon": "fas fa-tasks",
+      "tags": [
+        "Project Management",
+        "Startup",
+        "Bright Design",
+        "Task Management",
+        "Agile Teams",
+        "Real-Time Collaboration",
+        "Fast-Paced"
+      ],
+      "category": [
+        "dashboard",
+        "startup-friendly",
+        "project-management",
+        "bright-design"
+      ],
+      "screenshot": "assets/screenshots/08_Project_Management_Dashboard/variant_1_startup_bright.png",
+      "designStyle": "Startup Bright",
+      "targetAudience": "Startup Teams",
+      "colorScheme": "Energetic Multi",
+      "url": "mocks/08_Project_Management_Dashboard/variant_1_startup_bright/index.html"
+    },
+    {
+      "id": "project-management-enterprise-dark",
+      "title": "Project Management Dashboard (Enterprise Dark)",
+      "description": "Professional dark-themed project management dashboard for enterprise teams. Features comprehensive reporting, resource allocation, and Gantt charts. Designed for large-scale project coordination and portfolio management.",
+      "icon": "fas fa-project-diagram",
+      "tags": [
+        "Project Management",
+        "Enterprise",
+        "Dark Theme",
+        "Comprehensive Reporting",
+        "Resource Allocation",
+        "Gantt Charts",
+        "Portfolio Management"
+      ],
+      "category": [
+        "dashboard",
+        "enterprise",
+        "project-management",
+        "dark-theme"
+      ],
+      "screenshot": "assets/screenshots/08_Project_Management_Dashboard/variant_2_enterprise_dark.png",
+      "designStyle": "Enterprise Dark",
+      "targetAudience": "Enterprise PMOs",
+      "colorScheme": "Professional Dark",
+      "url": "mocks/08_Project_Management_Dashboard/variant_2_enterprise_dark/index.html"
+    },
+    {
+      "id": "project-management-agency-minimal",
+      "title": "Project Management Dashboard (Agency Minimal)",
+      "description": "Clean, minimal project management dashboard designed for creative agencies. Focuses on client projects, deliverables, and timeline tracking with whitespace-rich, distraction-free interface.",
+      "icon": "fas fa-briefcase",
+      "tags": [
+        "Project Management",
+        "Creative Agency",
+        "Minimal Design",
+        "Client Projects",
+        "Timeline Tracking",
+        "Clean Interface",
+        "Deliverables"
+      ],
+      "category": [
+        "dashboard",
+        "creative-design",
+        "project-management",
+        "minimal-design"
+      ],
+      "screenshot": "assets/screenshots/08_Project_Management_Dashboard/variant_3_agency_minimal.png",
+      "designStyle": "Agency Minimal",
+      "targetAudience": "Creative Agencies",
+      "colorScheme": "Minimal Gray",
+      "url": "mocks/08_Project_Management_Dashboard/variant_3_agency_minimal/index.html"
+    },
+    {
+      "id": "financial-analytics-freelancer-colorful",
+      "title": "Financial Analytics Dashboard (Freelancer Colorful)",
+      "description": "Vibrant financial analytics dashboard for freelancers and solopreneurs. Features income tracking, expense categorization, and profit visualization with colorful charts and friendly interface.",
+      "icon": "fas fa-chart-pie",
+      "tags": [
+        "Financial Analytics",
+        "Freelancer",
+        "Colorful Design",
+        "Income Tracking",
+        "Expense Management",
+        "Profit Visualization",
+        "Solopreneur"
+      ],
+      "category": [
+        "dashboard",
+        "small-business",
+        "financial-analytics",
+        "colorful-design"
+      ],
+      "screenshot": "assets/screenshots/09_Financial_Analytics_Dashboard/variant_1_freelancer_colorful.png",
+      "designStyle": "Freelancer Colorful",
+      "targetAudience": "Freelancers & Solopreneurs",
+      "colorScheme": "Vibrant Multi",
+      "url": "mocks/09_Financial_Analytics_Dashboard/variant_1_freelancer_colorful/index.html"
+    },
+    {
+      "id": "financial-analytics-smb-professional",
+      "title": "Financial Analytics Dashboard (SMB Professional)",
+      "description": "Professional financial analytics dashboard for small to medium businesses. Includes P&L statements, cash flow analysis, and budget tracking with clean, business-focused design.",
+      "icon": "fas fa-chart-line",
+      "tags": [
+        "Financial Analytics",
+        "Small Business",
+        "Professional Design",
+        "P&L Statements",
+        "Cash Flow",
+        "Budget Tracking",
+        "Business Finance"
+      ],
+      "category": [
+        "dashboard",
+        "small-business",
+        "financial-analytics",
+        "professional-design"
+      ],
+      "screenshot": "assets/screenshots/09_Financial_Analytics_Dashboard/variant_2_smb_professional.png",
+      "designStyle": "SMB Professional",
+      "targetAudience": "Small Business Owners",
+      "colorScheme": "Professional Blue",
+      "url": "mocks/09_Financial_Analytics_Dashboard/variant_2_smb_professional/index.html"
+    },
+    {
+      "id": "financial-analytics-cfo-executive",
+      "title": "Financial Analytics Dashboard (CFO Executive)",
+      "description": "Executive-level financial analytics dashboard designed for CFOs and finance leadership. Features advanced KPIs, scenario modeling, and comprehensive financial reporting with formal, trustworthy design.",
+      "icon": "fas fa-chart-bar",
+      "tags": [
+        "Financial Analytics",
+        "Executive",
+        "CFO Dashboard",
+        "Advanced KPIs",
+        "Scenario Modeling",
+        "Financial Reporting",
+        "Leadership"
+      ],
+      "category": [
+        "dashboard",
+        "enterprise",
+        "financial-analytics",
+        "executive-tools"
+      ],
+      "screenshot": "assets/screenshots/09_Financial_Analytics_Dashboard/variant_3_cfo_executive.png",
+      "designStyle": "CFO Executive",
+      "targetAudience": "CFOs & Finance Leaders",
+      "colorScheme": "Executive Navy",
+      "url": "mocks/09_Financial_Analytics_Dashboard/variant_3_cfo_executive/index.html"
+    },
+    {
+      "id": "crm-pipeline-sales-modern",
+      "title": "CRM Pipeline Dashboard (Sales Modern)",
+      "description": "Modern CRM pipeline dashboard for sales teams. Features deal tracking, conversion funnels, and activity monitoring with contemporary design and intuitive navigation.",
+      "icon": "fas fa-funnel-dollar",
+      "tags": [
+        "CRM",
+        "Sales Pipeline",
+        "Modern Design",
+        "Deal Tracking",
+        "Conversion Funnels",
+        "Activity Monitoring",
+        "Sales Teams"
+      ],
+      "category": ["dashboard", "sales-crm", "modern-design", "sales-tools"],
+      "screenshot": "assets/screenshots/10_CRM_Pipeline_Dashboard/variant_1_sales_modern.png",
+      "designStyle": "Sales Modern",
+      "targetAudience": "Sales Teams",
+      "colorScheme": "Modern Blue",
+      "url": "mocks/10_CRM_Pipeline_Dashboard/variant_1_sales_modern/index.html"
+    },
+    {
+      "id": "crm-pipeline-support-clean",
+      "title": "CRM Pipeline Dashboard (Support Clean)",
+      "description": "Clean CRM dashboard optimized for customer support teams. Focuses on ticket management, customer satisfaction tracking, and support metrics with organized, easy-to-scan layout.",
+      "icon": "fas fa-headset",
+      "tags": [
+        "CRM",
+        "Customer Support",
+        "Clean Design",
+        "Ticket Management",
+        "Customer Satisfaction",
+        "Support Metrics",
+        "Support Teams"
+      ],
+      "category": [
+        "dashboard",
+        "customer-support",
+        "clean-design",
+        "support-tools"
+      ],
+      "screenshot": "assets/screenshots/10_CRM_Pipeline_Dashboard/variant_2_support_clean.png",
+      "designStyle": "Support Clean",
+      "targetAudience": "Support Teams",
+      "colorScheme": "Clean Teal",
+      "url": "mocks/10_CRM_Pipeline_Dashboard/variant_2_support_clean/index.html"
+    },
+    {
+      "id": "crm-pipeline-marketing-vibrant",
+      "title": "CRM Pipeline Dashboard (Marketing Vibrant)",
+      "description": "Vibrant CRM dashboard designed for marketing teams. Features campaign tracking, lead scoring, and engagement metrics with energetic colors and dynamic data visualization.",
+      "icon": "fas fa-bullhorn",
+      "tags": [
+        "CRM",
+        "Marketing",
+        "Vibrant Design",
+        "Campaign Tracking",
+        "Lead Scoring",
+        "Engagement Metrics",
+        "Marketing Teams"
+      ],
+      "category": [
+        "dashboard",
+        "marketing-tools",
+        "vibrant-design",
+        "marketing-crm"
+      ],
+      "screenshot": "assets/screenshots/10_CRM_Pipeline_Dashboard/variant_3_marketing_vibrant.png",
+      "designStyle": "Marketing Vibrant",
+      "targetAudience": "Marketing Teams",
+      "colorScheme": "Vibrant Purple",
+      "url": "mocks/10_CRM_Pipeline_Dashboard/variant_3_marketing_vibrant/index.html"
     }
   ]
 }
