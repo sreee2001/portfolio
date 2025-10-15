@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enterprise HR Suite - Payroll Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Enterprise Corporate Theme */
+      :root {
+        --primary: #1e40af;
+        --primary-dark: #1e3a8a;
+        --secondary: #0891b2;
+        --success: #059669;
+        --warning: #d97706;
+        --danger: #dc2626;
+        --bg-main: #f8fafc;
+        --bg-card: #ffffff;
+        --bg-gray: #f1f5f9;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-tertiary: #94a3b8;
+        --border: #e2e8f0;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.12);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-main);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      /* Header - Corporate */
+      .header {
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 2rem;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        max-width: 1800px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        letter-spacing: -0.5px;
+      }
+
+      .nav {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .nav-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 0.625rem 1.125rem;
+        border-radius: 6px;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+
+      .nav-link:hover {
+        color: var(--primary);
+        background: var(--bg-gray);
+      }
+
+      .nav-link.active {
+        color: white;
+        background: var(--primary);
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .period-selector {
+        background: var(--bg-gray);
+        border: 1px solid var(--border);
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: var(--text-primary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: var(--primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      /* Page Header */
+      .page-header {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .page-title {
+        font-size: 1.75rem;
+        font-weight: 900;
+        color: var(--text-primary);
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .btn {
+        padding: 0.625rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-secondary {
+        background: var(--bg-gray);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        background: var(--border);
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        transition: all 0.3s;
+      }
+
+      .stat-card:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+      }
+
+      .stat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .stat-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      .stat-icon.blue {
+        background: #dbeafe;
+        color: var(--primary);
+      }
+
+      .stat-icon.cyan {
+        background: #cffafe;
+        color: var(--secondary);
+      }
+
+      .stat-icon.green {
+        background: #d1fae5;
+        color: var(--success);
+      }
+
+      .stat-icon.orange {
+        background: #fed7aa;
+        color: var(--warning);
+      }
+
+      .stat-value {
+        font-size: 2.25rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .stat-change {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+
+      /* Dashboard Grid */
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      /* Card */
+      .card {
+        background: var(--bg-card);
+        border-radius: 10px;
+        padding: 1.75rem;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .card-title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .icon-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        background: var(--bg-gray);
+        border: 1px solid var(--border);
+        color: var(--text-secondary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+
+      .icon-btn:hover {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      /* Payroll Table */
+      .payroll-table {
+        width: 100%;
+      }
+
+      .table-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border);
+        align-items: center;
+      }
+
+      .table-row:first-child {
+        background: var(--bg-gray);
+        padding: 0.875rem 1rem;
+        border-radius: 8px;
+        border-bottom: none;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-secondary);
+      }
+
+      .table-row:last-child {
+        border-bottom: none;
+      }
+
+      .employee-cell {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .table-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
+
+      .employee-name {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .employee-id {
+        font-size: 0.8rem;
+        color: var(--text-tertiary);
+      }
+
+      .table-value {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .status-badge {
+        padding: 0.375rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .status-badge.processed {
+        background: #d1fae5;
+        color: var(--success);
+      }
+
+      .status-badge.pending {
+        background: #fed7aa;
+        color: var(--warning);
+      }
+
+      /* Department Stats */
+      .dept-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .dept-item {
+        padding: 1rem;
+        background: var(--bg-gray);
+        border-radius: 8px;
+        border: 1px solid var(--border);
+      }
+
+      .dept-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+      }
+
+      .dept-name {
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .dept-count {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+      }
+
+      .dept-bar {
+        height: 8px;
+        background: var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+      }
+
+      .dept-fill {
+        height: 100%;
+        background: var(--primary);
+        border-radius: 4px;
+        transition: width 0.5s ease;
+      }
+
+      .dept-amount {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      /* Responsive */
+      @media (max-width: 1600px) {
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav {
+          display: none;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .table-row {
+          grid-template-columns: 1fr;
+          gap: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-building"></i>
+          <span>Enterprise HR Suite</span>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav-link active" onclick="showView('dashboard')">Dashboard</a>
+          <a href="#" class="nav-link" onclick="showView('payroll')">Payroll</a>
+          <a href="#" class="nav-link" onclick="showView('employees')">Employees</a>
+          <a href="#" class="nav-link" onclick="showView('benefits')">Benefits</a>
+          <a href="#" class="nav-link" onclick="showView('compliance')">Compliance</a>
+        </nav>
+        <div class="header-right">
+          <div class="period-selector">
+            <i class="fas fa-calendar"></i>
+            <span>Q4 2025</span>
+          </div>
+          <div class="user-avatar">AD</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Dashboard View -->
+      <div id="dashboard-view">
+        <!-- Page Header -->
+        <div class="page-header">
+          <h1 class="page-title">Payroll & HR Dashboard</h1>
+          <div class="header-actions">
+            <button class="btn btn-secondary">
+              <i class="fas fa-download"></i>
+              Export Report
+            </button>
+            <button class="btn btn-primary">
+              <i class="fas fa-play"></i>
+              Run Payroll
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Total Headcount</div>
+              <div class="stat-icon blue">
+                <i class="fas fa-users"></i>
+              </div>
+            </div>
+            <div class="stat-value">2,847</div>
+            <div class="stat-footer">
+              <div class="stat-change">+124 this quarter</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Monthly Payroll</div>
+              <div class="stat-icon cyan">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+            </div>
+            <div class="stat-value">$18.2M</div>
+            <div class="stat-footer">
+              <div class="stat-change">Next run: Oct 31</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Benefits Cost</div>
+              <div class="stat-icon green">
+                <i class="fas fa-heart"></i>
+              </div>
+            </div>
+            <div class="stat-value">$4.8M</div>
+            <div class="stat-footer">
+              <div class="stat-change">26.4% of payroll</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Avg Tenure</div>
+              <div class="stat-icon orange">
+                <i class="fas fa-clock"></i>
+              </div>
+            </div>
+            <div class="stat-value">4.2 yrs</div>
+            <div class="stat-footer">
+              <div class="stat-change">+0.3 yrs YoY</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+          <!-- Recent Payroll -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Recent Payroll Transactions</h2>
+              <button class="icon-btn">
+                <i class="fas fa-filter"></i>
+              </button>
+            </div>
+            <div class="payroll-table" id="payroll-table"></div>
+          </div>
+
+          <!-- Department Breakdown -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Department Payroll</h2>
+              <button class="icon-btn">
+                <i class="fas fa-info-circle"></i>
+              </button>
+            </div>
+            <div class="dept-list" id="dept-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payroll View (Hidden) -->
+      <div id="payroll-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Payroll Processing</h1>
+        </div>
+        <div class="card">
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <i class="fas fa-file-invoice-dollar" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Payroll processing view - Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Employees View (Hidden) -->
+      <div id="employees-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Employee Management</h1>
+        </div>
+        <div class="card">
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <i class="fas fa-user-tie" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Employee management view - Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefits View (Hidden) -->
+      <div id="benefits-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Benefits Administration</h1>
+        </div>
+        <div class="card">
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <i class="fas fa-briefcase-medical" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Benefits administration view - Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compliance View (Hidden) -->
+      <div id="compliance-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Compliance & Reporting</h1>
+        </div>
+        <div class="card">
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <i class="fas fa-shield-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Compliance reporting view - Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mock Data - Enterprise Focus
+      const MOCK_DATA = {
+        payroll: [
+          { name: 'Sarah Mitchell', id: 'EMP-1024', department: 'Engineering', gross: '$12,500', status: 'processed' },
+          { name: 'Michael Chen', id: 'EMP-1089', department: 'Product', gross: '$11,200', status: 'processed' },
+          { name: 'Emily Rodriguez', id: 'EMP-1156', department: 'Sales', gross: '$9,800', status: 'processed' },
+          { name: 'James Wilson', id: 'EMP-1203', department: 'Marketing', gross: '$8,500', status: 'pending' },
+          { name: 'Lisa Anderson', id: 'EMP-1245', department: 'Operations', gross: '$9,200', status: 'pending' }
+        ],
+        departments: [
+          { name: 'Engineering', employees: 842, amount: '$5.8M', percentage: 85 },
+          { name: 'Sales', employees: 524, amount: '$3.2M', percentage: 65 },
+          { name: 'Product', employees: 318, amount: '$2.4M', percentage: 58 },
+          { name: 'Marketing', employees: 265, amount: '$1.9M', percentage: 48 },
+          { name: 'Operations', employees: 898, amount: '$4.9M', percentage: 78 }
+        ]
+      };
+
+      // Render Payroll Table
+      function renderPayroll() {
+        const payrollTable = document.getElementById('payroll-table');
+        const headerRow = `
+          <div class="table-row">
+            <div>Employee</div>
+            <div>Department</div>
+            <div>Gross Pay</div>
+            <div>Status</div>
+          </div>
+        `;
+        const dataRows = MOCK_DATA.payroll.map(item => `
+          <div class="table-row">
+            <div class="employee-cell">
+              <div class="table-avatar">${item.name.split(' ').map(n => n[0]).join('')}</div>
+              <div>
+                <div class="employee-name">${item.name}</div>
+                <div class="employee-id">${item.id}</div>
+              </div>
+            </div>
+            <div class="table-value">${item.department}</div>
+            <div class="table-value">${item.gross}</div>
+            <div><span class="status-badge ${item.status}">${item.status}</span></div>
+          </div>
+        `).join('');
+        payrollTable.innerHTML = headerRow + dataRows;
+      }
+
+      // Render Departments
+      function renderDepartments() {
+        const deptList = document.getElementById('dept-list');
+        deptList.innerHTML = MOCK_DATA.departments.map(dept => `
+          <div class="dept-item">
+            <div class="dept-header">
+              <div class="dept-name">${dept.name}</div>
+              <div class="dept-count">${dept.employees} employees</div>
+            </div>
+            <div class="dept-bar">
+              <div class="dept-fill" style="width: ${dept.percentage}%;"></div>
+            </div>
+            <div class="dept-amount">${dept.amount}/month</div>
+          </div>
+        `).join('');
+      }
+
+      // View Switcher
+      function showView(viewName) {
+        document.querySelectorAll('[id$="-view"]').forEach(view => {
+          view.style.display = 'none';
+        });
+        document.getElementById(`${viewName}-view`).style.display = 'block';
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        event.target.classList.add('active');
+      }
+
+      // Initialize
+      document.addEventListener('DOMContentLoaded', () => {
+        renderPayroll();
+        renderDepartments();
+      });
+    </script>
+  </body>
+</html>

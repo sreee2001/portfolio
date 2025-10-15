@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Project Management Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Theme Configuration */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card.success {
+            border-left-color: var(--success);
+        }
+
+        .stat-card.warning {
+            border-left-color: var(--warning);
+        }
+
+        .stat-card.danger {
+            border-left-color: var(--danger);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .stat-change {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .stat-change.positive {
+            color: var(--success);
+        }
+
+        .stat-change.negative {
+            color: var(--danger);
+        }
+
+        /* Main Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Card */
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .card-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .card-action:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Task List */
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-main);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .task-item:hover {
+            transform: translateX(4px);
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .task-content {
+            flex: 1;
+        }
+
+        .task-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .task-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .task-priority {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .task-priority.high {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+
+        .task-priority.medium {
+            background: #fef3c7;
+            color: var(--warning);
+        }
+
+        .task-priority.low {
+            background: #dbeafe;
+            color: var(--primary);
+        }
+
+        /* Team Section */
+        .team-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .team-member {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-main);
+            border-radius: 8px;
+        }
+
+        .member-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .member-info {
+            flex: 1;
+        }
+
+        .member-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .member-role {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .member-tasks {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Activity Feed */
+        .activity-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-time {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-tasks"></i>
+                <span>TaskFlow</span>
+            </div>
+            <nav class="nav">
+                <a href="#" class="nav-link active" onclick="showView('dashboard')">Dashboard</a>
+                <a href="#" class="nav-link" onclick="showView('projects')">Projects</a>
+                <a href="#" class="nav-link" onclick="showView('team')">Team</a>
+                <a href="#" class="nav-link" onclick="showView('reports')">Reports</a>
+            </nav>
+            <div class="user-menu">
+                <div class="user-avatar">ST</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Dashboard View -->
+        <div id="dashboard-view">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">Dashboard</h1>
+                <p class="page-subtitle">Welcome back! Here's what's happening with your projects today.</p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Active Projects</div>
+                    <div class="stat-value">12</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+2 this month</span>
+                    </div>
+                </div>
+
+                <div class="stat-card success">
+                    <div class="stat-label">Completed Tasks</div>
+                    <div class="stat-value">87</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+15% from last week</span>
+                    </div>
+                </div>
+
+                <div class="stat-card warning">
+                    <div class="stat-label">Pending Tasks</div>
+                    <div class="stat-value">34</div>
+                    <div class="stat-change negative">
+                        <i class="fas fa-arrow-down"></i>
+                        <span>5 overdue</span>
+                    </div>
+                </div>
+
+                <div class="stat-card danger">
+                    <div class="stat-label">Team Members</div>
+                    <div class="stat-value">8</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+1 this week</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="content-grid">
+                <!-- Left Column -->
+                <div>
+                    <!-- Recent Tasks -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Tasks</h2>
+                            <button class="card-action">+ New Task</button>
+                        </div>
+                        <div class="task-list" id="task-list"></div>
+                    </div>
+
+                    <!-- Activity Feed -->
+                    <div class="card" style="margin-top: 2rem;">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Activity</h2>
+                        </div>
+                        <div class="activity-feed" id="activity-feed"></div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div>
+                    <!-- Team Members -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Team</h2>
+                            <button class="card-action">+ Invite</button>
+                        </div>
+                        <div class="team-list" id="team-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects View (Hidden) -->
+        <div id="projects-view" style="display: none;">
+            <div class="page-header">
+                <h1 class="page-title">Projects</h1>
+                <p class="page-subtitle">Manage all your active and archived projects</p>
+            </div>
+            <div class="card">
+                <p style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                    <i class="fas fa-folder-open" style="font-size: 3rem; margin-bottom: 1rem;"></i><br>
+                    Projects view - Implementation placeholder
+                </p>
+            </div>
+        </div>
+
+        <!-- Team View (Hidden) -->
+        <div id="team-view" style="display: none;">
+            <div class="page-header">
+                <h1 class="page-title">Team</h1>
+                <p class="page-subtitle">Manage team members and permissions</p>
+            </div>
+            <div class="card">
+                <p style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                    <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 1rem;"></i><br>
+                    Team management view - Implementation placeholder
+                </p>
+            </div>
+        </div>
+
+        <!-- Reports View (Hidden) -->
+        <div id="reports-view" style="display: none;">
+            <div class="page-header">
+                <h1 class="page-title">Reports</h1>
+                <p class="page-subtitle">Analytics and insights about your projects</p>
+            </div>
+            <div class="card">
+                <p style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                    <i class="fas fa-chart-bar" style="font-size: 3rem; margin-bottom: 1rem;"></i><br>
+                    Reports view - Implementation placeholder
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock Data
+        const MOCK_DATA = {
+            tasks: [
+                {
+                    id: 1,
+                    title: 'Design new landing page',
+                    project: 'Website Redesign',
+                    priority: 'high',
+                    dueDate: '2025-10-18',
+                    assignee: 'Sarah Chen'
+                },
+                {
+                    id: 2,
+                    title: 'Implement user authentication',
+                    project: 'Mobile App',
+                    priority: 'high',
+                    dueDate: '2025-10-20',
+                    assignee: 'Mike Johnson'
+                },
+                {
+                    id: 3,
+                    title: 'Write API documentation',
+                    project: 'Backend API',
+                    priority: 'medium',
+                    dueDate: '2025-10-22',
+                    assignee: 'Emily Davis'
+                },
+                {
+                    id: 4,
+                    title: 'Update database schema',
+                    project: 'Database Migration',
+                    priority: 'low',
+                    dueDate: '2025-10-25',
+                    assignee: 'Tom Wilson'
+                },
+                {
+                    id: 5,
+                    title: 'Create marketing materials',
+                    project: 'Product Launch',
+                    priority: 'medium',
+                    dueDate: '2025-10-28',
+                    assignee: 'Lisa Anderson'
+                }
+            ],
+            team: [
+                { name: 'Sarah Chen', role: 'Lead Designer', tasks: 8, initials: 'SC' },
+                { name: 'Mike Johnson', role: 'Full Stack Dev', tasks: 12, initials: 'MJ' },
+                { name: 'Emily Davis', role: 'Backend Dev', tasks: 7, initials: 'ED' },
+                { name: 'Tom Wilson', role: 'DevOps Engineer', tasks: 5, initials: 'TW' },
+                { name: 'Lisa Anderson', role: 'Product Manager', tasks: 9, initials: 'LA' }
+            ],
+            activities: [
+                { icon: 'fa-check-circle', text: 'Sarah Chen completed "Design homepage mockup"', time: '2 hours ago' },
+                { icon: 'fa-comment', text: 'Mike Johnson commented on "API Integration"', time: '4 hours ago' },
+                { icon: 'fa-upload', text: 'Emily Davis uploaded 3 new files to "Backend API"', time: '5 hours ago' },
+                { icon: 'fa-user-plus', text: 'Tom Wilson was added to "Infrastructure" project', time: '1 day ago' },
+                { icon: 'fa-clock', text: 'Lisa Anderson updated deadline for "Product Launch"', time: '2 days ago' }
+            ]
+        };
+
+        // Render Tasks
+        function renderTasks() {
+            const taskList = document.getElementById('task-list');
+            taskList.innerHTML = MOCK_DATA.tasks.map(task => `
+                <div class="task-item">
+                    <div class="task-checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">${task.title}</div>
+                        <div class="task-meta">
+                            <span><i class="fas fa-folder"></i> ${task.project}</span>
+                            <span><i class="fas fa-calendar"></i> ${task.dueDate}</span>
+                            <span><i class="fas fa-user"></i> ${task.assignee}</span>
+                        </div>
+                    </div>
+                    <div class="task-priority ${task.priority}">${task.priority.toUpperCase()}</div>
+                </div>
+            `).join('');
+        }
+
+        // Render Team
+        function renderTeam() {
+            const teamList = document.getElementById('team-list');
+            teamList.innerHTML = MOCK_DATA.team.map(member => `
+                <div class="team-member">
+                    <div class="member-avatar">${member.initials}</div>
+                    <div class="member-info">
+                        <div class="member-name">${member.name}</div>
+                        <div class="member-role">${member.role}</div>
+                    </div>
+                    <div class="member-tasks">${member.tasks} tasks</div>
+                </div>
+            `).join('');
+        }
+
+        // Render Activity
+        function renderActivity() {
+            const activityFeed = document.getElementById('activity-feed');
+            activityFeed.innerHTML = MOCK_DATA.activities.map(activity => `
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas ${activity.icon}"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-text">${activity.text}</div>
+                        <div class="activity-time">${activity.time}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // View Switcher
+        function showView(viewName) {
+            // Hide all views
+            document.querySelectorAll('[id$="-view"]').forEach(view => {
+                view.style.display = 'none';
+            });
+            
+            // Show selected view
+            document.getElementById(`${viewName}-view`).style.display = 'block';
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTasks();
+            renderTeam();
+            renderActivity();
+        });
+    </script>
+</body>
+</html>

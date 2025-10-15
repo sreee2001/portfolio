@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlexWork - Gig Workforce Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Gig Platform Theme - Modern & Flexible */
+      :root {
+        --primary: #8b5cf6;
+        --primary-dark: #7c3aed;
+        --secondary: #ec4899;
+        --accent: #06b6d4;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --bg-main: #fafbfc;
+        --bg-card: #ffffff;
+        --bg-purple-light: #f5f3ff;
+        --bg-pink-light: #fdf2f8;
+        --bg-cyan-light: #ecfeff;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --text-tertiary: #94a3b8;
+        --border: #e2e8f0;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-main);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      /* Header - Modern Gig Platform */
+      .header {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        padding: 1.5rem 2rem;
+        box-shadow: var(--shadow-md);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        max-width: 1600px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        letter-spacing: -0.5px;
+      }
+
+      .logo i {
+        font-size: 1.75rem;
+      }
+
+      .nav {
+        display: flex;
+        gap: 0.25rem;
+      }
+
+      .nav-link {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 10px;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .nav-link:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+      }
+
+      .nav-link.active {
+        background: rgba(255, 255, 255, 0.25);
+        color: white;
+        backdrop-filter: blur(10px);
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .search-box {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 0.625rem 1rem;
+        border-radius: 10px;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-width: 250px;
+        backdrop-filter: blur(10px);
+      }
+
+      .search-box input {
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 0.9rem;
+        outline: none;
+        width: 100%;
+      }
+
+      .search-box input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .user-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: white;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        cursor: pointer;
+        box-shadow: var(--shadow-md);
+      }
+
+      /* Container */
+      .container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      /* Page Header */
+      .page-header {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .page-title-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .page-title {
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--text-primary);
+      }
+
+      .period-badge {
+        padding: 0.5rem 1rem;
+        background: var(--bg-purple-light);
+        color: var(--primary);
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.875rem;
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+      }
+
+      .btn-secondary {
+        background: var(--bg-card);
+        color: var(--text-primary);
+        border: 2px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .stat-card {
+        background: var(--bg-card);
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        border: 2px solid transparent;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+      }
+
+      .stat-card:hover {
+        border-color: var(--primary);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .stat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.25rem;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .stat-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      .stat-icon.purple {
+        background: var(--bg-purple-light);
+        color: var(--primary);
+      }
+
+      .stat-icon.pink {
+        background: var(--bg-pink-light);
+        color: var(--secondary);
+      }
+
+      .stat-icon.cyan {
+        background: var(--bg-cyan-light);
+        color: var(--accent);
+      }
+
+      .stat-icon.green {
+        background: #d1fae5;
+        color: var(--success);
+      }
+
+      .stat-value {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        margin-bottom: 0.75rem;
+      }
+
+      .stat-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1.25rem;
+        padding-top: 1.25rem;
+        border-top: 2px solid var(--border);
+      }
+
+      .stat-change {
+        font-size: 0.875rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+      }
+
+      .stat-change.positive {
+        color: var(--success);
+      }
+
+      /* Dashboard Grid */
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      /* Card */
+      .card {
+        background: var(--bg-card);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        border: 2px solid var(--border);
+        transition: all 0.3s;
+      }
+
+      .card:hover {
+        border-color: var(--primary);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1.25rem;
+        border-bottom: 2px solid var(--border);
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+      }
+
+      .card-title i {
+        color: var(--primary);
+      }
+
+      .filter-btn {
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        background: var(--bg-purple-light);
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 0.8rem;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .filter-btn:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      /* Contractor List */
+      .contractor-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .contractor-item {
+        padding: 1.25rem;
+        background: var(--bg-main);
+        border-radius: 12px;
+        border: 2px solid var(--border);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .contractor-item:hover {
+        border-color: var(--primary);
+        transform: translateX(4px);
+      }
+
+      .contractor-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .contractor-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .contractor-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 1.125rem;
+      }
+
+      .contractor-name {
+        font-weight: 800;
+        color: var(--text-primary);
+        font-size: 1.05rem;
+      }
+
+      .contractor-role {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+      }
+
+      .contractor-badge {
+        padding: 0.375rem 0.875rem;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .contractor-badge.active {
+        background: #d1fae5;
+        color: var(--success);
+      }
+
+      .contractor-badge.pending {
+        background: #fef3c7;
+        color: var(--warning);
+      }
+
+      .contractor-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 2px solid var(--border);
+      }
+
+      .contractor-stat {
+        text-align: center;
+      }
+
+      .contractor-stat-value {
+        font-weight: 800;
+        color: var(--primary);
+        font-size: 1.125rem;
+      }
+
+      .contractor-stat-label {
+        font-size: 0.75rem;
+        color: var(--text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+      }
+
+      /* Payment Timeline */
+      .payment-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .timeline-item {
+        padding-left: 2rem;
+        position: relative;
+      }
+
+      .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--primary);
+        border: 3px solid var(--bg-card);
+        box-shadow: 0 0 0 3px var(--bg-purple-light);
+      }
+
+      .timeline-item::after {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 12px;
+        width: 2px;
+        height: calc(100% + 1.5rem);
+        background: var(--border);
+      }
+
+      .timeline-item:last-child::after {
+        display: none;
+      }
+
+      .timeline-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .timeline-name {
+        font-weight: 800;
+        color: var(--text-primary);
+      }
+
+      .timeline-amount {
+        font-weight: 800;
+        color: var(--primary);
+        font-size: 1.125rem;
+      }
+
+      .timeline-details {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+      }
+
+      /* Responsive */
+      @media (max-width: 1400px) {
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav {
+          display: none;
+        }
+
+        .search-box {
+          min-width: auto;
+          max-width: 150px;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contractor-stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-bolt"></i>
+          <span>FlexWork</span>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav-link active" onclick="showView('dashboard')">Dashboard</a>
+          <a href="#" class="nav-link" onclick="showView('contractors')">Contractors</a>
+          <a href="#" class="nav-link" onclick="showView('payments')">Payments</a>
+          <a href="#" class="nav-link" onclick="showView('timesheets')">Timesheets</a>
+        </nav>
+        <div class="header-right">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search contractors..." />
+          </div>
+          <div class="user-avatar">FW</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Dashboard View -->
+      <div id="dashboard-view">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="page-title-section">
+            <h1 class="page-title">Workforce Dashboard</h1>
+            <div class="period-badge">October 2025</div>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary">
+              <i class="fas fa-download"></i>
+              Export
+            </button>
+            <button class="btn btn-primary">
+              <i class="fas fa-plus"></i>
+              Add Contractor
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Active Contractors</div>
+              <div class="stat-icon purple">
+                <i class="fas fa-users"></i>
+              </div>
+            </div>
+            <div class="stat-value">342</div>
+            <div class="stat-footer">
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+28 this month</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Total Payouts</div>
+              <div class="stat-icon pink">
+                <i class="fas fa-wallet"></i>
+              </div>
+            </div>
+            <div class="stat-value">$284K</div>
+            <div class="stat-footer">
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+12% vs last month</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Hours Logged</div>
+              <div class="stat-icon cyan">
+                <i class="fas fa-clock"></i>
+              </div>
+            </div>
+            <div class="stat-value">8,420</div>
+            <div class="stat-footer">
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+324 hrs this week</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Avg Hourly Rate</div>
+              <div class="stat-icon green">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+            </div>
+            <div class="stat-value">$68</div>
+            <div class="stat-footer">
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+$4 vs Q3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+          <!-- Active Contractors -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <i class="fas fa-user-check"></i>
+                Active Contractors
+              </h2>
+              <button class="filter-btn">
+                <i class="fas fa-filter"></i> Filter
+              </button>
+            </div>
+            <div class="contractor-list" id="contractor-list"></div>
+          </div>
+
+          <!-- Recent Payments -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">
+                <i class="fas fa-money-bill-wave"></i>
+                Recent Payments
+              </h2>
+              <button class="filter-btn">
+                <i class="fas fa-calendar"></i> This Week
+              </button>
+            </div>
+            <div class="payment-timeline" id="payment-timeline"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contractors View (Hidden) -->
+      <div id="contractors-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Contractor Directory</h1>
+        </div>
+        <div class="card">
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <i class="fas fa-users-cog" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Contractor directory view - Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payments View (Hidden) -->
+      <div id="payments-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Payment Management</h1>
+        </div>
+        <div class="card">
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <i class="fas fa-file-invoice-dollar" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Payment management view - Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timesheets View (Hidden) -->
+      <div id="timesheets-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Timesheet Approvals</h1>
+        </div>
+        <div class="card">
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <i class="fas fa-business-time" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Timesheet approval view - Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mock Data - Gig Platform Focus
+      const MOCK_DATA = {
+        contractors: [
+          { name: 'Alex Rivera', role: 'Frontend Developer', hours: 156, rate: '$85/hr', earnings: '$13,260', status: 'active' },
+          { name: 'Jordan Lee', role: 'UI/UX Designer', hours: 128, rate: '$75/hr', earnings: '$9,600', status: 'active' },
+          { name: 'Taylor Kim', role: 'Content Writer', hours: 92, rate: '$50/hr', earnings: '$4,600', status: 'pending' },
+          { name: 'Morgan Chen', role: 'Video Editor', hours: 104, rate: '$65/hr', earnings: '$6,760', status: 'active' },
+          { name: 'Casey Brown', role: 'Marketing Strategist', hours: 88, rate: '$95/hr', earnings: '$8,360', status: 'active' }
+        ],
+        payments: [
+          { name: 'Alex Rivera', date: 'Oct 14, 2025', project: 'Website Redesign', amount: '$3,400' },
+          { name: 'Jordan Lee', date: 'Oct 13, 2025', project: 'Mobile App UI', amount: '$2,250' },
+          { name: 'Morgan Chen', date: 'Oct 12, 2025', project: 'Promo Videos', amount: '$1,950' },
+          { name: 'Casey Brown', date: 'Oct 11, 2025', project: 'Marketing Campaign', amount: '$2,850' },
+          { name: 'Taylor Kim', date: 'Oct 10, 2025', project: 'Blog Content', amount: '$1,200' }
+        ]
+      };
+
+      // Render Contractors
+      function renderContractors() {
+        const contractorList = document.getElementById('contractor-list');
+        contractorList.innerHTML = MOCK_DATA.contractors.map(contractor => `
+          <div class="contractor-item">
+            <div class="contractor-header">
+              <div class="contractor-info">
+                <div class="contractor-avatar">${contractor.name.split(' ').map(n => n[0]).join('')}</div>
+                <div>
+                  <div class="contractor-name">${contractor.name}</div>
+                  <div class="contractor-role">${contractor.role}</div>
+                </div>
+              </div>
+              <div class="contractor-badge ${contractor.status}">${contractor.status}</div>
+            </div>
+            <div class="contractor-stats">
+              <div class="contractor-stat">
+                <div class="contractor-stat-value">${contractor.hours}</div>
+                <div class="contractor-stat-label">Hours</div>
+              </div>
+              <div class="contractor-stat">
+                <div class="contractor-stat-value">${contractor.rate}</div>
+                <div class="contractor-stat-label">Rate</div>
+              </div>
+              <div class="contractor-stat">
+                <div class="contractor-stat-value">${contractor.earnings}</div>
+                <div class="contractor-stat-label">Earned</div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Render Payments
+      function renderPayments() {
+        const paymentTimeline = document.getElementById('payment-timeline');
+        paymentTimeline.innerHTML = MOCK_DATA.payments.map(payment => `
+          <div class="timeline-item">
+            <div class="timeline-header">
+              <div class="timeline-name">${payment.name}</div>
+              <div class="timeline-amount">${payment.amount}</div>
+            </div>
+            <div class="timeline-details">
+              <span><i class="fas fa-calendar"></i> ${payment.date}</span>
+              <span><i class="fas fa-briefcase"></i> ${payment.project}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // View Switcher
+      function showView(viewName) {
+        document.querySelectorAll('[id$="-view"]').forEach(view => {
+          view.style.display = 'none';
+        });
+        document.getElementById(`${viewName}-view`).style.display = 'block';
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        event.target.classList.add('active');
+      }
+
+      // Initialize
+      document.addEventListener('DOMContentLoaded', () => {
+        renderContractors();
+        renderPayments();
+      });
+    </script>
+  </body>
+</html>

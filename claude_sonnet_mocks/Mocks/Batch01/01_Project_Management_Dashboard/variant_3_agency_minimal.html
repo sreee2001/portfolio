@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio — Project Management</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Minimal Theme Configuration */
+      :root {
+        --primary: #000000;
+        --accent: #0066ff;
+        --success: #00cc66;
+        --warning: #ff9500;
+        --danger: #ff3b30;
+        --bg-main: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --bg-elevated: #f0f2f5;
+        --text-primary: #000000;
+        --text-secondary: #6c757d;
+        --text-tertiary: #adb5bd;
+        --border: #e9ecef;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--bg-main);
+        color: var(--text-primary);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Header - Minimal Clean */
+      .header {
+        background: var(--bg-main);
+        border-bottom: 1px solid var(--border);
+        padding: 1.25rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        letter-spacing: -0.5px;
+      }
+
+      .nav {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+        cursor: pointer;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--text-primary);
+      }
+
+      .user-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 0.85rem;
+        cursor: pointer;
+      }
+
+      /* Main Container */
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+      }
+
+      /* Page Header - Minimal */
+      .page-header {
+        margin-bottom: 3rem;
+      }
+
+      .page-title {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.5px;
+      }
+
+      .page-meta {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+      }
+
+      /* Stats Grid - Clean Cards */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .stat-card {
+        background: var(--bg-main);
+        padding: 1.75rem;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+
+      .stat-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-2px);
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.75rem;
+      }
+
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        letter-spacing: -1px;
+      }
+
+      .stat-change {
+        font-size: 0.85rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .stat-change.positive {
+        color: var(--success);
+      }
+
+      .stat-change.negative {
+        color: var(--danger);
+      }
+
+      .stat-change.neutral {
+        color: var(--text-secondary);
+      }
+
+      /* Main Content Grid */
+      .content-grid {
+        display: grid;
+        grid-template-columns: 1.75fr 1fr;
+        gap: 2rem;
+      }
+
+      /* Card - Minimal Style */
+      .card {
+        background: var(--bg-main);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 2rem;
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .card-action {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+
+      .card-action:hover {
+        opacity: 0.85;
+      }
+
+      /* Task List - Clean Minimal */
+      .task-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .task-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.25rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+
+      .task-item:last-child {
+        border-bottom: none;
+      }
+
+      .task-item:hover {
+        padding-left: 0.5rem;
+      }
+
+      .task-checkbox {
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--border);
+        border-radius: 4px;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+
+      .task-content {
+        flex: 1;
+      }
+
+      .task-title {
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+        font-size: 0.95rem;
+      }
+
+      .task-meta {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+
+      .task-priority {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 0.5rem;
+      }
+
+      .task-priority.high {
+        background: var(--danger);
+      }
+
+      .task-priority.medium {
+        background: var(--warning);
+      }
+
+      .task-priority.low {
+        background: var(--success);
+      }
+
+      /* Team Section - Minimal */
+      .team-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .team-member {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .team-member:last-child {
+        border-bottom: none;
+      }
+
+      .member-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--bg-elevated);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        color: var(--text-primary);
+        font-size: 0.9rem;
+        flex-shrink: 0;
+      }
+
+      .member-info {
+        flex: 1;
+      }
+
+      .member-name {
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 0.15rem;
+        font-size: 0.95rem;
+      }
+
+      .member-role {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+
+      .member-badge {
+        background: var(--bg-elevated);
+        color: var(--text-secondary);
+        padding: 0.35rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      /* Activity Feed */
+      .activity-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .activity-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .activity-item:last-child {
+        border-bottom: none;
+      }
+
+      .activity-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        margin-top: 0.5rem;
+        flex-shrink: 0;
+      }
+
+      .activity-content {
+        flex: 1;
+      }
+
+      .activity-text {
+        font-size: 0.9rem;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .activity-time {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+
+      /* Tabs - Minimal */
+      .tabs {
+        display: flex;
+        gap: 0.5rem;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 2rem;
+      }
+
+      .tab {
+        padding: 0.75rem 1rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s;
+      }
+
+      .tab:hover,
+      .tab.active {
+        color: var(--text-primary);
+        border-bottom-color: var(--primary);
+      }
+
+      /* Empty State */
+      .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: var(--text-secondary);
+      }
+
+      .empty-state i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+      }
+
+      /* Responsive */
+      @media (max-width: 1200px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav {
+          display: none;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .container {
+          padding: 2rem 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">Studio</div>
+        <nav class="nav">
+          <a href="#" class="nav-link active" onclick="showView('overview')"
+            >Overview</a
+          >
+          <a href="#" class="nav-link" onclick="showView('projects')"
+            >Projects</a
+          >
+          <a href="#" class="nav-link" onclick="showView('clients')">Clients</a>
+          <a href="#" class="nav-link" onclick="showView('team')">Team</a>
+        </nav>
+        <div class="user-avatar">AJ</div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Overview View -->
+      <div id="overview-view">
+        <!-- Page Header -->
+        <div class="page-header">
+          <h1 class="page-title">Good afternoon, Alex</h1>
+          <p class="page-meta">Here's what's happening with your projects</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Active Projects</div>
+            <div class="stat-value">8</div>
+            <div class="stat-change positive">
+              <span>↑</span>
+              <span>2 new this week</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-label">Hours Tracked</div>
+            <div class="stat-value">142</div>
+            <div class="stat-change neutral">
+              <span>this week</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-label">Client Meetings</div>
+            <div class="stat-value">5</div>
+            <div class="stat-change neutral">
+              <span>this week</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-label">Deliverables Due</div>
+            <div class="stat-value">12</div>
+            <div class="stat-change positive">
+              <span>→</span>
+              <span>3 due today</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+          <!-- Left Column -->
+          <div>
+            <!-- Tasks -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Today's Tasks</h2>
+                <button class="card-action">Add Task</button>
+              </div>
+              <div class="task-list" id="task-list"></div>
+            </div>
+
+            <!-- Activity -->
+            <div class="card" style="margin-top: 2rem;">
+              <div class="card-header">
+                <h2 class="card-title">Recent Activity</h2>
+              </div>
+              <div class="activity-list" id="activity-list"></div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div>
+            <!-- Team -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Team</h2>
+              </div>
+              <div class="team-list" id="team-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects View (Hidden) -->
+      <div id="projects-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Projects</h1>
+          <p class="page-meta">8 active projects</p>
+        </div>
+        <div class="card">
+          <div class="empty-state">
+            <i class="fas fa-folder-open"></i>
+            <p>Projects view — Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clients View (Hidden) -->
+      <div id="clients-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Clients</h1>
+          <p class="page-meta">12 active clients</p>
+        </div>
+        <div class="card">
+          <div class="empty-state">
+            <i class="fas fa-users"></i>
+            <p>Clients view — Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team View (Hidden) -->
+      <div id="team-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Team</h1>
+          <p class="page-meta">6 team members</p>
+        </div>
+        <div class="card">
+          <div class="empty-state">
+            <i class="fas fa-user-friends"></i>
+            <p>Team management view — Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mock Data - Agency Focus
+      const MOCK_DATA = {
+        tasks: [
+          {
+            id: 1,
+            title: "Design homepage for TechFlow",
+            project: "TechFlow Website",
+            priority: "high",
+            dueDate: "Today",
+          },
+          {
+            id: 2,
+            title: "Client presentation deck",
+            project: "Brand Strategy — Startup Co",
+            priority: "high",
+            dueDate: "Today",
+          },
+          {
+            id: 3,
+            title: "Review mobile app wireframes",
+            project: "FinApp Mobile",
+            priority: "medium",
+            dueDate: "Tomorrow",
+          },
+          {
+            id: 4,
+            title: "Update brand guidelines",
+            project: "RetailCo Rebrand",
+            priority: "medium",
+            dueDate: "Oct 18",
+          },
+          {
+            id: 5,
+            title: "Social media assets",
+            project: "Marketing Campaign",
+            priority: "low",
+            dueDate: "Oct 20",
+          },
+          {
+            id: 6,
+            title: "WordPress site deployment",
+            project: "Portfolio Site",
+            priority: "low",
+            dueDate: "Oct 22",
+          },
+        ],
+        team: [
+          {
+            name: "Sarah Miller",
+            role: "Creative Director",
+            tasks: 8,
+            initials: "SM",
+          },
+          {
+            name: "Jake Wilson",
+            role: "Senior Designer",
+            tasks: 12,
+            initials: "JW",
+          },
+          {
+            name: "Emma Davis",
+            role: "UX Designer",
+            tasks: 6,
+            initials: "ED",
+          },
+          {
+            name: "Michael Lee",
+            role: "Front-End Dev",
+            tasks: 9,
+            initials: "ML",
+          },
+          {
+            name: "Olivia Brown",
+            role: "Project Manager",
+            tasks: 11,
+            initials: "OB",
+          },
+        ],
+        activities: [
+          {
+            text: "Sarah completed design review for TechFlow",
+            time: "2 hours ago",
+          },
+          {
+            text: "Jake uploaded new mockups to FinApp project",
+            time: "4 hours ago",
+          },
+          {
+            text: "Emma shared user research findings",
+            time: "6 hours ago",
+          },
+          {
+            text: "Michael deployed staging site for RetailCo",
+            time: "8 hours ago",
+          },
+          {
+            text: "Olivia scheduled client meeting for next week",
+            time: "1 day ago",
+          },
+        ],
+      };
+
+      // Render Tasks
+      function renderTasks() {
+        const taskList = document.getElementById("task-list");
+        taskList.innerHTML = MOCK_DATA.tasks
+          .map(
+            (task) => `
+                <div class="task-item">
+                    <div class="task-checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">${task.title}</div>
+                        <div class="task-meta">
+                            <span>${task.project}</span>
+                            <span>·</span>
+                            <span>${task.dueDate}</span>
+                        </div>
+                    </div>
+                    <div class="task-priority ${task.priority}"></div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // Render Team
+      function renderTeam() {
+        const teamList = document.getElementById("team-list");
+        teamList.innerHTML = MOCK_DATA.team
+          .map(
+            (member) => `
+                <div class="team-member">
+                    <div class="member-avatar">${member.initials}</div>
+                    <div class="member-info">
+                        <div class="member-name">${member.name}</div>
+                        <div class="member-role">${member.role}</div>
+                    </div>
+                    <div class="member-badge">${member.tasks}</div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // Render Activity
+      function renderActivity() {
+        const activityList = document.getElementById("activity-list");
+        activityList.innerHTML = MOCK_DATA.activities
+          .map(
+            (activity) => `
+                <div class="activity-item">
+                    <div class="activity-dot"></div>
+                    <div class="activity-content">
+                        <div class="activity-text">${activity.text}</div>
+                        <div class="activity-time">${activity.time}</div>
+                    </div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // View Switcher
+      function showView(viewName) {
+        // Hide all views
+        document.querySelectorAll('[id$="-view"]').forEach((view) => {
+          view.style.display = "none";
+        });
+
+        // Show selected view
+        document.getElementById(`${viewName}-view`).style.display = "block";
+
+        // Update active nav link
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove("active");
+        });
+        event.target.classList.add("active");
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", () => {
+        renderTasks();
+        renderTeam();
+        renderActivity();
+      });
+    </script>
+  </body>
+</html>

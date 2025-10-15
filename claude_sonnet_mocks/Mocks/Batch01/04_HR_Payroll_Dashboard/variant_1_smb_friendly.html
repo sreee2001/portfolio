@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PayrollPro - HR & Payroll Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Small Business Friendly Theme */
+      :root {
+        --primary: #10b981;
+        --primary-dark: #059669;
+        --secondary: #3b82f6;
+        --accent: #8b5cf6;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --bg-main: #f0fdf4;
+        --bg-card: #ffffff;
+        --bg-secondary: #ecfdf5;
+        --text-primary: #1f2937;
+        --text-secondary: #6b7280;
+        --border: #d1fae5;
+        --shadow: 0 1px 3px rgba(16, 185, 129, 0.1);
+        --shadow-lg: 0 10px 25px rgba(16, 185, 129, 0.15);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-main);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      /* Header */
+      .header {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        padding: 1.5rem 2rem;
+        color: white;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .header-content {
+        max-width: 1600px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .nav {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .nav-link {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+
+      .user-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: white;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        cursor: pointer;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+      }
+
+      /* Container */
+      .container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      /* Page Header */
+      .page-header {
+        background: var(--bg-card);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .page-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .page-subtitle {
+        color: var(--text-secondary);
+        font-size: 1rem;
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 2px solid var(--border);
+        transition: all 0.3s;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .stat-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .stat-icon.green {
+        background: #d1fae5;
+        color: var(--primary);
+      }
+
+      .stat-icon.blue {
+        background: #dbeafe;
+        color: var(--secondary);
+      }
+
+      .stat-icon.purple {
+        background: #ede9fe;
+        color: var(--accent);
+      }
+
+      .stat-icon.orange {
+        background: #fed7aa;
+        color: var(--warning);
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-change {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+      }
+
+      /* Main Grid */
+      .main-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      /* Card */
+      .card {
+        background: var(--bg-card);
+        border-radius: 12px;
+        padding: 1.75rem;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .btn {
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+
+      /* Employee List */
+      .employee-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .employee-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--bg-secondary);
+        border-radius: 10px;
+        border: 1px solid var(--border);
+      }
+
+      .employee-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .employee-info {
+        flex: 1;
+      }
+
+      .employee-name {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .employee-role {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .employee-salary {
+        font-weight: 700;
+        color: var(--primary);
+        font-size: 1rem;
+      }
+
+      /* Upcoming Payroll */
+      .payroll-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .payroll-item {
+        padding: 1rem;
+        background: var(--bg-secondary);
+        border-radius: 10px;
+        border-left: 4px solid var(--primary);
+      }
+
+      .payroll-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .payroll-date {
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .payroll-status {
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        background: #d1fae5;
+        color: var(--primary);
+      }
+
+      .payroll-amount {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .payroll-employees {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      /* Time Off */
+      .timeoff-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .timeoff-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.875rem;
+        background: var(--bg-secondary);
+        border-radius: 8px;
+      }
+
+      .timeoff-info {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .timeoff-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--secondary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
+
+      .timeoff-details {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .timeoff-name {
+        font-weight: 600;
+        color: var(--text-primary);
+        font-size: 0.9rem;
+      }
+
+      .timeoff-dates {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+
+      .timeoff-badge {
+        padding: 0.25rem 0.625rem;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        background: #dbeafe;
+        color: var(--secondary);
+      }
+
+      /* Responsive */
+      @media (max-width: 1400px) {
+        .main-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav {
+          display: none;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-users"></i>
+          <span>PayrollPro</span>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav-link active" onclick="showView('overview')">Overview</a>
+          <a href="#" class="nav-link" onclick="showView('employees')">Employees</a>
+          <a href="#" class="nav-link" onclick="showView('payroll')">Payroll</a>
+          <a href="#" class="nav-link" onclick="showView('timeoff')">Time Off</a>
+        </nav>
+        <div class="user-avatar">HR</div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Overview View -->
+      <div id="overview-view">
+        <!-- Page Header -->
+        <div class="page-header">
+          <h1 class="page-title">👋 Welcome to PayrollPro</h1>
+          <p class="page-subtitle">Manage your team, payroll, and time off all in one place</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-label">Total Employees</div>
+            <div class="stat-value">24</div>
+            <div class="stat-change">+2 this month</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <i class="fas fa-money-bill-wave"></i>
+            </div>
+            <div class="stat-label">Monthly Payroll</div>
+            <div class="stat-value">$142K</div>
+            <div class="stat-change">Next run: Oct 30</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon purple">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div class="stat-label">Time Off Requests</div>
+            <div class="stat-value">5</div>
+            <div class="stat-change">Pending approval</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon orange">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-label">Hours This Week</div>
+            <div class="stat-value">896</div>
+            <div class="stat-change">Across all employees</div>
+          </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+          <!-- Employee Directory -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Employee Directory</h2>
+              <button class="btn btn-primary">
+                <i class="fas fa-plus"></i>
+                Add Employee
+              </button>
+            </div>
+            <div class="employee-list" id="employee-list"></div>
+          </div>
+
+          <!-- Upcoming Payroll -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Upcoming Payroll</h2>
+            </div>
+            <div class="payroll-list" id="payroll-list"></div>
+          </div>
+        </div>
+
+        <!-- Time Off Requests -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Pending Time Off Requests</h2>
+          </div>
+          <div class="timeoff-list" id="timeoff-list"></div>
+        </div>
+      </div>
+
+      <!-- Employees View (Hidden) -->
+      <div id="employees-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Employee Management</h1>
+          <p class="page-subtitle">Manage employee profiles and information</p>
+        </div>
+        <div class="card">
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <i class="fas fa-user-friends" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Employee management view - Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payroll View (Hidden) -->
+      <div id="payroll-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Payroll Processing</h1>
+          <p class="page-subtitle">Run payroll and manage payments</p>
+        </div>
+        <div class="card">
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <i class="fas fa-file-invoice-dollar" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Payroll processing view - Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Time Off View (Hidden) -->
+      <div id="timeoff-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Time Off Management</h1>
+          <p class="page-subtitle">Review and approve time off requests</p>
+        </div>
+        <div class="card">
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+            <i class="fas fa-umbrella-beach" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+            <p>Time off management view - Implementation placeholder</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mock Data
+      const MOCK_DATA = {
+        employees: [
+          { name: 'Sarah Johnson', role: 'Engineering Manager', salary: '$8,500', initials: 'SJ' },
+          { name: 'Michael Chen', role: 'Senior Developer', salary: '$7,200', initials: 'MC' },
+          { name: 'Emily Davis', role: 'Product Designer', salary: '$6,800', initials: 'ED' },
+          { name: 'James Wilson', role: 'Marketing Lead', salary: '$6,500', initials: 'JW' },
+          { name: 'Lisa Anderson', role: 'HR Manager', salary: '$6,000', initials: 'LA' }
+        ],
+        payroll: [
+          { date: 'October 30, 2025', amount: '$142,850', employees: 24, status: 'Scheduled' },
+          { date: 'November 15, 2025', amount: '$142,850', employees: 24, status: 'Upcoming' }
+        ],
+        timeoff: [
+          { name: 'Sarah J.', dates: 'Nov 1-5, 2025', type: 'Vacation', initials: 'SJ' },
+          { name: 'Michael C.', dates: 'Oct 25, 2025', type: 'Sick Day', initials: 'MC' },
+          { name: 'Emily D.', dates: 'Nov 10-12, 2025', type: 'Personal', initials: 'ED' },
+          { name: 'James W.', dates: 'Oct 28, 2025', type: 'Remote', initials: 'JW' },
+          { name: 'Lisa A.', dates: 'Dec 20-31, 2025', type: 'Vacation', initials: 'LA' }
+        ]
+      };
+
+      // Render Employees
+      function renderEmployees() {
+        const employeeList = document.getElementById('employee-list');
+        employeeList.innerHTML = MOCK_DATA.employees.map(emp => `
+          <div class="employee-item">
+            <div class="employee-avatar">${emp.initials}</div>
+            <div class="employee-info">
+              <div class="employee-name">${emp.name}</div>
+              <div class="employee-role">${emp.role}</div>
+            </div>
+            <div class="employee-salary">${emp.salary}/mo</div>
+          </div>
+        `).join('');
+      }
+
+      // Render Payroll
+      function renderPayroll() {
+        const payrollList = document.getElementById('payroll-list');
+        payrollList.innerHTML = MOCK_DATA.payroll.map(payroll => `
+          <div class="payroll-item">
+            <div class="payroll-header">
+              <div class="payroll-date">${payroll.date}</div>
+              <div class="payroll-status">${payroll.status}</div>
+            </div>
+            <div class="payroll-amount">${payroll.amount}</div>
+            <div class="payroll-employees">${payroll.employees} employees</div>
+          </div>
+        `).join('');
+      }
+
+      // Render Time Off
+      function renderTimeOff() {
+        const timeoffList = document.getElementById('timeoff-list');
+        timeoffList.innerHTML = MOCK_DATA.timeoff.map(request => `
+          <div class="timeoff-item">
+            <div class="timeoff-info">
+              <div class="timeoff-avatar">${request.initials}</div>
+              <div class="timeoff-details">
+                <div class="timeoff-name">${request.name}</div>
+                <div class="timeoff-dates">${request.dates}</div>
+              </div>
+            </div>
+            <div class="timeoff-badge">${request.type}</div>
+          </div>
+        `).join('');
+      }
+
+      // View Switcher
+      function showView(viewName) {
+        document.querySelectorAll('[id$="-view"]').forEach(view => {
+          view.style.display = 'none';
+        });
+        document.getElementById(`${viewName}-view`).style.display = 'block';
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+        });
+        event.target.classList.add('active');
+      }
+
+      // Initialize
+      document.addEventListener('DOMContentLoaded', () => {
+        renderEmployees();
+        renderPayroll();
+        renderTimeOff();
+      });
+    </script>
+  </body>
+</html>
