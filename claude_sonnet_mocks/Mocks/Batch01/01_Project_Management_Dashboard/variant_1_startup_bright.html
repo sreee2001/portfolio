@@ -2,7 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, ini        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }>
     <title>TaskFlow - Project Management Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -397,6 +417,10 @@
             .content-grid {
                 grid-template-columns: 1fr;
             }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -521,11 +545,32 @@
                 <h1 class="page-title">Projects</h1>
                 <p class="page-subtitle">Manage all your active and archived projects</p>
             </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--primary);">8</div>
+                    <div class="stat-label">Active Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--success);">24</div>
+                    <div class="stat-label">Completed This Month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--warning);">3</div>
+                    <div class="stat-label">Behind Schedule</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--secondary);">92%</div>
+                    <div class="stat-label">On-Time Delivery</div>
+                </div>
+            </div>
+
             <div class="card">
-                <p style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-                    <i class="fas fa-folder-open" style="font-size: 3rem; margin-bottom: 1rem;"></i><br>
-                    Projects view - Implementation placeholder
-                </p>
+                <div class="card-header">
+                    <h2 class="card-title">All Projects</h2>
+                    <button class="card-action">+ New Project</button>
+                </div>
+                <div id="projects-list"></div>
             </div>
         </div>
 
@@ -535,11 +580,32 @@
                 <h1 class="page-title">Team</h1>
                 <p class="page-subtitle">Manage team members and permissions</p>
             </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--primary);">12</div>
+                    <div class="stat-label">Team Members</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--success);">3</div>
+                    <div class="stat-label">New This Month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--secondary);">48</div>
+                    <div class="stat-label">Active Tasks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--warning);">4.2</div>
+                    <div class="stat-label">Avg Tasks/Member</div>
+                </div>
+            </div>
+
             <div class="card">
-                <p style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-                    <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 1rem;"></i><br>
-                    Team management view - Implementation placeholder
-                </p>
+                <div class="card-header">
+                    <h2 class="card-title">Team Members</h2>
+                    <button class="card-action">+ Invite</button>
+                </div>
+                <div id="team-detail-list"></div>
             </div>
         </div>
 
@@ -549,11 +615,40 @@
                 <h1 class="page-title">Reports</h1>
                 <p class="page-subtitle">Analytics and insights about your projects</p>
             </div>
-            <div class="card">
-                <p style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-                    <i class="fas fa-chart-bar" style="font-size: 3rem; margin-bottom: 1rem;"></i><br>
-                    Reports view - Implementation placeholder
-                </p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--primary);">156</div>
+                    <div class="stat-label">Total Tasks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--success);">124</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--warning);">24</div>
+                    <div class="stat-label">In Progress</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--danger);">8</div>
+                    <div class="stat-label">Overdue</div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Project Status</h3>
+                    </div>
+                    <div id="project-status-report"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Team Performance</h3>
+                    </div>
+                    <div id="team-performance-report"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -604,11 +699,11 @@
                 }
             ],
             team: [
-                { name: 'Sarah Chen', role: 'Lead Designer', tasks: 8, initials: 'SC' },
-                { name: 'Mike Johnson', role: 'Full Stack Dev', tasks: 12, initials: 'MJ' },
-                { name: 'Emily Davis', role: 'Backend Dev', tasks: 7, initials: 'ED' },
-                { name: 'Tom Wilson', role: 'DevOps Engineer', tasks: 5, initials: 'TW' },
-                { name: 'Lisa Anderson', role: 'Product Manager', tasks: 9, initials: 'LA' }
+                { name: 'Sarah Chen', role: 'Lead Designer', tasks: 8, initials: 'SC', email: 'sarah@company.com' },
+                { name: 'Mike Johnson', role: 'Full Stack Dev', tasks: 12, initials: 'MJ', email: 'mike@company.com' },
+                { name: 'Emily Davis', role: 'Backend Dev', tasks: 7, initials: 'ED', email: 'emily@company.com' },
+                { name: 'Tom Wilson', role: 'DevOps Engineer', tasks: 5, initials: 'TW', email: 'tom@company.com' },
+                { name: 'Lisa Anderson', role: 'Product Manager', tasks: 9, initials: 'LA', email: 'lisa@company.com' }
             ],
             activities: [
                 { icon: 'fa-check-circle', text: 'Sarah Chen completed "Design homepage mockup"', time: '2 hours ago' },
@@ -616,6 +711,21 @@
                 { icon: 'fa-upload', text: 'Emily Davis uploaded 3 new files to "Backend API"', time: '5 hours ago' },
                 { icon: 'fa-user-plus', text: 'Tom Wilson was added to "Infrastructure" project', time: '1 day ago' },
                 { icon: 'fa-clock', text: 'Lisa Anderson updated deadline for "Product Launch"', time: '2 days ago' }
+            ],
+            projects: [
+                { name: 'Website Redesign', status: 'In Progress', progress: 65, team: 4, dueDate: 'Oct 25', tasks: 24 },
+                { name: 'Mobile App', status: 'In Progress', progress: 45, team: 5, dueDate: 'Nov 10', tasks: 38 },
+                { name: 'Backend API', status: 'In Progress', progress: 80, team: 3, dueDate: 'Oct 30', tasks: 18 },
+                { name: 'Database Migration', status: 'Planning', progress: 15, team: 2, dueDate: 'Nov 15', tasks: 12 },
+                { name: 'Product Launch', status: 'In Progress', progress: 55, team: 6, dueDate: 'Nov 5', tasks: 32 },
+                { name: 'Marketing Campaign', status: 'Planning', progress: 20, team: 3, dueDate: 'Nov 20', tasks: 15 }
+            ],
+            projectStatus: [
+                { project: 'Website Redesign', completed: 18, inProgress: 6, pending: 0 },
+                { project: 'Mobile App', completed: 22, inProgress: 12, pending: 4 },
+                { project: 'Backend API', completed: 14, inProgress: 3, pending: 1 },
+                { project: 'Database Migration', completed: 2, inProgress: 5, pending: 5 },
+                { project: 'Product Launch', completed: 18, inProgress: 10, pending: 4 }
             ]
         };
 
@@ -669,6 +779,88 @@
             `).join('');
         }
 
+        // Render Projects
+        function renderProjects() {
+            const projectsList = document.getElementById('projects-list');
+            if (!projectsList) return;
+            
+            projectsList.innerHTML = MOCK_DATA.projects.map((project, index) => `
+                <div class="task-item" style="margin-bottom: ${index === MOCK_DATA.projects.length - 1 ? '0' : '1rem'};">
+                    <div style="flex: 1;">
+                        <div class="task-title">${project.name}</div>
+                        <div class="task-meta">
+                            <span><i class="fas fa-users"></i> ${project.team} members</span>
+                            <span><i class="fas fa-tasks"></i> ${project.tasks} tasks</span>
+                            <span><i class="fas fa-calendar"></i> Due ${project.dueDate}</span>
+                        </div>
+                        <div style="margin-top: 0.75rem;">
+                            <div style="background: var(--border); height: 6px; border-radius: 3px; overflow: hidden;">
+                                <div style="background: var(--primary); height: 100%; width: ${project.progress}%; transition: width 0.3s;"></div>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);">${project.progress}% Complete</div>
+                        </div>
+                    </div>
+                    <div class="task-priority" style="background: ${project.status === 'In Progress' ? 'var(--success)' : 'var(--warning)'}; color: white;">${project.status}</div>
+                </div>
+            `).join('');
+        }
+
+        // Render Team Detail
+        function renderTeamDetail() {
+            const teamDetailList = document.getElementById('team-detail-list');
+            if (!teamDetailList) return;
+            
+            teamDetailList.innerHTML = MOCK_DATA.team.map((member, index) => `
+                <div class="team-member" style="padding: 1.5rem; ${index === MOCK_DATA.team.length - 1 ? '' : 'border-bottom: 1px solid var(--border);'}">
+                    <div class="member-avatar" style="width: 60px; height: 60px; font-size: 1.5rem;">${member.initials}</div>
+                    <div class="member-info" style="flex: 1;">
+                        <div class="member-name" style="font-size: 1.125rem;">${member.name}</div>
+                        <div class="member-role">${member.role}</div>
+                        <div style="margin-top: 0.5rem; color: var(--text-secondary); font-size: 0.875rem;">
+                            <i class="fas fa-envelope"></i> ${member.email}
+                        </div>
+                    </div>
+                    <div class="member-tasks" style="font-size: 1.25rem; font-weight: 700; color: var(--primary);">${member.tasks} tasks</div>
+                </div>
+            `).join('');
+        }
+
+        // Render Reports
+        function renderReports() {
+            const statusReport = document.getElementById('project-status-report');
+            const performanceReport = document.getElementById('team-performance-report');
+            
+            if (statusReport) {
+                statusReport.innerHTML = MOCK_DATA.projectStatus.map(proj => `
+                    <div style="padding: 1rem; border-bottom: 1px solid var(--border);">
+                        <div style="font-weight: 600; margin-bottom: 0.75rem;">${proj.project}</div>
+                        <div style="display: flex; gap: 1rem; font-size: 0.875rem;">
+                            <span style="color: var(--success);"><i class="fas fa-check-circle"></i> ${proj.completed} completed</span>
+                            <span style="color: var(--warning);"><i class="fas fa-spinner"></i> ${proj.inProgress} in progress</span>
+                            <span style="color: var(--text-tertiary);"><i class="fas fa-clock"></i> ${proj.pending} pending</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            if (performanceReport) {
+                performanceReport.innerHTML = MOCK_DATA.team.map(member => `
+                    <div style="padding: 1rem; border-bottom: 1px solid var(--border);">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <div style="font-weight: 600;">${member.name}</div>
+                                <div style="font-size: 0.875rem; color: var(--text-secondary);">${member.role}</div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">${member.tasks}</div>
+                                <div style="font-size: 0.75rem; color: var(--text-secondary);">Active Tasks</div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
         // View Switcher
         function showView(viewName) {
             // Hide all views
@@ -691,6 +883,9 @@
             renderTasks();
             renderTeam();
             renderActivity();
+            renderProjects();
+            renderTeamDetail();
+            renderReports();
         });
     </script>
 </body>
