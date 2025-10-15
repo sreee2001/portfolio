@@ -528,6 +528,261 @@
         background: linear-gradient(135deg, var(--info), #60a5fa);
       }
 
+      /* Transactions List */
+      .transactions-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .transaction-list-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.25rem;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        transition: all 0.2s;
+      }
+
+      .transaction-list-item:hover {
+        background: var(--bg-main);
+        padding-left: 1.5rem;
+      }
+
+      .transaction-list-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+
+      .transaction-list-icon.income {
+        background: var(--bg-green);
+        color: var(--success);
+      }
+
+      .transaction-list-icon.expense {
+        background: var(--bg-pink);
+        color: var(--secondary);
+      }
+
+      .transaction-list-content {
+        flex: 1;
+      }
+
+      .transaction-list-title {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .transaction-list-meta {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .transaction-list-amount {
+        font-size: 1.125rem;
+        font-weight: 700;
+      }
+
+      .transaction-list-amount.income {
+        color: var(--success);
+      }
+
+      .transaction-list-amount.expense {
+        color: var(--danger);
+      }
+
+      /* Budget Detail Cards */
+      .budget-detail-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .budget-detail-card {
+        background: var(--bg-card);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .budget-detail-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+      }
+
+      .budget-detail-label {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .budget-detail-emoji {
+        font-size: 2rem;
+      }
+
+      .budget-detail-percentage {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .budget-detail-values {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .budget-detail-spent {
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .budget-detail-total {
+        color: var(--text-secondary);
+      }
+
+      .budget-detail-bar {
+        height: 12px;
+        background: var(--bg-main);
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 0.75rem;
+      }
+
+      .budget-detail-fill {
+        height: 100%;
+        border-radius: 6px;
+        transition: width 0.5s ease;
+      }
+
+      .budget-detail-status {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .budget-detail-status.good {
+        background: var(--bg-green);
+        color: var(--success);
+      }
+
+      .budget-detail-status.warning {
+        background: #fef3c7;
+        color: var(--warning);
+      }
+
+      .budget-detail-status.over {
+        background: #fee2e2;
+        color: var(--danger);
+      }
+
+      /* Report Stats */
+      .report-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .report-stat-card {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .report-stat-label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+      }
+
+      .report-stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .report-stat-change {
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .report-stat-change.positive {
+        color: var(--success);
+      }
+
+      .report-stat-change.negative {
+        color: var(--danger);
+      }
+
+      /* Summary Cards */
+      .summary-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .summary-card {
+        background: var(--bg-card);
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .summary-card-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: var(--text-primary);
+      }
+
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .summary-item:last-child {
+        border-bottom: none;
+      }
+
+      .summary-label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .summary-value {
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
       /* Responsive */
       @media (max-width: 1200px) {
         .content-grid {
@@ -660,7 +915,7 @@
                   </button>
                 </div>
               </div>
-              <div class="transaction-list" id="transaction-list"></div>
+              <div class="transaction-list" id="dashboard-transaction-list"></div>
             </div>
 
             <!-- Spending Chart -->
@@ -689,7 +944,7 @@
                   <i class="fas fa-plus"></i>
                 </button>
               </div>
-              <div class="budget-list" id="budget-list"></div>
+              <div class="budget-list" id="dashboard-budget-list"></div>
             </div>
 
             <!-- Quick Actions -->
@@ -727,9 +982,8 @@
           <p>View and manage your transaction history</p>
         </div>
         <div class="card">
-          <div class="chart-container">
-            <i class="fas fa-receipt"></i>
-            <p>Transactions list view - Implementation placeholder</p>
+          <div id="transaction-list" class="transactions-container">
+            <!-- Populated by renderTransactions() -->
           </div>
         </div>
       </div>
@@ -740,11 +994,8 @@
           <h1>🎯 Budget Management</h1>
           <p>Track your spending across categories</p>
         </div>
-        <div class="card">
-          <div class="chart-container">
-            <i class="fas fa-bullseye"></i>
-            <p>Budget management view - Implementation placeholder</p>
-          </div>
+        <div id="budget-list" class="budget-detail-grid">
+          <!-- Populated by renderBudgets() -->
         </div>
       </div>
 
@@ -754,11 +1005,15 @@
           <h1>📊 Financial Reports</h1>
           <p>Detailed insights and analytics</p>
         </div>
-        <div class="card">
-          <div class="chart-container">
-            <i class="fas fa-file-chart-line"></i>
-            <p>Reports view - Implementation placeholder</p>
-          </div>
+        
+        <!-- Report Stats Grid -->
+        <div id="report-stats" class="report-stats-grid">
+          <!-- Populated by renderReports() -->
+        </div>
+
+        <!-- Summary Cards -->
+        <div id="report-summaries" class="summary-cards">
+          <!-- Populated by renderReports() -->
         </div>
       </div>
     </div>
@@ -853,12 +1108,35 @@
             color: "warning",
           },
         ],
+        reports: {
+          stats: [
+            { label: "Total Income", value: "$4,550.00", change: "+18.2%", positive: true },
+            { label: "Total Expenses", value: "$1,160.48", change: "-5.3%", positive: true },
+            { label: "Net Savings", value: "$3,389.52", change: "+32.5%", positive: true },
+            { label: "Avg. Transaction", value: "$759.08", change: "+8.7%", positive: true }
+          ],
+          incomeBreakdown: [
+            { category: "Freelance Work", amount: 4550 },
+            { category: "Contract Projects", amount: 0 },
+            { category: "Passive Income", amount: 0 }
+          ],
+          expenseBreakdown: [
+            { category: "Business Expenses", amount: 420 },
+            { category: "Food & Dining", amount: 280.5 },
+            { category: "Subscriptions", amount: 145 },
+            { category: "Transportation", amount: 220 },
+            { category: "Entertainment", amount: 95 }
+          ]
+        }
       };
 
-      // Render Transactions
-      function renderTransactions() {
-        const transactionList = document.getElementById("transaction-list");
+      // Render Dashboard Transactions Widget
+      function renderDashboardTransactions() {
+        const transactionList = document.getElementById("dashboard-transaction-list");
+        if (!transactionList) return;
+        
         transactionList.innerHTML = MOCK_DATA.transactions
+          .slice(0, 5)  // Show only first 5 on dashboard
           .map(
             (transaction) => `
                 <div class="transaction-item">
@@ -890,9 +1168,11 @@
           .join("");
       }
 
-      // Render Budgets
-      function renderBudgets() {
-        const budgetList = document.getElementById("budget-list");
+      // Render Dashboard Budget Widget
+      function renderDashboardBudgets() {
+        const budgetList = document.getElementById("dashboard-budget-list");
+        if (!budgetList) return;
+        
         budgetList.innerHTML = MOCK_DATA.budgets
           .map((budget) => {
             const percentage = (budget.spent / budget.total) * 100;
@@ -917,27 +1197,161 @@
           .join("");
       }
 
-      // View Switcher
+      // Render Transactions
+      function renderTransactions() {
+        const transactionList = document.getElementById("transaction-list");
+        if (!transactionList) return;
+        
+        transactionList.innerHTML = MOCK_DATA.transactions
+          .map(
+            (transaction) => `
+                <div class="transaction-list-item">
+                    <div class="transaction-list-icon ${transaction.type}">
+                        <i class="fas fa-${
+                          transaction.type === "income"
+                            ? "arrow-down"
+                            : "arrow-up"
+                        }"></i>
+                    </div>
+                    <div class="transaction-list-content">
+                        <div class="transaction-list-title">${
+                          transaction.title
+                        }</div>
+                        <div class="transaction-list-meta">${
+                          transaction.date
+                        } · ${transaction.category}</div>
+                    </div>
+                    <div class="transaction-list-amount ${transaction.type}">
+                        ${
+                          transaction.amount > 0
+                            ? "+"
+                            : ""
+                        }$${Math.abs(transaction.amount).toFixed(2)}
+                    </div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // Render Budgets
+      function renderBudgets() {
+        const budgetList = document.getElementById("budget-list");
+        if (!budgetList) return;
+        
+        budgetList.innerHTML = MOCK_DATA.budgets
+          .map((budget) => {
+            const percentage = ((budget.spent / budget.total) * 100).toFixed(1);
+            let statusClass = 'good';
+            let statusText = 'On Track';
+            
+            if (percentage >= 100) {
+              statusClass = 'over';
+              statusText = 'Over Budget';
+            } else if (percentage >= 80) {
+              statusClass = 'warning';
+              statusText = 'Approaching Limit';
+            }
+            
+            return `
+                <div class="budget-detail-card">
+                    <div class="budget-detail-header">
+                        <div class="budget-detail-label">
+                            <span class="budget-detail-emoji">${budget.emoji}</span>
+                            <span>${budget.label}</span>
+                        </div>
+                        <div class="budget-detail-percentage">${percentage}%</div>
+                    </div>
+                    <div class="budget-detail-values">
+                        <span class="budget-detail-spent">$${budget.spent.toFixed(2)}</span>
+                        <span class="budget-detail-total">of $${budget.total.toFixed(2)}</span>
+                    </div>
+                    <div class="budget-detail-bar">
+                        <div class="budget-detail-fill" style="width: ${percentage}%; background: var(--${budget.color});"></div>
+                    </div>
+                    <div class="budget-detail-status ${statusClass}">${statusText}</div>
+                </div>
+            `;
+          })
+          .join("");
+      }
+
+      // Render Reports
+      function renderReports() {
+        // Render stats
+        const reportStats = document.getElementById("report-stats");
+        reportStats.innerHTML = MOCK_DATA.reports.stats
+          .map(stat => `
+            <div class="report-stat-card">
+              <div class="report-stat-label">${stat.label}</div>
+              <div class="report-stat-value">${stat.value}</div>
+              <div class="report-stat-change ${stat.positive ? 'positive' : 'negative'}">
+                <i class="fas fa-arrow-${stat.positive ? 'up' : 'down'}"></i>
+                ${stat.change}
+              </div>
+            </div>
+          `)
+          .join("");
+
+        // Render summary cards
+        const reportSummaries = document.getElementById("report-summaries");
+        reportSummaries.innerHTML = `
+          <div class="summary-card">
+            <div class="summary-card-title">💰 Income Breakdown</div>
+            ${MOCK_DATA.reports.incomeBreakdown
+              .map(item => `
+                <div class="summary-item">
+                  <span class="summary-label">${item.category}</span>
+                  <span class="summary-value">$${item.amount.toFixed(2)}</span>
+                </div>
+              `)
+              .join("")}
+          </div>
+          <div class="summary-card">
+            <div class="summary-card-title">💸 Expense Breakdown</div>
+            ${MOCK_DATA.reports.expenseBreakdown
+              .map(item => `
+                <div class="summary-item">
+                  <span class="summary-label">${item.category}</span>
+                  <span class="summary-value">$${item.amount.toFixed(2)}</span>
+                </div>
+              `)
+              .join("")}
+          </div>
+        `;
+      }
+
+      // View Switcher - FIXED: Use explicit array instead of selector to avoid collision with child containers
       function showView(viewName) {
-        // Hide all views
-        document.querySelectorAll('[id$="-view"]').forEach((view) => {
-          view.style.display = "none";
+        // Define explicit list of main view IDs
+        const mainViews = ['dashboard-view', 'transactions-view', 'budgets-view', 'reports-view'];
+        
+        // Hide all main views
+        mainViews.forEach((viewId) => {
+          const view = document.getElementById(viewId);
+          if (view) view.style.display = "none";
         });
 
         // Show selected view
-        document.getElementById(`${viewName}-view`).style.display = "block";
+        const selectedView = document.getElementById(`${viewName}-view`);
+        if (selectedView) selectedView.style.display = "block";
 
         // Update active nav link
         document.querySelectorAll(".nav-link").forEach((link) => {
           link.classList.remove("active");
         });
-        event.target.classList.add("active");
+        if (event && event.target) {
+          event.target.classList.add("active");
+        }
       }
 
       // Initialize
       document.addEventListener("DOMContentLoaded", () => {
+        renderDashboardTransactions();
+        renderDashboardBudgets();
         renderTransactions();
         renderBudgets();
+        renderReports();
       });
     </script>
   </body>
