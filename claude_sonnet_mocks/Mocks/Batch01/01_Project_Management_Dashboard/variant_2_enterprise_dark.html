@@ -264,6 +264,70 @@
         margin-bottom: 2rem;
       }
 
+      /* Metrics Grid - Same as Stats Grid */
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .metric-card {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .metric-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+      }
+
+      .metric-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .metric-value {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        letter-spacing: -1px;
+      }
+
+      .metric-label {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+      }
+
+      .metric-change {
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .metric-change.positive {
+        color: var(--success);
+      }
+
+      .metric-change.negative {
+        color: var(--danger);
+      }
+
       .stat-card {
         background: var(--bg-card);
         padding: 1.75rem;
@@ -356,6 +420,13 @@
       .content-grid {
         display: grid;
         grid-template-columns: 1.5fr 1fr;
+        gap: 2rem;
+      }
+
+      /* Dashboard Grid - for Reports */
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 2rem;
       }
 
@@ -666,6 +737,10 @@
         .content-grid {
           grid-template-columns: 1fr;
         }
+
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       @media (max-width: 768px) {
@@ -673,7 +748,8 @@
           display: none;
         }
 
-        .stats-grid {
+        .stats-grid,
+        .metrics-grid {
           grid-template-columns: 1fr;
         }
 
@@ -926,17 +1002,36 @@
             <h1>Project Portfolio</h1>
           </div>
         </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">32</div>
+            <div class="metric-label">Active Projects</div>
+            <div class="metric-change positive">+8 this quarter</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">$2.4M</div>
+            <div class="metric-label">Total Budget</div>
+            <div class="metric-change positive">+12% vs Q3</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">94%</div>
+            <div class="metric-label">On-Time Delivery</div>
+            <div class="metric-change positive">+2% vs Q3</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">7</div>
+            <div class="metric-label">At Risk</div>
+            <div class="metric-change negative">+2 this week</div>
+          </div>
+        </div>
+
         <div class="card">
-          <p
-            style="text-align: center; padding: 3rem; color: var(--text-secondary);"
-          >
-            <i
-              class="fas fa-briefcase"
-              style="font-size: 3rem; margin-bottom: 1rem;"
-            ></i
-            ><br />
-            Project portfolio view - Implementation placeholder
-          </p>
+          <div class="card-header">
+            <h2 class="card-title">All Projects</h2>
+            <button class="btn btn-primary">+ New Project</button>
+          </div>
+          <div id="projects-list-view"></div>
         </div>
       </div>
 
@@ -952,17 +1047,36 @@
             <h1>Team Management</h1>
           </div>
         </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">48</div>
+            <div class="metric-label">Team Members</div>
+            <div class="metric-change positive">+5 this month</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">8</div>
+            <div class="metric-label">Departments</div>
+            <div class="metric-change">Across organization</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">156</div>
+            <div class="metric-label">Active Tasks</div>
+            <div class="metric-change positive">+12 this week</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">3.2</div>
+            <div class="metric-label">Avg Tasks/Member</div>
+            <div class="metric-change">Balanced load</div>
+          </div>
+        </div>
+
         <div class="card">
-          <p
-            style="text-align: center; padding: 3rem; color: var(--text-secondary);"
-          >
-            <i
-              class="fas fa-users-cog"
-              style="font-size: 3rem; margin-bottom: 1rem;"
-            ></i
-            ><br />
-            Team management view - Implementation placeholder
-          </p>
+          <div class="card-header">
+            <h2 class="card-title">Team Directory</h2>
+            <button class="btn btn-primary">+ Add Member</button>
+          </div>
+          <div id="team-detail-view"></div>
         </div>
       </div>
 
@@ -978,17 +1092,43 @@
             <h1>Executive Reports</h1>
           </div>
         </div>
-        <div class="card">
-          <p
-            style="text-align: center; padding: 3rem; color: var(--text-secondary);"
-          >
-            <i
-              class="fas fa-file-contract"
-              style="font-size: 3rem; margin-bottom: 1rem;"
-            ></i
-            ><br />
-            Executive reports view - Implementation placeholder
-          </p>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">284</div>
+            <div class="metric-label">Total Tasks</div>
+            <div class="metric-change positive">+18% vs last quarter</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">238</div>
+            <div class="metric-label">Completed</div>
+            <div class="metric-change positive">84% completion rate</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">34</div>
+            <div class="metric-label">In Progress</div>
+            <div class="metric-change">12% of total</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">12</div>
+            <div class="metric-label">Overdue</div>
+            <div class="metric-change negative">4% of total</div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Project Performance</h2>
+            </div>
+            <div id="project-performance-report"></div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Resource Utilization</h2>
+            </div>
+            <div id="resource-utilization-report"></div>
+          </div>
         </div>
       </div>
 
@@ -1005,16 +1145,27 @@
           </div>
         </div>
         <div class="card">
-          <p
-            style="text-align: center; padding: 3rem; color: var(--text-secondary);"
-          >
-            <i
-              class="fas fa-cog"
-              style="font-size: 3rem; margin-bottom: 1rem;"
-            ></i
-            ><br />
-            System settings view - Implementation placeholder
-          </p>
+          <div class="card-header">
+            <h2 class="card-title">System Configuration</h2>
+          </div>
+          <div>
+            <div style="padding: 1.5rem; background: var(--bg-main); border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border); cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'">
+              <h4 style="margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600;">Organization Settings</h4>
+              <p style="color: var(--text-secondary); font-size: 0.875rem;">Configure company-wide defaults and preferences</p>
+            </div>
+            <div style="padding: 1.5rem; background: var(--bg-main); border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border); cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'">
+              <h4 style="margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600;">User Permissions</h4>
+              <p style="color: var(--text-secondary); font-size: 0.875rem;">Manage roles and access controls</p>
+            </div>
+            <div style="padding: 1.5rem; background: var(--bg-main); border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border); cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'">
+              <h4 style="margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600;">Integration Management</h4>
+              <p style="color: var(--text-secondary); font-size: 0.875rem;">Connect third-party tools and services</p>
+            </div>
+            <div style="padding: 1.5rem; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'">
+              <h4 style="margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600;">Security & Compliance</h4>
+              <p style="color: var(--text-secondary); font-size: 0.875rem;">Review security policies and audit logs</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1086,6 +1237,7 @@
             projects: 4,
             initials: "MC",
             status: "online",
+            email: "mchen@company.com",
           },
           {
             name: "Jennifer Roberts",
@@ -1094,6 +1246,7 @@
             projects: 6,
             initials: "JR",
             status: "busy",
+            email: "jroberts@company.com",
           },
           {
             name: "David Martinez",
@@ -1102,6 +1255,7 @@
             projects: 3,
             initials: "DM",
             status: "online",
+            email: "dmartinez@company.com",
           },
           {
             name: "Lisa Anderson",
@@ -1110,6 +1264,7 @@
             projects: 5,
             initials: "LA",
             status: "online",
+            email: "landerson@company.com",
           },
           {
             name: "James Wilson",
@@ -1118,8 +1273,24 @@
             projects: 7,
             initials: "JW",
             status: "offline",
+            email: "jwilson@company.com",
           },
         ],
+        projects: [
+          { name: 'Corporate Strategy', status: 'Active', progress: 78, budget: '$450K', team: 8, dueDate: 'Dec 2025' },
+          { name: 'IT Modernization', status: 'Active', progress: 45, budget: '$680K', team: 12, dueDate: 'Mar 2026' },
+          { name: 'Compliance & Governance', status: 'Active', progress: 92, budget: '$280K', team: 5, dueDate: 'Oct 2025' },
+          { name: 'CX Transformation', status: 'Planning', progress: 28, budget: '$520K', team: 9, dueDate: 'Feb 2026' },
+          { name: 'Financial Planning', status: 'Active', progress: 65, budget: '$340K', team: 6, dueDate: 'Jan 2026' },
+          { name: 'Developer Experience', status: 'Active', progress: 55, budget: '$420K', team: 7, dueDate: 'Nov 2025' }
+        ],
+        projectPerformance: [
+          { project: 'Corporate Strategy', completed: 45, inProgress: 12, overdue: 1 },
+          { project: 'IT Modernization', completed: 32, inProgress: 18, overdue: 4 },
+          { project: 'Compliance & Governance', completed: 28, inProgress: 2, overdue: 0 },
+          { project: 'CX Transformation', completed: 18, inProgress: 14, overdue: 2 },
+          { project: 'Financial Planning', completed: 24, inProgress: 9, overdue: 1 }
+        ]
       };
 
       // Render Tasks
@@ -1182,6 +1353,94 @@
           .join("");
       }
 
+      // Render Projects List
+      function renderProjectsList() {
+        const projectsList = document.getElementById('projects-list-view');
+        if (!projectsList) return;
+        
+        projectsList.innerHTML = MOCK_DATA.projects.map((project, index) => `
+          <div class="task-item" style="margin-bottom: ${index === MOCK_DATA.projects.length - 1 ? '0' : '1rem'}; padding: 1.5rem;">
+            <div style="flex: 1;">
+              <div class="task-title">${project.name}</div>
+              <div class="task-meta">
+                <span><i class="fas fa-users"></i> ${project.team} members</span>
+                <span><i class="fas fa-dollar-sign"></i> ${project.budget}</span>
+                <span><i class="fas fa-calendar"></i> Due ${project.dueDate}</span>
+              </div>
+              <div style="margin-top: 1rem;">
+                <div style="background: var(--bg-main); height: 8px; border-radius: 4px; overflow: hidden;">
+                  <div style="background: linear-gradient(90deg, var(--primary), var(--secondary)); height: 100%; width: ${project.progress}%; transition: width 0.3s;"></div>
+                </div>
+                <div style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);">${project.progress}% Complete</div>
+              </div>
+            </div>
+            <div class="task-priority ${project.status === 'Active' ? 'high' : 'medium'}">${project.status}</div>
+          </div>
+        `).join('');
+      }
+
+      // Render Team Detail
+      function renderTeamDetail() {
+        const teamDetailView = document.getElementById('team-detail-view');
+        if (!teamDetailView) return;
+        
+        teamDetailView.innerHTML = MOCK_DATA.team.map((member, index) => `
+          <div class="team-member" style="padding: 1.5rem; ${index === MOCK_DATA.team.length - 1 ? '' : 'border-bottom: 1px solid var(--border);'}">
+            <div class="member-avatar" style="width: 64px; height: 64px; font-size: 1.5rem;">${member.initials}</div>
+            <div class="member-info" style="flex: 1;">
+              <div class="member-name" style="font-size: 1.125rem; margin-bottom: 0.25rem;">${member.name}</div>
+              <div class="member-role" style="margin-bottom: 0.5rem;">${member.role}</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary);">
+                <i class="fas fa-envelope"></i> ${member.email}
+              </div>
+              <div class="member-stats" style="margin-top: 0.75rem;">
+                <div class="member-stat"><i class="fas fa-tasks"></i><span>${member.tasks} tasks</span></div>
+                <div class="member-stat"><i class="fas fa-project-diagram"></i><span>${member.projects} projects</span></div>
+              </div>
+            </div>
+            <div class="member-status">
+              <div class="status-indicator ${member.status}"></div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Render Reports
+      function renderReports() {
+        const perfReport = document.getElementById('project-performance-report');
+        const resourceReport = document.getElementById('resource-utilization-report');
+        
+        if (perfReport) {
+          perfReport.innerHTML = MOCK_DATA.projectPerformance.map(proj => `
+            <div style="padding: 1.25rem; border-bottom: 1px solid var(--border);">
+              <div style="font-weight: 600; margin-bottom: 0.75rem; font-size: 1rem;">${proj.project}</div>
+              <div style="display: flex; gap: 1.5rem; font-size: 0.875rem;">
+                <span style="color: var(--success);"><i class="fas fa-check-circle"></i> ${proj.completed} completed</span>
+                <span style="color: var(--warning);"><i class="fas fa-spinner"></i> ${proj.inProgress} in progress</span>
+                <span style="color: var(--danger);"><i class="fas fa-exclamation-circle"></i> ${proj.overdue} overdue</span>
+              </div>
+            </div>
+          `).join('');
+        }
+        
+        if (resourceReport) {
+          resourceReport.innerHTML = MOCK_DATA.team.map(member => `
+            <div style="padding: 1.25rem; border-bottom: 1px solid var(--border);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 600;">${member.name}</div>
+                  <div style="font-size: 0.875rem; color: var(--text-secondary);">${member.role}</div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">${member.tasks}</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary);">Tasks</div>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+      }
+
       // View Switcher
       function showView(viewName) {
         // Hide all views
@@ -1203,6 +1462,9 @@
       document.addEventListener("DOMContentLoaded", () => {
         renderTasks();
         renderTeam();
+        renderProjectsList();
+        renderTeamDetail();
+        renderReports();
       });
     </script>
   </body>
