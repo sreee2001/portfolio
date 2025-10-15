@@ -509,7 +509,7 @@
         align-items: center;
         gap: 1rem;
         padding: 1rem;
-        background: var(--bg-main);
+        background: var(--bg-card);
         border-radius: 8px;
         border: 1px solid var(--border);
         transition: all 0.2s;
@@ -602,7 +602,7 @@
         align-items: center;
         gap: 1rem;
         padding: 1rem;
-        background: var(--bg-main);
+        background: var(--bg-card);
         border-radius: 8px;
         border: 1px solid var(--border);
         transition: all 0.2s;
@@ -610,6 +610,7 @@
 
       .team-member:hover {
         border-color: var(--primary);
+        background: var(--bg-elevated);
       }
 
       .member-avatar {
@@ -1031,7 +1032,7 @@
             <h2 class="card-title">All Projects</h2>
             <button class="btn btn-primary">+ New Project</button>
           </div>
-          <div id="projects-list-view"></div>
+          <div id="projects-list-container"></div>
         </div>
       </div>
 
@@ -1076,7 +1077,7 @@
             <h2 class="card-title">Team Directory</h2>
             <button class="btn btn-primary">+ Add Member</button>
           </div>
-          <div id="team-detail-view"></div>
+          <div id="team-detail-container"></div>
         </div>
       </div>
 
@@ -1355,7 +1356,7 @@
 
       // Render Projects List
       function renderProjectsList() {
-        const projectsList = document.getElementById('projects-list-view');
+        const projectsList = document.getElementById('projects-list-container');
         if (!projectsList) return;
         
         projectsList.innerHTML = MOCK_DATA.projects.map((project, index) => `
@@ -1381,7 +1382,7 @@
 
       // Render Team Detail
       function renderTeamDetail() {
-        const teamDetailView = document.getElementById('team-detail-view');
+        const teamDetailView = document.getElementById('team-detail-container');
         if (!teamDetailView) return;
         
         teamDetailView.innerHTML = MOCK_DATA.team.map((member, index) => `
