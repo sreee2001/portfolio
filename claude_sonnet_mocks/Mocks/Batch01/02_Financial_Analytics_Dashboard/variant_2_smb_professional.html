@@ -505,6 +505,343 @@
         color: var(--text-primary);
       }
 
+      /* Revenue View Styles */
+      .revenue-streams-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .revenue-stream-card {
+        background: var(--bg-card);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        transition: transform 0.2s;
+      }
+
+      .revenue-stream-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .revenue-stream-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .revenue-stream-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+      }
+
+      .revenue-stream-trend {
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      .revenue-stream-trend.positive {
+        color: var(--secondary);
+      }
+
+      .revenue-stream-title {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .revenue-stream-amount {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 0.75rem;
+      }
+
+      .revenue-stream-subtitle {
+        font-size: 0.85rem;
+        color: var(--text-tertiary);
+      }
+
+      /* Expense Categories */
+      .expense-categories-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .expense-category-card {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .expense-category-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.25rem;
+      }
+
+      .expense-category-info {
+        flex: 1;
+      }
+
+      .expense-category-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .expense-category-subtitle {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .expense-category-amount {
+        text-align: right;
+      }
+
+      .expense-category-spent {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--danger);
+      }
+
+      .expense-category-total {
+        font-size: 0.9rem;
+        color: var(--text-tertiary);
+      }
+
+      .expense-category-bar {
+        height: 10px;
+        background: var(--bg-gray);
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 0.75rem;
+      }
+
+      .expense-category-fill {
+        height: 100%;
+        border-radius: 5px;
+        transition: width 0.5s ease;
+      }
+
+      .expense-category-status {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .expense-category-status.healthy {
+        background: #dcfce7;
+        color: var(--secondary);
+      }
+
+      .expense-category-status.warning {
+        background: #fef3c7;
+        color: var(--warning);
+      }
+
+      .expense-category-status.critical {
+        background: #fee2e2;
+        color: var(--danger);
+      }
+
+      /* Report Cards */
+      .report-metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .report-metric-card {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .report-metric-label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+      }
+
+      .report-metric-value {
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .report-metric-change {
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .report-metric-change.up {
+        color: var(--secondary);
+      }
+
+      .report-metric-change.down {
+        color: var(--danger);
+      }
+
+      .report-detail-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .report-detail-card {
+        background: var(--bg-card);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .report-detail-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--text-primary);
+      }
+
+      .report-detail-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.875rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .report-detail-item:last-child {
+        border-bottom: none;
+      }
+
+      .report-detail-label {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+      }
+
+      .report-detail-value {
+        font-weight: 700;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+      }
+
+      /* Invoice List */
+      .invoice-list {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .invoice-card {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: auto 1fr auto auto;
+        gap: 1.5rem;
+        align-items: center;
+        transition: transform 0.2s;
+      }
+
+      .invoice-card:hover {
+        transform: translateX(4px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .invoice-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        background: var(--primary);
+      }
+
+      .invoice-details {
+        flex: 1;
+      }
+
+      .invoice-number {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .invoice-client {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.25rem;
+      }
+
+      .invoice-date {
+        font-size: 0.85rem;
+        color: var(--text-tertiary);
+      }
+
+      .invoice-amount {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        text-align: right;
+      }
+
+      .invoice-status {
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .invoice-status.paid {
+        background: #dcfce7;
+        color: var(--secondary);
+      }
+
+      .invoice-status.pending {
+        background: #fef3c7;
+        color: var(--warning);
+      }
+
+      .invoice-status.overdue {
+        background: #fee2e2;
+        color: var(--danger);
+      }
+
       /* Responsive */
       @media (max-width: 1400px) {
         .content-grid {
@@ -745,11 +1082,8 @@
           <h1 class="page-title">Revenue Analysis</h1>
           <p class="page-subtitle">Track income streams and growth</p>
         </div>
-        <div class="card">
-          <div class="chart-container">
-            <i class="fas fa-dollar-sign"></i>
-            <p>Revenue analysis view - Implementation placeholder</p>
-          </div>
+        <div id="revenue-streams" class="revenue-streams-grid">
+          <!-- Populated by renderRevenue() -->
         </div>
       </div>
 
@@ -759,11 +1093,8 @@
           <h1 class="page-title">Expense Management</h1>
           <p class="page-subtitle">Monitor and control business expenses</p>
         </div>
-        <div class="card">
-          <div class="chart-container">
-            <i class="fas fa-credit-card"></i>
-            <p>Expense management view - Implementation placeholder</p>
-          </div>
+        <div id="expense-categories" class="expense-categories-grid">
+          <!-- Populated by renderExpenses() -->
         </div>
       </div>
 
@@ -773,11 +1104,11 @@
           <h1 class="page-title">Financial Reports</h1>
           <p class="page-subtitle">Generate detailed financial reports</p>
         </div>
-        <div class="card">
-          <div class="chart-container">
-            <i class="fas fa-file-contract"></i>
-            <p>Reports view - Implementation placeholder</p>
-          </div>
+        <div id="report-metrics" class="report-metrics-grid">
+          <!-- Populated by renderReports() -->
+        </div>
+        <div id="report-details" class="report-detail-cards">
+          <!-- Populated by renderReports() -->
         </div>
       </div>
 
@@ -787,11 +1118,8 @@
           <h1 class="page-title">Invoice Management</h1>
           <p class="page-subtitle">Create and track invoices</p>
         </div>
-        <div class="card">
-          <div class="chart-container">
-            <i class="fas fa-file-invoice"></i>
-            <p>Invoice management view - Implementation placeholder</p>
-          </div>
+        <div id="invoice-list" class="invoice-list">
+          <!-- Populated by renderInvoices() -->
         </div>
       </div>
     </div>
@@ -855,6 +1183,47 @@
           { name: "Operations", amount: 2450, total: 4000, color: "orange" },
           { name: "Technology", amount: 1890, total: 3000, color: "cyan" },
         ],
+        revenueStreams: [
+          { title: "Product Sales", amount: 45200, trend: "+18.5%", icon: "fa-box", color: "#2563eb" },
+          { title: "Service Contracts", amount: 28900, trend: "+12.3%", icon: "fa-handshake", color: "#059669" },
+          { title: "Consulting", amount: 16750, trend: "+25.8%", icon: "fa-user-tie", color: "#d97706" },
+          { title: "Subscriptions", amount: 8450, trend: "+8.2%", icon: "fa-sync", color: "#0891b2" }
+        ],
+        expenseDetails: [
+          { name: "Payroll & Benefits", spent: 12500, total: 15000, subtitle: "15 employees", status: "healthy" },
+          { name: "Marketing & Advertising", spent: 3800, total: 5000, subtitle: "Digital campaigns", status: "healthy" },
+          { name: "Office & Operations", spent: 2450, total: 4000, subtitle: "Supplies & utilities", status: "healthy" },
+          { name: "Technology & Software", spent: 1890, total: 3000, subtitle: "Licenses & infrastructure", status: "healthy" },
+          { name: "Professional Services", spent: 1250, total: 1500, subtitle: "Legal & accounting", status: "warning" }
+        ],
+        reportMetrics: [
+          { label: "Net Revenue", value: "$99,300", change: "+16.2%", direction: "up" },
+          { label: "Total Expenses", value: "$21,890", change: "-3.5%", direction: "down" },
+          { label: "Net Profit", value: "$77,410", change: "+28.4%", direction: "up" },
+          { label: "Profit Margin", value: "78%", change: "+8.2%", direction: "up" }
+        ],
+        reportDetails: {
+          topClients: [
+            { name: "ABC Corporation", amount: 18500 },
+            { name: "Tech Solutions Inc", amount: 12300 },
+            { name: "Global Industries", amount: 9850 },
+            { name: "StartupCo", amount: 7200 }
+          ],
+          topExpenses: [
+            { name: "Employee Salaries", amount: 10500 },
+            { name: "Office Rent", amount: 4200 },
+            { name: "Marketing Campaign", amount: 3800 },
+            { name: "Software Licenses", amount: 1890 }
+          ]
+        },
+        invoices: [
+          { number: "INV-1842", client: "ABC Corporation", date: "Oct 15, 2025", amount: 4500, status: "paid" },
+          { number: "INV-1843", client: "Tech Solutions Inc", date: "Oct 14, 2025", amount: 8200, status: "paid" },
+          { number: "INV-1844", client: "Global Industries", date: "Oct 12, 2025", amount: 6750, status: "pending" },
+          { number: "INV-1845", client: "StartupCo", date: "Oct 10, 2025", amount: 3200, status: "pending" },
+          { number: "INV-1846", client: "Enterprise LLC", date: "Oct 8, 2025", amount: 5500, status: "overdue" },
+          { number: "INV-1847", client: "MegaCorp", date: "Oct 5, 2025", amount: 12000, status: "paid" }
+        ]
       };
 
       // Render Transactions
@@ -910,27 +1279,158 @@
           .join("");
       }
 
-      // View Switcher
+      // Render Revenue Streams
+      function renderRevenue() {
+        const revenueStreams = document.getElementById("revenue-streams");
+        revenueStreams.innerHTML = MOCK_DATA.revenueStreams
+          .map(stream => `
+            <div class="revenue-stream-card">
+              <div class="revenue-stream-header">
+                <div class="revenue-stream-icon" style="background: ${stream.color};">
+                  <i class="fas ${stream.icon}"></i>
+                </div>
+                <div class="revenue-stream-trend positive">
+                  <i class="fas fa-arrow-up"></i> ${stream.trend}
+                </div>
+              </div>
+              <div class="revenue-stream-title">${stream.title}</div>
+              <div class="revenue-stream-amount">$${stream.amount.toLocaleString()}</div>
+              <div class="revenue-stream-subtitle">This month</div>
+            </div>
+          `)
+          .join("");
+      }
+
+      // Render Expense Details
+      function renderExpenses() {
+        const expenseCategories = document.getElementById("expense-categories");
+        expenseCategories.innerHTML = MOCK_DATA.expenseDetails
+          .map(expense => {
+            const percentage = ((expense.spent / expense.total) * 100).toFixed(1);
+            return `
+              <div class="expense-category-card">
+                <div class="expense-category-header">
+                  <div class="expense-category-info">
+                    <div class="expense-category-name">${expense.name}</div>
+                    <div class="expense-category-subtitle">${expense.subtitle}</div>
+                  </div>
+                  <div class="expense-category-amount">
+                    <div class="expense-category-spent">$${expense.spent.toLocaleString()}</div>
+                    <div class="expense-category-total">of $${expense.total.toLocaleString()}</div>
+                  </div>
+                </div>
+                <div class="expense-category-bar">
+                  <div class="expense-category-fill" style="width: ${percentage}%; background: var(--${expense.status === 'healthy' ? 'secondary' : 'warning'});"></div>
+                </div>
+                <div class="expense-category-status ${expense.status}">
+                  ${percentage}% ${expense.status === 'healthy' ? 'Within Budget' : expense.status === 'warning' ? 'Approaching Limit' : 'Over Budget'}
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+      }
+
+      // Render Financial Reports
+      function renderReports() {
+        // Render metrics
+        const reportMetrics = document.getElementById("report-metrics");
+        reportMetrics.innerHTML = MOCK_DATA.reportMetrics
+          .map(metric => `
+            <div class="report-metric-card">
+              <div class="report-metric-label">${metric.label}</div>
+              <div class="report-metric-value">${metric.value}</div>
+              <div class="report-metric-change ${metric.direction}">
+                <i class="fas fa-arrow-${metric.direction === 'up' ? 'up' : 'down'}"></i>
+                ${metric.change}
+              </div>
+            </div>
+          `)
+          .join("");
+
+        // Render detail cards
+        const reportDetails = document.getElementById("report-details");
+        reportDetails.innerHTML = `
+          <div class="report-detail-card">
+            <div class="report-detail-title">💼 Top Clients</div>
+            ${MOCK_DATA.reportDetails.topClients
+              .map(client => `
+                <div class="report-detail-item">
+                  <span class="report-detail-label">${client.name}</span>
+                  <span class="report-detail-value">$${client.amount.toLocaleString()}</span>
+                </div>
+              `)
+              .join("")}
+          </div>
+          <div class="report-detail-card">
+            <div class="report-detail-title">💸 Top Expenses</div>
+            ${MOCK_DATA.reportDetails.topExpenses
+              .map(expense => `
+                <div class="report-detail-item">
+                  <span class="report-detail-label">${expense.name}</span>
+                  <span class="report-detail-value">$${expense.amount.toLocaleString()}</span>
+                </div>
+              `)
+              .join("")}
+          </div>
+        `;
+      }
+
+      // Render Invoices
+      function renderInvoices() {
+        const invoiceList = document.getElementById("invoice-list");
+        invoiceList.innerHTML = MOCK_DATA.invoices
+          .map(invoice => `
+            <div class="invoice-card">
+              <div class="invoice-icon">
+                <i class="fas fa-file-invoice"></i>
+              </div>
+              <div class="invoice-details">
+                <div class="invoice-number">${invoice.number}</div>
+                <div class="invoice-client">${invoice.client}</div>
+                <div class="invoice-date">Due: ${invoice.date}</div>
+              </div>
+              <div class="invoice-amount">$${invoice.amount.toLocaleString()}</div>
+              <div class="invoice-status ${invoice.status}">
+                ${invoice.status.charAt(0).toUpperCase() + invoice.status.slice(1)}
+              </div>
+            </div>
+          `)
+          .join("");
+      }
+
+      // View Switcher - FIXED: Use explicit array instead of selector to avoid collision
       function showView(viewName) {
-        // Hide all views
-        document.querySelectorAll('[id$="-view"]').forEach((view) => {
-          view.style.display = "none";
+        // Define explicit list of main view IDs
+        const mainViews = ['dashboard-view', 'revenue-view', 'expenses-view', 'reports-view', 'invoices-view'];
+        
+        // Hide all main views
+        mainViews.forEach((viewId) => {
+          const view = document.getElementById(viewId);
+          if (view) view.style.display = "none";
         });
 
         // Show selected view
-        document.getElementById(`${viewName}-view`).style.display = "block";
+        const selectedView = document.getElementById(`${viewName}-view`);
+        if (selectedView) selectedView.style.display = "block";
 
         // Update active nav link
         document.querySelectorAll(".nav-link").forEach((link) => {
           link.classList.remove("active");
         });
-        event.target.classList.add("active");
+        if (event && event.target) {
+          event.target.classList.add("active");
+        }
       }
 
       // Initialize
       document.addEventListener("DOMContentLoaded", () => {
         renderTransactions();
         renderCategories();
+        renderRevenue();
+        renderExpenses();
+        renderReports();
+        renderInvoices();
       });
     </script>
   </body>
