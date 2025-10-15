@@ -688,16 +688,14 @@
       <div id="deals-view" style="display: none;">
         <div class="page-header">
           <h1 class="page-title">All Deals</h1>
+          <button class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+            New Deal
+          </button>
         </div>
         <div class="card">
-          <div
-            style="text-align: center; padding: 3rem; color: var(--text-secondary);"
-          >
-            <i
-              class="fas fa-handshake"
-              style="font-size: 3rem; margin-bottom: 1rem;"
-            ></i>
-            <p>Deals list view - Implementation placeholder</p>
+          <div id="deals-table">
+            <!-- Populated by renderDeals() -->
           </div>
         </div>
       </div>
@@ -706,16 +704,14 @@
       <div id="contacts-view" style="display: none;">
         <div class="page-header">
           <h1 class="page-title">Contacts</h1>
+          <button class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+            New Contact
+          </button>
         </div>
         <div class="card">
-          <div
-            style="text-align: center; padding: 3rem; color: var(--text-secondary);"
-          >
-            <i
-              class="fas fa-address-book"
-              style="font-size: 3rem; margin-bottom: 1rem;"
-            ></i>
-            <p>Contacts view - Implementation placeholder</p>
+          <div id="contacts-grid">
+            <!-- Populated by renderContacts() -->
           </div>
         </div>
       </div>
@@ -724,16 +720,22 @@
       <div id="reports-view" style="display: none;">
         <div class="page-header">
           <h1 class="page-title">Sales Reports</h1>
+          <button class="btn btn-secondary">
+            <i class="fas fa-download"></i>
+            Export Report
+          </button>
         </div>
-        <div class="card">
-          <div
-            style="text-align: center; padding: 3rem; color: var(--text-secondary);"
-          >
-            <i
-              class="fas fa-chart-bar"
-              style="font-size: 3rem; margin-bottom: 1rem;"
-            ></i>
-            <p>Reports view - Implementation placeholder</p>
+        
+        <!-- Summary Metrics -->
+        <div id="reports-summary">
+          <!-- Populated by renderReports() -->
+        </div>
+        
+        <!-- Monthly Performance -->
+        <div class="card" style="margin-top: 2rem;">
+          <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 700;">Monthly Performance</h3>
+          <div id="monthly-performance">
+            <!-- Populated by renderReports() -->
           </div>
         </div>
       </div>
@@ -846,6 +848,46 @@
           { name: "Tom Kim", deals: 8, value: "$298K" },
           { name: "Emily Chen", deals: 7, value: "$265K" },
         ],
+        
+        // All Deals Data
+        deals: [
+          { id: 1, title: "Enterprise License - TechCorp", company: "TechCorp Inc.", value: 85000, stage: "Prospecting", owner: "Michael Johnson", probability: 20, closeDate: "Dec 15, 2025", contact: "John Smith" },
+          { id: 2, title: "Annual Subscription - StartupXYZ", company: "StartupXYZ", value: 24000, stage: "Prospecting", owner: "Sarah Lee", probability: 15, closeDate: "Dec 20, 2025", contact: "Jane Doe" },
+          { id: 3, title: "Pro Plan Upgrade - Acme Corp", company: "Acme Corporation", value: 45000, stage: "Qualification", owner: "Tom Kim", probability: 40, closeDate: "Nov 30, 2025", contact: "Bob Wilson" },
+          { id: 4, title: "Multi-Year Deal - BizSolutions", company: "BizSolutions Ltd", value: 120000, stage: "Qualification", owner: "Michael Johnson", probability: 45, closeDate: "Dec 10, 2025", contact: "Alice Brown" },
+          { id: 5, title: "Custom Integration - GlobalTech", company: "GlobalTech Systems", value: 95000, stage: "Proposal", owner: "Emily Chen", probability: 65, closeDate: "Nov 25, 2025", contact: "David Lee" },
+          { id: 6, title: "Enterprise Suite - MegaCorp", company: "MegaCorp Industries", value: 180000, stage: "Negotiation", owner: "Michael Johnson", probability: 80, closeDate: "Nov 20, 2025", contact: "Susan Garcia" },
+          { id: 7, title: "Team License - DevTeam", company: "DevTeam Studio", value: 32000, stage: "Negotiation", owner: "Sarah Lee", probability: 75, closeDate: "Nov 22, 2025", contact: "Mike Chen" },
+          { id: 8, title: "Platform Expansion - CloudCo", company: "CloudCo Solutions", value: 67000, stage: "Qualification", owner: "Tom Kim", probability: 35, closeDate: "Dec 5, 2025", contact: "Lisa Anderson" },
+        ],
+        
+        // Contacts Data
+        contacts: [
+          { id: 1, name: "John Smith", company: "TechCorp Inc.", title: "CTO", email: "john.smith@techcorp.com", phone: "+1 (555) 123-4567", deals: 2, value: "$110K", lastContact: "2 days ago" },
+          { id: 2, name: "Jane Doe", company: "StartupXYZ", title: "CEO", email: "jane@startupxyz.com", phone: "+1 (555) 234-5678", deals: 1, value: "$24K", lastContact: "1 week ago" },
+          { id: 3, name: "Bob Wilson", company: "Acme Corporation", title: "VP Operations", email: "bob.wilson@acme.com", phone: "+1 (555) 345-6789", deals: 1, value: "$45K", lastContact: "3 days ago" },
+          { id: 4, name: "Alice Brown", company: "BizSolutions Ltd", title: "Director of Sales", email: "a.brown@bizsolutions.com", phone: "+1 (555) 456-7890", deals: 1, value: "$120K", lastContact: "1 day ago" },
+          { id: 5, name: "David Lee", company: "GlobalTech Systems", title: "IT Manager", email: "david.lee@globaltech.com", phone: "+1 (555) 567-8901", deals: 1, value: "$95K", lastContact: "5 hours ago" },
+          { id: 6, name: "Susan Garcia", company: "MegaCorp Industries", title: "SVP Technology", email: "s.garcia@megacorp.com", phone: "+1 (555) 678-9012", deals: 3, value: "$285K", lastContact: "Today" },
+          { id: 7, name: "Mike Chen", company: "DevTeam Studio", title: "Engineering Lead", email: "mike@devteam.studio", phone: "+1 (555) 789-0123", deals: 1, value: "$32K", lastContact: "Yesterday" },
+          { id: 8, name: "Lisa Anderson", company: "CloudCo Solutions", title: "Head of Product", email: "lisa.a@cloudco.com", phone: "+1 (555) 890-1234", deals: 1, value: "$67K", lastContact: "4 days ago" },
+        ],
+        
+        // Reports Data
+        reports: {
+          summary: [
+            { metric: "Total Pipeline Value", value: "$648,000", change: "+18.5%", trend: "up" },
+            { metric: "Average Deal Size", value: "$81,000", change: "+12.3%", trend: "up" },
+            { metric: "Win Rate", value: "68%", change: "+5.2%", trend: "up" },
+            { metric: "Sales Cycle (days)", value: "42", change: "-8.7%", trend: "down" },
+          ],
+          monthlyPerformance: [
+            { month: "October", revenue: 485000, deals: 12, target: 450000 },
+            { month: "September", revenue: 420000, deals: 10, target: 420000 },
+            { month: "August", revenue: 395000, deals: 9, target: 400000 },
+            { month: "July", revenue: 445000, deals: 11, target: 430000 },
+          ],
+        },
       };
 
       // Render Pipeline
@@ -927,17 +969,215 @@
           )
           .join("");
       }
+      
+      // Render Deals Table
+      function renderDeals() {
+        const container = document.getElementById('deals-table');
+        const formatCurrency = (amount) => {
+          return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(amount);
+        };
+        
+        container.innerHTML = `
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border); text-align: left;">
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Deal</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Company</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Value</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Stage</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Owner</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Close Date</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Probability</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${MOCK_DATA.deals.map(deal => `
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td style="padding: 1rem;">
+                    <div style="font-weight: 600; color: var(--text-primary);">${deal.title}</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;">${deal.contact}</div>
+                  </td>
+                  <td style="padding: 1rem; color: var(--text-primary);">${deal.company}</td>
+                  <td style="padding: 1rem; font-weight: 700; color: var(--primary);">${formatCurrency(deal.value)}</td>
+                  <td style="padding: 1rem;">
+                    <span style="padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; background: ${
+                      deal.stage === 'Negotiation' ? '#fef3c7' : 
+                      deal.stage === 'Proposal' ? '#dbeafe' : 
+                      deal.stage === 'Qualification' ? '#e0e7ff' : '#f3f4f6'
+                    }; color: ${
+                      deal.stage === 'Negotiation' ? '#92400e' : 
+                      deal.stage === 'Proposal' ? '#1e40af' : 
+                      deal.stage === 'Qualification' ? '#3730a3' : '#374151'
+                    };">
+                      ${deal.stage}
+                    </span>
+                  </td>
+                  <td style="padding: 1rem; color: var(--text-primary);">${deal.owner}</td>
+                  <td style="padding: 1rem; color: var(--text-secondary); font-size: 0.875rem;">${deal.closeDate}</td>
+                  <td style="padding: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <div style="flex: 1; height: 6px; background: var(--bg-gray); border-radius: 3px; overflow: hidden;">
+                        <div style="height: 100%; background: ${deal.probability >= 70 ? 'var(--secondary)' : deal.probability >= 40 ? 'var(--warning)' : 'var(--text-tertiary)'}; width: ${deal.probability}%;"></div>
+                      </div>
+                      <span style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); min-width: 35px;">${deal.probability}%</span>
+                    </div>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      }
+      
+      // Render Contacts Grid
+      function renderContacts() {
+        const container = document.getElementById('contacts-grid');
+        
+        container.innerHTML = `
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.5rem;">
+            ${MOCK_DATA.contacts.map(contact => `
+              <div style="padding: 1.5rem; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-card); transition: all 0.2s;" onmouseover="this.style.boxShadow='var(--shadow-md)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                  <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--info)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">
+                    ${contact.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-weight: 700; font-size: 1rem; color: var(--text-primary); margin-bottom: 0.25rem;">${contact.name}</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary);">${contact.title}</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;">${contact.company}</div>
+                  </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                  <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+                    <i class="fas fa-envelope" style="color: var(--text-tertiary); width: 16px;"></i>
+                    <span style="color: var(--text-secondary);">${contact.email}</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+                    <i class="fas fa-phone" style="color: var(--text-tertiary); width: 16px;"></i>
+                    <span style="color: var(--text-secondary);">${contact.phone}</span>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border);">
+                  <div>
+                    <div style="font-size: 0.75rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem;">Deal Value</div>
+                    <div style="font-weight: 700; color: var(--primary);">${contact.value}</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 0.75rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem;">Active Deals</div>
+                    <div style="font-weight: 700; color: var(--text-primary); text-align: right;">${contact.deals}</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 0.75rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem;">Last Contact</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); text-align: right;">${contact.lastContact}</div>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+      
+      // Render Reports
+      function renderReports() {
+        const summaryContainer = document.getElementById('reports-summary');
+        const performanceContainer = document.getElementById('monthly-performance');
+        
+        const formatCurrency = (amount) => {
+          return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(amount);
+        };
+        
+        // Summary metrics
+        summaryContainer.innerHTML = `
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            ${MOCK_DATA.reports.summary.map(metric => `
+              <div class="card" style="padding: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                  <div style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 600;">${metric.metric}</div>
+                  <div style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.875rem; font-weight: 600; color: ${metric.trend === 'up' ? 'var(--secondary)' : 'var(--danger)'};">
+                    <i class="fas fa-arrow-${metric.trend}"></i>
+                    ${metric.change}
+                  </div>
+                </div>
+                <div style="font-size: 2rem; font-weight: 800; color: var(--text-primary);">${metric.value}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        
+        // Monthly performance table
+        performanceContainer.innerHTML = `
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border); text-align: left;">
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Month</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Revenue</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Target</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Deals Closed</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Achievement</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${MOCK_DATA.reports.monthlyPerformance.map(month => {
+                const achievement = ((month.revenue / month.target) * 100).toFixed(1);
+                const overTarget = month.revenue >= month.target;
+                return `
+                  <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 1rem; font-weight: 600; color: var(--text-primary);">${month.month}</td>
+                    <td style="padding: 1rem; font-weight: 700; color: var(--primary);">${formatCurrency(month.revenue)}</td>
+                    <td style="padding: 1rem; color: var(--text-secondary);">${formatCurrency(month.target)}</td>
+                    <td style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-primary);">${month.deals}</td>
+                    <td style="padding: 1rem;">
+                      <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="flex: 1; height: 8px; background: var(--bg-gray); border-radius: 4px; overflow: hidden;">
+                          <div style="height: 100%; background: ${overTarget ? 'var(--secondary)' : 'var(--warning)'}; width: ${Math.min(achievement, 100)}%;"></div>
+                        </div>
+                        <span style="font-size: 0.875rem; font-weight: 700; color: ${overTarget ? 'var(--secondary)' : 'var(--text-primary)'}; min-width: 45px;">${achievement}%</span>
+                      </div>
+                    </td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        `;
+      }
 
-      // View Switcher
+      // View Switcher - Fixed with explicit array
       function showView(viewName) {
-        document.querySelectorAll('[id$="-view"]').forEach((view) => {
-          view.style.display = "none";
+        // Define explicit list of main views
+        const mainViews = ['pipeline-view', 'deals-view', 'contacts-view', 'reports-view'];
+        
+        // Hide all views
+        mainViews.forEach((viewId) => {
+          const view = document.getElementById(viewId);
+          if (view) view.style.display = "none";
         });
-        document.getElementById(`${viewName}-view`).style.display = "block";
+        
+        // Show selected view
+        const selectedView = document.getElementById(`${viewName}-view`);
+        if (selectedView) {
+          selectedView.style.display = "block";
+          
+          // Render content on first display
+          if (viewName === 'deals' && !selectedView.dataset.rendered) {
+            renderDeals();
+            selectedView.dataset.rendered = 'true';
+          } else if (viewName === 'contacts' && !selectedView.dataset.rendered) {
+            renderContacts();
+            selectedView.dataset.rendered = 'true';
+          } else if (viewName === 'reports' && !selectedView.dataset.rendered) {
+            renderReports();
+            selectedView.dataset.rendered = 'true';
+          }
+        }
+        
+        // Update active nav link
         document.querySelectorAll(".nav-link").forEach((link) => {
           link.classList.remove("active");
         });
-        event.target.classList.add("active");
+        if (event && event.target) {
+          event.target.classList.add("active");
+        }
       }
 
       // Initialize

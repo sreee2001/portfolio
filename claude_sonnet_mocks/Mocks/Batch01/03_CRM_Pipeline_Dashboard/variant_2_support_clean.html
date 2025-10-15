@@ -670,16 +670,14 @@
       <div id="customers-view" style="display: none;">
         <div class="page-header">
           <h1 class="page-title">Customer Directory</h1>
+          <button class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+            Add Customer
+          </button>
         </div>
         <div class="card">
-          <div
-            style="text-align: center; padding: 3rem; color: var(--text-secondary);"
-          >
-            <i
-              class="fas fa-users"
-              style="font-size: 3rem; margin-bottom: 1rem;"
-            ></i>
-            <p>Customer directory - Implementation placeholder</p>
+          <div id="customers-table">
+            <!-- Populated by renderCustomers() -->
           </div>
         </div>
       </div>
@@ -688,16 +686,29 @@
       <div id="reports-view" style="display: none;">
         <div class="page-header">
           <h1 class="page-title">Support Reports</h1>
+          <button class="btn btn-secondary">
+            <i class="fas fa-download"></i>
+            Export
+          </button>
         </div>
-        <div class="card">
-          <div
-            style="text-align: center; padding: 3rem; color: var(--text-secondary);"
-          >
-            <i
-              class="fas fa-chart-line"
-              style="font-size: 3rem; margin-bottom: 1rem;"
-            ></i>
-            <p>Reports view - Implementation placeholder</p>
+        
+        <div id="reports-metrics">
+          <!-- Populated by renderReports() -->
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+          <div class="card">
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 700;">Tickets by Category</h3>
+            <div id="category-breakdown">
+              <!-- Populated by renderReports() -->
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 700;">Agent Performance</h3>
+            <div id="agent-performance">
+              <!-- Populated by renderReports() -->
+            </div>
           </div>
         </div>
       </div>
@@ -706,16 +717,32 @@
       <div id="settings-view" style="display: none;">
         <div class="page-header">
           <h1 class="page-title">Settings</h1>
+          <button class="btn btn-primary">
+            <i class="fas fa-save"></i>
+            Save Changes
+          </button>
         </div>
-        <div class="card">
-          <div
-            style="text-align: center; padding: 3rem; color: var(--text-secondary);"
-          >
-            <i
-              class="fas fa-cog"
-              style="font-size: 3rem; margin-bottom: 1rem;"
-            ></i>
-            <p>Settings view - Implementation placeholder</p>
+        
+        <div style="display: grid; gap: 2rem;">
+          <div class="card">
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 700;">Company Profile</h3>
+            <div id="profile-settings">
+              <!-- Populated by renderSettings() -->
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 700;">Notifications</h3>
+            <div id="notification-settings">
+              <!-- Populated by renderSettings() -->
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 700;">Team Members</h3>
+            <div id="team-settings">
+              <!-- Populated by renderSettings() -->
+            </div>
           </div>
         </div>
       </div>
@@ -813,6 +840,64 @@
             initials: "DR",
           },
         ],
+        
+        // Customers Data
+        customers: [
+          { id: 1, name: "Sarah Miller", email: "sarah.miller@email.com", phone: "+1 (555) 123-4567", plan: "Pro", tickets: 12, satisfaction: 95, lastContact: "Today", joinedDate: "Jan 2024" },
+          { id: 2, name: "John Davis", email: "john.davis@company.com", phone: "+1 (555) 234-5678", plan: "Enterprise", tickets: 8, satisfaction: 92, lastContact: "Yesterday", joinedDate: "Feb 2024" },
+          { id: 3, name: "Emma Wilson", email: "emma.w@business.io", phone: "+1 (555) 345-6789", plan: "Basic", tickets: 5, satisfaction: 88, lastContact: "2 days ago", joinedDate: "Mar 2024" },
+          { id: 4, name: "TechCorp Inc.", email: "support@techcorp.com", phone: "+1 (555) 456-7890", plan: "Enterprise", tickets: 24, satisfaction: 97, lastContact: "Today", joinedDate: "Dec 2023" },
+          { id: 5, name: "Mike Johnson", email: "mike.j@startup.com", phone: "+1 (555) 567-8901", plan: "Pro", tickets: 6, satisfaction: 90, lastContact: "3 days ago", joinedDate: "Apr 2024" },
+          { id: 6, name: "Acme Corp", email: "it@acmecorp.com", phone: "+1 (555) 678-9012", plan: "Enterprise", tickets: 18, satisfaction: 94, lastContact: "Today", joinedDate: "Nov 2023" },
+          { id: 7, name: "Lisa Anderson", email: "l.anderson@email.com", phone: "+1 (555) 789-0123", plan: "Pro", tickets: 9, satisfaction: 91, lastContact: "Yesterday", joinedDate: "May 2024" },
+          { id: 8, name: "Tom Wilson", email: "tom.wilson@mail.com", phone: "+1 (555) 890-1234", plan: "Basic", tickets: 4, satisfaction: 85, lastContact: "4 days ago", joinedDate: "Jun 2024" },
+        ],
+        
+        // Reports Data
+        reports: {
+          metrics: [
+            { label: "Total Tickets", value: "1,248", change: "+8.5%", trend: "up" },
+            { label: "Avg. Resolution Time", value: "4.2 hours", change: "-12.3%", trend: "down" },
+            { label: "Customer Satisfaction", value: "94%", change: "+2.1%", trend: "up" },
+            { label: "First Response Time", value: "8 min", change: "-15.6%", trend: "down" },
+          ],
+          ticketsByCategory: [
+            { category: "Technical Support", count: 486, percentage: 39 },
+            { category: "Billing & Payments", count: 312, percentage: 25 },
+            { category: "Feature Requests", count: 249, percentage: 20 },
+            { category: "Account Issues", count: 125, percentage: 10 },
+            { category: "Other", count: 76, percentage: 6 },
+          ],
+          agentPerformance: [
+            { name: "Chris Lee", resolved: 145, avgTime: "3.8h", satisfaction: 96 },
+            { name: "Diana Ross", resolved: 128, avgTime: "4.1h", satisfaction: 95 },
+            { name: "Alex Kim", resolved: 112, avgTime: "4.5h", satisfaction: 93 },
+            { name: "Beth Taylor", resolved: 98, avgTime: "4.9h", satisfaction: 91 },
+          ],
+        },
+        
+        // Settings Data
+        settings: {
+          profile: {
+            companyName: "SupportHub Inc.",
+            supportEmail: "support@supporthub.com",
+            website: "www.supporthub.com",
+            timezone: "Pacific Time (PT)",
+          },
+          notifications: [
+            { id: 1, label: "New ticket assigned", enabled: true },
+            { id: 2, label: "Ticket status changed", enabled: true },
+            { id: 3, label: "Customer reply received", enabled: true },
+            { id: 4, label: "SLA breach warning", enabled: true },
+            { id: 5, label: "Daily summary email", enabled: false },
+          ],
+          teamMembers: [
+            { name: "Alex Kim", role: "Support Agent", email: "alex.kim@supporthub.com", status: "Active" },
+            { name: "Beth Taylor", role: "Support Agent", email: "beth.taylor@supporthub.com", status: "Active" },
+            { name: "Chris Lee", role: "Team Lead", email: "chris.lee@supporthub.com", status: "Active" },
+            { name: "Diana Ross", role: "Support Agent", email: "diana.ross@supporthub.com", status: "Active" },
+          ],
+        },
       };
 
       // Render Tickets
@@ -871,17 +956,239 @@
           )
           .join("");
       }
+      
+      // Render Customers
+      function renderCustomers() {
+        const container = document.getElementById('customers-table');
+        
+        container.innerHTML = `
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border); text-align: left;">
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem;">Customer</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem;">Contact</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem;">Plan</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem;">Tickets</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem;">Satisfaction</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem;">Last Contact</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${MOCK_DATA.customers.map(customer => `
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td style="padding: 1rem;">
+                    <div style="font-weight: 600; color: var(--text-primary);">${customer.name}</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;">Joined ${customer.joinedDate}</div>
+                  </td>
+                  <td style="padding: 1rem;">
+                    <div style="font-size: 0.875rem; color: var(--text-primary);">${customer.email}</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;">${customer.phone}</div>
+                  </td>
+                  <td style="padding: 1rem;">
+                    <span style="padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; background: ${
+                      customer.plan === 'Enterprise' ? '#dbeafe' : 
+                      customer.plan === 'Pro' ? '#e0e7ff' : '#f3f4f6'
+                    }; color: ${
+                      customer.plan === 'Enterprise' ? '#1e40af' : 
+                      customer.plan === 'Pro' ? '#3730a3' : '#374151'
+                    };">
+                      ${customer.plan}
+                    </span>
+                  </td>
+                  <td style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-primary);">${customer.tickets}</td>
+                  <td style="padding: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <div style="flex: 1; height: 6px; background: var(--bg-gray); border-radius: 3px; overflow: hidden;">
+                        <div style="height: 100%; background: ${customer.satisfaction >= 90 ? 'var(--success)' : 'var(--warning)'}; width: ${customer.satisfaction}%;"></div>
+                      </div>
+                      <span style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); min-width: 35px;">${customer.satisfaction}%</span>
+                    </div>
+                  </td>
+                  <td style="padding: 1rem; color: var(--text-secondary); font-size: 0.875rem;">${customer.lastContact}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      }
+      
+      // Render Reports
+      function renderReports() {
+        const metricsContainer = document.getElementById('reports-metrics');
+        const categoryContainer = document.getElementById('category-breakdown');
+        const performanceContainer = document.getElementById('agent-performance');
+        
+        // Metrics
+        metricsContainer.innerHTML = `
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            ${MOCK_DATA.reports.metrics.map(metric => `
+              <div class="card" style="padding: 1.5rem;">
+                <div style="display: flex; justify-content: between; align-items: flex-start; margin-bottom: 1rem;">
+                  <div style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 600;">${metric.label}</div>
+                  <div style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.875rem; font-weight: 600; color: ${metric.trend === 'up' ? 'var(--success)' : 'var(--danger)'};">
+                    <i class="fas fa-arrow-${metric.trend}"></i>
+                    ${metric.change}
+                  </div>
+                </div>
+                <div style="font-size: 2rem; font-weight: 800; color: var(--text-primary);">${metric.value}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        
+        // Category breakdown
+        categoryContainer.innerHTML = MOCK_DATA.reports.ticketsByCategory.map(cat => `
+          <div style="margin-bottom: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary);">${cat.category}</span>
+              <span style="font-size: 0.875rem; font-weight: 600; color: var(--text-secondary);">${cat.count}</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <div style="flex: 1; height: 8px; background: var(--bg-gray); border-radius: 4px; overflow: hidden;">
+                <div style="height: 100%; background: var(--primary); width: ${cat.percentage}%;"></div>
+              </div>
+              <span style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); min-width: 40px;">${cat.percentage}%</span>
+            </div>
+          </div>
+        `).join('');
+        
+        // Agent performance
+        performanceContainer.innerHTML = `
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--border); text-align: left;">
+                <th style="padding: 0.75rem; font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Agent</th>
+                <th style="padding: 0.75rem; font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; text-align: right;">Resolved</th>
+                <th style="padding: 0.75rem; font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; text-align: right;">Avg Time</th>
+                <th style="padding: 0.75rem; font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; text-align: right;">CSAT</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${MOCK_DATA.reports.agentPerformance.map(agent => `
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td style="padding: 0.75rem; font-weight: 600; color: var(--text-primary);">${agent.name}</td>
+                  <td style="padding: 0.75rem; text-align: right; font-weight: 600;">${agent.resolved}</td>
+                  <td style="padding: 0.75rem; text-align: right; color: var(--text-secondary);">${agent.avgTime}</td>
+                  <td style="padding: 0.75rem; text-align: right; font-weight: 600; color: var(--success);">${agent.satisfaction}%</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      }
+      
+      // Render Settings
+      function renderSettings() {
+        const profileContainer = document.getElementById('profile-settings');
+        const notificationContainer = document.getElementById('notification-settings');
+        const teamContainer = document.getElementById('team-settings');
+        
+        const { profile, notifications, teamMembers } = MOCK_DATA.settings;
+        
+        // Profile settings
+        profileContainer.innerHTML = `
+          <div style="display: grid; gap: 1.5rem;">
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Company Name</label>
+              <input type="text" value="${profile.companyName}" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.875rem;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Support Email</label>
+              <input type="email" value="${profile.supportEmail}" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.875rem;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Website</label>
+              <input type="text" value="${profile.website}" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.875rem;" />
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.5rem;">Timezone</label>
+              <select style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.875rem;">
+                <option>${profile.timezone}</option>
+              </select>
+            </div>
+          </div>
+        `;
+        
+        // Notification settings
+        notificationContainer.innerHTML = `
+          <div style="display: grid; gap: 1rem;">
+            ${notifications.map(notification => `
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid var(--border); border-radius: 8px;">
+                <span style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary);">${notification.label}</span>
+                <label style="position: relative; display: inline-block; width: 48px; height: 24px;">
+                  <input type="checkbox" ${notification.enabled ? 'checked' : ''} style="opacity: 0; width: 0; height: 0;" />
+                  <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: ${notification.enabled ? 'var(--primary)' : 'var(--bg-gray)'}; border-radius: 24px; transition: 0.3s;">
+                    <span style="position: absolute; content: ''; height: 18px; width: 18px; left: ${notification.enabled ? '27px' : '3px'}; bottom: 3px; background-color: white; border-radius: 50%; transition: 0.3s;"></span>
+                  </span>
+                </label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        
+        // Team settings
+        teamContainer.innerHTML = `
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border); text-align: left;">
+                <th style="padding: 1rem; font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Name</th>
+                <th style="padding: 1rem; font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Role</th>
+                <th style="padding: 1rem; font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Email</th>
+                <th style="padding: 1rem; font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${teamMembers.map(member => `
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td style="padding: 1rem; font-weight: 600; color: var(--text-primary);">${member.name}</td>
+                  <td style="padding: 1rem; color: var(--text-secondary);">${member.role}</td>
+                  <td style="padding: 1rem; color: var(--text-secondary);">${member.email}</td>
+                  <td style="padding: 1rem;">
+                    <span style="padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; background: #d1fae5; color: #065f46;">${member.status}</span>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      }
 
-      // View Switcher
+      // View Switcher - Fixed with explicit array
       function showView(viewName) {
-        document.querySelectorAll('[id$="-view"]').forEach((view) => {
-          view.style.display = "none";
+        // Define explicit list of main views
+        const mainViews = ['tickets-view', 'customers-view', 'reports-view', 'settings-view'];
+        
+        // Hide all views
+        mainViews.forEach((viewId) => {
+          const view = document.getElementById(viewId);
+          if (view) view.style.display = "none";
         });
-        document.getElementById(`${viewName}-view`).style.display = "block";
+        
+        // Show selected view
+        const selectedView = document.getElementById(`${viewName}-view`);
+        if (selectedView) {
+          selectedView.style.display = "block";
+          
+          // Render content on first display
+          if (viewName === 'customers' && !selectedView.dataset.rendered) {
+            renderCustomers();
+            selectedView.dataset.rendered = 'true';
+          } else if (viewName === 'reports' && !selectedView.dataset.rendered) {
+            renderReports();
+            selectedView.dataset.rendered = 'true';
+          } else if (viewName === 'settings' && !selectedView.dataset.rendered) {
+            renderSettings();
+            selectedView.dataset.rendered = 'true';
+          }
+        }
+        
+        // Update active nav link
         document.querySelectorAll(".nav-link").forEach((link) => {
           link.classList.remove("active");
         });
-        event.target.classList.add("active");
+        if (event && event.target) {
+          event.target.classList.add("active");
+        }
       }
 
       // Initialize
