@@ -186,16 +186,25 @@ async function generateScreenshots() {
         
     } catch (error) {
         console.error('Fatal error during screenshot generation:', error);
+        process.exit(1);
     } finally {
         // Clean up
         if (browser) {
             await browser.close();
         }
         if (server) {
-            server.kill();
+            server.kill('SIGTERM');
             console.log('Server stopped');
         }
+        // Force exit after cleanup to ensure script terminates
+        setTimeout(() => {
+            console.log('Exiting...');
+            process.exit(0);
+        }, 1000);
     }
 }
 
-generateScreenshots().catch(console.error);
+generateScreenshots().catch((error) => {
+    console.error('Unhandled error:', error);
+    process.exit(1);
+});
