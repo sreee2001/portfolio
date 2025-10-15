@@ -425,6 +425,231 @@
         border-bottom-color: var(--primary);
       }
 
+      /* Project Card */
+      .project-card {
+        background: var(--bg-main);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition: all 0.2s;
+      }
+
+      .project-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-2px);
+      }
+
+      .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      .project-name {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .project-client {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .project-status {
+        background: var(--bg-elevated);
+        color: var(--text-secondary);
+        padding: 0.35rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .project-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .progress-bar-container {
+        margin-top: 1rem;
+      }
+
+      .progress-bar {
+        height: 4px;
+        background: var(--bg-elevated);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: var(--primary);
+        transition: width 0.3s;
+      }
+
+      .progress-label {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+
+      /* Client Card */
+      .client-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: all 0.2s;
+      }
+
+      .client-card:last-child {
+        border-bottom: none;
+      }
+
+      .client-card:hover {
+        padding-left: 0.5rem;
+      }
+
+      .client-main {
+        flex: 1;
+      }
+
+      .client-name {
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .client-info {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .client-status {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--success);
+      }
+
+      .client-status.planning {
+        background: var(--warning);
+      }
+
+      .client-status.inactive {
+        background: var(--text-tertiary);
+      }
+
+      /* Team Detail Card */
+      .team-detail-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.25rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .team-detail-card:last-child {
+        border-bottom: none;
+      }
+
+      .team-detail-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--bg-elevated);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        color: var(--text-primary);
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+
+      .team-detail-info {
+        flex: 1;
+      }
+
+      .team-detail-name {
+        font-weight: 500;
+        color: var(--text-primary);
+        margin-bottom: 0.15rem;
+      }
+
+      .team-detail-role {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.35rem;
+      }
+
+      .team-detail-email {
+        font-size: 0.8rem;
+        color: var(--text-tertiary);
+      }
+
+      .team-detail-stats {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .team-status-indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--success);
+        flex-shrink: 0;
+        margin-top: 0.5rem;
+      }
+
+      .team-status-indicator.busy {
+        background: var(--warning);
+      }
+
+      .team-status-indicator.offline {
+        background: var(--text-tertiary);
+      }
+
+      /* Stats Grid for Sub Pages */
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .metric-card {
+        background: var(--bg-main);
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+      }
+
+      .metric-value {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .metric-label {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
       /* Empty State */
       .empty-state {
         text-align: center;
@@ -567,25 +792,61 @@
           <h1 class="page-title">Projects</h1>
           <p class="page-meta">8 active projects</p>
         </div>
-        <div class="card">
-          <div class="empty-state">
-            <i class="fas fa-folder-open"></i>
-            <p>Projects view — Implementation placeholder</p>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">8</div>
+            <div class="metric-label">Active Projects</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">62%</div>
+            <div class="metric-label">Avg Progress</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">24</div>
+            <div class="metric-label">Team Members</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">3</div>
+            <div class="metric-label">Due This Week</div>
           </div>
         </div>
+
+        <div id="projects-container"></div>
       </div>
 
       <!-- Clients View (Hidden) -->
       <div id="clients-view" style="display: none;">
         <div class="page-header">
           <h1 class="page-title">Clients</h1>
-          <p class="page-meta">12 active clients</p>
+          <p class="page-meta">12 total clients</p>
         </div>
-        <div class="card">
-          <div class="empty-state">
-            <i class="fas fa-users"></i>
-            <p>Clients view — Implementation placeholder</p>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">10</div>
+            <div class="metric-label">Active Clients</div>
           </div>
+          <div class="metric-card">
+            <div class="metric-value">2</div>
+            <div class="metric-label">Planning Phase</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">14</div>
+            <div class="metric-label">Total Projects</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">5</div>
+            <div class="metric-label">Industries</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">All Clients</h2>
+            <button class="card-action">Add Client</button>
+          </div>
+          <div id="clients-container"></div>
         </div>
       </div>
 
@@ -595,11 +856,32 @@
           <h1 class="page-title">Team</h1>
           <p class="page-meta">6 team members</p>
         </div>
-        <div class="card">
-          <div class="empty-state">
-            <i class="fas fa-user-friends"></i>
-            <p>Team management view — Implementation placeholder</p>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">6</div>
+            <div class="metric-label">Team Members</div>
           </div>
+          <div class="metric-card">
+            <div class="metric-value">53</div>
+            <div class="metric-label">Total Tasks</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">19</div>
+            <div class="metric-label">Active Projects</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">5</div>
+            <div class="metric-label">Online Now</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Team Directory</h2>
+            <button class="card-action">Add Member</button>
+          </div>
+          <div id="team-container"></div>
         </div>
       </div>
     </div>
@@ -705,6 +987,38 @@
             time: "1 day ago",
           },
         ],
+        projects: [
+          { name: 'TechFlow Website', client: 'TechFlow Inc', status: 'In Progress', progress: 65, dueDate: 'Nov 15', team: 4 },
+          { name: 'Brand Strategy', client: 'Startup Co', status: 'In Progress', progress: 45, dueDate: 'Nov 30', team: 3 },
+          { name: 'FinApp Mobile', client: 'FinTech Corp', status: 'In Progress', progress: 80, dueDate: 'Oct 28', team: 5 },
+          { name: 'RetailCo Rebrand', client: 'RetailCo', status: 'Review', progress: 90, dueDate: 'Oct 20', team: 3 },
+          { name: 'Marketing Campaign', client: 'Growth Labs', status: 'Planning', progress: 25, dueDate: 'Dec 10', team: 2 },
+          { name: 'Portfolio Site', client: 'Creative Studio', status: 'In Progress', progress: 55, dueDate: 'Nov 5', team: 2 },
+          { name: 'E-commerce Platform', client: 'Shop Direct', status: 'In Progress', progress: 40, dueDate: 'Dec 20', team: 6 },
+          { name: 'Mobile App Redesign', client: 'Wellness Co', status: 'Planning', progress: 15, dueDate: 'Jan 15', team: 4 }
+        ],
+        clients: [
+          { name: 'TechFlow Inc', industry: 'Technology', projects: 2, contact: 'John Smith', status: 'active' },
+          { name: 'Startup Co', industry: 'SaaS', projects: 1, contact: 'Emily Chen', status: 'active' },
+          { name: 'FinTech Corp', industry: 'Finance', projects: 1, contact: 'David Park', status: 'active' },
+          { name: 'RetailCo', industry: 'Retail', projects: 1, contact: 'Sarah Johnson', status: 'active' },
+          { name: 'Growth Labs', industry: 'Marketing', projects: 1, contact: 'Mike Wilson', status: 'active' },
+          { name: 'Creative Studio', industry: 'Design', projects: 1, contact: 'Anna Lee', status: 'active' },
+          { name: 'Shop Direct', industry: 'E-commerce', projects: 2, contact: 'Tom Brown', status: 'active' },
+          { name: 'Wellness Co', industry: 'Health', projects: 1, contact: 'Lisa Martinez', status: 'planning' },
+          { name: 'Urban Spaces', industry: 'Real Estate', projects: 0, contact: 'Chris Anderson', status: 'inactive' },
+          { name: 'Food Delivery Co', industry: 'Food Tech', projects: 1, contact: 'Rachel Green', status: 'active' },
+          { name: 'EdTech Solutions', industry: 'Education', projects: 0, contact: 'James Taylor', status: 'inactive' },
+          { name: 'Travel Hub', industry: 'Travel', projects: 1, contact: 'Maria Garcia', status: 'planning' }
+        ],
+        teamDetails: [
+          { name: 'Sarah Miller', role: 'Creative Director', email: 'sarah@studio.com', tasks: 8, projects: 3, status: 'online', initials: 'SM' },
+          { name: 'Jake Wilson', role: 'Senior Designer', email: 'jake@studio.com', tasks: 12, projects: 4, status: 'online', initials: 'JW' },
+          { name: 'Emma Davis', role: 'UX Designer', email: 'emma@studio.com', tasks: 6, projects: 2, status: 'busy', initials: 'ED' },
+          { name: 'Michael Lee', role: 'Front-End Dev', email: 'michael@studio.com', tasks: 9, projects: 3, status: 'online', initials: 'ML' },
+          { name: 'Olivia Brown', role: 'Project Manager', email: 'olivia@studio.com', tasks: 11, projects: 5, status: 'online', initials: 'OB' },
+          { name: 'Alex Johnson', role: 'Back-End Dev', email: 'alex@studio.com', tasks: 7, projects: 2, status: 'offline', initials: 'AJ' }
+        ]
       };
 
       // Render Tasks
@@ -767,15 +1081,89 @@
           .join("");
       }
 
+      // Render Projects
+      function renderProjects() {
+        const projectsContainer = document.getElementById("projects-container");
+        if (!projectsContainer) return;
+        
+        projectsContainer.innerHTML = MOCK_DATA.projects.map(project => `
+          <div class="project-card">
+            <div class="project-header">
+              <div>
+                <div class="project-name">${project.name}</div>
+                <div class="project-client">${project.client}</div>
+              </div>
+              <div class="project-status">${project.status}</div>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: ${project.progress}%;"></div>
+              </div>
+              <div class="progress-label">${project.progress}% complete</div>
+            </div>
+            <div class="project-footer">
+              <span><i class="fas fa-users"></i> ${project.team} members</span>
+              <span><i class="fas fa-calendar"></i> Due ${project.dueDate}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Render Clients
+      function renderClients() {
+        const clientsContainer = document.getElementById("clients-container");
+        if (!clientsContainer) return;
+        
+        clientsContainer.innerHTML = MOCK_DATA.clients.map(client => `
+          <div class="client-card">
+            <div class="client-main">
+              <div class="client-name">${client.name}</div>
+              <div class="client-info">
+                <span>${client.industry}</span>
+                <span>·</span>
+                <span>${client.projects} ${client.projects === 1 ? 'project' : 'projects'}</span>
+                <span>·</span>
+                <span>${client.contact}</span>
+              </div>
+            </div>
+            <div class="client-status ${client.status}"></div>
+          </div>
+        `).join('');
+      }
+
+      // Render Team Detail
+      function renderTeamDetail() {
+        const teamContainer = document.getElementById("team-container");
+        if (!teamContainer) return;
+        
+        teamContainer.innerHTML = MOCK_DATA.teamDetails.map(member => `
+          <div class="team-detail-card">
+            <div class="team-detail-avatar">${member.initials}</div>
+            <div class="team-detail-info">
+              <div class="team-detail-name">${member.name}</div>
+              <div class="team-detail-role">${member.role}</div>
+              <div class="team-detail-email">${member.email}</div>
+            </div>
+            <div class="team-detail-stats">
+              <span>${member.tasks} tasks</span>
+              <span>${member.projects} projects</span>
+            </div>
+            <div class="team-status-indicator ${member.status}"></div>
+          </div>
+        `).join('');
+      }
+
       // View Switcher
       function showView(viewName) {
-        // Hide all views
-        document.querySelectorAll('[id$="-view"]').forEach((view) => {
-          view.style.display = "none";
+        // Hide all main views (use specific IDs to avoid catching child containers)
+        ['overview-view', 'projects-view', 'clients-view', 'team-view'].forEach(viewId => {
+          const view = document.getElementById(viewId);
+          if (view) view.style.display = "none";
         });
 
         // Show selected view
-        document.getElementById(`${viewName}-view`).style.display = "block";
+        const selectedView = document.getElementById(`${viewName}-view`);
+        if (selectedView) selectedView.style.display = "block";
 
         // Update active nav link
         document.querySelectorAll(".nav-link").forEach((link) => {
@@ -789,6 +1177,9 @@
         renderTasks();
         renderTeam();
         renderActivity();
+        renderProjects();
+        renderClients();
+        renderTeamDetail();
       });
     </script>
   </body>
