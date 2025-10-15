@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinanceFlow - Financial Analytics Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Colorful Freelancer Theme */
+      :root {
+        --primary: #7c3aed;
+        --primary-light: #a78bfa;
+        --secondary: #ec4899;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --info: #3b82f6;
+        --bg-main: #faf5ff;
+        --bg-card: #ffffff;
+        --bg-purple: #f3e8ff;
+        --bg-pink: #fce7f3;
+        --bg-green: #d1fae5;
+        --bg-blue: #dbeafe;
+        --text-primary: #1f2937;
+        --text-secondary: #6b7280;
+        --border: #e5e7eb;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 25px rgba(124, 58, 237, 0.15);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-main);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      /* Header - Colorful & Friendly */
+      .header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        padding: 1.5rem 2rem;
+        color: white;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .header-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo i {
+        font-size: 1.75rem;
+      }
+
+      .nav {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: white;
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .user-section {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .user-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: white;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1rem;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+      }
+
+      /* Main Container */
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      /* Welcome Banner */
+      .welcome-banner {
+        background: linear-gradient(135deg, var(--bg-purple), var(--bg-pink));
+        padding: 2rem;
+        border-radius: 16px;
+        margin-bottom: 2rem;
+        border: 2px solid var(--primary-light);
+      }
+
+      .welcome-banner h1 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .welcome-banner p {
+        color: var(--text-secondary);
+        font-size: 1rem;
+      }
+
+      /* Stats Grid - Colorful Cards */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        border: 2px solid transparent;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+      }
+
+      .stat-card.purple::before {
+        background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      }
+
+      .stat-card.pink::before {
+        background: linear-gradient(90deg, var(--secondary), #f472b6);
+      }
+
+      .stat-card.green::before {
+        background: linear-gradient(90deg, var(--success), #34d399);
+      }
+
+      .stat-card.blue::before {
+        background: linear-gradient(90deg, var(--info), #60a5fa);
+      }
+
+      .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary-light);
+      }
+
+      .stat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .stat-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      .stat-icon.purple {
+        background: var(--bg-purple);
+        color: var(--primary);
+      }
+
+      .stat-icon.pink {
+        background: var(--bg-pink);
+        color: var(--secondary);
+      }
+
+      .stat-icon.green {
+        background: var(--bg-green);
+        color: var(--success);
+      }
+
+      .stat-icon.blue {
+        background: var(--bg-blue);
+        color: var(--info);
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-change {
+        font-size: 0.875rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .stat-change.positive {
+        color: var(--success);
+      }
+
+      .stat-change.negative {
+        color: var(--danger);
+      }
+
+      /* Main Content Grid */
+      .content-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      /* Card - Colorful Style */
+      .card {
+        background: var(--bg-card);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: 1.75rem;
+        border: 2px solid var(--border);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .card-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .icon-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: var(--bg-purple);
+        color: var(--primary);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+      .icon-btn:hover {
+        background: var(--primary);
+        color: white;
+        transform: scale(1.1);
+      }
+
+      /* Transactions List */
+      .transaction-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .transaction-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--bg-main);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        transition: all 0.2s;
+      }
+
+      .transaction-item:hover {
+        border-color: var(--primary);
+        box-shadow: var(--shadow);
+      }
+
+      .transaction-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+
+      .transaction-icon.income {
+        background: var(--bg-green);
+        color: var(--success);
+      }
+
+      .transaction-icon.expense {
+        background: #fee2e2;
+        color: var(--danger);
+      }
+
+      .transaction-content {
+        flex: 1;
+      }
+
+      .transaction-title {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.15rem;
+      }
+
+      .transaction-date {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+
+      .transaction-amount {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .transaction-amount.income {
+        color: var(--success);
+      }
+
+      .transaction-amount.expense {
+        color: var(--danger);
+      }
+
+      /* Budget Progress */
+      .budget-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .budget-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .budget-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .budget-label {
+        font-weight: 600;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .budget-emoji {
+        font-size: 1.25rem;
+      }
+
+      .budget-values {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+      }
+
+      .budget-spent {
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .budget-total {
+        color: var(--text-secondary);
+      }
+
+      .budget-bar {
+        height: 10px;
+        background: var(--bg-main);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .budget-fill {
+        height: 100%;
+        border-radius: 5px;
+        transition: width 0.5s ease;
+      }
+
+      .budget-fill.purple {
+        background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      }
+
+      .budget-fill.pink {
+        background: linear-gradient(90deg, var(--secondary), #f472b6);
+      }
+
+      .budget-fill.green {
+        background: linear-gradient(90deg, var(--success), #34d399);
+      }
+
+      .budget-fill.blue {
+        background: linear-gradient(90deg, var(--info), #60a5fa);
+      }
+
+      .budget-fill.warning {
+        background: linear-gradient(90deg, var(--warning), #fbbf24);
+      }
+
+      /* Chart Placeholder */
+      .chart-container {
+        background: var(--bg-main);
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        color: var(--text-secondary);
+        border: 2px dashed var(--border);
+      }
+
+      .chart-container i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      /* Quick Actions */
+      .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .action-btn {
+        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: all 0.3s;
+        font-size: 0.95rem;
+      }
+
+      .action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .action-btn.secondary {
+        background: linear-gradient(135deg, var(--secondary), #f472b6);
+      }
+
+      .action-btn.success {
+        background: linear-gradient(135deg, var(--success), #34d399);
+      }
+
+      .action-btn.info {
+        background: linear-gradient(135deg, var(--info), #60a5fa);
+      }
+
+      /* Transactions List */
+      .transactions-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .transaction-list-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.25rem;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        transition: all 0.2s;
+      }
+
+      .transaction-list-item:hover {
+        background: var(--bg-main);
+        padding-left: 1.5rem;
+      }
+
+      .transaction-list-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+
+      .transaction-list-icon.income {
+        background: var(--bg-green);
+        color: var(--success);
+      }
+
+      .transaction-list-icon.expense {
+        background: var(--bg-pink);
+        color: var(--secondary);
+      }
+
+      .transaction-list-content {
+        flex: 1;
+      }
+
+      .transaction-list-title {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .transaction-list-meta {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .transaction-list-amount {
+        font-size: 1.125rem;
+        font-weight: 700;
+      }
+
+      .transaction-list-amount.income {
+        color: var(--success);
+      }
+
+      .transaction-list-amount.expense {
+        color: var(--danger);
+      }
+
+      /* Budget Detail Cards */
+      .budget-detail-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .budget-detail-card {
+        background: var(--bg-card);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .budget-detail-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+      }
+
+      .budget-detail-label {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .budget-detail-emoji {
+        font-size: 2rem;
+      }
+
+      .budget-detail-percentage {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .budget-detail-values {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .budget-detail-spent {
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .budget-detail-total {
+        color: var(--text-secondary);
+      }
+
+      .budget-detail-bar {
+        height: 12px;
+        background: var(--bg-main);
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 0.75rem;
+      }
+
+      .budget-detail-fill {
+        height: 100%;
+        border-radius: 6px;
+        transition: width 0.5s ease;
+      }
+
+      .budget-detail-status {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .budget-detail-status.good {
+        background: var(--bg-green);
+        color: var(--success);
+      }
+
+      .budget-detail-status.warning {
+        background: #fef3c7;
+        color: var(--warning);
+      }
+
+      .budget-detail-status.over {
+        background: #fee2e2;
+        color: var(--danger);
+      }
+
+      /* Report Stats */
+      .report-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .report-stat-card {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .report-stat-label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+      }
+
+      .report-stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .report-stat-change {
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .report-stat-change.positive {
+        color: var(--success);
+      }
+
+      .report-stat-change.negative {
+        color: var(--danger);
+      }
+
+      /* Summary Cards */
+      .summary-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .summary-card {
+        background: var(--bg-card);
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .summary-card-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: var(--text-primary);
+      }
+
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .summary-item:last-child {
+        border-bottom: none;
+      }
+
+      .summary-label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .summary-value {
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      /* Responsive */
+      @media (max-width: 1200px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav {
+          display: none;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .quick-actions {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-chart-line"></i>
+          <span>FinanceFlow</span>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav-link active" onclick="showView('dashboard')"
+            >Dashboard</a
+          >
+          <a href="#" class="nav-link" onclick="showView('transactions')"
+            >Transactions</a
+          >
+          <a href="#" class="nav-link" onclick="showView('budgets')">Budgets</a>
+          <a href="#" class="nav-link" onclick="showView('reports')">Reports</a>
+        </nav>
+        <div class="user-section">
+          <div class="user-avatar">JS</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Dashboard View -->
+      <div id="dashboard-view">
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+          <h1>👋 Welcome back, Jordan!</h1>
+          <p>Here's your financial overview for October 2025</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card purple">
+            <div class="stat-header">
+              <div class="stat-label">Total Balance</div>
+              <div class="stat-icon purple">
+                <i class="fas fa-wallet"></i>
+              </div>
+            </div>
+            <div class="stat-value">$12,847</div>
+            <div class="stat-change positive">
+              <i class="fas fa-arrow-up"></i>
+              <span>+12.5% from last month</span>
+            </div>
+          </div>
+
+          <div class="stat-card green">
+            <div class="stat-header">
+              <div class="stat-label">Income This Month</div>
+              <div class="stat-icon green">
+                <i class="fas fa-arrow-down"></i>
+              </div>
+            </div>
+            <div class="stat-value">$8,240</div>
+            <div class="stat-change positive">
+              <i class="fas fa-arrow-up"></i>
+              <span>+8.3% from last month</span>
+            </div>
+          </div>
+
+          <div class="stat-card pink">
+            <div class="stat-header">
+              <div class="stat-label">Expenses This Month</div>
+              <div class="stat-icon pink">
+                <i class="fas fa-arrow-up"></i>
+              </div>
+            </div>
+            <div class="stat-value">$4,182</div>
+            <div class="stat-change negative">
+              <i class="fas fa-arrow-up"></i>
+              <span>+15% from last month</span>
+            </div>
+          </div>
+
+          <div class="stat-card blue">
+            <div class="stat-header">
+              <div class="stat-label">Savings Goal</div>
+              <div class="stat-icon blue">
+                <i class="fas fa-piggy-bank"></i>
+              </div>
+            </div>
+            <div class="stat-value">68%</div>
+            <div class="stat-change positive">
+              <i class="fas fa-arrow-up"></i>
+              <span>$6,800 / $10,000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+          <!-- Left Column -->
+          <div>
+            <!-- Recent Transactions -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Recent Transactions</h2>
+                <div class="card-actions">
+                  <button class="icon-btn">
+                    <i class="fas fa-filter"></i>
+                  </button>
+                  <button class="icon-btn">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="transaction-list" id="dashboard-transaction-list"></div>
+            </div>
+
+            <!-- Spending Chart -->
+            <div class="card" style="margin-top: 2rem;">
+              <div class="card-header">
+                <h2 class="card-title">Spending Trends</h2>
+                <button class="icon-btn">
+                  <i class="fas fa-download"></i>
+                </button>
+              </div>
+              <div class="chart-container">
+                <i class="fas fa-chart-area"></i>
+                <p>Chart visualization - Implementation placeholder</p>
+                <small>Monthly spending breakdown and trends</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div>
+            <!-- Budget Overview -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Budget Overview</h2>
+                <button class="icon-btn">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+              <div class="budget-list" id="dashboard-budget-list"></div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card" style="margin-top: 2rem;">
+              <div class="card-header">
+                <h2 class="card-title">Quick Actions</h2>
+              </div>
+              <div class="quick-actions">
+                <button class="action-btn">
+                  <i class="fas fa-plus"></i>
+                  Add Income
+                </button>
+                <button class="action-btn secondary">
+                  <i class="fas fa-minus"></i>
+                  Add Expense
+                </button>
+                <button class="action-btn success">
+                  <i class="fas fa-exchange-alt"></i>
+                  Transfer
+                </button>
+                <button class="action-btn info">
+                  <i class="fas fa-file-invoice-dollar"></i>
+                  Invoice
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transactions View (Hidden) -->
+      <div id="transactions-view" style="display: none;">
+        <div class="welcome-banner">
+          <h1>💳 All Transactions</h1>
+          <p>View and manage your transaction history</p>
+        </div>
+        <div class="card">
+          <div id="transaction-list" class="transactions-container">
+            <!-- Populated by renderTransactions() -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Budgets View (Hidden) -->
+      <div id="budgets-view" style="display: none;">
+        <div class="welcome-banner">
+          <h1>🎯 Budget Management</h1>
+          <p>Track your spending across categories</p>
+        </div>
+        <div id="budget-list" class="budget-detail-grid">
+          <!-- Populated by renderBudgets() -->
+        </div>
+      </div>
+
+      <!-- Reports View (Hidden) -->
+      <div id="reports-view" style="display: none;">
+        <div class="welcome-banner">
+          <h1>📊 Financial Reports</h1>
+          <p>Detailed insights and analytics</p>
+        </div>
+        
+        <!-- Report Stats Grid -->
+        <div id="report-stats" class="report-stats-grid">
+          <!-- Populated by renderReports() -->
+        </div>
+
+        <!-- Summary Cards -->
+        <div id="report-summaries" class="summary-cards">
+          <!-- Populated by renderReports() -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mock Data - Freelancer Focus
+      const MOCK_DATA = {
+        transactions: [
+          {
+            id: 1,
+            title: "Client Payment - Web Design",
+            date: "Oct 14, 2025",
+            amount: 2500,
+            type: "income",
+            category: "Freelance",
+          },
+          {
+            id: 2,
+            title: "Adobe Creative Cloud",
+            date: "Oct 13, 2025",
+            amount: -54.99,
+            type: "expense",
+            category: "Subscriptions",
+          },
+          {
+            id: 3,
+            title: "Client Payment - Logo Design",
+            date: "Oct 12, 2025",
+            amount: 850,
+            type: "income",
+            category: "Freelance",
+          },
+          {
+            id: 4,
+            title: "Coffee Shop",
+            date: "Oct 11, 2025",
+            amount: -12.5,
+            type: "expense",
+            category: "Food & Dining",
+          },
+          {
+            id: 5,
+            title: "Domain Renewal",
+            date: "Oct 10, 2025",
+            amount: -15.99,
+            type: "expense",
+            category: "Business",
+          },
+          {
+            id: 6,
+            title: "Client Payment - Consulting",
+            date: "Oct 9, 2025",
+            amount: 1200,
+            type: "income",
+            category: "Freelance",
+          },
+        ],
+        budgets: [
+          {
+            label: "Business Expenses",
+            emoji: "💼",
+            spent: 420,
+            total: 800,
+            color: "purple",
+          },
+          {
+            label: "Food & Dining",
+            emoji: "🍕",
+            spent: 280,
+            total: 400,
+            color: "pink",
+          },
+          {
+            label: "Subscriptions",
+            emoji: "📱",
+            spent: 145,
+            total: 200,
+            color: "blue",
+          },
+          {
+            label: "Entertainment",
+            emoji: "🎬",
+            spent: 95,
+            total: 150,
+            color: "green",
+          },
+          {
+            label: "Transportation",
+            emoji: "🚗",
+            spent: 220,
+            total: 250,
+            color: "warning",
+          },
+        ],
+        reports: {
+          stats: [
+            { label: "Total Income", value: "$4,550.00", change: "+18.2%", positive: true },
+            { label: "Total Expenses", value: "$1,160.48", change: "-5.3%", positive: true },
+            { label: "Net Savings", value: "$3,389.52", change: "+32.5%", positive: true },
+            { label: "Avg. Transaction", value: "$759.08", change: "+8.7%", positive: true }
+          ],
+          incomeBreakdown: [
+            { category: "Freelance Work", amount: 4550 },
+            { category: "Contract Projects", amount: 0 },
+            { category: "Passive Income", amount: 0 }
+          ],
+          expenseBreakdown: [
+            { category: "Business Expenses", amount: 420 },
+            { category: "Food & Dining", amount: 280.5 },
+            { category: "Subscriptions", amount: 145 },
+            { category: "Transportation", amount: 220 },
+            { category: "Entertainment", amount: 95 }
+          ]
+        }
+      };
+
+      // Render Dashboard Transactions Widget
+      function renderDashboardTransactions() {
+        const transactionList = document.getElementById("dashboard-transaction-list");
+        if (!transactionList) return;
+        
+        transactionList.innerHTML = MOCK_DATA.transactions
+          .slice(0, 5)  // Show only first 5 on dashboard
+          .map(
+            (transaction) => `
+                <div class="transaction-item">
+                    <div class="transaction-icon ${transaction.type}">
+                        <i class="fas fa-${
+                          transaction.type === "income"
+                            ? "arrow-down"
+                            : "arrow-up"
+                        }"></i>
+                    </div>
+                    <div class="transaction-content">
+                        <div class="transaction-title">${
+                          transaction.title
+                        }</div>
+                        <div class="transaction-date">${
+                          transaction.date
+                        } · ${transaction.category}</div>
+                    </div>
+                    <div class="transaction-amount ${transaction.type}">
+                        ${
+                          transaction.amount > 0
+                            ? "+"
+                            : ""
+                        }$${Math.abs(transaction.amount).toFixed(2)}
+                    </div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // Render Dashboard Budget Widget
+      function renderDashboardBudgets() {
+        const budgetList = document.getElementById("dashboard-budget-list");
+        if (!budgetList) return;
+        
+        budgetList.innerHTML = MOCK_DATA.budgets
+          .map((budget) => {
+            const percentage = (budget.spent / budget.total) * 100;
+            return `
+                <div class="budget-item">
+                    <div class="budget-header">
+                        <div class="budget-label">
+                            <span class="budget-emoji">${budget.emoji}</span>
+                            <span>${budget.label}</span>
+                        </div>
+                        <div class="budget-values">
+                            <span class="budget-spent">$${budget.spent}</span>
+                            <span class="budget-total">/ $${budget.total}</span>
+                        </div>
+                    </div>
+                    <div class="budget-bar">
+                        <div class="budget-fill ${budget.color}" style="width: ${percentage}%;"></div>
+                    </div>
+                </div>
+            `;
+          })
+          .join("");
+      }
+
+      // Render Transactions
+      function renderTransactions() {
+        const transactionList = document.getElementById("transaction-list");
+        if (!transactionList) return;
+        
+        transactionList.innerHTML = MOCK_DATA.transactions
+          .map(
+            (transaction) => `
+                <div class="transaction-list-item">
+                    <div class="transaction-list-icon ${transaction.type}">
+                        <i class="fas fa-${
+                          transaction.type === "income"
+                            ? "arrow-down"
+                            : "arrow-up"
+                        }"></i>
+                    </div>
+                    <div class="transaction-list-content">
+                        <div class="transaction-list-title">${
+                          transaction.title
+                        }</div>
+                        <div class="transaction-list-meta">${
+                          transaction.date
+                        } · ${transaction.category}</div>
+                    </div>
+                    <div class="transaction-list-amount ${transaction.type}">
+                        ${
+                          transaction.amount > 0
+                            ? "+"
+                            : ""
+                        }$${Math.abs(transaction.amount).toFixed(2)}
+                    </div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // Render Budgets
+      function renderBudgets() {
+        const budgetList = document.getElementById("budget-list");
+        if (!budgetList) return;
+        
+        budgetList.innerHTML = MOCK_DATA.budgets
+          .map((budget) => {
+            const percentage = ((budget.spent / budget.total) * 100).toFixed(1);
+            let statusClass = 'good';
+            let statusText = 'On Track';
+            
+            if (percentage >= 100) {
+              statusClass = 'over';
+              statusText = 'Over Budget';
+            } else if (percentage >= 80) {
+              statusClass = 'warning';
+              statusText = 'Approaching Limit';
+            }
+            
+            return `
+                <div class="budget-detail-card">
+                    <div class="budget-detail-header">
+                        <div class="budget-detail-label">
+                            <span class="budget-detail-emoji">${budget.emoji}</span>
+                            <span>${budget.label}</span>
+                        </div>
+                        <div class="budget-detail-percentage">${percentage}%</div>
+                    </div>
+                    <div class="budget-detail-values">
+                        <span class="budget-detail-spent">$${budget.spent.toFixed(2)}</span>
+                        <span class="budget-detail-total">of $${budget.total.toFixed(2)}</span>
+                    </div>
+                    <div class="budget-detail-bar">
+                        <div class="budget-detail-fill" style="width: ${percentage}%; background: var(--${budget.color});"></div>
+                    </div>
+                    <div class="budget-detail-status ${statusClass}">${statusText}</div>
+                </div>
+            `;
+          })
+          .join("");
+      }
+
+      // Render Reports
+      function renderReports() {
+        // Render stats
+        const reportStats = document.getElementById("report-stats");
+        reportStats.innerHTML = MOCK_DATA.reports.stats
+          .map(stat => `
+            <div class="report-stat-card">
+              <div class="report-stat-label">${stat.label}</div>
+              <div class="report-stat-value">${stat.value}</div>
+              <div class="report-stat-change ${stat.positive ? 'positive' : 'negative'}">
+                <i class="fas fa-arrow-${stat.positive ? 'up' : 'down'}"></i>
+                ${stat.change}
+              </div>
+            </div>
+          `)
+          .join("");
+
+        // Render summary cards
+        const reportSummaries = document.getElementById("report-summaries");
+        reportSummaries.innerHTML = `
+          <div class="summary-card">
+            <div class="summary-card-title">💰 Income Breakdown</div>
+            ${MOCK_DATA.reports.incomeBreakdown
+              .map(item => `
+                <div class="summary-item">
+                  <span class="summary-label">${item.category}</span>
+                  <span class="summary-value">$${item.amount.toFixed(2)}</span>
+                </div>
+              `)
+              .join("")}
+          </div>
+          <div class="summary-card">
+            <div class="summary-card-title">💸 Expense Breakdown</div>
+            ${MOCK_DATA.reports.expenseBreakdown
+              .map(item => `
+                <div class="summary-item">
+                  <span class="summary-label">${item.category}</span>
+                  <span class="summary-value">$${item.amount.toFixed(2)}</span>
+                </div>
+              `)
+              .join("")}
+          </div>
+        `;
+      }
+
+      // View Switcher - FIXED: Use explicit array instead of selector to avoid collision with child containers
+      function showView(viewName) {
+        // Define explicit list of main view IDs
+        const mainViews = ['dashboard-view', 'transactions-view', 'budgets-view', 'reports-view'];
+        
+        // Hide all main views
+        mainViews.forEach((viewId) => {
+          const view = document.getElementById(viewId);
+          if (view) view.style.display = "none";
+        });
+
+        // Show selected view
+        const selectedView = document.getElementById(`${viewName}-view`);
+        if (selectedView) selectedView.style.display = "block";
+
+        // Update active nav link
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove("active");
+        });
+        if (event && event.target) {
+          event.target.classList.add("active");
+        }
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", () => {
+        renderDashboardTransactions();
+        renderDashboardBudgets();
+        renderTransactions();
+        renderBudgets();
+        renderReports();
+      });
+    </script>
+  </body>
+</html>

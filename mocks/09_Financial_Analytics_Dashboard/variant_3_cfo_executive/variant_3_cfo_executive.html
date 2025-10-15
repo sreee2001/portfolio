@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Executive Financial Intelligence</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Executive CFO Theme */
+      :root {
+        --primary: #1e293b;
+        --primary-light: #334155;
+        --accent: #3b82f6;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --bg-main: #0f172a;
+        --bg-card: #1e293b;
+        --bg-elevated: #334155;
+        --text-primary: #f1f5f9;
+        --text-secondary: #94a3b8;
+        --text-tertiary: #64748b;
+        --border: #334155;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-main);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      /* Header - Executive Dark */
+      .header {
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 1.25rem 2rem;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        max-width: 1800px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        letter-spacing: -0.5px;
+      }
+
+      .logo-icon {
+        width: 36px;
+        height: 36px;
+        background: var(--accent);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .nav {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .nav-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 0.625rem 1.25rem;
+        border-radius: 8px;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+
+      .nav-link:hover {
+        color: var(--text-primary);
+        background: var(--bg-elevated);
+      }
+
+      .nav-link.active {
+        color: white;
+        background: var(--accent);
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .quarter-selector {
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        padding: 0.625rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.875rem;
+        color: var(--text-primary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .user-menu {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        cursor: pointer;
+      }
+
+      .user-info {
+        text-align: right;
+      }
+
+      .user-name {
+        font-weight: 700;
+        font-size: 0.875rem;
+        color: var(--text-primary);
+      }
+
+      .user-role {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      .user-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--accent), #60a5fa);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        border: 2px solid var(--border);
+      }
+
+      /* Main Container */
+      .container {
+        max-width: 1800px;
+        margin: 0 auto;
+        padding: 2.5rem 2rem;
+      }
+
+      /* Page Header */
+      .page-header {
+        margin-bottom: 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .header-left h1 {
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.5px;
+      }
+
+      .breadcrumb {
+        display: flex;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-secondary {
+        background: var(--bg-elevated);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        background: var(--border);
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #2563eb;
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* KPI Grid */
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .kpi-card {
+        background: var(--bg-card);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .kpi-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--accent);
+      }
+
+      .kpi-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--accent);
+      }
+
+      .kpi-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+      }
+
+      .kpi-label {
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+      }
+
+      .kpi-value {
+        font-size: 2.25rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        line-height: 1;
+        letter-spacing: -1px;
+      }
+
+      .kpi-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        background: var(--bg-elevated);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--accent);
+      }
+
+      .kpi-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .kpi-change {
+        font-size: 0.9rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .kpi-change.positive {
+        color: var(--success);
+      }
+
+      .kpi-change.negative {
+        color: var(--danger);
+      }
+
+      .kpi-trend {
+        font-size: 0.75rem;
+        color: var(--text-tertiary);
+        font-weight: 600;
+      }
+
+      /* Dashboard Grid */
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 2.5fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      /* Card */
+      .card {
+        background: var(--bg-card);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        padding: 2rem;
+        border: 1px solid var(--border);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--text-primary);
+      }
+
+      .card-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .icon-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        color: var(--text-secondary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+
+      .icon-btn:hover {
+        background: var(--accent);
+        color: white;
+        border-color: var(--accent);
+      }
+
+      /* Financial Metrics Table */
+      .metrics-table {
+        width: 100%;
+      }
+
+      .metric-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 1rem;
+        padding: 1.25rem 0;
+        border-bottom: 1px solid var(--border);
+        align-items: center;
+      }
+
+      .metric-row:first-child {
+        background: var(--bg-elevated);
+        padding: 1rem;
+        border-radius: 8px;
+        border-bottom: none;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-secondary);
+      }
+
+      .metric-row:last-child {
+        border-bottom: none;
+      }
+
+      .metric-name {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .metric-value {
+        font-weight: 700;
+        color: var(--text-primary);
+        text-align: right;
+      }
+
+      .metric-change {
+        font-weight: 700;
+        text-align: right;
+      }
+
+      .metric-change.positive {
+        color: var(--success);
+      }
+
+      .metric-change.negative {
+        color: var(--danger);
+      }
+
+      /* Chart Placeholder */
+      .chart-placeholder {
+        background: var(--bg-elevated);
+        border-radius: 8px;
+        padding: 3rem 2rem;
+        text-align: center;
+        color: var(--text-secondary);
+        border: 2px dashed var(--border);
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .chart-placeholder i {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        color: var(--accent);
+      }
+
+      /* Risk Indicators */
+      .risk-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .risk-item {
+        background: var(--bg-elevated);
+        padding: 1.25rem;
+        border-radius: 8px;
+        border-left: 4px solid var(--danger);
+      }
+
+      .risk-item.warning {
+        border-left-color: var(--warning);
+      }
+
+      .risk-item.success {
+        border-left-color: var(--success);
+      }
+
+      .risk-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .risk-title {
+        font-weight: 700;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+      }
+
+      .risk-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .risk-badge.critical {
+        background: rgba(239, 68, 68, 0.2);
+        color: var(--danger);
+      }
+
+      .risk-badge.medium {
+        background: rgba(245, 158, 11, 0.2);
+        color: var(--warning);
+      }
+
+      .risk-badge.low {
+        background: rgba(16, 185, 129, 0.2);
+        color: var(--success);
+      }
+
+      .risk-description {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      /* Financial Statement Tables */
+      .financial-statement {
+        background: var(--bg-card);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+      }
+
+      .statement-header {
+        background: var(--bg-elevated);
+        padding: 1.5rem;
+        border-bottom: 2px solid var(--border);
+      }
+
+      .statement-title {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .statement-period {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+      }
+
+      .statement-body {
+        padding: 1.5rem;
+      }
+
+      .statement-table {
+        width: 100%;
+      }
+
+      .statement-row {
+        display: grid;
+        grid-template-columns: 2fr repeat(3, 1fr);
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border);
+        align-items: center;
+      }
+
+      .statement-row.header {
+        background: var(--bg-elevated);
+        padding: 0.875rem 1rem;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        border-bottom: none;
+        font-weight: 700;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-secondary);
+      }
+
+      .statement-row.section-header {
+        background: var(--bg-elevated);
+        padding: 0.875rem 0;
+        font-weight: 800;
+        color: var(--text-primary);
+        border-bottom: 2px solid var(--border);
+        margin-top: 1rem;
+      }
+
+      .statement-row.total {
+        background: var(--bg-elevated);
+        padding: 1.25rem 0;
+        font-weight: 800;
+        font-size: 1.05rem;
+        border-top: 2px solid var(--accent);
+        border-bottom: 2px solid var(--accent);
+        margin-top: 0.5rem;
+      }
+
+      .statement-row:last-child {
+        border-bottom: none;
+      }
+
+      .statement-label {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .statement-label.indent {
+        padding-left: 2rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+      }
+
+      .statement-value {
+        font-weight: 700;
+        color: var(--text-primary);
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .statement-value.negative {
+        color: var(--danger);
+      }
+
+      .statement-value.positive {
+        color: var(--success);
+      }
+
+      /* Balance Sheet Sections */
+      .balance-sections {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .balance-section {
+        background: var(--bg-card);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        padding: 2rem;
+      }
+
+      .balance-section-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--accent);
+      }
+
+      /* Cash Flow Categories */
+      .cashflow-grid {
+        display: grid;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .cashflow-category {
+        background: var(--bg-card);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        padding: 2rem;
+      }
+
+      .cashflow-category-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--border);
+      }
+
+      .cashflow-category-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--text-primary);
+      }
+
+      .cashflow-category-total {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--text-primary);
+      }
+
+      .cashflow-category-total.positive {
+        color: var(--success);
+      }
+
+      .cashflow-category-total.negative {
+        color: var(--danger);
+      }
+
+      /* Forecast Cards */
+      .forecast-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .forecast-card {
+        background: var(--bg-card);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        padding: 2rem;
+        box-shadow: var(--shadow);
+      }
+
+      .forecast-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .forecast-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+      }
+
+      .forecast-value {
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        line-height: 1;
+      }
+
+      .forecast-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--bg-elevated);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--accent);
+      }
+
+      .forecast-metrics {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .forecast-metric {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .forecast-metric:last-child {
+        border-bottom: none;
+      }
+
+      .forecast-metric-label {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+      }
+
+      .forecast-metric-value {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .forecast-confidence {
+        background: var(--bg-elevated);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+        text-align: center;
+      }
+
+      .confidence-label {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+      }
+
+      .confidence-value {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--success);
+      }
+
+      /* Responsive */
+      @media (max-width: 1600px) {
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav {
+          display: none;
+        }
+
+        .kpi-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .metric-row {
+          grid-template-columns: 1fr;
+          gap: 0.5rem;
+        }
+
+        .page-header {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-chart-pie"></i>
+          </div>
+          <span>FinanceExec</span>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav-link active" onclick="showView('overview')"
+            >Overview</a
+          >
+          <a href="#" class="nav-link" onclick="showView('pl')">P&L</a>
+          <a href="#" class="nav-link" onclick="showView('balance')"
+            >Balance Sheet</a
+          >
+          <a href="#" class="nav-link" onclick="showView('cashflow')"
+            >Cash Flow</a
+          >
+          <a href="#" class="nav-link" onclick="showView('forecasting')"
+            >Forecasting</a
+          >
+        </nav>
+        <div class="header-right">
+          <div class="quarter-selector">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Q4 2025</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="user-menu">
+            <div class="user-info">
+              <div class="user-name">Rebecca Chen</div>
+              <div class="user-role">Chief Financial Officer</div>
+            </div>
+            <div class="user-avatar">RC</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Overview View -->
+      <div id="overview-view">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="header-left">
+            <div class="breadcrumb">
+              <span>Dashboard</span>
+              <span>/</span>
+              <span>Financial Overview</span>
+            </div>
+            <h1>Executive Financial Dashboard</h1>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary">
+              <i class="fas fa-download"></i>
+              Export Report
+            </button>
+            <button class="btn btn-primary">
+              <i class="fas fa-plus"></i>
+              New Analysis
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Grid -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <div>
+                <div class="kpi-label">Total Revenue</div>
+                <div class="kpi-value">$24.8M</div>
+              </div>
+              <div class="kpi-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+            </div>
+            <div class="kpi-footer">
+              <div class="kpi-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+23.4%</span>
+              </div>
+              <div class="kpi-trend">YoY Growth</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <div>
+                <div class="kpi-label">EBITDA</div>
+                <div class="kpi-value">$8.2M</div>
+              </div>
+              <div class="kpi-icon">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+            </div>
+            <div class="kpi-footer">
+              <div class="kpi-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+18.7%</span>
+              </div>
+              <div class="kpi-trend">33.1% Margin</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <div>
+                <div class="kpi-label">Operating Cash Flow</div>
+                <div class="kpi-value">$6.4M</div>
+              </div>
+              <div class="kpi-icon">
+                <i class="fas fa-coins"></i>
+              </div>
+            </div>
+            <div class="kpi-footer">
+              <div class="kpi-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+31.2%</span>
+              </div>
+              <div class="kpi-trend">Strong Position</div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <div>
+                <div class="kpi-label">Burn Rate</div>
+                <div class="kpi-value">$890K</div>
+              </div>
+              <div class="kpi-icon">
+                <i class="fas fa-fire"></i>
+              </div>
+            </div>
+            <div class="kpi-footer">
+              <div class="kpi-change negative">
+                <i class="fas fa-arrow-up"></i>
+                <span>+12.3%</span>
+              </div>
+              <div class="kpi-trend">24 Mo Runway</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+          <!-- Left Column -->
+          <div>
+            <!-- Performance Chart -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Financial Performance Trend</h2>
+                <div class="card-actions">
+                  <button class="icon-btn">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                  <button class="icon-btn">
+                    <i class="fas fa-download"></i>
+                  </button>
+                  <button class="icon-btn">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="chart-placeholder">
+                <i class="fas fa-chart-area"></i>
+                <p style="font-size: 1.1rem; font-weight: 600;">
+                  Chart visualization - Implementation placeholder
+                </p>
+                <small
+                  >Revenue, EBITDA, and Cash Flow trends over 12 quarters</small
+                >
+              </div>
+            </div>
+
+            <!-- Key Metrics Table -->
+            <div class="card" style="margin-top: 2rem;">
+              <div class="card-header">
+                <h2 class="card-title">Key Financial Metrics</h2>
+                <button class="icon-btn">
+                  <i class="fas fa-table"></i>
+                </button>
+              </div>
+              <div class="metrics-table" id="metrics-table"></div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div>
+            <!-- Risk Indicators -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Risk Indicators</h2>
+                <button class="icon-btn">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </button>
+              </div>
+              <div class="risk-list">
+                <div class="risk-item warning">
+                  <div class="risk-header">
+                    <div class="risk-title">AR Collection Period</div>
+                    <div class="risk-badge medium">Medium</div>
+                  </div>
+                  <div class="risk-description">
+                    Average collection period increased to 52 days. Target: 45
+                    days.
+                  </div>
+                </div>
+
+                <div class="risk-item">
+                  <div class="risk-header">
+                    <div class="risk-title">Cash Burn Rate</div>
+                    <div class="risk-badge critical">Critical</div>
+                  </div>
+                  <div class="risk-description">
+                    Monthly burn increased 12.3%. Review operating expenses.
+                  </div>
+                </div>
+
+                <div class="risk-item success">
+                  <div class="risk-header">
+                    <div class="risk-title">Revenue Growth</div>
+                    <div class="risk-badge low">Low Risk</div>
+                  </div>
+                  <div class="risk-description">
+                    Quarterly revenue growth on track. Exceeding targets by 8%.
+                  </div>
+                </div>
+
+                <div class="risk-item warning">
+                  <div class="risk-header">
+                    <div class="risk-title">Customer Concentration</div>
+                    <div class="risk-badge medium">Medium</div>
+                  </div>
+                  <div class="risk-description">
+                    Top 3 customers represent 42% of revenue. Diversify client
+                    base.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P&L View (Hidden) -->
+      <div id="pl-view" style="display: none;">
+        <div class="page-header">
+          <div class="header-left">
+            <div class="breadcrumb">
+              <span>Dashboard</span>
+              <span>/</span>
+              <span>Profit & Loss</span>
+            </div>
+            <h1>Profit & Loss Statement</h1>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary">
+              <i class="fas fa-download"></i>
+              Export
+            </button>
+          </div>
+        </div>
+        <div id="pl-statement" class="financial-statement">
+          <!-- Populated by renderPL() -->
+        </div>
+      </div>
+
+      <!-- Balance Sheet View (Hidden) -->
+      <div id="balance-view" style="display: none;">
+        <div class="page-header">
+          <div class="header-left">
+            <div class="breadcrumb">
+              <span>Dashboard</span>
+              <span>/</span>
+              <span>Balance Sheet</span>
+            </div>
+            <h1>Balance Sheet Analysis</h1>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary">
+              <i class="fas fa-download"></i>
+              Export
+            </button>
+          </div>
+        </div>
+        <div id="balance-sheet-container" class="balance-sections">
+          <!-- Populated by renderBalanceSheet() -->
+        </div>
+      </div>
+
+      <!-- Cash Flow View (Hidden) -->
+      <div id="cashflow-view" style="display: none;">
+        <div class="page-header">
+          <div class="header-left">
+            <div class="breadcrumb">
+              <span>Dashboard</span>
+              <span>/</span>
+              <span>Cash Flow</span>
+            </div>
+            <h1>Cash Flow Analysis</h1>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary">
+              <i class="fas fa-download"></i>
+              Export
+            </button>
+          </div>
+        </div>
+        <div id="cashflow-container" class="cashflow-grid">
+          <!-- Populated by renderCashFlow() -->
+        </div>
+      </div>
+
+      <!-- Forecasting View (Hidden) -->
+      <div id="forecasting-view" style="display: none;">
+        <div class="page-header">
+          <div class="header-left">
+            <div class="breadcrumb">
+              <span>Dashboard</span>
+              <span>/</span>
+              <span>Forecasting</span>
+            </div>
+            <h1>Financial Forecasting</h1>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary">
+              <i class="fas fa-download"></i>
+              Export
+            </button>
+          </div>
+        </div>
+        <div id="forecast-container" class="forecast-grid">
+          <!-- Populated by renderForecasting() -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mock Data - Executive CFO Focus
+      const MOCK_DATA = {
+        metrics: [
+          {
+            name: "Gross Revenue",
+            current: "$24.8M",
+            previous: "$20.1M",
+            change: "+23.4%",
+            type: "positive",
+          },
+          {
+            name: "Cost of Revenue",
+            current: "$9.2M",
+            previous: "$7.8M",
+            change: "+17.9%",
+            type: "negative",
+          },
+          {
+            name: "Gross Profit",
+            current: "$15.6M",
+            previous: "$12.3M",
+            change: "+26.8%",
+            type: "positive",
+          },
+          {
+            name: "Operating Expenses",
+            current: "$7.4M",
+            previous: "$6.1M",
+            change: "+21.3%",
+            type: "negative",
+          },
+          {
+            name: "EBITDA",
+            current: "$8.2M",
+            previous: "$6.9M",
+            change: "+18.7%",
+            type: "positive",
+          },
+          {
+            name: "Net Income",
+            current: "$5.8M",
+            previous: "$4.7M",
+            change: "+23.4%",
+            type: "positive",
+          },
+        ],
+        
+        // P&L Statement Data
+        profitLoss: {
+          period: "Q4 2025",
+          revenue: [
+            { label: "Product Revenue", q4_2025: 18500000, q4_2024: 14800000 },
+            { label: "Service Revenue", q4_2025: 4200000, q4_2024: 3500000 },
+            { label: "Subscription Revenue", q4_2025: 2100000, q4_2024: 1800000 },
+          ],
+          costOfRevenue: [
+            { label: "Cost of Goods Sold", q4_2025: 7200000, q4_2024: 6100000 },
+            { label: "Service Costs", q4_2025: 1400000, q4_2024: 1200000 },
+            { label: "Support Costs", q4_2025: 600000, q4_2024: 500000 },
+          ],
+          operatingExpenses: [
+            { label: "Sales & Marketing", q4_2025: 3800000, q4_2024: 3200000 },
+            { label: "Research & Development", q4_2025: 2100000, q4_2024: 1700000 },
+            { label: "General & Administrative", q4_2025: 1500000, q4_2024: 1200000 },
+          ],
+        },
+        
+        // Balance Sheet Data
+        balanceSheet: {
+          date: "December 31, 2025",
+          assets: {
+            current: [
+              { label: "Cash & Cash Equivalents", amount: 12400000 },
+              { label: "Accounts Receivable", amount: 8200000 },
+              { label: "Inventory", amount: 3800000 },
+              { label: "Prepaid Expenses", amount: 900000 },
+            ],
+            nonCurrent: [
+              { label: "Property, Plant & Equipment", amount: 18500000 },
+              { label: "Intangible Assets", amount: 6200000 },
+              { label: "Goodwill", amount: 14800000 },
+              { label: "Long-term Investments", amount: 5400000 },
+            ],
+          },
+          liabilities: {
+            current: [
+              { label: "Accounts Payable", amount: 4200000 },
+              { label: "Accrued Expenses", amount: 2800000 },
+              { label: "Short-term Debt", amount: 1500000 },
+              { label: "Deferred Revenue", amount: 3100000 },
+            ],
+            longTerm: [
+              { label: "Long-term Debt", amount: 12800000 },
+              { label: "Deferred Tax Liabilities", amount: 2400000 },
+              { label: "Other Long-term Liabilities", amount: 1900000 },
+            ],
+          },
+          equity: [
+            { label: "Common Stock", amount: 15000000 },
+            { label: "Retained Earnings", amount: 24800000 },
+            { label: "Additional Paid-in Capital", amount: 6900000 },
+          ],
+        },
+        
+        // Cash Flow Data
+        cashFlow: {
+          period: "Q4 2025",
+          operating: [
+            { label: "Net Income", amount: 5800000, positive: true },
+            { label: "Depreciation & Amortization", amount: 1200000, positive: true },
+            { label: "Changes in Working Capital", amount: -800000, positive: false },
+            { label: "Stock-based Compensation", amount: 600000, positive: true },
+          ],
+          investing: [
+            { label: "Capital Expenditures", amount: -2400000, positive: false },
+            { label: "Business Acquisitions", amount: -3800000, positive: false },
+            { label: "Sale of Investments", amount: 1200000, positive: true },
+          ],
+          financing: [
+            { label: "Debt Proceeds", amount: 5000000, positive: true },
+            { label: "Debt Repayments", amount: -1800000, positive: false },
+            { label: "Dividends Paid", amount: -900000, positive: false },
+            { label: "Share Repurchases", amount: -1200000, positive: false },
+          ],
+        },
+        
+        // Forecasting Data
+        forecasts: [
+          {
+            quarter: "Q1 2026",
+            revenue: 26200000,
+            expenses: 18400000,
+            ebitda: 7800000,
+            netIncome: 6100000,
+            confidence: "High",
+            confidenceLevel: 92,
+          },
+          {
+            quarter: "Q2 2026",
+            revenue: 28500000,
+            expenses: 19800000,
+            ebitda: 8700000,
+            netIncome: 6800000,
+            confidence: "High",
+            confidenceLevel: 88,
+          },
+          {
+            quarter: "Q3 2026",
+            revenue: 31200000,
+            expenses: 21500000,
+            ebitda: 9700000,
+            netIncome: 7600000,
+            confidence: "Medium",
+            confidenceLevel: 76,
+          },
+          {
+            quarter: "Q4 2026",
+            revenue: 34800000,
+            expenses: 23800000,
+            ebitda: 11000000,
+            netIncome: 8600000,
+            confidence: "Medium",
+            confidenceLevel: 68,
+          },
+        ],
+      };
+
+      // Render Metrics Table
+      function renderMetrics() {
+        const metricsTable = document.getElementById("metrics-table");
+        const headerRow = `
+                <div class="metric-row">
+                    <div>Metric</div>
+                    <div style="text-align: right;">Q4 2025</div>
+                    <div style="text-align: right;">Q4 2024</div>
+                    <div style="text-align: right;">YoY Change</div>
+                </div>
+            `;
+
+        const dataRows = MOCK_DATA.metrics
+          .map(
+            (metric) => `
+                <div class="metric-row">
+                    <div class="metric-name">${metric.name}</div>
+                    <div class="metric-value">${metric.current}</div>
+                    <div class="metric-value" style="color: var(--text-secondary);">${metric.previous}</div>
+                    <div class="metric-change ${metric.type}">${metric.change}</div>
+                </div>
+            `
+          )
+          .join("");
+
+        metricsTable.innerHTML = headerRow + dataRows;
+      }
+      
+      // Render P&L Statement
+      function renderPL() {
+        const container = document.getElementById('pl-statement');
+        const { profitLoss } = MOCK_DATA;
+        
+        const formatCurrency = (amount) => {
+          return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(amount);
+        };
+        
+        const totalRevenue2025 = profitLoss.revenue.reduce((sum, item) => sum + item.q4_2025, 0);
+        const totalRevenue2024 = profitLoss.revenue.reduce((sum, item) => sum + item.q4_2024, 0);
+        const totalCOGS2025 = profitLoss.costOfRevenue.reduce((sum, item) => sum + item.q4_2025, 0);
+        const totalCOGS2024 = profitLoss.costOfRevenue.reduce((sum, item) => sum + item.q4_2024, 0);
+        const grossProfit2025 = totalRevenue2025 - totalCOGS2025;
+        const grossProfit2024 = totalRevenue2024 - totalCOGS2024;
+        const totalOpEx2025 = profitLoss.operatingExpenses.reduce((sum, item) => sum + item.q4_2025, 0);
+        const totalOpEx2024 = profitLoss.operatingExpenses.reduce((sum, item) => sum + item.q4_2024, 0);
+        const ebitda2025 = grossProfit2025 - totalOpEx2025;
+        const ebitda2024 = grossProfit2024 - totalOpEx2024;
+        
+        container.innerHTML = `
+          <div class="statement-header">
+            <h2>Profit & Loss Statement</h2>
+            <div>Period Ending: ${profitLoss.period}</div>
+          </div>
+          <div class="statement-body">
+            <table class="statement-table">
+              <thead>
+                <tr class="statement-row header">
+                  <th class="statement-label">Line Item</th>
+                  <th class="statement-value">Q4 2025</th>
+                  <th class="statement-value">Q4 2024</th>
+                  <th class="statement-value">Change</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="statement-row section-header">
+                  <td class="statement-label">Revenue</td>
+                  <td class="statement-value"></td>
+                  <td class="statement-value"></td>
+                  <td class="statement-value"></td>
+                </tr>
+                ${profitLoss.revenue.map(item => `
+                  <tr class="statement-row">
+                    <td class="statement-label indent">${item.label}</td>
+                    <td class="statement-value">${formatCurrency(item.q4_2025)}</td>
+                    <td class="statement-value">${formatCurrency(item.q4_2024)}</td>
+                    <td class="statement-value ${item.q4_2025 > item.q4_2024 ? 'positive' : 'negative'}">
+                      ${((item.q4_2025 - item.q4_2024) / item.q4_2024 * 100).toFixed(1)}%
+                    </td>
+                  </tr>
+                `).join('')}
+                <tr class="statement-row total">
+                  <td class="statement-label">Total Revenue</td>
+                  <td class="statement-value">${formatCurrency(totalRevenue2025)}</td>
+                  <td class="statement-value">${formatCurrency(totalRevenue2024)}</td>
+                  <td class="statement-value positive">${((totalRevenue2025 - totalRevenue2024) / totalRevenue2024 * 100).toFixed(1)}%</td>
+                </tr>
+                
+                <tr class="statement-row section-header">
+                  <td class="statement-label">Cost of Revenue</td>
+                  <td class="statement-value"></td>
+                  <td class="statement-value"></td>
+                  <td class="statement-value"></td>
+                </tr>
+                ${profitLoss.costOfRevenue.map(item => `
+                  <tr class="statement-row">
+                    <td class="statement-label indent">${item.label}</td>
+                    <td class="statement-value negative">(${formatCurrency(item.q4_2025)})</td>
+                    <td class="statement-value negative">(${formatCurrency(item.q4_2024)})</td>
+                    <td class="statement-value ${item.q4_2025 < item.q4_2024 ? 'positive' : 'negative'}">
+                      ${((item.q4_2025 - item.q4_2024) / item.q4_2024 * 100).toFixed(1)}%
+                    </td>
+                  </tr>
+                `).join('')}
+                <tr class="statement-row total">
+                  <td class="statement-label">Total COGS</td>
+                  <td class="statement-value negative">(${formatCurrency(totalCOGS2025)})</td>
+                  <td class="statement-value negative">(${formatCurrency(totalCOGS2024)})</td>
+                  <td class="statement-value">${((totalCOGS2025 - totalCOGS2024) / totalCOGS2024 * 100).toFixed(1)}%</td>
+                </tr>
+                
+                <tr class="statement-row total">
+                  <td class="statement-label">Gross Profit</td>
+                  <td class="statement-value">${formatCurrency(grossProfit2025)}</td>
+                  <td class="statement-value">${formatCurrency(grossProfit2024)}</td>
+                  <td class="statement-value positive">${((grossProfit2025 - grossProfit2024) / grossProfit2024 * 100).toFixed(1)}%</td>
+                </tr>
+                
+                <tr class="statement-row section-header">
+                  <td class="statement-label">Operating Expenses</td>
+                  <td class="statement-value"></td>
+                  <td class="statement-value"></td>
+                  <td class="statement-value"></td>
+                </tr>
+                ${profitLoss.operatingExpenses.map(item => `
+                  <tr class="statement-row">
+                    <td class="statement-label indent">${item.label}</td>
+                    <td class="statement-value negative">(${formatCurrency(item.q4_2025)})</td>
+                    <td class="statement-value negative">(${formatCurrency(item.q4_2024)})</td>
+                    <td class="statement-value ${item.q4_2025 < item.q4_2024 ? 'positive' : 'negative'}">
+                      ${((item.q4_2025 - item.q4_2024) / item.q4_2024 * 100).toFixed(1)}%
+                    </td>
+                  </tr>
+                `).join('')}
+                <tr class="statement-row total">
+                  <td class="statement-label">Total OpEx</td>
+                  <td class="statement-value negative">(${formatCurrency(totalOpEx2025)})</td>
+                  <td class="statement-value negative">(${formatCurrency(totalOpEx2024)})</td>
+                  <td class="statement-value">${((totalOpEx2025 - totalOpEx2024) / totalOpEx2024 * 100).toFixed(1)}%</td>
+                </tr>
+                
+                <tr class="statement-row total">
+                  <td class="statement-label">EBITDA</td>
+                  <td class="statement-value">${formatCurrency(ebitda2025)}</td>
+                  <td class="statement-value">${formatCurrency(ebitda2024)}</td>
+                  <td class="statement-value positive">${((ebitda2025 - ebitda2024) / ebitda2024 * 100).toFixed(1)}%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        `;
+      }
+      
+      // Render Balance Sheet
+      function renderBalanceSheet() {
+        const container = document.getElementById('balance-sheet-container');
+        const { balanceSheet } = MOCK_DATA;
+        
+        const formatCurrency = (amount) => {
+          return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(amount);
+        };
+        
+        const totalCurrentAssets = balanceSheet.assets.current.reduce((sum, item) => sum + item.amount, 0);
+        const totalNonCurrentAssets = balanceSheet.assets.nonCurrent.reduce((sum, item) => sum + item.amount, 0);
+        const totalAssets = totalCurrentAssets + totalNonCurrentAssets;
+        
+        const totalCurrentLiabilities = balanceSheet.liabilities.current.reduce((sum, item) => sum + item.amount, 0);
+        const totalLongTermLiabilities = balanceSheet.liabilities.longTerm.reduce((sum, item) => sum + item.amount, 0);
+        const totalLiabilities = totalCurrentLiabilities + totalLongTermLiabilities;
+        
+        const totalEquity = balanceSheet.equity.reduce((sum, item) => sum + item.amount, 0);
+        
+        container.innerHTML = `
+          <div class="balance-section">
+            <div class="financial-statement">
+              <div class="statement-header">
+                <h2>Assets</h2>
+                <div>As of ${balanceSheet.date}</div>
+              </div>
+              <div class="statement-body">
+                <table class="statement-table">
+                  <tbody>
+                    <tr class="statement-row section-header">
+                      <td class="statement-label">Current Assets</td>
+                      <td class="statement-value"></td>
+                    </tr>
+                    ${balanceSheet.assets.current.map(item => `
+                      <tr class="statement-row">
+                        <td class="statement-label indent">${item.label}</td>
+                        <td class="statement-value">${formatCurrency(item.amount)}</td>
+                      </tr>
+                    `).join('')}
+                    <tr class="statement-row total">
+                      <td class="statement-label">Total Current Assets</td>
+                      <td class="statement-value">${formatCurrency(totalCurrentAssets)}</td>
+                    </tr>
+                    
+                    <tr class="statement-row section-header">
+                      <td class="statement-label">Non-Current Assets</td>
+                      <td class="statement-value"></td>
+                    </tr>
+                    ${balanceSheet.assets.nonCurrent.map(item => `
+                      <tr class="statement-row">
+                        <td class="statement-label indent">${item.label}</td>
+                        <td class="statement-value">${formatCurrency(item.amount)}</td>
+                      </tr>
+                    `).join('')}
+                    <tr class="statement-row total">
+                      <td class="statement-label">Total Non-Current Assets</td>
+                      <td class="statement-value">${formatCurrency(totalNonCurrentAssets)}</td>
+                    </tr>
+                    
+                    <tr class="statement-row total">
+                      <td class="statement-label">Total Assets</td>
+                      <td class="statement-value">${formatCurrency(totalAssets)}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="balance-section">
+            <div class="financial-statement">
+              <div class="statement-header">
+                <h2>Liabilities & Equity</h2>
+                <div>As of ${balanceSheet.date}</div>
+              </div>
+              <div class="statement-body">
+                <table class="statement-table">
+                  <tbody>
+                    <tr class="statement-row section-header">
+                      <td class="statement-label">Current Liabilities</td>
+                      <td class="statement-value"></td>
+                    </tr>
+                    ${balanceSheet.liabilities.current.map(item => `
+                      <tr class="statement-row">
+                        <td class="statement-label indent">${item.label}</td>
+                        <td class="statement-value">${formatCurrency(item.amount)}</td>
+                      </tr>
+                    `).join('')}
+                    <tr class="statement-row total">
+                      <td class="statement-label">Total Current Liabilities</td>
+                      <td class="statement-value">${formatCurrency(totalCurrentLiabilities)}</td>
+                    </tr>
+                    
+                    <tr class="statement-row section-header">
+                      <td class="statement-label">Long-term Liabilities</td>
+                      <td class="statement-value"></td>
+                    </tr>
+                    ${balanceSheet.liabilities.longTerm.map(item => `
+                      <tr class="statement-row">
+                        <td class="statement-label indent">${item.label}</td>
+                        <td class="statement-value">${formatCurrency(item.amount)}</td>
+                      </tr>
+                    `).join('')}
+                    <tr class="statement-row total">
+                      <td class="statement-label">Total Long-term Liabilities</td>
+                      <td class="statement-value">${formatCurrency(totalLongTermLiabilities)}</td>
+                    </tr>
+                    
+                    <tr class="statement-row total">
+                      <td class="statement-label">Total Liabilities</td>
+                      <td class="statement-value">${formatCurrency(totalLiabilities)}</td>
+                    </tr>
+                    
+                    <tr class="statement-row section-header">
+                      <td class="statement-label">Shareholders' Equity</td>
+                      <td class="statement-value"></td>
+                    </tr>
+                    ${balanceSheet.equity.map(item => `
+                      <tr class="statement-row">
+                        <td class="statement-label indent">${item.label}</td>
+                        <td class="statement-value">${formatCurrency(item.amount)}</td>
+                      </tr>
+                    `).join('')}
+                    <tr class="statement-row total">
+                      <td class="statement-label">Total Equity</td>
+                      <td class="statement-value">${formatCurrency(totalEquity)}</td>
+                    </tr>
+                    
+                    <tr class="statement-row total">
+                      <td class="statement-label">Total Liabilities & Equity</td>
+                      <td class="statement-value">${formatCurrency(totalLiabilities + totalEquity)}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      
+      // Render Cash Flow
+      function renderCashFlow() {
+        const container = document.getElementById('cashflow-container');
+        const { cashFlow } = MOCK_DATA;
+        
+        const formatCurrency = (amount) => {
+          const abs = Math.abs(amount);
+          return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(abs);
+        };
+        
+        const totalOperating = cashFlow.operating.reduce((sum, item) => sum + item.amount, 0);
+        const totalInvesting = cashFlow.investing.reduce((sum, item) => sum + item.amount, 0);
+        const totalFinancing = cashFlow.financing.reduce((sum, item) => sum + item.amount, 0);
+        const netCashFlow = totalOperating + totalInvesting + totalFinancing;
+        
+        container.innerHTML = `
+          <div class="cashflow-category">
+            <div class="cashflow-category-header">
+              <h3>Operating Activities</h3>
+              <div class="cashflow-category-total ${totalOperating >= 0 ? 'positive' : 'negative'}">
+                ${formatCurrency(totalOperating)}
+              </div>
+            </div>
+            <div class="financial-statement">
+              <div class="statement-body">
+                <table class="statement-table">
+                  <tbody>
+                    ${cashFlow.operating.map(item => `
+                      <tr class="statement-row">
+                        <td class="statement-label">${item.label}</td>
+                        <td class="statement-value ${item.positive ? 'positive' : 'negative'}">
+                          ${item.positive ? '' : '('}${formatCurrency(item.amount)}${item.positive ? '' : ')'}
+                        </td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cashflow-category">
+            <div class="cashflow-category-header">
+              <h3>Investing Activities</h3>
+              <div class="cashflow-category-total ${totalInvesting >= 0 ? 'positive' : 'negative'}">
+                ${totalInvesting >= 0 ? '' : '('}${formatCurrency(totalInvesting)}${totalInvesting >= 0 ? '' : ')'}
+              </div>
+            </div>
+            <div class="financial-statement">
+              <div class="statement-body">
+                <table class="statement-table">
+                  <tbody>
+                    ${cashFlow.investing.map(item => `
+                      <tr class="statement-row">
+                        <td class="statement-label">${item.label}</td>
+                        <td class="statement-value ${item.positive ? 'positive' : 'negative'}">
+                          ${item.positive ? '' : '('}${formatCurrency(item.amount)}${item.positive ? '' : ')'}
+                        </td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cashflow-category">
+            <div class="cashflow-category-header">
+              <h3>Financing Activities</h3>
+              <div class="cashflow-category-total ${totalFinancing >= 0 ? 'positive' : 'negative'}">
+                ${totalFinancing >= 0 ? '' : '('}${formatCurrency(totalFinancing)}${totalFinancing >= 0 ? '' : ')'}
+              </div>
+            </div>
+            <div class="financial-statement">
+              <div class="statement-body">
+                <table class="statement-table">
+                  <tbody>
+                    ${cashFlow.financing.map(item => `
+                      <tr class="statement-row">
+                        <td class="statement-label">${item.label}</td>
+                        <td class="statement-value ${item.positive ? 'positive' : 'negative'}">
+                          ${item.positive ? '' : '('}${formatCurrency(item.amount)}${item.positive ? '' : ')'}
+                        </td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cashflow-category">
+            <div class="cashflow-category-header">
+              <h3>Net Cash Flow</h3>
+              <div class="cashflow-category-total ${netCashFlow >= 0 ? 'positive' : 'negative'}">
+                ${formatCurrency(netCashFlow)}
+              </div>
+            </div>
+            <div class="financial-statement">
+              <div class="statement-body">
+                <p style="color: var(--text-secondary); margin: 1rem 0;">
+                  Period ending ${cashFlow.period} shows ${netCashFlow >= 0 ? 'positive' : 'negative'} net cash position.
+                </p>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      
+      // Render Forecasting
+      function renderForecasting() {
+        const container = document.getElementById('forecast-container');
+        const { forecasts } = MOCK_DATA;
+        
+        const formatCurrency = (amount) => {
+          return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(amount);
+        };
+        
+        container.innerHTML = forecasts.map(forecast => `
+          <div class="forecast-card">
+            <div class="forecast-header">
+              <h3>${forecast.quarter}</h3>
+              <div class="forecast-confidence">
+                <span class="confidence-label">Confidence:</span>
+                <span class="confidence-value">${forecast.confidenceLevel}%</span>
+              </div>
+            </div>
+            <div class="forecast-metrics">
+              <div class="metric-row">
+                <div class="metric-label">Revenue</div>
+                <div class="metric-value">${formatCurrency(forecast.revenue)}</div>
+              </div>
+              <div class="metric-row">
+                <div class="metric-label">Expenses</div>
+                <div class="metric-value negative">(${formatCurrency(forecast.expenses)})</div>
+              </div>
+              <div class="metric-row">
+                <div class="metric-label">EBITDA</div>
+                <div class="metric-value">${formatCurrency(forecast.ebitda)}</div>
+              </div>
+              <div class="metric-row total">
+                <div class="metric-label">Net Income</div>
+                <div class="metric-value positive">${formatCurrency(forecast.netIncome)}</div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // View Switcher - Fixed with explicit array to prevent selector collision
+      function showView(viewName) {
+        // Define explicit list of main views to avoid selector collision
+        const mainViews = ['overview-view', 'pl-view', 'balance-view', 'cashflow-view', 'forecasting-view'];
+        
+        // Hide all main views
+        mainViews.forEach((viewId) => {
+          const view = document.getElementById(viewId);
+          if (view) view.style.display = "none";
+        });
+
+        // Show selected view
+        const selectedView = document.getElementById(`${viewName}-view`);
+        if (selectedView) {
+          selectedView.style.display = "block";
+          
+          // Render content for stub views on first display
+          if (viewName === 'pl' && !selectedView.dataset.rendered) {
+            renderPL();
+            selectedView.dataset.rendered = 'true';
+          } else if (viewName === 'balance' && !selectedView.dataset.rendered) {
+            renderBalanceSheet();
+            selectedView.dataset.rendered = 'true';
+          } else if (viewName === 'cashflow' && !selectedView.dataset.rendered) {
+            renderCashFlow();
+            selectedView.dataset.rendered = 'true';
+          } else if (viewName === 'forecasting' && !selectedView.dataset.rendered) {
+            renderForecasting();
+            selectedView.dataset.rendered = 'true';
+          }
+        }
+
+        // Update active nav link
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove("active");
+        });
+        if (event && event.target) {
+          event.target.classList.add("active");
+        }
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", () => {
+        renderMetrics();
+      });
+    </script>
+  </body>
+</html>

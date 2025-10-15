@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProjecTrack Enterprise - Project Management Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Dark Theme Configuration */
+      :root {
+        --primary: #3b82f6;
+        --primary-dark: #2563eb;
+        --secondary: #8b5cf6;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --bg-main: #0f172a;
+        --bg-card: #1e293b;
+        --bg-elevated: #334155;
+        --text-primary: #e2e8f0;
+        --text-secondary: #94a3b8;
+        --border: #334155;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-main);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      /* Header - Executive Style */
+      .header {
+        background: rgba(30, 41, 59, 0.95);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(20px);
+        box-shadow: var(--shadow);
+      }
+
+      .header-content {
+        max-width: 1600px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        letter-spacing: -0.5px;
+      }
+
+      .logo i {
+        color: var(--primary);
+        font-size: 1.75rem;
+      }
+
+      .nav {
+        display: flex;
+        gap: 2.5rem;
+      }
+
+      .nav-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: color 0.3s;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--primary);
+      }
+
+      .nav-link.active::after {
+        content: "";
+        position: absolute;
+        bottom: -1.25rem;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--primary);
+      }
+
+      .user-section {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .notifications {
+        position: relative;
+        cursor: pointer;
+      }
+
+      .notifications i {
+        color: var(--text-secondary);
+        font-size: 1.25rem;
+        transition: color 0.3s;
+      }
+
+      .notifications:hover i {
+        color: var(--primary);
+      }
+
+      .notification-badge {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        background: var(--danger);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 2px 5px;
+        border-radius: 10px;
+        min-width: 18px;
+        text-align: center;
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        cursor: pointer;
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .user-info {
+        text-align: right;
+      }
+
+      .user-name {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--text-primary);
+      }
+
+      .user-role {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      /* Main Container */
+      .container {
+        max-width: 1600px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+      }
+
+      /* Page Header - Executive Summary */
+      .page-header {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .header-content-left h1 {
+        font-size: 2.25rem;
+        font-weight: 900;
+        margin-bottom: 0.5rem;
+        letter-spacing: -1px;
+      }
+
+      .breadcrumb {
+        display: flex;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+      }
+
+      .breadcrumb a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .breadcrumb a:hover {
+        color: var(--primary);
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-secondary {
+        background: var(--bg-elevated);
+        color: var(--text-primary);
+      }
+
+      .btn-secondary:hover {
+        background: var(--border);
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* Stats Grid - Executive KPIs */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      /* Metrics Grid - Same as Stats Grid */
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .metric-card {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .metric-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+      }
+
+      .metric-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .metric-value {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        letter-spacing: -1px;
+      }
+
+      .metric-label {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+      }
+
+      .metric-change {
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .metric-change.positive {
+        color: var(--success);
+      }
+
+      .metric-change.negative {
+        color: var(--danger);
+      }
+
+      .stat-card {
+        background: var(--bg-card);
+        padding: 1.75rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+      }
+
+      .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .stat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .stat-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: rgba(59, 130, 246, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 1.25rem;
+      }
+
+      .stat-value {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        letter-spacing: -1px;
+      }
+
+      .stat-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .stat-change {
+        font-size: 0.875rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .stat-change.positive {
+        color: var(--success);
+      }
+
+      .stat-change.negative {
+        color: var(--danger);
+      }
+
+      .stat-trend {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      /* Main Content Grid */
+      .content-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 2rem;
+      }
+
+      /* Dashboard Grid - for Reports */
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      /* Card */
+      .card {
+        background: var(--bg-card);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        padding: 1.75rem;
+        border: 1px solid var(--border);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .card-actions {
+        display: flex;
+        gap: 0.75rem;
+      }
+
+      .card-action-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: background 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .card-action-btn:hover {
+        background: var(--primary-dark);
+      }
+
+      .icon-btn {
+        background: var(--bg-elevated);
+        color: var(--text-secondary);
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .icon-btn:hover {
+        background: var(--border);
+        color: var(--primary);
+      }
+
+      /* Task List - Professional */
+      .task-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .task-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--bg-card);
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+
+      .task-item:hover {
+        border-color: var(--primary);
+        background: var(--bg-elevated);
+      }
+
+      .task-checkbox {
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--border);
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .task-checkbox:hover {
+        border-color: var(--primary);
+      }
+
+      .task-content {
+        flex: 1;
+      }
+
+      .task-title {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .task-meta {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      .task-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .task-priority {
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .task-priority.critical {
+        background: rgba(239, 68, 68, 0.1);
+        color: var(--danger);
+        border: 1px solid var(--danger);
+      }
+
+      .task-priority.high {
+        background: rgba(245, 158, 11, 0.1);
+        color: var(--warning);
+        border: 1px solid var(--warning);
+      }
+
+      .task-priority.medium {
+        background: rgba(59, 130, 246, 0.1);
+        color: var(--primary);
+        border: 1px solid var(--primary);
+      }
+
+      .task-priority.low {
+        background: rgba(16, 185, 129, 0.1);
+        color: var(--success);
+        border: 1px solid var(--success);
+      }
+
+      /* Team Section - Executive View */
+      .team-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .team-member {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--bg-card);
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        transition: all 0.2s;
+      }
+
+      .team-member:hover {
+        border-color: var(--primary);
+        background: var(--bg-elevated);
+      }
+
+      .member-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+
+      .member-info {
+        flex: 1;
+      }
+
+      .member-name {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .member-role {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+      }
+
+      .member-stats {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      .member-stat {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      .member-stat i {
+        color: var(--primary);
+      }
+
+      .member-status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .status-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--success);
+      }
+
+      .status-indicator.busy {
+        background: var(--warning);
+      }
+
+      .status-indicator.offline {
+        background: var(--text-secondary);
+      }
+
+      /* Chart Placeholder */
+      .chart-container {
+        background: var(--bg-main);
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        color: var(--text-secondary);
+        border: 2px dashed var(--border);
+        margin-top: 1rem;
+      }
+
+      .chart-container i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      /* Progress Bar */
+      .progress-container {
+        margin-top: 1rem;
+      }
+
+      .progress-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+      }
+
+      .progress-label {
+        color: var(--text-secondary);
+        font-weight: 600;
+      }
+
+      .progress-value {
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .progress-bar {
+        height: 8px;
+        background: var(--bg-main);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 4px;
+        transition: width 0.5s ease;
+      }
+
+      /* Responsive */
+      @media (max-width: 1400px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav {
+          display: none;
+        }
+
+        .stats-grid,
+        .metrics-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .page-header {
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-layer-group"></i>
+          <span>ProjecTrack</span>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav-link active" onclick="showView('dashboard')"
+            >Dashboard</a
+          >
+          <a href="#" class="nav-link" onclick="showView('projects')"
+            >Projects</a
+          >
+          <a href="#" class="nav-link" onclick="showView('team')">Team</a>
+          <a href="#" class="nav-link" onclick="showView('reports')">Reports</a>
+          <a href="#" class="nav-link" onclick="showView('settings')"
+            >Settings</a
+          >
+        </nav>
+        <div class="user-section">
+          <div class="notifications">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+          </div>
+          <div class="user-profile">
+            <div class="user-info">
+              <div class="user-name">Sarah Thompson</div>
+              <div class="user-role">Project Director</div>
+            </div>
+            <div class="user-avatar">ST</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Dashboard View -->
+      <div id="dashboard-view">
+        <!-- Page Header -->
+        <div class="page-header">
+          <div class="header-content-left">
+            <div class="breadcrumb">
+              <a href="#">Home</a>
+              <span>/</span>
+              <span>Dashboard</span>
+            </div>
+            <h1>Executive Dashboard</h1>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary">
+              <i class="fas fa-download"></i>
+              Export
+            </button>
+            <button class="btn btn-primary">
+              <i class="fas fa-plus"></i>
+              New Project
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Active Projects</div>
+              <div class="stat-icon">
+                <i class="fas fa-folder-open"></i>
+              </div>
+            </div>
+            <div class="stat-value">24</div>
+            <div class="stat-footer">
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+12.5%</span>
+              </div>
+              <div class="stat-trend">vs last quarter</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Team Utilization</div>
+              <div class="stat-icon">
+                <i class="fas fa-users"></i>
+              </div>
+            </div>
+            <div class="stat-value">87%</div>
+            <div class="stat-footer">
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+5.3%</span>
+              </div>
+              <div class="stat-trend">optimal range</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Budget Utilization</div>
+              <div class="stat-icon">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+            </div>
+            <div class="stat-value">$2.4M</div>
+            <div class="stat-footer">
+              <div class="stat-change negative">
+                <i class="fas fa-arrow-down"></i>
+                <span>-3.2%</span>
+              </div>
+              <div class="stat-trend">under budget</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">On-Time Delivery</div>
+              <div class="stat-icon">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+            <div class="stat-value">92%</div>
+            <div class="stat-footer">
+              <div class="stat-change positive">
+                <i class="fas fa-arrow-up"></i>
+                <span>+8.1%</span>
+              </div>
+              <div class="stat-trend">above target</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+          <!-- Left Column -->
+          <div>
+            <!-- Priority Tasks -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Priority Tasks</h2>
+                <div class="card-actions">
+                  <button class="card-action-btn">
+                    <i class="fas fa-plus"></i>
+                    Add Task
+                  </button>
+                  <button class="icon-btn">
+                    <i class="fas fa-filter"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="task-list" id="task-list"></div>
+            </div>
+
+            <!-- Project Progress -->
+            <div class="card" style="margin-top: 2rem;">
+              <div class="card-header">
+                <h2 class="card-title">Project Portfolio Health</h2>
+                <button class="icon-btn">
+                  <i class="fas fa-ellipsis-h"></i>
+                </button>
+              </div>
+              <div class="chart-container">
+                <i class="fas fa-chart-line"></i>
+                <p>Chart visualization - Implementation placeholder</p>
+                <small>Portfolio performance metrics and trends</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div>
+            <!-- Team Overview -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Leadership Team</h2>
+                <button class="icon-btn">
+                  <i class="fas fa-user-plus"></i>
+                </button>
+              </div>
+              <div class="team-list" id="team-list"></div>
+            </div>
+
+            <!-- Resource Allocation -->
+            <div class="card" style="margin-top: 2rem;">
+              <div class="card-header">
+                <h2 class="card-title">Resource Allocation</h2>
+              </div>
+              <div class="progress-container">
+                <div class="progress-header">
+                  <span class="progress-label">Engineering</span>
+                  <span class="progress-value">78%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 78%;"></div>
+                </div>
+              </div>
+              <div class="progress-container">
+                <div class="progress-header">
+                  <span class="progress-label">Design</span>
+                  <span class="progress-value">92%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 92%;"></div>
+                </div>
+              </div>
+              <div class="progress-container">
+                <div class="progress-header">
+                  <span class="progress-label">Product</span>
+                  <span class="progress-value">65%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 65%;"></div>
+                </div>
+              </div>
+              <div class="progress-container">
+                <div class="progress-header">
+                  <span class="progress-label">Operations</span>
+                  <span class="progress-value">84%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 84%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects View (Hidden) -->
+      <div id="projects-view" style="display: none;">
+        <div class="page-header">
+          <div class="header-content-left">
+            <div class="breadcrumb">
+              <a href="#">Home</a>
+              <span>/</span>
+              <span>Projects</span>
+            </div>
+            <h1>Project Portfolio</h1>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">32</div>
+            <div class="metric-label">Active Projects</div>
+            <div class="metric-change positive">+8 this quarter</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">$2.4M</div>
+            <div class="metric-label">Total Budget</div>
+            <div class="metric-change positive">+12% vs Q3</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">94%</div>
+            <div class="metric-label">On-Time Delivery</div>
+            <div class="metric-change positive">+2% vs Q3</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">7</div>
+            <div class="metric-label">At Risk</div>
+            <div class="metric-change negative">+2 this week</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">All Projects</h2>
+            <button class="btn btn-primary">+ New Project</button>
+          </div>
+          <div id="projects-list-container"></div>
+        </div>
+      </div>
+
+      <!-- Team View (Hidden) -->
+      <div id="team-view" style="display: none;">
+        <div class="page-header">
+          <div class="header-content-left">
+            <div class="breadcrumb">
+              <a href="#">Home</a>
+              <span>/</span>
+              <span>Team</span>
+            </div>
+            <h1>Team Management</h1>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">48</div>
+            <div class="metric-label">Team Members</div>
+            <div class="metric-change positive">+5 this month</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">8</div>
+            <div class="metric-label">Departments</div>
+            <div class="metric-change">Across organization</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">156</div>
+            <div class="metric-label">Active Tasks</div>
+            <div class="metric-change positive">+12 this week</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">3.2</div>
+            <div class="metric-label">Avg Tasks/Member</div>
+            <div class="metric-change">Balanced load</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Team Directory</h2>
+            <button class="btn btn-primary">+ Add Member</button>
+          </div>
+          <div id="team-detail-container"></div>
+        </div>
+      </div>
+
+      <!-- Reports View (Hidden) -->
+      <div id="reports-view" style="display: none;">
+        <div class="page-header">
+          <div class="header-content-left">
+            <div class="breadcrumb">
+              <a href="#">Home</a>
+              <span>/</span>
+              <span>Reports</span>
+            </div>
+            <h1>Executive Reports</h1>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value">284</div>
+            <div class="metric-label">Total Tasks</div>
+            <div class="metric-change positive">+18% vs last quarter</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">238</div>
+            <div class="metric-label">Completed</div>
+            <div class="metric-change positive">84% completion rate</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">34</div>
+            <div class="metric-label">In Progress</div>
+            <div class="metric-change">12% of total</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">12</div>
+            <div class="metric-label">Overdue</div>
+            <div class="metric-change negative">4% of total</div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Project Performance</h2>
+            </div>
+            <div id="project-performance-report"></div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Resource Utilization</h2>
+            </div>
+            <div id="resource-utilization-report"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings View (Hidden) -->
+      <div id="settings-view" style="display: none;">
+        <div class="page-header">
+          <div class="header-content-left">
+            <div class="breadcrumb">
+              <a href="#">Home</a>
+              <span>/</span>
+              <span>Settings</span>
+            </div>
+            <h1>System Settings</h1>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">System Configuration</h2>
+          </div>
+          <div>
+            <div style="padding: 1.5rem; background: var(--bg-main); border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border); cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'">
+              <h4 style="margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600;">Organization Settings</h4>
+              <p style="color: var(--text-secondary); font-size: 0.875rem;">Configure company-wide defaults and preferences</p>
+            </div>
+            <div style="padding: 1.5rem; background: var(--bg-main); border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border); cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'">
+              <h4 style="margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600;">User Permissions</h4>
+              <p style="color: var(--text-secondary); font-size: 0.875rem;">Manage roles and access controls</p>
+            </div>
+            <div style="padding: 1.5rem; background: var(--bg-main); border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border); cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'">
+              <h4 style="margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600;">Integration Management</h4>
+              <p style="color: var(--text-secondary); font-size: 0.875rem;">Connect third-party tools and services</p>
+            </div>
+            <div style="padding: 1.5rem; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--border)'">
+              <h4 style="margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600;">Security & Compliance</h4>
+              <p style="color: var(--text-secondary); font-size: 0.875rem;">Review security policies and audit logs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mock Data - Enterprise Focus
+      const MOCK_DATA = {
+        tasks: [
+          {
+            id: 1,
+            title: "Q4 Strategic Planning Review",
+            project: "Corporate Strategy",
+            priority: "critical",
+            dueDate: "2025-10-17",
+            assignee: "Executive Team",
+            department: "Strategy",
+          },
+          {
+            id: 2,
+            title: "Cloud Infrastructure Migration - Phase 2",
+            project: "IT Modernization",
+            priority: "high",
+            dueDate: "2025-10-20",
+            assignee: "DevOps Team",
+            department: "Technology",
+          },
+          {
+            id: 3,
+            title: "Annual Security Audit Preparation",
+            project: "Compliance & Governance",
+            priority: "high",
+            dueDate: "2025-10-25",
+            assignee: "Security Team",
+            department: "InfoSec",
+          },
+          {
+            id: 4,
+            title: "Customer Success Platform Integration",
+            project: "CX Transformation",
+            priority: "medium",
+            dueDate: "2025-10-28",
+            assignee: "Product Team",
+            department: "Product",
+          },
+          {
+            id: 5,
+            title: "Budget Reallocation Analysis",
+            project: "Financial Planning",
+            priority: "medium",
+            dueDate: "2025-11-02",
+            assignee: "Finance Team",
+            department: "Finance",
+          },
+          {
+            id: 6,
+            title: "Partner API Documentation Update",
+            project: "Developer Experience",
+            priority: "low",
+            dueDate: "2025-11-05",
+            assignee: "Engineering Team",
+            department: "Engineering",
+          },
+        ],
+        team: [
+          {
+            name: "Michael Chen",
+            role: "VP of Engineering",
+            tasks: 15,
+            projects: 4,
+            initials: "MC",
+            status: "online",
+            email: "mchen@company.com",
+          },
+          {
+            name: "Jennifer Roberts",
+            role: "VP of Product",
+            tasks: 12,
+            projects: 6,
+            initials: "JR",
+            status: "busy",
+            email: "jroberts@company.com",
+          },
+          {
+            name: "David Martinez",
+            role: "Chief Security Officer",
+            tasks: 8,
+            projects: 3,
+            initials: "DM",
+            status: "online",
+            email: "dmartinez@company.com",
+          },
+          {
+            name: "Lisa Anderson",
+            role: "Director of Operations",
+            tasks: 11,
+            projects: 5,
+            initials: "LA",
+            status: "online",
+            email: "landerson@company.com",
+          },
+          {
+            name: "James Wilson",
+            role: "Head of Customer Success",
+            tasks: 9,
+            projects: 7,
+            initials: "JW",
+            status: "offline",
+            email: "jwilson@company.com",
+          },
+        ],
+        projects: [
+          { name: 'Corporate Strategy', status: 'Active', progress: 78, budget: '$450K', team: 8, dueDate: 'Dec 2025' },
+          { name: 'IT Modernization', status: 'Active', progress: 45, budget: '$680K', team: 12, dueDate: 'Mar 2026' },
+          { name: 'Compliance & Governance', status: 'Active', progress: 92, budget: '$280K', team: 5, dueDate: 'Oct 2025' },
+          { name: 'CX Transformation', status: 'Planning', progress: 28, budget: '$520K', team: 9, dueDate: 'Feb 2026' },
+          { name: 'Financial Planning', status: 'Active', progress: 65, budget: '$340K', team: 6, dueDate: 'Jan 2026' },
+          { name: 'Developer Experience', status: 'Active', progress: 55, budget: '$420K', team: 7, dueDate: 'Nov 2025' }
+        ],
+        projectPerformance: [
+          { project: 'Corporate Strategy', completed: 45, inProgress: 12, overdue: 1 },
+          { project: 'IT Modernization', completed: 32, inProgress: 18, overdue: 4 },
+          { project: 'Compliance & Governance', completed: 28, inProgress: 2, overdue: 0 },
+          { project: 'CX Transformation', completed: 18, inProgress: 14, overdue: 2 },
+          { project: 'Financial Planning', completed: 24, inProgress: 9, overdue: 1 }
+        ]
+      };
+
+      // Render Tasks
+      function renderTasks() {
+        const taskList = document.getElementById("task-list");
+        taskList.innerHTML = MOCK_DATA.tasks
+          .map(
+            (task) => `
+                <div class="task-item">
+                    <div class="task-checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">${task.title}</div>
+                        <div class="task-meta">
+                            <span><i class="fas fa-briefcase"></i> ${
+                              task.project
+                            }</span>
+                            <span><i class="fas fa-calendar-alt"></i> ${
+                              task.dueDate
+                            }</span>
+                            <span><i class="fas fa-building"></i> ${
+                              task.department
+                            }</span>
+                        </div>
+                    </div>
+                    <div class="task-priority ${task.priority}">${task.priority}</div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // Render Team
+      function renderTeam() {
+        const teamList = document.getElementById("team-list");
+        teamList.innerHTML = MOCK_DATA.team
+          .map(
+            (member) => `
+                <div class="team-member">
+                    <div class="member-avatar">${member.initials}</div>
+                    <div class="member-info">
+                        <div class="member-name">${member.name}</div>
+                        <div class="member-role">${member.role}</div>
+                        <div class="member-stats">
+                            <div class="member-stat">
+                                <i class="fas fa-tasks"></i>
+                                <span>${member.tasks} tasks</span>
+                            </div>
+                            <div class="member-stat">
+                                <i class="fas fa-project-diagram"></i>
+                                <span>${member.projects} projects</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-status">
+                        <div class="status-indicator ${member.status}"></div>
+                    </div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // Render Projects List
+      function renderProjectsList() {
+        const projectsList = document.getElementById('projects-list-container');
+        if (!projectsList) return;
+        
+        projectsList.innerHTML = MOCK_DATA.projects.map((project, index) => `
+          <div class="task-item" style="margin-bottom: ${index === MOCK_DATA.projects.length - 1 ? '0' : '1rem'}; padding: 1.5rem;">
+            <div style="flex: 1;">
+              <div class="task-title">${project.name}</div>
+              <div class="task-meta">
+                <span><i class="fas fa-users"></i> ${project.team} members</span>
+                <span><i class="fas fa-dollar-sign"></i> ${project.budget}</span>
+                <span><i class="fas fa-calendar"></i> Due ${project.dueDate}</span>
+              </div>
+              <div style="margin-top: 1rem;">
+                <div style="background: var(--bg-main); height: 8px; border-radius: 4px; overflow: hidden;">
+                  <div style="background: linear-gradient(90deg, var(--primary), var(--secondary)); height: 100%; width: ${project.progress}%; transition: width 0.3s;"></div>
+                </div>
+                <div style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-secondary);">${project.progress}% Complete</div>
+              </div>
+            </div>
+            <div class="task-priority ${project.status === 'Active' ? 'high' : 'medium'}">${project.status}</div>
+          </div>
+        `).join('');
+      }
+
+      // Render Team Detail
+      function renderTeamDetail() {
+        const teamDetailView = document.getElementById('team-detail-container');
+        if (!teamDetailView) return;
+        
+        teamDetailView.innerHTML = MOCK_DATA.team.map((member, index) => `
+          <div class="team-member" style="padding: 1.5rem; ${index === MOCK_DATA.team.length - 1 ? '' : 'border-bottom: 1px solid var(--border);'}">
+            <div class="member-avatar" style="width: 64px; height: 64px; font-size: 1.5rem;">${member.initials}</div>
+            <div class="member-info" style="flex: 1;">
+              <div class="member-name" style="font-size: 1.125rem; margin-bottom: 0.25rem;">${member.name}</div>
+              <div class="member-role" style="margin-bottom: 0.5rem;">${member.role}</div>
+              <div style="font-size: 0.875rem; color: var(--text-secondary);">
+                <i class="fas fa-envelope"></i> ${member.email}
+              </div>
+              <div class="member-stats" style="margin-top: 0.75rem;">
+                <div class="member-stat"><i class="fas fa-tasks"></i><span>${member.tasks} tasks</span></div>
+                <div class="member-stat"><i class="fas fa-project-diagram"></i><span>${member.projects} projects</span></div>
+              </div>
+            </div>
+            <div class="member-status">
+              <div class="status-indicator ${member.status}"></div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Render Reports
+      function renderReports() {
+        const perfReport = document.getElementById('project-performance-report');
+        const resourceReport = document.getElementById('resource-utilization-report');
+        
+        if (perfReport) {
+          perfReport.innerHTML = MOCK_DATA.projectPerformance.map(proj => `
+            <div style="padding: 1.25rem; border-bottom: 1px solid var(--border);">
+              <div style="font-weight: 600; margin-bottom: 0.75rem; font-size: 1rem;">${proj.project}</div>
+              <div style="display: flex; gap: 1.5rem; font-size: 0.875rem;">
+                <span style="color: var(--success);"><i class="fas fa-check-circle"></i> ${proj.completed} completed</span>
+                <span style="color: var(--warning);"><i class="fas fa-spinner"></i> ${proj.inProgress} in progress</span>
+                <span style="color: var(--danger);"><i class="fas fa-exclamation-circle"></i> ${proj.overdue} overdue</span>
+              </div>
+            </div>
+          `).join('');
+        }
+        
+        if (resourceReport) {
+          resourceReport.innerHTML = MOCK_DATA.team.map(member => `
+            <div style="padding: 1.25rem; border-bottom: 1px solid var(--border);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 600;">${member.name}</div>
+                  <div style="font-size: 0.875rem; color: var(--text-secondary);">${member.role}</div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">${member.tasks}</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary);">Tasks</div>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+      }
+
+      // View Switcher
+      function showView(viewName) {
+        // Hide all views
+        document.querySelectorAll('[id$="-view"]').forEach((view) => {
+          view.style.display = "none";
+        });
+
+        // Show selected view
+        document.getElementById(`${viewName}-view`).style.display = "block";
+
+        // Update active nav link
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove("active");
+        });
+        event.target.classList.add("active");
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", () => {
+        renderTasks();
+        renderTeam();
+        renderProjectsList();
+        renderTeamDetail();
+        renderReports();
+      });
+    </script>
+  </body>
+</html>

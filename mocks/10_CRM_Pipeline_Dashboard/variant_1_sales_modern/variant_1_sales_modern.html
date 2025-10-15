@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SalesPro CRM - Pipeline Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Modern Sales Theme */
+      :root {
+        --primary: #6366f1;
+        --primary-dark: #4f46e5;
+        --secondary: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --info: #3b82f6;
+        --bg-main: #f9fafb;
+        --bg-card: #ffffff;
+        --bg-gray: #f3f4f6;
+        --text-primary: #111827;
+        --text-secondary: #6b7280;
+        --text-tertiary: #9ca3af;
+        --border: #e5e7eb;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-main);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      /* Header */
+      .header {
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 2rem;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        max-width: 1600px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .nav {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .nav-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--primary);
+        background: #eef2ff;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .search-box {
+        position: relative;
+      }
+
+      .search-box input {
+        padding: 0.5rem 1rem 0.5rem 2.5rem;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-size: 0.9rem;
+        width: 280px;
+        background: var(--bg-gray);
+      }
+
+      .search-box i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-tertiary);
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      /* Page Header */
+      .page-header {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .page-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--text-primary);
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .btn {
+        padding: 0.625rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-secondary {
+        background: var(--bg-gray);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        background: var(--bg-card);
+        border-color: var(--primary);
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        box-shadow: var(--shadow-lg);
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .stat-card {
+        background: var(--bg-card);
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        transition: all 0.3s;
+      }
+
+      .stat-card:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+      }
+
+      .stat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .stat-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+      }
+
+      .stat-icon.purple {
+        background: #eef2ff;
+        color: var(--primary);
+      }
+
+      .stat-icon.green {
+        background: #d1fae5;
+        color: var(--secondary);
+      }
+
+      .stat-icon.orange {
+        background: #fed7aa;
+        color: var(--warning);
+      }
+
+      .stat-icon.blue {
+        background: #dbeafe;
+        color: var(--info);
+      }
+
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-change {
+        font-size: 0.875rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .stat-change.positive {
+        color: var(--secondary);
+      }
+
+      .stat-change.negative {
+        color: var(--danger);
+      }
+
+      /* Pipeline Board */
+      .pipeline-board {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .pipeline-column {
+        background: var(--bg-card);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+
+      .column-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .column-title {
+        font-weight: 700;
+        color: var(--text-primary);
+        font-size: 1rem;
+      }
+
+      .column-count {
+        background: var(--bg-gray);
+        color: var(--text-secondary);
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .deal-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .deal-card {
+        background: var(--bg-gray);
+        padding: 1rem;
+        border-radius: 8px;
+        border-left: 3px solid var(--primary);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .deal-card:hover {
+        background: var(--bg-card);
+        box-shadow: var(--shadow-md);
+        transform: translateX(4px);
+      }
+
+      .deal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.5rem;
+      }
+
+      .deal-title {
+        font-weight: 600;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+      }
+
+      .deal-value {
+        font-weight: 700;
+        color: var(--secondary);
+        font-size: 0.9rem;
+      }
+
+      .deal-company {
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .deal-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .deal-owner {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .owner-avatar {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+
+      .deal-date {
+        font-size: 0.8rem;
+        color: var(--text-tertiary);
+      }
+
+      /* Recent Activity */
+      .activity-section {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+      }
+
+      .card {
+        background: var(--bg-card);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .card-title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .activity-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .activity-item {
+        display: flex;
+        gap: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .activity-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .activity-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: #eef2ff;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .activity-content {
+        flex: 1;
+      }
+
+      .activity-text {
+        font-size: 0.9rem;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+      }
+
+      .activity-time {
+        font-size: 0.8rem;
+        color: var(--text-tertiary);
+      }
+
+      /* Top Performers */
+      .performer-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .performer-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--bg-gray);
+        border-radius: 8px;
+      }
+
+      .performer-rank {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .performer-info {
+        flex: 1;
+      }
+
+      .performer-name {
+        font-weight: 600;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+      }
+
+      .performer-deals {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+
+      .performer-value {
+        font-weight: 700;
+        color: var(--secondary);
+      }
+
+      /* Responsive */
+      @media (max-width: 1400px) {
+        .pipeline-board {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .activity-section {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav {
+          display: none;
+        }
+
+        .search-box {
+          display: none;
+        }
+
+        .pipeline-board {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-chart-line"></i>
+          <span>SalesPro</span>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav-link active" onclick="showView('pipeline')"
+            >Pipeline</a
+          >
+          <a href="#" class="nav-link" onclick="showView('deals')">Deals</a>
+          <a href="#" class="nav-link" onclick="showView('contacts')"
+            >Contacts</a
+          >
+          <a href="#" class="nav-link" onclick="showView('reports')">Reports</a>
+        </nav>
+        <div class="header-right">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search deals, contacts..." />
+          </div>
+          <div class="user-avatar">MJ</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+      <!-- Pipeline View -->
+      <div id="pipeline-view">
+        <!-- Page Header -->
+        <div class="page-header">
+          <h1 class="page-title">Sales Pipeline</h1>
+          <div class="header-actions">
+            <button class="btn btn-secondary">
+              <i class="fas fa-filter"></i>
+              Filter
+            </button>
+            <button class="btn btn-primary">
+              <i class="fas fa-plus"></i>
+              New Deal
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Total Pipeline Value</div>
+              <div class="stat-icon purple">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+            </div>
+            <div class="stat-value">$2.4M</div>
+            <div class="stat-change positive">
+              <i class="fas fa-arrow-up"></i>
+              <span>+18% from last month</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Won Deals</div>
+              <div class="stat-icon green">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+            <div class="stat-value">28</div>
+            <div class="stat-change positive">
+              <i class="fas fa-arrow-up"></i>
+              <span>+12% from last month</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Win Rate</div>
+              <div class="stat-icon orange">
+                <i class="fas fa-percentage"></i>
+              </div>
+            </div>
+            <div class="stat-value">34%</div>
+            <div class="stat-change positive">
+              <i class="fas fa-arrow-up"></i>
+              <span>+5% from last month</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-label">Avg Deal Size</div>
+              <div class="stat-icon blue">
+                <i class="fas fa-handshake"></i>
+              </div>
+            </div>
+            <div class="stat-value">$45K</div>
+            <div class="stat-change negative">
+              <i class="fas fa-arrow-down"></i>
+              <span>-3% from last month</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pipeline Board -->
+        <div class="pipeline-board" id="pipeline-board"></div>
+
+        <!-- Activity Section -->
+        <div class="activity-section">
+          <!-- Recent Activity -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Recent Activity</h2>
+            </div>
+            <div class="activity-list" id="activity-list"></div>
+          </div>
+
+          <!-- Top Performers -->
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">Top Performers</h2>
+            </div>
+            <div class="performer-list" id="performer-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deals View (Hidden) -->
+      <div id="deals-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">All Deals</h1>
+          <button class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+            New Deal
+          </button>
+        </div>
+        <div class="card">
+          <div id="deals-table">
+            <!-- Populated by renderDeals() -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Contacts View (Hidden) -->
+      <div id="contacts-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Contacts</h1>
+          <button class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+            New Contact
+          </button>
+        </div>
+        <div class="card">
+          <div id="contacts-grid">
+            <!-- Populated by renderContacts() -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Reports View (Hidden) -->
+      <div id="reports-view" style="display: none;">
+        <div class="page-header">
+          <h1 class="page-title">Sales Reports</h1>
+          <button class="btn btn-secondary">
+            <i class="fas fa-download"></i>
+            Export Report
+          </button>
+        </div>
+        
+        <!-- Summary Metrics -->
+        <div id="reports-summary">
+          <!-- Populated by renderReports() -->
+        </div>
+        
+        <!-- Monthly Performance -->
+        <div class="card" style="margin-top: 2rem;">
+          <h3 style="margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 700;">Monthly Performance</h3>
+          <div id="monthly-performance">
+            <!-- Populated by renderReports() -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Mock Data
+      const MOCK_DATA = {
+        pipeline: [
+          {
+            stage: "Prospecting",
+            deals: [
+              {
+                title: "Enterprise License - TechCorp",
+                company: "TechCorp Inc.",
+                value: "$85,000",
+                owner: "MJ",
+                date: "Oct 18",
+              },
+              {
+                title: "Annual Subscription - StartupXYZ",
+                company: "StartupXYZ",
+                value: "$24,000",
+                owner: "SL",
+                date: "Oct 20",
+              },
+            ],
+          },
+          {
+            stage: "Qualification",
+            deals: [
+              {
+                title: "Pro Plan Upgrade - Acme Corp",
+                company: "Acme Corporation",
+                value: "$45,000",
+                owner: "TK",
+                date: "Oct 16",
+              },
+              {
+                title: "Multi-Year Deal - BizSolutions",
+                company: "BizSolutions Ltd",
+                value: "$120,000",
+                owner: "MJ",
+                date: "Oct 22",
+              },
+            ],
+          },
+          {
+            stage: "Proposal",
+            deals: [
+              {
+                title: "Custom Integration - GlobalTech",
+                company: "GlobalTech Systems",
+                value: "$95,000",
+                owner: "EC",
+                date: "Oct 15",
+              },
+            ],
+          },
+          {
+            stage: "Negotiation",
+            deals: [
+              {
+                title: "Enterprise Suite - MegaCorp",
+                company: "MegaCorp Industries",
+                value: "$180,000",
+                owner: "MJ",
+                date: "Oct 14",
+              },
+              {
+                title: "Team License - DevTeam",
+                company: "DevTeam Studio",
+                value: "$32,000",
+                owner: "SL",
+                date: "Oct 19",
+              },
+            ],
+          },
+        ],
+        activities: [
+          {
+            icon: "fa-phone",
+            text: "Michael called TechCorp - Discussion about enterprise features",
+            time: "2 hours ago",
+          },
+          {
+            icon: "fa-envelope",
+            text: "Sarah sent proposal to StartupXYZ",
+            time: "4 hours ago",
+          },
+          {
+            icon: "fa-handshake",
+            text: "Deal closed: MegaCorp Enterprise Suite - $180K",
+            time: "5 hours ago",
+          },
+          {
+            icon: "fa-calendar",
+            text: "Tom scheduled demo with Acme Corp for tomorrow",
+            time: "6 hours ago",
+          },
+          {
+            icon: "fa-comment",
+            text: "Emily added note to GlobalTech deal",
+            time: "8 hours ago",
+          },
+        ],
+        performers: [
+          { name: "Michael Johnson", deals: 12, value: "$485K" },
+          { name: "Sarah Lee", deals: 9, value: "$342K" },
+          { name: "Tom Kim", deals: 8, value: "$298K" },
+          { name: "Emily Chen", deals: 7, value: "$265K" },
+        ],
+        
+        // All Deals Data
+        deals: [
+          { id: 1, title: "Enterprise License - TechCorp", company: "TechCorp Inc.", value: 85000, stage: "Prospecting", owner: "Michael Johnson", probability: 20, closeDate: "Dec 15, 2025", contact: "John Smith" },
+          { id: 2, title: "Annual Subscription - StartupXYZ", company: "StartupXYZ", value: 24000, stage: "Prospecting", owner: "Sarah Lee", probability: 15, closeDate: "Dec 20, 2025", contact: "Jane Doe" },
+          { id: 3, title: "Pro Plan Upgrade - Acme Corp", company: "Acme Corporation", value: 45000, stage: "Qualification", owner: "Tom Kim", probability: 40, closeDate: "Nov 30, 2025", contact: "Bob Wilson" },
+          { id: 4, title: "Multi-Year Deal - BizSolutions", company: "BizSolutions Ltd", value: 120000, stage: "Qualification", owner: "Michael Johnson", probability: 45, closeDate: "Dec 10, 2025", contact: "Alice Brown" },
+          { id: 5, title: "Custom Integration - GlobalTech", company: "GlobalTech Systems", value: 95000, stage: "Proposal", owner: "Emily Chen", probability: 65, closeDate: "Nov 25, 2025", contact: "David Lee" },
+          { id: 6, title: "Enterprise Suite - MegaCorp", company: "MegaCorp Industries", value: 180000, stage: "Negotiation", owner: "Michael Johnson", probability: 80, closeDate: "Nov 20, 2025", contact: "Susan Garcia" },
+          { id: 7, title: "Team License - DevTeam", company: "DevTeam Studio", value: 32000, stage: "Negotiation", owner: "Sarah Lee", probability: 75, closeDate: "Nov 22, 2025", contact: "Mike Chen" },
+          { id: 8, title: "Platform Expansion - CloudCo", company: "CloudCo Solutions", value: 67000, stage: "Qualification", owner: "Tom Kim", probability: 35, closeDate: "Dec 5, 2025", contact: "Lisa Anderson" },
+        ],
+        
+        // Contacts Data
+        contacts: [
+          { id: 1, name: "John Smith", company: "TechCorp Inc.", title: "CTO", email: "john.smith@techcorp.com", phone: "+1 (555) 123-4567", deals: 2, value: "$110K", lastContact: "2 days ago" },
+          { id: 2, name: "Jane Doe", company: "StartupXYZ", title: "CEO", email: "jane@startupxyz.com", phone: "+1 (555) 234-5678", deals: 1, value: "$24K", lastContact: "1 week ago" },
+          { id: 3, name: "Bob Wilson", company: "Acme Corporation", title: "VP Operations", email: "bob.wilson@acme.com", phone: "+1 (555) 345-6789", deals: 1, value: "$45K", lastContact: "3 days ago" },
+          { id: 4, name: "Alice Brown", company: "BizSolutions Ltd", title: "Director of Sales", email: "a.brown@bizsolutions.com", phone: "+1 (555) 456-7890", deals: 1, value: "$120K", lastContact: "1 day ago" },
+          { id: 5, name: "David Lee", company: "GlobalTech Systems", title: "IT Manager", email: "david.lee@globaltech.com", phone: "+1 (555) 567-8901", deals: 1, value: "$95K", lastContact: "5 hours ago" },
+          { id: 6, name: "Susan Garcia", company: "MegaCorp Industries", title: "SVP Technology", email: "s.garcia@megacorp.com", phone: "+1 (555) 678-9012", deals: 3, value: "$285K", lastContact: "Today" },
+          { id: 7, name: "Mike Chen", company: "DevTeam Studio", title: "Engineering Lead", email: "mike@devteam.studio", phone: "+1 (555) 789-0123", deals: 1, value: "$32K", lastContact: "Yesterday" },
+          { id: 8, name: "Lisa Anderson", company: "CloudCo Solutions", title: "Head of Product", email: "lisa.a@cloudco.com", phone: "+1 (555) 890-1234", deals: 1, value: "$67K", lastContact: "4 days ago" },
+        ],
+        
+        // Reports Data
+        reports: {
+          summary: [
+            { metric: "Total Pipeline Value", value: "$648,000", change: "+18.5%", trend: "up" },
+            { metric: "Average Deal Size", value: "$81,000", change: "+12.3%", trend: "up" },
+            { metric: "Win Rate", value: "68%", change: "+5.2%", trend: "up" },
+            { metric: "Sales Cycle (days)", value: "42", change: "-8.7%", trend: "down" },
+          ],
+          monthlyPerformance: [
+            { month: "October", revenue: 485000, deals: 12, target: 450000 },
+            { month: "September", revenue: 420000, deals: 10, target: 420000 },
+            { month: "August", revenue: 395000, deals: 9, target: 400000 },
+            { month: "July", revenue: 445000, deals: 11, target: 430000 },
+          ],
+        },
+      };
+
+      // Render Pipeline
+      function renderPipeline() {
+        const pipelineBoard = document.getElementById("pipeline-board");
+        pipelineBoard.innerHTML = MOCK_DATA.pipeline
+          .map(
+            (column) => `
+                <div class="pipeline-column">
+                    <div class="column-header">
+                        <div class="column-title">${column.stage}</div>
+                        <div class="column-count">${column.deals.length}</div>
+                    </div>
+                    <div class="deal-list">
+                        ${column.deals
+                          .map(
+                            (deal) => `
+                            <div class="deal-card">
+                                <div class="deal-header">
+                                    <div class="deal-title">${deal.title}</div>
+                                    <div class="deal-value">${deal.value}</div>
+                                </div>
+                                <div class="deal-company">${deal.company}</div>
+                                <div class="deal-footer">
+                                    <div class="deal-owner">
+                                        <div class="owner-avatar">${deal.owner}</div>
+                                        <span>${deal.owner === "MJ" ? "Michael" : deal.owner === "SL" ? "Sarah" : deal.owner === "TK" ? "Tom" : "Emily"}</span>
+                                    </div>
+                                    <div class="deal-date">${deal.date}</div>
+                                </div>
+                            </div>
+                        `
+                          )
+                          .join("")}
+                    </div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // Render Activity
+      function renderActivity() {
+        const activityList = document.getElementById("activity-list");
+        activityList.innerHTML = MOCK_DATA.activities
+          .map(
+            (activity) => `
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas ${activity.icon}"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-text">${activity.text}</div>
+                        <div class="activity-time">${activity.time}</div>
+                    </div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      // Render Performers
+      function renderPerformers() {
+        const performerList = document.getElementById("performer-list");
+        performerList.innerHTML = MOCK_DATA.performers
+          .map(
+            (performer, index) => `
+                <div class="performer-item">
+                    <div class="performer-rank">${index + 1}</div>
+                    <div class="performer-info">
+                        <div class="performer-name">${performer.name}</div>
+                        <div class="performer-deals">${
+                          performer.deals
+                        } deals closed</div>
+                    </div>
+                    <div class="performer-value">${performer.value}</div>
+                </div>
+            `
+          )
+          .join("");
+      }
+      
+      // Render Deals Table
+      function renderDeals() {
+        const container = document.getElementById('deals-table');
+        const formatCurrency = (amount) => {
+          return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(amount);
+        };
+        
+        container.innerHTML = `
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border); text-align: left;">
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Deal</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Company</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Value</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Stage</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Owner</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Close Date</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Probability</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${MOCK_DATA.deals.map(deal => `
+                <tr style="border-bottom: 1px solid var(--border);">
+                  <td style="padding: 1rem;">
+                    <div style="font-weight: 600; color: var(--text-primary);">${deal.title}</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;">${deal.contact}</div>
+                  </td>
+                  <td style="padding: 1rem; color: var(--text-primary);">${deal.company}</td>
+                  <td style="padding: 1rem; font-weight: 700; color: var(--primary);">${formatCurrency(deal.value)}</td>
+                  <td style="padding: 1rem;">
+                    <span style="padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; background: ${
+                      deal.stage === 'Negotiation' ? '#fef3c7' : 
+                      deal.stage === 'Proposal' ? '#dbeafe' : 
+                      deal.stage === 'Qualification' ? '#e0e7ff' : '#f3f4f6'
+                    }; color: ${
+                      deal.stage === 'Negotiation' ? '#92400e' : 
+                      deal.stage === 'Proposal' ? '#1e40af' : 
+                      deal.stage === 'Qualification' ? '#3730a3' : '#374151'
+                    };">
+                      ${deal.stage}
+                    </span>
+                  </td>
+                  <td style="padding: 1rem; color: var(--text-primary);">${deal.owner}</td>
+                  <td style="padding: 1rem; color: var(--text-secondary); font-size: 0.875rem;">${deal.closeDate}</td>
+                  <td style="padding: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <div style="flex: 1; height: 6px; background: var(--bg-gray); border-radius: 3px; overflow: hidden;">
+                        <div style="height: 100%; background: ${deal.probability >= 70 ? 'var(--secondary)' : deal.probability >= 40 ? 'var(--warning)' : 'var(--text-tertiary)'}; width: ${deal.probability}%;"></div>
+                      </div>
+                      <span style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); min-width: 35px;">${deal.probability}%</span>
+                    </div>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      }
+      
+      // Render Contacts Grid
+      function renderContacts() {
+        const container = document.getElementById('contacts-grid');
+        
+        container.innerHTML = `
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.5rem;">
+            ${MOCK_DATA.contacts.map(contact => `
+              <div style="padding: 1.5rem; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-card); transition: all 0.2s;" onmouseover="this.style.boxShadow='var(--shadow-md)'; this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='none'; this.style.transform='translateY(0)';">
+                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                  <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--info)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">
+                    ${contact.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-weight: 700; font-size: 1rem; color: var(--text-primary); margin-bottom: 0.25rem;">${contact.name}</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary);">${contact.title}</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.25rem;">${contact.company}</div>
+                  </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                  <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+                    <i class="fas fa-envelope" style="color: var(--text-tertiary); width: 16px;"></i>
+                    <span style="color: var(--text-secondary);">${contact.email}</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+                    <i class="fas fa-phone" style="color: var(--text-tertiary); width: 16px;"></i>
+                    <span style="color: var(--text-secondary);">${contact.phone}</span>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border);">
+                  <div>
+                    <div style="font-size: 0.75rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem;">Deal Value</div>
+                    <div style="font-weight: 700; color: var(--primary);">${contact.value}</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 0.75rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem;">Active Deals</div>
+                    <div style="font-weight: 700; color: var(--text-primary); text-align: right;">${contact.deals}</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 0.75rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem;">Last Contact</div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary); text-align: right;">${contact.lastContact}</div>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+      
+      // Render Reports
+      function renderReports() {
+        const summaryContainer = document.getElementById('reports-summary');
+        const performanceContainer = document.getElementById('monthly-performance');
+        
+        const formatCurrency = (amount) => {
+          return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(amount);
+        };
+        
+        // Summary metrics
+        summaryContainer.innerHTML = `
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            ${MOCK_DATA.reports.summary.map(metric => `
+              <div class="card" style="padding: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                  <div style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 600;">${metric.metric}</div>
+                  <div style="display: flex; align-items: center; gap: 0.25rem; font-size: 0.875rem; font-weight: 600; color: ${metric.trend === 'up' ? 'var(--secondary)' : 'var(--danger)'};">
+                    <i class="fas fa-arrow-${metric.trend}"></i>
+                    ${metric.change}
+                  </div>
+                </div>
+                <div style="font-size: 2rem; font-weight: 800; color: var(--text-primary);">${metric.value}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        
+        // Monthly performance table
+        performanceContainer.innerHTML = `
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border); text-align: left;">
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Month</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Revenue</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Target</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Deals Closed</th>
+                <th style="padding: 1rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px;">Achievement</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${MOCK_DATA.reports.monthlyPerformance.map(month => {
+                const achievement = ((month.revenue / month.target) * 100).toFixed(1);
+                const overTarget = month.revenue >= month.target;
+                return `
+                  <tr style="border-bottom: 1px solid var(--border);">
+                    <td style="padding: 1rem; font-weight: 600; color: var(--text-primary);">${month.month}</td>
+                    <td style="padding: 1rem; font-weight: 700; color: var(--primary);">${formatCurrency(month.revenue)}</td>
+                    <td style="padding: 1rem; color: var(--text-secondary);">${formatCurrency(month.target)}</td>
+                    <td style="padding: 1rem; text-align: center; font-weight: 600; color: var(--text-primary);">${month.deals}</td>
+                    <td style="padding: 1rem;">
+                      <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="flex: 1; height: 8px; background: var(--bg-gray); border-radius: 4px; overflow: hidden;">
+                          <div style="height: 100%; background: ${overTarget ? 'var(--secondary)' : 'var(--warning)'}; width: ${Math.min(achievement, 100)}%;"></div>
+                        </div>
+                        <span style="font-size: 0.875rem; font-weight: 700; color: ${overTarget ? 'var(--secondary)' : 'var(--text-primary)'}; min-width: 45px;">${achievement}%</span>
+                      </div>
+                    </td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        `;
+      }
+
+      // View Switcher - Fixed with explicit array
+      function showView(viewName) {
+        // Define explicit list of main views
+        const mainViews = ['pipeline-view', 'deals-view', 'contacts-view', 'reports-view'];
+        
+        // Hide all views
+        mainViews.forEach((viewId) => {
+          const view = document.getElementById(viewId);
+          if (view) view.style.display = "none";
+        });
+        
+        // Show selected view
+        const selectedView = document.getElementById(`${viewName}-view`);
+        if (selectedView) {
+          selectedView.style.display = "block";
+          
+          // Render content on first display
+          if (viewName === 'deals' && !selectedView.dataset.rendered) {
+            renderDeals();
+            selectedView.dataset.rendered = 'true';
+          } else if (viewName === 'contacts' && !selectedView.dataset.rendered) {
+            renderContacts();
+            selectedView.dataset.rendered = 'true';
+          } else if (viewName === 'reports' && !selectedView.dataset.rendered) {
+            renderReports();
+            selectedView.dataset.rendered = 'true';
+          }
+        }
+        
+        // Update active nav link
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove("active");
+        });
+        if (event && event.target) {
+          event.target.classList.add("active");
+        }
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", () => {
+        renderPipeline();
+        renderActivity();
+        renderPerformers();
+      });
+    </script>
+  </body>
+</html>
