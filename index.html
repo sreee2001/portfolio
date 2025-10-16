@@ -29,27 +29,29 @@
         .header {
             background: linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%);
             color: white;
-            padding: 6rem 2rem;
+            /* Reduced vertical padding to make the hero more compact */
+            padding: 3.5rem 2rem;
             text-align: center;
         }
 
         .header h1 {
-            font-size: 3.5rem;
+            /* Slightly smaller and more balanced for desktop and mobile */
+            font-size: 2.5rem;
             font-weight: 900;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .header .subtitle {
-            font-size: 1.5rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            opacity: 0.95;
+            margin-bottom: 1.25rem;
         }
 
         .header .description {
             max-width: 700px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
-            opacity: 0.85;
+            margin: 0 auto 1.5rem;
+            font-size: 1.05rem;
+            opacity: 0.9;
         }
 
         .social-links {
@@ -179,7 +181,8 @@
         /* Portfolio Grid */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            /* Allow smaller cards on tablets and narrow screens */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -216,6 +219,173 @@
             color: #0ea5e9;
             position: relative;
             overflow: hidden;
+        }
+
+        .thumbnail-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            color: rgba(14,165,233,0.9);
+            font-size: 3.25rem;
+            background: linear-gradient(135deg, #eaf6ff 0%, #eef9ff 100%);
+        }
+
+    /* Project detail modal */
+    .modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+    }
+
+    .modal[aria-hidden="false"] { display: flex; }
+
+    .modal-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(2,6,23,0.6);
+        backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+        position: relative;
+        background: white;
+        /* Slightly wider for desktop but keep responsive */
+        width: min(1300px, 96%);
+        max-height: 92vh;
+        border-radius: 12px;
+        /* Keep modal itself non-scrollable; make panels scrollable instead */
+        overflow: visible;
+        box-shadow: 0 20px 60px rgba(2,6,23,0.4);
+        padding: 1.25rem;
+        z-index: 2010;
+        display: grid;
+        grid-template-columns: 1fr 420px; /* larger detail panel for readability */
+        gap: 1rem;
+        transform: translateY(8px);
+        opacity: 0;
+        transition: transform 220ms ease, opacity 220ms ease;
+    }
+
+    /* Right panel scroll and tabs */
+    .modal-details {
+        display: flex;
+        flex-direction: column;
+        /* keep modal-details pinned and let inner content scroll */
+        max-height: calc(92vh - 32px);
+        overflow: hidden;
+        padding-left: 0.5rem;
+    }
+
+    .modal-header { margin-bottom: 0.5rem; }
+
+    .tab-list { display:flex; gap:0.5rem; margin-bottom:0.5rem; }
+    .tab { background: transparent; border: 1px solid #e6eef8; padding: 0.4rem 0.6rem; border-radius: 8px; cursor: pointer; font-weight:700; color:#0f172a; }
+    .tab[aria-selected="true"] { background: linear-gradient(135deg,#0ea5e9,#1e40af); color:white; border-color: transparent; }
+
+    .tab-panels { overflow: visible; padding-right: 0.5rem; }
+    .tab-panel { padding-bottom: 1rem; }
+    /* Only the details content (inside each panel) should scroll */
+    .modal-details-content { max-height: calc(92vh - 160px); overflow:auto; padding-right:0.5rem; }
+
+    .modal-tags .tag { display:inline-block; margin:0.25rem 0.25rem 0.25rem 0; }
+
+    @media (max-width: 900px) {
+        .modal-content { grid-template-columns: 1fr; }
+        .modal-details { max-height: 60vh; }
+        .modal-body { max-height: 40vh; overflow: auto; }
+    }
+
+    .modal-close {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+        background: transparent;
+        border: none;
+        font-size: 1.75rem;
+        color: #475569;
+        cursor: pointer;
+    }
+
+    .modal-body-img {
+        width: 100%;
+        height: 100%;
+        max-height: 70vh;
+        object-fit: contain;
+        border-radius: 8px;
+        background: #f8fafc;
+    }
+
+    /* Ensure the left image column doesn't force modal scrolling on tall content */
+    .modal-body { display:flex; flex-direction:column; gap:0.5rem; align-items:stretch; justify-content:center; max-height: calc(92vh - 40px); overflow: hidden; }
+
+    .modal-details {
+        padding: 0.25rem 0.5rem;
+    }
+
+    /* Read-more clamp utility */
+    .clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .read-more-toggle { background: transparent; border: none; color: #0ea5e9; font-weight: 700; cursor: pointer; padding: 0.15rem 0.25rem; }
+
+    .modal-meta { display: flex; flex-direction: column; gap: 0.75rem; }
+    .modal-meta h4 { margin: 0 0 0.25rem 0; font-size: 0.95rem; }
+    .modal-tags { display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.5rem; }
+
+    .modal-actions { margin-top: 1rem; display:flex; gap:0.5rem; }
+
+    @media (max-width: 900px) {
+        .modal-content { grid-template-columns: 1fr; }
+        .modal-content { max-height: 85vh; }
+    }
+
+        /* When modal is visible, animate content in */
+        .modal[aria-hidden="false"] .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* CTA button inside modal */
+        .modal .portfolio-link {
+            padding: 0.5rem 0.75rem;
+            background: linear-gradient(135deg,#0ea5e9,#1e40af);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .modal .portfolio-link:hover { opacity: 0.95; }
+
+        /* Modal footer CTA visually floats to bottom-right of modal-content
+           while remaining outside the scrollable tab panels in the DOM */
+        .modal-footer {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            z-index: 2050;
+            display: block;
+            pointer-events: none; /* let children control pointer events */
+        }
+        .modal-footer .modal-cta {
+            pointer-events: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            background: linear-gradient(135deg,#0ea5e9,#1e40af);
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            box-shadow: 0 6px 20px rgba(2,6,23,0.12);
+        }
+        @media (max-width: 900px) {
+            .modal-footer { right: 12px; bottom: 12px; }
+            .modal-footer .modal-cta { padding: 0.5rem 0.9rem; }
         }
 
         .portfolio-thumbnail img {
@@ -732,10 +902,10 @@
                 `<span class="tag">${tag}</span>`
             ).join('');
             
-            const thumbnailContent = project.screenshot ? 
-                `<img src="${project.screenshot}" alt="${project.title} Screenshot" 
-                      onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\\"${project.icon}\\"></i>';">` :
-                `<i class="${project.icon}"></i>`;
+        const thumbnailContent = project.screenshot ? 
+            `<img src="${project.screenshot}" alt="${project.title} Screenshot" 
+                onerror="this.onerror=null; this.style.display='none'; this.setAttribute('aria-hidden','true');">` :
+            `<div aria-hidden="true" class="thumbnail-placeholder"><i class="${project.icon}"></i></div>`;
             
             const designBadges = [];
             if (project.targetAudience) designBadges.push(`<span class="design-badge audience">👥 ${project.targetAudience}</span>`);
@@ -766,8 +936,8 @@
             card.addEventListener('click', (e) => {
                 // If the user clicked an actual anchor or interactive element inside, let it handle the event
                 if (e.target.closest('a') || e.target.closest('button')) return;
-                try { window.open(project.url, '_blank'); }
-                catch (err) { window.location.href = project.url; }
+                // Open project detail modal instead of navigating away
+                openProjectModal(project);
             });
             card.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -779,6 +949,126 @@
             });
 
             return card;
+        }
+
+        // Modal population and behavior
+        let _lastFocusedCard = null;
+        // Helper to mark main page content as inert/aria-hidden while modal is open
+        function setPageInert(shouldBeInert) {
+            const modal = document.getElementById('project-modal');
+            Array.from(document.body.children).forEach(child => {
+                if (child === modal) return;
+                try {
+                    if (shouldBeInert) {
+                        child.setAttribute('aria-hidden', 'true');
+                        // set inert if supported or harmless to set
+                        try { child.inert = true; } catch (e) { child.setAttribute('inert', ''); }
+                    } else {
+                        child.removeAttribute('aria-hidden');
+                        try { child.inert = false; } catch (e) { child.removeAttribute('inert'); }
+                    }
+                } catch (e) {
+                    // ignore per-element failures
+                }
+            });
+        }
+        function openProjectModal(project) {
+            const modal = document.getElementById('project-modal');
+            const img = modal.querySelector('.modal-body-img');
+            const title = modal.querySelector('.modal-title');
+            const desc = modal.querySelector('.modal-description');
+            const challenge = modal.querySelector('.modal-challenge');
+            const approach = modal.querySelector('.modal-approach');
+            const outcome = modal.querySelector('.modal-outcome');
+            const tags = modal.querySelector('.modal-tags');
+
+            title.textContent = project.title || '';
+            desc.textContent = project.description || '';
+            img.src = project.screenshot || '';
+            img.alt = (project.title || 'Project') + ' screenshot';
+            challenge.textContent = project.challenge || 'No challenge description provided.';
+            approach.textContent = project.approach || 'No approach details provided.';
+            outcome.textContent = project.outcome || 'No outcome or metrics provided.';
+
+            // Populate tags under the image (thumbnail tags) and set CTA links
+            const thumbTagsEl = modal.querySelector('.thumbnail-tags');
+            if (thumbTagsEl) thumbTagsEl.innerHTML = (project.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+            const cta = document.getElementById('modal-cta');
+            if (cta) cta.href = project.url || '#';
+
+            // Keep modal tags (for backward compatibility) empty to avoid duplication
+            if (tags) tags.innerHTML = '';
+
+            modal.setAttribute('aria-hidden', 'false');
+            // Mark the rest of the page inert so assistive tech ignores underlying content
+            setPageInert(true);
+            // trap focus lightly by focusing close button
+            _lastFocusedCard = document.activeElement && document.activeElement.closest && document.activeElement.closest('.portfolio-card') ? document.activeElement.closest('.portfolio-card') : null;
+            const closeBtn = modal.querySelector('.modal-close');
+            if (closeBtn) closeBtn.focus();
+
+            // light focus trap: intercept Tab navigation within modal
+            modal.addEventListener('keydown', modalKeyHandler);
+
+            // If focus-trap was loaded from CDN, try to create and activate it for robust trapping
+            try {
+                const createTrap = window.createFocusTrap || (window.focusTrap && window.focusTrap.createFocusTrap) || null;
+                if (createTrap) {
+                    // create trap on the modal content
+                    _focusTrapInstance = createTrap(modal.querySelector('.modal-content'), {
+                        escapeDeactivates: false,
+                        clickOutsideDeactivates: true,
+                        allowOutsideClick: true
+                    });
+                    _focusTrapInstance && _focusTrapInstance.activate && _focusTrapInstance.activate();
+                }
+            } catch (e) {
+                // fallback: rely on simple keyboard handler above
+                console.log('Focus-trap activation failed, falling back to lightweight trap');
+            }
+            // Populate tab panels with quick content
+            populateModalPanels(project);
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            if (!modal) return;
+            modal.setAttribute('aria-hidden', 'true');
+            // remove src to stop any playing media
+            const img = modal.querySelector('.modal-body-img');
+            if (img) img.src = '';
+            // remove trap
+            modal.removeEventListener('keydown', modalKeyHandler);
+            // deactivate focus-trap if active
+            try {
+                if (_focusTrapInstance && _focusTrapInstance.deactivate) {
+                    _focusTrapInstance.deactivate();
+                }
+            } catch (e) {
+                // ignore
+            }
+            _focusTrapInstance = null;
+            // restore page inert state
+            setPageInert(false);
+            // restore focus to previously focused card
+            if (_lastFocusedCard) {
+                try { _lastFocusedCard.focus(); } catch (e) {}
+                _lastFocusedCard = null;
+            }
+        }
+
+        function modalKeyHandler(e) {
+            if (e.key !== 'Tab') return;
+            const modal = document.getElementById('project-modal');
+            const focusable = modal.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault(); last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault(); first.focus();
+            }
         }
 
         // Reusable carousel behavior: drag-to-scroll, keyboard navigation, autoplay with pause/resume
@@ -1251,5 +1541,212 @@
             }
         });
     </script>
+
+        <!-- Project Detail Modal -->
+        <div id="project-modal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+            <div class="modal-overlay" tabindex="-1" onclick="closeProjectModal()"></div>
+            <div class="modal-content">
+                    <button class="modal-close" aria-label="Close details" onclick="closeProjectModal()">&times;</button>
+                    <div class="modal-body" aria-hidden="false">
+                        <img class="modal-body-img" src="" alt="project screenshot" />
+                        <!-- Thumbnail meta: tags only (CTA moved to floating button) -->
+                        <div class="thumbnail-meta" style="margin-top:0.75rem; display:flex; align-items:center; justify-content:flex-start; gap:0.75rem;">
+                            <div class="thumbnail-tags" style="display:flex; gap:0.4rem; flex-wrap:wrap; align-items:center;"></div>
+                        </div>
+                    </div>
+                    <div class="modal-details" role="region" aria-label="Project details panel">
+                        <div class="modal-header" style="display:flex; align-items:flex-start; justify-content:space-between; gap:1rem;">
+                            <h3 id="modal-title" class="modal-title" style="flex:1;"> </h3>
+                            <!-- Primary CTA relocated to a single floating button at the bottom-right -->
+                            <div style="margin-left:1rem; visibility:hidden; width:1px; height:1px;"> </div>
+                        </div>
+
+                        <!-- Tabbed content: Overview / Case Study / Details -->
+                        <!-- Tabs moved to top for quick access -->
+                        <div class="tab-list" role="tablist" aria-label="Project sections">
+                            <button class="tab" role="tab" aria-selected="true" tabindex="0" data-tab="overview">Overview</button>
+                            <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-tab="case">Case Study</button>
+                            <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-tab="facts">Quick Facts</button>
+                        </div>
+
+                        <div class="tab-panels">
+                            <section class="tab-panel" data-tab="overview" data-active="true" role="tabpanel">
+                                <div class="modal-details-content">
+                                    <div class="panel-overview">
+                                        <!-- Overview contains the short description -->
+                                        <p id="modal-desc" class="modal-description" style="color:#475569; margin-bottom:0.75rem;"></p>
+                                        <div class="panel-actions modal-actions">
+                                            <!-- CTA removed from Overview to avoid duplication; primary CTA sits below the tabs -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="tab-panel" data-tab="case" role="tabpanel" hidden>
+                                <div class="modal-details-content">
+                                    <h4>Challenge</h4>
+                                    <p class="modal-challenge clamp-3" style="color:#475569"></p>
+                                    <button class="read-more-toggle" data-target=".modal-challenge">Read more</button>
+                                    <h4 style="margin-top:0.75rem">Approach</h4>
+                                    <p class="modal-approach clamp-3" style="color:#475569"></p>
+                                    <button class="read-more-toggle" data-target=".modal-approach">Read more</button>
+                                    <h4 style="margin-top:0.75rem">Outcome</h4>
+                                    <p class="modal-outcome clamp-3" style="color:#475569"></p>
+                                    <button class="read-more-toggle" data-target=".modal-outcome">Read more</button>
+                                </div>
+                            </section>
+
+                            <section class="tab-panel" data-tab="facts" role="tabpanel" hidden>
+                                <div class="modal-details-content">
+                                    <h4>Quick Facts</h4>
+                                    <div class="panel-facts" style="color:#475569"></div>
+                                    <h4 style="margin-top:1rem">Notes</h4>
+                                    <div class="panel-notes" style="color:#475569"></div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- Modal footer: persistent button row visible outside tab panels -->
+                        <div class="modal-footer" id="modal-footer">
+                            <a id="modal-cta" class="modal-cta" target="_blank" href="#" aria-label="Open mock (opens in new tab)">
+                                Open Mock <span style="font-size:0.95rem;">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <script>
+            // Wire up modal close on Escape and set modal open link behavior
+            document.addEventListener('keydown', (e) => {
+                const modal = document.getElementById('project-modal');
+                if (!modal) return;
+                if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+                    closeProjectModal();
+                }
+            });
+
+            // Update modal open link dynamically when opened
+            const originalOpenProjectModal = window.openProjectModal;
+            // After modal is opened we set the open link's href
+            const observer = new MutationObserver(() => {
+                const modal = document.getElementById('project-modal');
+                if (!modal) return;
+                if (modal.getAttribute('aria-hidden') === 'false') {
+                    const title = modal.querySelector('.modal-title').textContent || '';
+                    // Find the project in portfolioManager by title
+                    const proj = portfolioManager.projects && portfolioManager.projects.find(p => p.title === title);
+                    const cta = document.getElementById('modal-cta');
+                    if (proj && cta) {
+                        cta.href = proj.url || '#';
+                    }
+                }
+            });
+            observer.observe(document.getElementById('project-modal'), { attributes: true, attributeFilter: ['aria-hidden'] });
+
+            // Attempt to load focus-trap from CDN for robust focus management. If it loads,
+            // we'll use it; otherwise we fall back to the lightweight trap already implemented.
+            let _focusTrapInstance = null;
+            (function loadFocusTrap() {
+                const s = document.createElement('script');
+                s.src = 'https://unpkg.com/focus-trap@6.9.3/dist/focus-trap.umd.js';
+                s.crossorigin = 'anonymous';
+                s.onload = () => { /* focus-trap will be available as window.focusTrap */ };
+                s.onerror = () => { /* ignore - fallback will be used */ };
+                document.head.appendChild(s);
+            })();
+
+            // Tab handling and panel population for the modal
+            function populateModalPanels(project) {
+                const modal = document.getElementById('project-modal');
+                if (!modal) return;
+                // Populate case study fields
+                modal.querySelector('.modal-challenge').textContent = project.challenge || 'No challenge description provided.';
+                modal.querySelector('.modal-approach').textContent = project.approach || 'No approach details provided.';
+                modal.querySelector('.modal-outcome').textContent = project.outcome || 'No outcome or metrics provided.';
+
+                // Populate overview description (moved into Overview tab)
+                const descEl = modal.querySelector('#modal-desc');
+                if (descEl) descEl.textContent = project.description || '';
+
+                // Quick facts: tags, category, folder, variants
+                const facts = [];
+                if (project.category) facts.push('Category: ' + project.category.join(', '));
+                if (project.folder) facts.push('Folder: ' + project.folder);
+                if (project.variants) facts.push('Variants: ' + project.variants.map(v => v.name || v.folder).slice(0,3).join(', '));
+                modal.querySelector('.panel-facts').textContent = facts.join(' • ');
+
+                // Notes (small description)
+                modal.querySelector('.panel-notes').textContent = project.description || '';
+
+                // Switch to first tab (overview)
+                activateTab('overview');
+
+                // Attach read-more toggle behavior for case study sections
+                const toggles = modal.querySelectorAll('.read-more-toggle');
+                toggles.forEach(btn => {
+                    btn.setAttribute('aria-expanded', 'false');
+                    btn.addEventListener('click', (e) => {
+                        const targetSelector = btn.getAttribute('data-target');
+                        if (!targetSelector) return;
+                        const target = modal.querySelector(targetSelector);
+                        if (!target) return;
+                        const expanded = btn.getAttribute('aria-expanded') === 'true';
+                        if (expanded) {
+                            // collapse
+                            target.classList.add('clamp-3');
+                            btn.textContent = 'Read more';
+                            btn.setAttribute('aria-expanded', 'false');
+                        } else {
+                            // expand
+                            target.classList.remove('clamp-3');
+                            btn.textContent = 'Show less';
+                            btn.setAttribute('aria-expanded', 'true');
+                        }
+                    });
+                });
+            }
+
+            function activateTab(tabName) {
+                const modal = document.getElementById('project-modal');
+                if (!modal) return;
+                const tabs = modal.querySelectorAll('.tab');
+                tabs.forEach(t => {
+                    const is = t.dataset.tab === tabName;
+                    t.setAttribute('aria-selected', is ? 'true' : 'false');
+                    t.tabIndex = is ? 0 : -1;
+                });
+                const panels = modal.querySelectorAll('.tab-panel');
+                panels.forEach(p => {
+                    if (p.dataset.tab === tabName) { p.hidden = false; p.setAttribute('data-active','true'); }
+                    else { p.hidden = true; p.removeAttribute('data-active'); }
+                });
+            }
+
+            // Wire up tab clicks and keyboard navigation
+            document.addEventListener('click', (e) => {
+                const t = e.target.closest && e.target.closest('.tab');
+                if (!t) return;
+                const tab = t.dataset.tab;
+                activateTab(tab);
+                t.focus();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                const focused = document.activeElement;
+                if (!focused || !focused.classList.contains('tab')) return;
+                if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                    const modal = document.getElementById('project-modal');
+                    const tabs = Array.from(modal.querySelectorAll('.tab'));
+                    const idx = tabs.indexOf(focused);
+                    let next = idx + (e.key === 'ArrowRight' ? 1 : -1);
+                    if (next < 0) next = tabs.length - 1;
+                    if (next >= tabs.length) next = 0;
+                    tabs[next].focus();
+                    activateTab(tabs[next].dataset.tab);
+                    e.preventDefault();
+                }
+            });
+        </script>
 </body>
 </html>
